@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/pngegg.png","C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/bin/DesktopGL/Content/pngegg.xnb","TextureProcessor","Texture2DContent",589531,2203733,0.3597371
+"C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/pngegg1.png","C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/bin/DesktopGL/Content/pngegg1.xnb","TextureProcessor","Texture2DContent",74854,2642005,0.097358
+"C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/Score.spritefont","C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/bin/DesktopGL/Content/Score.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21538,0.3025995
