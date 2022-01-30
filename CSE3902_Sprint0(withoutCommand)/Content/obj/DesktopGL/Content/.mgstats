@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/xinxi/source/repos/CSE3902_Sprint0/CSE3902_Sprint0/Content/pngegg.png","C:/Users/xinxi/source/repos/CSE3902_Sprint0/CSE3902_Sprint0/Content/bin/DesktopGL/Content/pngegg.xnb","TextureProcessor","Texture2DContent",589531,2203733,0.2604283
+"C:/Users/xinxi/source/repos/CSE3902_Sprint0/CSE3902_Sprint0/Content/pngegg1.png","C:/Users/xinxi/source/repos/CSE3902_Sprint0/CSE3902_Sprint0/Content/bin/DesktopGL/Content/pngegg1.xnb","TextureProcessor","Texture2DContent",74854,2642005,0.1974139
