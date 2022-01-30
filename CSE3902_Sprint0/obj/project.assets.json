@@ -180,11 +180,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SP22\\CSE3902\\Version-ICommand\\CSE3902_Sprint0\\CSE3902_Sprint0.csproj",
+      "projectUniqueName": "C:\\SP22\\CSE3902\\version3-ICommand\\CSE3902_Sprint0\\CSE3902_Sprint0.csproj",
       "projectName": "CSE3902_Sprint0",
-      "projectPath": "C:\\SP22\\CSE3902\\Version-ICommand\\CSE3902_Sprint0\\CSE3902_Sprint0.csproj",
+      "projectPath": "C:\\SP22\\CSE3902\\version3-ICommand\\CSE3902_Sprint0\\CSE3902_Sprint0.csproj",
       "packagesPath": "C:\\Users\\xinxi\\.nuget\\packages\\",
-      "outputPath": "C:\\SP22\\CSE3902\\Version-ICommand\\CSE3902_Sprint0\\obj\\",
+      "outputPath": "C:\\SP22\\CSE3902\\version3-ICommand\\CSE3902_Sprint0\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
