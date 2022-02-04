@@ -10,16 +10,11 @@ namespace CSE3902_Sprint0
 {
     class StaticSprite : ISprite
     {
-        public int Columns { get; set; }
-        public int Rows { get; set; }
         public Texture2D Texture { get; set; }
         public Rectangle SourceRectangle { get; set; }
 
         public StaticSprite(Texture2D texture, Rectangle sourceRectangle)
         {
-            Columns = 1;
-            Rows = 1;
-
             Texture = texture;
             SourceRectangle = sourceRectangle;
         }

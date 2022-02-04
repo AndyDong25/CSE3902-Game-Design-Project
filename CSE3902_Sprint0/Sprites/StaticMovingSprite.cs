@@ -8,41 +8,45 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CSE3902_Sprint0
 {
-    class StaticMovingSprite : ICommand
+    class StaticMovingSprite : ISprite
     {
-        private Vector2 ScreenSize;
-        private Vector2 Position = new Vector2(100,100);
-       
-       
-
+  
+        public Texture2D Texture { get; set; }
+        public Rectangle SourceRectangle { get; set; }
+        private int screenHeight;
+        private Vector2 Position;
         
-       
-        public void Execute(SpriteBatch spriteBatch, Texture2D texture, Rectangle SourceRectangle, Vector2 screenSize)
+        public StaticMovingSprite(Texture2D texture, Rectangle sourceRectangle,Vector2 position, Vector2 screenSize)
         {
-            
-            
+
+            Position = position;
+            Texture = texture;
+            SourceRectangle = sourceRectangle;
+            screenHeight = (int)screenSize.Y;
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
+        {
             Rectangle destinationRectangle = new Rectangle((int)Position.X,
                                                            (int)Position.Y,
                                                            SourceRectangle.Width,
                                                            SourceRectangle.Height);
             
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, destinationRectangle, SourceRectangle, Color.White);
+            spriteBatch.Draw(Texture, destinationRectangle, SourceRectangle, Color.White);
             spriteBatch.End();
-            ScreenSize = screenSize;
         }
 
         public void Update()
         {
             if (Position.Y == 0)
             {
-                Position.Y = ScreenSize.Y;
+                Position.Y = screenHeight;
             }
             else
             {
                 Position.Y--;
             }
         }
-        
     }
 }

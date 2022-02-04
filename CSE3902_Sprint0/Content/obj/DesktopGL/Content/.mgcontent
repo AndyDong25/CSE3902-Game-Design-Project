@@ -4,10 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/SP22/CSE3902/version3-ICommand/CSE3902_Sprint0/Content/pngegg.png</File>
-    <File>C:/SP22/CSE3902/version3-ICommand/CSE3902_Sprint0/Content/pngegg1.png</File>
+    <File>C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/pngegg.png</File>
+    <File>C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/pngegg1.png</File>
+    <File>C:/SP22/CSE3902/Version-ICommand/CSE3902_Sprint0/Content/Score.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

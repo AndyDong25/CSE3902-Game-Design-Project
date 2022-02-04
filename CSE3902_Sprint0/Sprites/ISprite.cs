@@ -12,8 +12,6 @@ namespace CSE3902_Sprint0
     public interface ISprite
     {
         Texture2D Texture { get; set; }
-        int Rows { get; set; }
-        int Columns { get; set; }
         void Update();
         void Draw(SpriteBatch spriteBatch, Vector2 destination);
         
