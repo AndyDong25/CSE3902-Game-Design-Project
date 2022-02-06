@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CSE3902_Sprint0
+namespace CSE3902_Sprint2
 {
     class MouseController : IController
     {

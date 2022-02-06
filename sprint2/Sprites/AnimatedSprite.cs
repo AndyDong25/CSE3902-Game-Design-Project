@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CSE3902_Sprint0
+namespace CSE3902_Sprint2
 {
     
     class AnimatedSprite : ISprite

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSE3902_Sprint0
+namespace CSE3902_Sprint2
 {
     interface ICommand
     {

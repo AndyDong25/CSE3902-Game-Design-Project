@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSE3902_Sprint0
+namespace CSE3902_Sprint2
 {
     public static class Program
     {

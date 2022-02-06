@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections;
 
-namespace CSE3902_Sprint0
+namespace CSE3902_Sprint2
 {
 
     public class Game1 : Game
