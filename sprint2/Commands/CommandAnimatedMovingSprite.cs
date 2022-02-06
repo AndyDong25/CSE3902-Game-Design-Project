@@ -16,11 +16,11 @@ namespace CSE3902_Sprint2
         }
         
         public void Execute() { 
-            Texture2D texture = Game.spriteTexture;
+/*            Texture2D texture = Game.spriteTexture;
             Vector2 position = Game.spriteposition;
             Vector2 screenSize = Game.screeenSize;
             Game.marioMoves = Game1.MarioMovement.MovingAnimated;
-            Game.sprite = new AnimatedMovingSprite(texture, 2, 4, position, screenSize);
+            Game.sprite = new AnimatedMovingSprite(texture, 2, 4, position, screenSize);*/
         }
         
 

@@ -16,11 +16,11 @@ namespace CSE3902_Sprint2
         }
         
         public void Execute() {
-            int mouseX, mouseY;
+/*            int mouseX, mouseY;
             Texture2D texture = Game.spriteTexture;
  
             Game.marioMoves = Game1.MarioMovement.NonMovingAnimated;
-            Game.sprite = new AnimatedSprite(texture, 2, 4);
+            Game.sprite = new AnimatedSprite(texture, 2, 4);*/
         }
         
 
