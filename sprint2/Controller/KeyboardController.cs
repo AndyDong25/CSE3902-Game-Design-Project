@@ -20,11 +20,6 @@ namespace CSE3902_Sprint2.Controller
         {
             Game = game;
             controllerMappings = new Dictionary<Keys, ICommand>();
-            RegisterCommand(Keys.D0, new CommandExit(Game));
-            RegisterCommand(Keys.D1, new CommandStaticSprite(Game));
-            RegisterCommand(Keys.D2, new CommandAnimatedSprite(Game));
-            RegisterCommand(Keys.D3, new CommandStaticMovingSprite(Game));
-            RegisterCommand(Keys.D4, new CommandAnimatedMovingSprite(Game));
         }
         public void RegisterCommand(Keys key, ICommand command)
         {

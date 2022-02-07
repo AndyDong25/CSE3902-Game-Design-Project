@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CSE3902_Sprint2.Commands
 {
-    interface ICommand
+    public interface ICommand
     {
 
         Game1 Game { get; set; }

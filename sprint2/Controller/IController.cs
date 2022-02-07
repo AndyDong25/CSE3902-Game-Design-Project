@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSE3902_Sprint2.Controller
 {
-    interface IController
+    public interface IController
     {
         Game1 Game { get; set; }
         void Update();

@@ -28,11 +28,6 @@ namespace CSE3902_Sprint2.Controller
             MouseState mouseState = Mouse.GetState();
           
             Dictionary<ICommand, bool[]> commandDirct = new Dictionary<ICommand, bool[]>();
-            ICommand exitOption = new CommandExit(Game);
-            commandDirct.Add(new CommandStaticSprite(Game), new bool[] { false, false });
-            commandDirct.Add(new CommandAnimatedSprite(Game), new bool[] { true, false });
-            commandDirct.Add(new CommandStaticMovingSprite(Game), new bool[] { false, true });
-            commandDirct.Add(new CommandAnimatedMovingSprite(Game), new bool[] { true, true });
             mouseX = mouseState.X;
             mouseY = mouseState.Y;
             if (mouseState.LeftButton == ButtonState.Pressed)
@@ -47,7 +42,6 @@ namespace CSE3902_Sprint2.Controller
             }
             else if (mouseState.RightButton == ButtonState.Pressed)
             {
-                exitOption.Execute();
             }
         }
     }
