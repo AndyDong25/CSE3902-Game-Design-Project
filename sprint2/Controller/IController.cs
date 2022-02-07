@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSE3902_Sprint2
+namespace CSE3902_Sprint2.Controller
 {
     interface IController
     {

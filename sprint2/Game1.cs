@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections;
+using CSE3902_Sprint2.Sprites.BlockSprites;
+using CSE3902_Sprint2.Sprites;
+using CSE3902_Sprint2.Controller;
 
 namespace CSE3902_Sprint2
 {

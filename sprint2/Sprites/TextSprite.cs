@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-namespace CSE3902_Sprint2
+namespace CSE3902_Sprint2.Sprites
 {
     class TextSprite: ISprite
     {
