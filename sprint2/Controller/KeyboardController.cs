@@ -8,32 +8,25 @@ using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Sprint2.Commands;
+using CSE3902_Sprint2.Objects.Player;
 
 namespace CSE3902_Sprint2.Controller
 {
     class KeyboardController : IController
     {
-        public Game1 Game { get; set; }
-        private Dictionary<Keys, ICommand> controllerMappings;
+        private List<Keys> currentState;
+        private KeyMapping keyMap;
 
-        public KeyboardController(Game1 game)
+        public KeyboardController(Game1 game, Player player1, Player player2)
         {
-            Game = game;
-            controllerMappings = new Dictionary<Keys, ICommand>();
+            //currentState = new List<Keys>(Keyboard.GetState().GetPressedKeys());
+            keyMap = new KeyMapping(game, player1, player2);
         }
-        public void RegisterCommand(Keys key, ICommand command)
-        {
-            controllerMappings.Add(key, command);
-        }
+
         public void Update()
         {
-            Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-            foreach (Keys key in pressedKeys)
-            {
-                controllerMappings[key].Execute();
-            }
-
-
+            currentState = new List<Keys>(Keyboard.GetState().GetPressedKeys());
+            keyMap.callCommands(currentState);
         }
     }
 }

@@ -8,7 +8,6 @@ namespace CSE3902_Sprint2.Controller
 {
     public interface IController
     {
-        Game1 Game { get; set; }
         void Update();
     }
 }

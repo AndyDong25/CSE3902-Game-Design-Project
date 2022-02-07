@@ -12,17 +12,14 @@ namespace CSE3902_Sprint2.Controller
 {
     class MouseController : IController
     {
-        public Game1 Game { get; set; }
-
         public MouseController(Game1 game)
         {
-            Game = game;
-           
+            //Game = game;      
         }
         
         public void Update()
         {
-            int mouseX, mouseY;
+/*            int mouseX, mouseY;
             int frameHeight = Game.GraphicsDevice.PresentationParameters.BackBufferHeight;
             int frameWidth = Game.GraphicsDevice.PresentationParameters.BackBufferWidth;
             MouseState mouseState = Mouse.GetState();
@@ -42,7 +39,7 @@ namespace CSE3902_Sprint2.Controller
             }
             else if (mouseState.RightButton == ButtonState.Pressed)
             {
-            }
+            }*/
         }
     }
 }
