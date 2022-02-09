@@ -8,7 +8,7 @@ namespace CSE3902_Sprint2.Objects.Player
     public interface IPlayerState
     {
         void Draw(SpriteBatch spriteBatch);
-        void setTextureIndex(int index);
+       
         void TakeDamage();
         void Update();
         void MoveUp();

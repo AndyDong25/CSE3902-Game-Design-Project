@@ -51,8 +51,8 @@ namespace CSE3902_Sprint2.Controller
             this.addCommand(Keys.Space, new DropBombCommand(player1));
             this.addCommand(Keys.Enter, new DropBombCommand(player2));
 
-            //this.addCommand(Keys.O, new SwitchCharacter(player1));
-            //this.addCommand(Keys.P, new SwitchCharacter(player2));
+            this.addCommand(Keys.E, new ChangeCharacterCommand(player1));
+            this.addCommand(Keys.P, new ChangeCharacterCommand(player2));
             //this.addCommand(Keys.D1, new UseItem(player1));
             //this.addCommand(Keys.D0, new UseItem(player2));
 

@@ -10,6 +10,8 @@ namespace CSE3902_Sprint2.Objects.Player
     public class Player
     {
         public IPlayerState currState;
+        public int SpriteIndex = 0;
+        public int TextureIndex = 0;
 
         public float xPos, yPos, previousXPos, previousYPos;
         public static float speed = 3.0f;
@@ -19,7 +21,7 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public Player(Vector2 position)
         {
-            currState = new PlayerFacingSouthState(this);
+            currState = new PlayerFacingEastState(this);
             xPos = position.X;
             yPos = position.Y;
         }
@@ -56,7 +58,9 @@ namespace CSE3902_Sprint2.Objects.Player
         }
         public void ChangeCharacter()
         {
-
+            
+         
+   
         }
         public void Update()
         {
