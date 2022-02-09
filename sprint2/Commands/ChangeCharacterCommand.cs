@@ -14,7 +14,7 @@ namespace CSE3902_Sprint2.Commands
         }
         public void Execute()
         {
-            myPlayer.SpriteIndex = (++myPlayer.SpriteIndex %2);
+            myPlayer.SpriteIndex = (++myPlayer.SpriteIndex %4);
             
         }
     }

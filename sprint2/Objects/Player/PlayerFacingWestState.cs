@@ -10,21 +10,10 @@ namespace CSE3902_Sprint2.Objects.Player
     {
         private Player player;
         private int framesLeft;
-        private static List<Rectangle> mySourcesBomber = new List<Rectangle>
-        {
-            SpriteConstants.BOMBER_IDLE_WEST,
-            SpriteConstants.BOMBER_STEP_WEST1,
-            SpriteConstants.BOMBER_STEP_WEST2
-        };
-        private static List<Rectangle> mySourcesKnight = new List<Rectangle>
-        {
-            SpriteConstants.KNIGHT_IDLE_WEST,
-            SpriteConstants.KNIGHT_STEP_WEST1,
-            SpriteConstants.KNIGHT_STEP_WEST2
-        };
+
         private static List<List<Rectangle>> mySources = new List<List<Rectangle>>
         {
-            mySourcesBomber,mySourcesKnight
+            SpriteConstants.BOMBER_WEST,SpriteConstants.KNIGHT_WEST, SpriteConstants.GOBLIN_WEST,SpriteConstants.GHOST_WEST
 
         };
         private int mySourceIndex;
@@ -45,9 +34,18 @@ namespace CSE3902_Sprint2.Objects.Player
             {
                 texture = PlayerTextureStorage.Instance.getBomberSpriteSheet();
             }
-            else
+            else if (myTextureIndex ==1)
             {
                 texture = PlayerTextureStorage.Instance.getKnightSpriteSheet();
+            }
+            else if (myTextureIndex == 2)
+            {
+                texture = PlayerTextureStorage.Instance.getGoblinSpriteSheet();
+            }
+            else
+            {
+                texture = PlayerTextureStorage.Instance.getGhostSpriteSheet();
+                mySourceIndex = 0;
             }
             Rectangle source = mySources[myTextureIndex][mySourceIndex];
             player.DrawSprite(spriteBatch, texture, source);
@@ -75,7 +73,7 @@ namespace CSE3902_Sprint2.Objects.Player
             {
                 framesLeft = (int)Player.framePerStep;
                 mySourceIndex++;
-                mySourceIndex %= mySources[0].Count;
+                mySourceIndex %= mySources[player.SpriteIndex].Count;
             }
         }
 
