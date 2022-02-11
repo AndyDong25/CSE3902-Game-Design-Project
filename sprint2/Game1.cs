@@ -7,6 +7,7 @@ using CSE3902_Sprint2.Sprites;
 using CSE3902_Sprint2.Controller;
 using CSE3902_Sprint2.Objects.Player;
 using sprint2.Objects.Bomb;
+using System.Collections.Generic;
 
 namespace CSE3902_Sprint2
 {
@@ -24,10 +25,10 @@ namespace CSE3902_Sprint2
         public Texture2D destructableBlockTexture;
         public Texture2D indestructableBlockTexture;
         // Bomb
-        public ISprite staticBomb { get; set; }
+        
         public Texture2D bombTexture;
-        public int testDrop = 0;
-        public Vector2 testDropPos = new Vector2(0, 0);
+        public List<Vector2> staticBombList = new List <Vector2>();
+        public ISprite staticBomb { get; set; }
 
         public Game1()
         {
@@ -97,9 +98,9 @@ namespace CSE3902_Sprint2
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
             spriteBatch.End();
-            if (testDrop == 1)
+            foreach (Vector2 bombPos in staticBombList)
             {
-                staticBomb.Draw(spriteBatch, testDropPos);
+                staticBomb.Draw(spriteBatch, bombPos);
             }
 
             base.Draw(gameTime);

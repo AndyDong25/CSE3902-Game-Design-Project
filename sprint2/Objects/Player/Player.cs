@@ -57,8 +57,7 @@ namespace CSE3902_Sprint2.Objects.Player
         public void DropBomb()
         {
             //Game.staticBomb.Draw(Game.spriteBatch, new Vector2((int)xPos, (int)yPos));
-            Game.testDrop = 1;
-            Game.testDropPos = new Vector2(xPos+30, yPos+30);
+            Game.staticBombList.Add(new Vector2((int)xPos + 30, (int)yPos + 30));
 
             //StaticBomb bomb = new StaticBomb(Game.bombTexture);
 
