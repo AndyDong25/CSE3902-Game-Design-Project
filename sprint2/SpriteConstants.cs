@@ -58,10 +58,11 @@ namespace CSE3902_Sprint2
           new Rectangle(48,1440, 48, 48),new Rectangle(0, 144, 48, 48),new Rectangle(96, 144, 48, 48)
         };
         public static List<Rectangle> GHOST_NORTH = new List<Rectangle> { new Rectangle(0, 172, 172, 172) };
-        public static List<Rectangle> GHOST_SOUTH = new List<Rectangle> { new Rectangle(172, 0, 172, 172)    };
+        public static List<Rectangle> GHOST_SOUTH = new List<Rectangle> { new Rectangle(172, 0, 172, 172) };
         public static List<Rectangle> GHOST_EAST = new List<Rectangle> { new Rectangle(0, 0, 172, 172)};
         public static List<Rectangle> GHOST_WEST = new List<Rectangle> { new Rectangle(172, 172, 172, 172) };
 
+        
 
     }
 }

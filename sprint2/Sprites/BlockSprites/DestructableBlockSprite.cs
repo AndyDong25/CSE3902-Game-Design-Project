@@ -10,6 +10,7 @@ namespace CSE3902_Sprint2.Sprites.BlockSprites
     {
         public Texture2D Texture { get; set; }
 
+
         public DestructableBlockSprite(Texture2D texture)
         {
             this.Texture = texture;
