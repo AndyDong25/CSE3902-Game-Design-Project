@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.Bomb;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CSE3902_Sprint2.Objects.Player
@@ -57,10 +58,10 @@ namespace CSE3902_Sprint2.Objects.Player
         public void DropBomb()
         {
             //Game.staticBomb.Draw(Game.spriteBatch, new Vector2((int)xPos, (int)yPos));
-            Vector2 bombPos = new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 100 * 10);
-            if (!Game.staticBombList.Contains(bombPos))
+            Vector2 bombPos = new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10);
+            if (!Game.staticBombList.Keys.Contains(bombPos))
             {
-                Game.staticBombList.Add(new Vector2(((int)xPos + 30) / 10 * 10, (int)yPos + 30) / 10 * 10);
+                Game.staticBombList.Add(bombPos,50);
             }
             
 
@@ -75,7 +76,6 @@ namespace CSE3902_Sprint2.Objects.Player
         public void ChangeCharacter()
         {
             
-         
    
         }
         public void Update()

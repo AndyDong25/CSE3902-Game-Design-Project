@@ -27,7 +27,7 @@ namespace CSE3902_Sprint2
         // Bomb
         
         public Texture2D bombTexture;
-        public List<Vector2> staticBombList = new List <Vector2>();
+        public Dictionary<Vector2,int> staticBombList = new Dictionary<Vector2,int>();
         public ISprite staticBomb { get; set; }
 
         public Game1()
@@ -98,11 +98,19 @@ namespace CSE3902_Sprint2
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
             spriteBatch.End();
-            foreach (Vector2 bombPos in staticBombList)
+            List<Vector2> bombList = new List<Vector2>(staticBombList.Keys);
+            foreach (Vector2 bomb in bombList)
             {
-                staticBomb.Draw(spriteBatch, bombPos);
+                staticBombList[bomb]--;
+                if (staticBombList[bomb] < 0)
+                {
+                    staticBombList.Remove(bomb);
+                }
             }
-
+            foreach (Vector2 bomb in bombList)
+            {
+                staticBomb.Draw(spriteBatch, bomb);
+            }
             base.Draw(gameTime);
         } 
 
