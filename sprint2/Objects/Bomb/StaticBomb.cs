@@ -22,8 +22,8 @@ namespace sprint2.Objects.Bomb
         {
             //destination.X = player.xPos;
             //destination.Y = player.yPos;
-            Rectangle sourcerectangle = new Rectangle(0, 0, 340, 340);
-            Rectangle destinationrectangle = new Rectangle((int)destination.X, (int)destination.Y, 340, 340);
+            Rectangle sourcerectangle = new Rectangle(0, 0, 1340, 1340);
+            Rectangle destinationrectangle = new Rectangle((int)destination.X, (int)destination.Y, 50, 50);
 
             spriteBatch.Begin();
 

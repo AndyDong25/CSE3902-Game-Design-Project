@@ -26,6 +26,8 @@ namespace CSE3902_Sprint2
         // Bomb
         public ISprite staticBomb { get; set; }
         public Texture2D bombTexture;
+        public int testDrop = 0;
+        public Vector2 testDropPos = new Vector2(0, 0);
 
         public Game1()
         {
@@ -95,6 +97,10 @@ namespace CSE3902_Sprint2
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
             spriteBatch.End();
+            if (testDrop == 1)
+            {
+                staticBomb.Draw(spriteBatch, testDropPos);
+            }
 
             base.Draw(gameTime);
         } 
