@@ -61,11 +61,8 @@ namespace CSE3902_Sprint2.Objects.Player
             Vector2 bombPos = new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10);
             if (!Game.staticBombList.Keys.Contains(bombPos))
             {
-                Game.staticBombList.Add(bombPos,50);
-            }
-            
-
-
+                Game.staticBombList.Add(bombPos, 200);
+            }        
             //StaticBomb bomb = new StaticBomb(Game.bombTexture);
 
         }
@@ -75,8 +72,7 @@ namespace CSE3902_Sprint2.Objects.Player
         }
         public void ChangeCharacter()
         {
-            
-   
+            SpriteIndex = (++SpriteIndex % 4);
         }
         public void Update()
         {
