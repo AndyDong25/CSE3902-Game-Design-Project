@@ -1,6 +1,7 @@
 ﻿using CSE3902_Sprint2.Commands;
 using CSE3902_Sprint2.Objects.Player;
 using Microsoft.Xna.Framework.Input;
+using sprint2.Commands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -56,11 +57,14 @@ namespace CSE3902_Sprint2.Controller
             this.addCommand(Keys.E, new ChangeCharacterCommand(player1));
             this.addCommand(Keys.P, new ChangeCharacterCommand(player2));
 
+            this.addCommand(Keys.G, new PlayerDeathCommand(player1));
+            this.addCommand(Keys.L, new PlayerDeathCommand(player2));
+
             this.addCommand(Keys.D1, new UseItemCommand(player1));
             this.addCommand(Keys.D0, new UseItemCommand(player2));
             this.addCommand(Keys.NumPad1, new UseItemCommand(player1));
             this.addCommand(Keys.NumPad0, new UseItemCommand(player2));
-
+            
             // other commands when implemented
         }
 

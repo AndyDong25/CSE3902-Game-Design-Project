@@ -14,10 +14,8 @@ namespace CSE3902_Sprint2.Objects.Player
         private static List<List<Rectangle>> mySources = new List<List<Rectangle>>
         {
             SpriteConstants.BOMBER_EAST,SpriteConstants.KNIGHT_EAST, SpriteConstants.GOBLIN_EAST,SpriteConstants.GHOST_EAST
-
         };
         
-
         private int mySourceIndex;
         private int myTextureIndex;
         private Texture2D texture;
@@ -44,7 +42,7 @@ namespace CSE3902_Sprint2.Objects.Player
             {
                 texture = PlayerTextureStorage.Instance.getGoblinSpriteSheet();
             }
-            else
+            else if (myTextureIndex == 3)
             {
                 texture = PlayerTextureStorage.Instance.getGhostSpriteSheet();
                 mySourceIndex = 0;
