@@ -22,6 +22,8 @@ namespace CSE3902_Sprint2
         private ArrayList controllerList;
         public Player player1;
         public Player player2;
+
+
         private ISprite destructableBlockSprite { get; set; }
         private ISprite indestructableBlockSprite { get; set; }
         private ISprite tree1 { get; set; }

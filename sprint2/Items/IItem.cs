@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using CSE3902_Sprint2.Objects.Player;
+using CSE3902_Sprint2.Sprites;
 
 
-namespace sprint2
+namespace CSE3902_Sprint2
 {
     interface IItem
     {
-        void Activate();
+        void Activate(Player currentPlayer);
 
         void Update();
         
-        public Rectangle getSprite();
+        public ISprite GetSprite();
+
+        void Destroy();
 
     }
 }
