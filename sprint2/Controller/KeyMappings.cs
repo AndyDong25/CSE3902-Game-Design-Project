@@ -53,8 +53,10 @@ namespace CSE3902_Sprint2.Controller
 
             this.addCommand(Keys.E, new ChangeCharacterCommand(player1));
             this.addCommand(Keys.P, new ChangeCharacterCommand(player2));
-            //this.addCommand(Keys.D1, new UseItem(player1));
-            //this.addCommand(Keys.D0, new UseItem(player2));
+            this.addCommand(Keys.D1, new UseItemCommand(player1));
+            this.addCommand(Keys.D0, new UseItemCommand(player2));
+            this.addCommand(Keys.NumPad1, new UseItemCommand(player1));
+            this.addCommand(Keys.NumPad0, new UseItemCommand(player2));
 
             // other commands when implemented
         }
@@ -72,7 +74,6 @@ namespace CSE3902_Sprint2.Controller
                 if (acceptedStates.Contains(k))
                 {
                     mappings[k].Execute();
-                    Debug.WriteLine(k);
                 }
             }
         }

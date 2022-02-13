@@ -3,6 +3,7 @@ using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.Bomb;
+using sprint2.Objects.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,12 @@ namespace CSE3902_Sprint2.Objects.Player
         public static float speed = 3.0f;
         public static float framePerStep = 6;
 
+        public int direction = 2;
+
         public static Boolean isDead = false;
         public Game1 Game { get; set; }
         private ISprite bomb { get; set; }
+        private NinjaStar ninjaStar { get; set; } = null;
 
         public Player(Vector2 position, Game1 game)
         {
@@ -30,7 +34,6 @@ namespace CSE3902_Sprint2.Objects.Player
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
-
         }
 
         public bool IsDead()
@@ -68,7 +71,7 @@ namespace CSE3902_Sprint2.Objects.Player
         }
         public void UseItem()
         {
-
+            ninjaStar = new NinjaStar(this, Game);
         }
         public void ChangeCharacter()
         {
@@ -76,6 +79,7 @@ namespace CSE3902_Sprint2.Objects.Player
         }
         public void Update()
         {
+            if (ninjaStar != null) { ninjaStar.Update(); }
             currState.Update();
             previousXPos = xPos;
             previousYPos = yPos;
@@ -84,6 +88,7 @@ namespace CSE3902_Sprint2.Objects.Player
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
+            if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
         }
 
         public void DrawSprite(SpriteBatch spriteBatch, Texture2D texture, Rectangle source, int XOffset = 0, int YOffset = 0)

@@ -8,6 +8,8 @@ using CSE3902_Sprint2.Controller;
 using CSE3902_Sprint2.Objects.Player;
 using sprint2.Objects.Bomb;
 using System.Collections.Generic;
+using sprint2.Objects.Items;
+using CSE3902_Sprint2.Objects.Items;
 
 namespace CSE3902_Sprint2
 {
@@ -24,8 +26,7 @@ namespace CSE3902_Sprint2
         public Vector2 screenSize;
         public Texture2D destructableBlockTexture;
         public Texture2D indestructableBlockTexture;
-        // Bomb
-        
+
         public Texture2D bombTexture;
         public Dictionary<Vector2,int> staticBombList = new Dictionary<Vector2,int>();
         public ISprite staticBomb { get; set; }
@@ -66,6 +67,7 @@ namespace CSE3902_Sprint2
             staticBomb = new StaticBomb(bombTexture);
 
             PlayerTextureStorage.Instance.LoadAllResources(Content);
+            ItemTextureStorage.Instance.LoadAllResources(Content);
             //load other texture storages
         }
 
