@@ -10,6 +10,7 @@ using sprint2.Objects.Bomb;
 using System.Collections.Generic;
 using sprint2.Objects.Items;
 using CSE3902_Sprint2.Objects.Items;
+using sprint2.Sprites.Decorations;
 
 namespace CSE3902_Sprint2
 {
@@ -23,9 +24,14 @@ namespace CSE3902_Sprint2
         public Player player2;
         private ISprite destructableBlockSprite { get; set; }
         private ISprite indestructableBlockSprite { get; set; }
+        private ISprite tree1 { get; set; }
+        private ISprite tree2 { get; set; }
+
         public Vector2 screenSize;
         public Texture2D destructableBlockTexture;
         public Texture2D indestructableBlockTexture;
+        public Texture2D tree1Texture;
+        public Texture2D tree2Texture;
 
         public Texture2D bombTexture;
         public Dictionary<Vector2,int> staticBombList = new Dictionary<Vector2,int>();
@@ -62,10 +68,15 @@ namespace CSE3902_Sprint2
 
             destructableBlockTexture = Content.Load<Texture2D>("DestructableCrate");
             indestructableBlockTexture = Content.Load<Texture2D>("Concrete_Block_2x2");
+            tree1Texture = Content.Load<Texture2D>("Tree1");
+            tree2Texture = Content.Load<Texture2D>("Tree2");
             bombTexture = Content.Load<Texture2D>("BigBomb");
 
             destructableBlockSprite = new DestructableBlockSprite(destructableBlockTexture);
             indestructableBlockSprite = new IndestructableBlockSprite(indestructableBlockTexture);
+            tree1 = new Tree1(tree1Texture);
+            tree2 = new Tree2(tree2Texture);
+
             staticBomb = new StaticBomb(bombTexture);
             temp = (StaticBomb)staticBomb;
 
@@ -97,7 +108,8 @@ namespace CSE3902_Sprint2
             this.IsMouseVisible = true;
             destructableBlockSprite.Draw(spriteBatch, new Vector2(250, 250));
             indestructableBlockSprite.Draw(spriteBatch, new Vector2(280, 250));
-            // staticBomb.Draw(spriteBatch, new Vector2(100, 100));
+            tree1.Draw(spriteBatch, new Vector2(310, 250));
+            tree2.Draw(spriteBatch, new Vector2(350, 250));
 
             spriteBatch.Begin();
             player1.Draw(spriteBatch);
