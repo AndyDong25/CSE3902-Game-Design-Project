@@ -7,10 +7,11 @@ namespace CSE3902_Sprint2.Items
 {
     class NinjaStarItem : BasicItem
     {
-        public void Activate(Player currentPlayer)
+        public override void Activate(Player currentPlayer)
         {
-
+            currentPlayer.hasNinjaStar = true;
         }
+        
 
 
     }

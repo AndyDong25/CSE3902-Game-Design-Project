@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.Bomb;
 using sprint2.Objects.Items;
+using CSE3902_Sprint2.Objects.Items
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,12 @@ namespace CSE3902_Sprint2.Objects.Player
         public int SpriteIndex = 0;
         public int TextureIndex = 0;
 
+        public bool hasNinjaStar;
+
+        
+
         public float xPos, yPos, previousXPos, previousYPos;
-        public static float speed = 3.0f;
+        public float speed = 3.0f;
         public static float framePerStep = 6;
 
         public int direction = 2;
@@ -71,7 +76,11 @@ namespace CSE3902_Sprint2.Objects.Player
         }
         public void UseItem()
         {
-            ninjaStar = new NinjaStar(this, Game);
+            if (hasNinjaStar)
+            {
+                ninjaStar = new NinjaStar(this, Game);
+                hasNinjaStar = false;
+            }
         }
         public void ChangeCharacter()
         {

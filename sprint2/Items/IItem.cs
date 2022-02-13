@@ -8,7 +8,7 @@ using CSE3902_Sprint2.Sprites;
 
 namespace CSE3902_Sprint2
 {
-    interface IItem
+    public interface IItem
     {
         void Activate(Player currentPlayer);
 

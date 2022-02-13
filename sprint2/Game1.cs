@@ -7,6 +7,7 @@ using CSE3902_Sprint2.Sprites;
 using CSE3902_Sprint2.Controller;
 using CSE3902_Sprint2.Objects.Player;
 using sprint2.Objects.Bomb;
+using CSE3902_Sprint2.Items;
 using System.Collections.Generic;
 using sprint2.Objects.Items;
 using CSE3902_Sprint2.Objects.Items;
@@ -41,6 +42,9 @@ namespace CSE3902_Sprint2
         public ISprite staticBomb { get; set; }
         private StaticBomb temp;
 
+
+        public List<IItem> currentItemList;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -58,6 +62,9 @@ namespace CSE3902_Sprint2
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, player1, player2));
             //controllerList.Add(new MouseController(this));
+
+            currentItemList = new List<IItem>();
+
 
             base.Initialize();
         }

@@ -69,7 +69,7 @@ namespace CSE3902_Sprint2.Objects.Player
         public void MoveLeft()
         {
            
-            player.xPos -= Player.speed;
+            player.xPos -= player.speed;
             if (--framesLeft <= 0)
             {
                 framesLeft = (int)Player.framePerStep;

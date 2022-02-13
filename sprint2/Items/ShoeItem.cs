@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using CSE3902_Sprint2.Objects.Player
+using CSE3902_Sprint2.Objects.Player;
 
 
 namespace CSE3902_Sprint2.Items
@@ -11,10 +11,19 @@ namespace CSE3902_Sprint2.Items
         
 
 
-        public void Activate(Player currentPlayer)
+        public override void Activate(Player currentPlayer)
         {
-            currentPlayer.speed = increaseAmount;
+            boostedPlayer = currentPlayer;
+            currentPlayer.speed += increaseAmount;
+            
 
         }
+
+        public override void Deactivate()
+        {
+            boostedPlayer.speed -= increaseAmount;
+        }
+
+        
     }
 }

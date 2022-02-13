@@ -14,7 +14,7 @@ namespace sprint2.Objects.Bomb
     {
         public Texture2D Texture { get; set; }
 
-        
+        public int radius = 3;
         public StaticBomb(Texture2D texture)
         {
             this.Texture = texture;
@@ -51,7 +51,7 @@ namespace sprint2.Objects.Bomb
             // explosion origin
             spriteBatch.Draw(explosionTexture, new Rectangle(x, y, 50, 50), sourceRec, Color.White);
             // temporary hard coded explosion radius of 3
-            for (int i = 1; i < 3; i++)
+            for (int i = 1; i < radius; i++)
             {
                 spriteBatch.Draw(explosionTexture, new Rectangle(50 * i + x, y, 50, 50), sourceRec, Color.White);
                 spriteBatch.Draw(explosionTexture, new Rectangle(x, 50 * i + y, 50, 50), sourceRec, Color.White);

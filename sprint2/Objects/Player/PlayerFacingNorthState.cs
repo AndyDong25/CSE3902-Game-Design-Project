@@ -81,7 +81,7 @@ namespace CSE3902_Sprint2.Objects.Player
         public void MoveUp()
         {
             
-            player.yPos -= Player.speed;
+            player.yPos -= player.speed;
             if (--framesLeft <= 0)
             {
                 framesLeft = (int)Player.framePerStep;

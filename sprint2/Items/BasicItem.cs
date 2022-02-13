@@ -19,20 +19,30 @@ namespace CSE3902_Sprint2
 
         public int yPos;
 
-        ISprite item;
+        public bool activated;
+
+        public int timer;
+
+        public ISprite item;
 
         public Game1 gameRef;
 
 
-        public BasicItem(int xPos, int yPos, ISprite item, Game1 gameRef){
+        public void Initialize(int xPos, int yPos, ISprite item, Game1 gameRef) { 
+        
+        
+            //we might be able to put this in some initialization function
+            // as opposed to the constructor and destructor, might be neater/more efficient
             this.xPos = xPos;
             this.yPos = yPos;
             this.item = item;
             this.gameRef = gameRef;
+            gameRef.currentItemList.Add(this);
+
 
         }
 
-        public void Activate(Player currentPlayer)
+        public virtual void Activate(Player currentPlayer)
         {
             boostedPlayer = currentPlayer;
         }
@@ -46,22 +56,43 @@ namespace CSE3902_Sprint2
 
         public void Update()
         {
-            if (gameRef.player1.xPos == xPos && gameRef.player2.yPos == yPos)
+            if (activated)
             {
-                Activate(gameRef.player1);
-                Destroy();
+                if (gameRef.player1.xPos == xPos && gameRef.player2.yPos == yPos)
+                {
+                    Activate(gameRef.player1);
+                    Destroy();
+                }
+                else if (gameRef.player2.xPos == xPos && gameRef.player2.yPos == yPos)
+                {
+                    Activate(gameRef.player2);
+                    Destroy();
+                }
+                activated = false;
             }
-            else if (gameRef.player2.xPos == xPos && gameRef.player2.yPos == yPos)
+            else
             {
-                Activate(gameRef.player2);
-                Destroy();
+                timer--;
+                if (timer <= 0)
+                {
+                    Deactivate();
+                }
             }
 
         }
 
         public void Destroy()
         {
-            throw new NotImplementedException();
+            gameRef.currentItemList.Remove(this);
+            
+            
         }
+
+        public virtual void Deactivate()
+        {
+
+        }
+
+        
     }
 }

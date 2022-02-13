@@ -5,13 +5,17 @@ using System.Text;
 
 namespace CSE3902_Sprint2.Items
 {
-    class NinjaStarItem : BasicItem
+    class KnightItem : BasicItem
     {
-        public void Activate(Player currentPlayer)
+        public override void Activate(Player currentPlayer)
         {
+            currentPlayer.ChangeCharacter();
 
         }
 
-
+        public override void Deactivate()
+        {
+            boostedPlayer.ChangeCharacter();
+        }
     }
 }
