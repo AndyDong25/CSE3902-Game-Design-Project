@@ -26,6 +26,7 @@ namespace CSE3902_Sprint2.Objects.Player
             framesLeft = (int)Player.framePerStep;
             mySourceIndex = 0;
             myTextureIndex = player.SpriteIndex;
+            player.direction = 3;
         }
 
         public void Draw(SpriteBatch spriteBatch)

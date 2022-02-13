@@ -14,8 +14,7 @@ namespace CSE3902_Sprint2.Commands
         }
         public void Execute()
         {
-            myPlayer.SpriteIndex = (++myPlayer.SpriteIndex %4);
-            
+            myPlayer.ChangeCharacter();           
         }
     }
 }
