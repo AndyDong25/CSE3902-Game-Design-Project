@@ -26,7 +26,7 @@ namespace CSE3902_Sprint2.Objects.Player
         private static Texture2D goblinTexture = null;
         private static Texture2D knightTexture = null;
         private static Texture2D ghostTexture = null;
-        // private static Texture2D deadPlayerTexture = null;
+        private static Texture2D deadPlayerTexture = null;
 
         private PlayerTextureStorage()
         {
@@ -38,6 +38,7 @@ namespace CSE3902_Sprint2.Objects.Player
             goblinTexture = content.Load<Texture2D>("goblinSpriteSheet");
             knightTexture = content.Load<Texture2D>("knightSpritesheet");
             ghostTexture = content.Load<Texture2D>("GhostPacmanSpriteSheet");
+            deadPlayerTexture = content.Load<Texture2D>("TombstoneSprite");
         }
 
         public Texture2D getBomberSpriteSheet()
@@ -55,6 +56,10 @@ namespace CSE3902_Sprint2.Objects.Player
         public Texture2D getGhostSpriteSheet()
         {
             return ghostTexture;
+        }
+        public Texture2D getTombstoneSprite()
+        {
+            return deadPlayerTexture;
         }
     }
 }
