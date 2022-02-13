@@ -55,7 +55,7 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void Update()
         {
-            //myTextureIndex = player.SpriteIndex;
+            myTextureIndex = player.SpriteIndex;
         }
         public void setTextureIndex(int index)
         {

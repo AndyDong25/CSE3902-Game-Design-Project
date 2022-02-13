@@ -15,6 +15,7 @@ namespace CSE3902_Sprint2.Controller
         private Player player2;
         private Dictionary<Keys, ICommand> mappings;
         private List<Keys> acceptedStates;
+        private List<Keys> oncePerActionStates;
 
         public KeyMapping(Game1 game, Player player1, Player player2)
         {
@@ -24,6 +25,7 @@ namespace CSE3902_Sprint2.Controller
 
             mappings = new Dictionary<Keys, ICommand>();
             acceptedStates = new List<Keys>();
+            oncePerActionStates = new List<Keys>();
 
             setDefaults();
         }
@@ -53,6 +55,7 @@ namespace CSE3902_Sprint2.Controller
 
             this.addCommand(Keys.E, new ChangeCharacterCommand(player1));
             this.addCommand(Keys.P, new ChangeCharacterCommand(player2));
+
             this.addCommand(Keys.D1, new UseItemCommand(player1));
             this.addCommand(Keys.D0, new UseItemCommand(player2));
             this.addCommand(Keys.NumPad1, new UseItemCommand(player1));
@@ -65,15 +68,27 @@ namespace CSE3902_Sprint2.Controller
         {
             mappings.Add(key, command);
             acceptedStates.Add(key);
+            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter)
+            {
+                oncePerActionStates.Add(key);
+            }
         }
 
-        public void callCommands(List<Keys> pressedKeys)
+        public void callCommands(List<Keys> pressedKeys, List<Keys> previousKeys)
         {
             foreach (Keys k in pressedKeys)
             {
                 if (acceptedStates.Contains(k))
                 {
-                    mappings[k].Execute();
+                    if (oncePerActionStates.Contains(k))
+                    {
+                        if (!previousKeys.Contains(k)) {
+                            mappings[k].Execute();
+                        }
+                    }
+                    else {
+                        mappings[k].Execute();
+                    }
                 }
             }
         }
