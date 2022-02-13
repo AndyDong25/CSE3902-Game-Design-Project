@@ -29,7 +29,9 @@ namespace CSE3902_Sprint2
 
         public Texture2D bombTexture;
         public Dictionary<Vector2,int> staticBombList = new Dictionary<Vector2,int>();
+        public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
         public ISprite staticBomb { get; set; }
+        private StaticBomb temp;
 
         public Game1()
         {
@@ -65,6 +67,7 @@ namespace CSE3902_Sprint2
             destructableBlockSprite = new DestructableBlockSprite(destructableBlockTexture);
             indestructableBlockSprite = new IndestructableBlockSprite(indestructableBlockTexture);
             staticBomb = new StaticBomb(bombTexture);
+            temp = (StaticBomb)staticBomb;
 
             PlayerTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
@@ -107,11 +110,23 @@ namespace CSE3902_Sprint2
                 if (staticBombList[bomb] < 0)
                 {
                     staticBombList.Remove(bomb);
+                    staticExplosionList.Add(bomb, 20);
                 }
             }
             foreach (Vector2 bomb in bombList)
             {
                 staticBomb.Draw(spriteBatch, bomb);
+            }
+            List<Vector2> explosionList = new List<Vector2>(staticExplosionList.Keys);
+            foreach (Vector2 explosion in explosionList)
+            {
+                int timer = staticExplosionList[explosion]--;
+                if (timer != 0) { 
+                    temp.Explode(spriteBatch, explosion); 
+                }
+                else {
+                    staticExplosionList.Remove(explosion);
+                }
             }
             base.Draw(gameTime);
         } 

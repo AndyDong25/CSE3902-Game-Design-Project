@@ -1,4 +1,6 @@
-﻿using CSE3902_Sprint2.Objects.Player;
+﻿using CSE3902_Sprint2;
+using CSE3902_Sprint2.Objects.Items;
+using CSE3902_Sprint2.Objects.Player;
 using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -36,6 +38,28 @@ namespace sprint2.Objects.Bomb
 
         public void Update()
         {
+        }
+
+        public void Explode(SpriteBatch spriteBatch, Vector2 destination)
+        {
+            Texture2D explosionTexture = ItemTextureStorage.Instance.getExplosionSprite();
+            Rectangle sourceRec = SpriteConstants.EXPLOSION;
+            int x = (int)destination.X;
+            int y = (int)destination.Y;
+
+            spriteBatch.Begin();
+            // explosion origin
+            spriteBatch.Draw(explosionTexture, new Rectangle(x, y, 50, 50), sourceRec, Color.White);
+            // temporary hard coded explosion radius of 3
+            for (int i = 1; i < 3; i++)
+            {
+                spriteBatch.Draw(explosionTexture, new Rectangle(50 * i + x, y, 50, 50), sourceRec, Color.White);
+                spriteBatch.Draw(explosionTexture, new Rectangle(x, 50 * i + y, 50, 50), sourceRec, Color.White);
+                spriteBatch.Draw(explosionTexture, new Rectangle(x - (50 * i), y, 50, 50), sourceRec, Color.White);
+                spriteBatch.Draw(explosionTexture, new Rectangle(x, y - (50 * i), 50, 50), sourceRec, Color.White);
+            }
+
+            spriteBatch.End();
         }
 
     }

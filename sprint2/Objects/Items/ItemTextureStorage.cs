@@ -23,6 +23,7 @@ namespace CSE3902_Sprint2.Objects.Items
         }
 
         private static Texture2D ninjaStarTexture = null;
+        private static Texture2D explosionTexture = null;
         // add other items
 
         private ItemTextureStorage()
@@ -32,11 +33,17 @@ namespace CSE3902_Sprint2.Objects.Items
         public void LoadAllResources(ContentManager content)
         {
             ninjaStarTexture = content.Load<Texture2D>("ninjaStarSprite");
+            explosionTexture = content.Load<Texture2D>("ExplosionSpriteSheet");
             // load other item sprite sheets
         }
         public Texture2D getNinjaStarSprite()
         {
             return ninjaStarTexture;
+        }
+
+        public Texture2D getExplosionSprite()
+        {
+            return explosionTexture;
         }
     }
 }
