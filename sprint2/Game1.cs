@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using sprint2.Objects.Items;
 using CSE3902_Sprint2.Objects.Items;
 using sprint2.Sprites.Decorations;
+using System;
 
 namespace CSE3902_Sprint2
 {
@@ -23,6 +24,7 @@ namespace CSE3902_Sprint2
         private ArrayList controllerList;
         public Player player1;
         public Player player2;
+        public Player npcPlayer;
 
 
         private ISprite destructableBlockSprite { get; set; }
@@ -39,6 +41,8 @@ namespace CSE3902_Sprint2
         public Texture2D bombTexture;
         public Dictionary<Vector2,int> staticBombList = new Dictionary<Vector2,int>();
         public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
+        //public Dictionary<Player, int> playerDic = new Dictionary<Player, int>();
+        
         public ISprite staticBomb { get; set; }
         private StaticBomb temp;
 
@@ -59,6 +63,10 @@ namespace CSE3902_Sprint2
         {
             player1 = new Player(new Vector2(30, 30), this);
             player2 = new Player(new Vector2(700, 30), this);
+            //npcPlayer = new NPCPlayer(new Vector2(450, 300), this, randomNum); 
+            npcPlayer = new Player(new Vector2(450, 300), this);
+
+
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, player1, player2));
             //controllerList.Add(new MouseController(this));
@@ -113,6 +121,7 @@ namespace CSE3902_Sprint2
             }
             player1.Update();
             player2.Update();
+            npcPlayer.Update();
 
             base.Update(gameTime);
         }
@@ -130,11 +139,57 @@ namespace CSE3902_Sprint2
 
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
+            npcPlayer.Draw(spriteBatch);
 
             currItemIndex %= 7;
             currentItemList[currItemIndex].Draw(spriteBatch);
 
             spriteBatch.End();
+
+            // Generate NPC
+            Random rd = new Random();
+            int randomNum = rd.Next(1, 6);
+
+            if (randomNum == 1)
+                {
+                    npcPlayer.MoveUp();
+                    if (npcPlayer.yPos < 0)
+                    {
+                        npcPlayer.yPos = 0;
+                    }
+                }
+                if (randomNum == 2)
+                {
+                    npcPlayer.MoveDown();
+                    if (npcPlayer.yPos > graphics.PreferredBackBufferHeight)
+                    {
+                        npcPlayer.yPos = graphics.PreferredBackBufferHeight;
+                    }
+                }
+                if (randomNum == 3)
+                {
+                    npcPlayer.MoveLeft();
+                    if (npcPlayer.xPos < 0)
+                    {
+                        npcPlayer.xPos = 0;
+                    }
+                }
+                if (randomNum == 4)
+                {
+                    npcPlayer.MoveRight();
+                    if (npcPlayer.xPos > graphics.PreferredBackBufferWidth)
+                    {
+                        npcPlayer.xPos = graphics.PreferredBackBufferWidth;
+                    }
+                }
+                if (randomNum == 5)
+                {   
+                        npcPlayer.DropBomb();                        
+                }
+                
+                
+            
+
 
             List<Vector2> bombList = new List<Vector2>(staticBombList.Keys);
             foreach (Vector2 bomb in bombList)
