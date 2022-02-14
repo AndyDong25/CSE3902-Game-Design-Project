@@ -50,7 +50,7 @@ namespace CSE3902_Sprint2.Controller
             this.addCommand(Keys.Right, new MoveRightCommand(player2));
             this.addCommand(Keys.Left, new MoveLeftCommand(player2));
 
-            //this.addCommand(Keys.I, new SwitchItem());
+            this.addCommand(Keys.I, new SwitchItemCommand(myGame));
             this.addCommand(Keys.Space, new DropBombCommand(player1));
             this.addCommand(Keys.Enter, new DropBombCommand(player2));
 
@@ -72,7 +72,7 @@ namespace CSE3902_Sprint2.Controller
         {
             mappings.Add(key, command);
             acceptedStates.Add(key);
-            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter)
+            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I)
             {
                 oncePerActionStates.Add(key);
             }

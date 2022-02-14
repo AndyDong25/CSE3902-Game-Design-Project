@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using CSE3902_Sprint2.Objects.Player;
 using CSE3902_Sprint2.Sprites;
-
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CSE3902_Sprint2
 {
@@ -17,6 +17,8 @@ namespace CSE3902_Sprint2
         public ISprite GetSprite();
 
         void Destroy();
+
+        //void Draw(SpriteBatch spriteBatch);
 
     }
 }

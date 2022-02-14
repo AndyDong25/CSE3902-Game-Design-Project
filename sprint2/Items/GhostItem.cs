@@ -1,34 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using CSE3902_Sprint2.Objects.Player;
-using sprint2.Objects.Bomb;
-using CSE3902_Sprint2.Sprites;
-using System.Text;
+﻿using CSE3902_Sprint2;
 using CSE3902_Sprint2.Objects.Items;
-using Microsoft.Xna.Framework.Graphics;
+using CSE3902_Sprint2.Objects.Player;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace CSE3902_Sprint2.Items
 {
-    class BombItem : BasicItem
+    class GhostItem : BasicItem
     {
-        public BombItem()
+        public GhostItem()
         {
             this.setTexture();
         }
 
         public void setTexture()
         {
-            this.texture = ItemTextureStorage.Instance.getBombItemSprite();
-            this.sourceRec = SpriteConstants.BOMB_ITEM;
+            this.texture = ItemTextureStorage.Instance.getGhostItemSprite();
+            this.sourceRec = SpriteConstants.GHOST_ITEM;
         }
-
         public override void Activate(Player currentPlayer)
         {
-            /*TODO: bomb delay timer must be implemented in player class first
-            * before this functionality can be added */
-             
+            currentPlayer.ChangeCharacter();
 
+        }
+
+        public override void Deactivate()
+        {
+            boostedPlayer.ChangeCharacter();
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -36,6 +37,5 @@ namespace CSE3902_Sprint2.Items
             Rectangle destination = new Rectangle(150, 100, 35, 35);
             spriteBatch.Draw(texture, destination, sourceRec, Color.White);
         }
-
     }
 }

@@ -42,8 +42,8 @@ namespace CSE3902_Sprint2
         public ISprite staticBomb { get; set; }
         private StaticBomb temp;
 
-
-        public List<IItem> currentItemList;
+        public List<BasicItem> currentItemList;
+        public int currItemIndex = 0;
 
         public Game1()
         {
@@ -63,8 +63,14 @@ namespace CSE3902_Sprint2
             controllerList.Add(new KeyboardController(this, player1, player2));
             //controllerList.Add(new MouseController(this));
 
-            currentItemList = new List<IItem>();
-
+            currentItemList = new List<BasicItem>();
+            currentItemList.Add(new BombItem());
+            currentItemList.Add(new PotionItem());
+            currentItemList.Add(new ShoeItem());
+            currentItemList.Add(new NinjaStarItem());
+            currentItemList.Add(new GhostItem());
+            currentItemList.Add(new KnightItem());
+            currentItemList.Add(new GoblinItem());
 
             base.Initialize();
         }
@@ -121,9 +127,15 @@ namespace CSE3902_Sprint2
             tree2.Draw(spriteBatch, new Vector2(350, 250));
 
             spriteBatch.Begin();
+
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
+
+            currItemIndex %= 7;
+            currentItemList[currItemIndex].Draw(spriteBatch);
+
             spriteBatch.End();
+
             List<Vector2> bombList = new List<Vector2>(staticBombList.Keys);
             foreach (Vector2 bomb in bombList)
             {

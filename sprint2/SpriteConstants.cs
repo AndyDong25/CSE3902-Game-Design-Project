@@ -67,5 +67,17 @@ namespace CSE3902_Sprint2
         public static Rectangle EXPLOSION = new Rectangle(555, 124, 87, 87);
 
         public static Rectangle TOMBSTONE = new Rectangle(0, 0, 233, 233);
+
+        public static Rectangle BOMB_ITEM = new Rectangle(0, 0, 363, 480);
+
+        public static Rectangle GHOST_ITEM = new Rectangle(40, 0, 480, 498);
+
+        public static Rectangle GOBLIN_ITEM = new Rectangle(88, 58, 403, 533);
+
+        public static Rectangle KNIGHT_ITEM = new Rectangle(9, 10, 442, 510);
+
+        public static Rectangle POTION_ITEM = new Rectangle(68, 35, 183, 277);
+
+        public static Rectangle SHOE_ITEM = new Rectangle(47, 38, 389, 354);
     }
 }

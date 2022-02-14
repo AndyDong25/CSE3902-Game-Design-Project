@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CSE3902_Sprint2.Objects.Items;
 using CSE3902_Sprint2.Objects.Player;
 using CSE3902_Sprint2.Sprites;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CSE3902_Sprint2
 {
@@ -24,6 +26,9 @@ namespace CSE3902_Sprint2
         public int timer;
 
         public ISprite item;
+
+        public Texture2D texture = ItemTextureStorage.Instance.getBombItemSprite();
+        public Rectangle sourceRec = SpriteConstants.BOMB_ITEM;
 
         public Game1 gameRef;
 
@@ -92,7 +97,8 @@ namespace CSE3902_Sprint2
         {
 
         }
-
-        
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+        }
     }
 }
