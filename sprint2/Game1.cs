@@ -69,7 +69,7 @@ namespace CSE3902_Sprint2
 
 
             controllerList = new ArrayList();
-            controllerList.Add(new KeyboardController(this, player1, player2));
+            controllerList.Add(new KeyboardController(this, player1, player2, enemy));
             //controllerList.Add(new MouseController(this));
 
             currentItemList = new List<BasicItem>();

@@ -29,7 +29,7 @@ namespace sprint2.Objects.NPC
         public static Boolean isDead = false;
         public Game1 Game { get; set; }
         private ISprite bomb { get; set; }
-        //private NinjaStar ninjaStar { get; set; } = null;
+        private NinjaStar ninjaStar { get; set; } = null;
 
         public Enemy (Vector2 position, Game1 game)
         {
@@ -53,7 +53,7 @@ namespace sprint2.Objects.NPC
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
-            //if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
+            if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
 
             // Generate NPC
             Random rd = new Random();
@@ -105,14 +105,17 @@ namespace sprint2.Objects.NPC
                 count++;
             }
         }
-
+        public void ChangeCharacter()
+        {
+            SpriteIndex = (++SpriteIndex % 4);
+        }
         public void TakeDamage()
         {
         }
 
         public void Update()
         {
-            //if (ninjaStar != null) { ninjaStar.Update(); }
+            if (ninjaStar != null) { ninjaStar.Update(); }
             currState.Update();
             previousXPos = xPos;
             previousYPos = yPos;
@@ -136,6 +139,14 @@ namespace sprint2.Objects.NPC
         public void MoveRight()
         {
             currState.MoveRight();
+        }
+        public void UseItem()
+        {
+            //if (hasNinjaStar)
+            //{
+            //    ninjaStar = new NinjaStar(this, Game);
+            //    //hasNinjaStar = false;
+            //}
         }
         public void DrawSprite(SpriteBatch spriteBatch, Texture2D texture, Rectangle source, int XOffset = 0, int YOffset = 0)
         {

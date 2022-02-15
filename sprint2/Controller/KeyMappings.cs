@@ -2,6 +2,7 @@
 using CSE3902_Sprint2.Objects.Player;
 using Microsoft.Xna.Framework.Input;
 using sprint2.Commands;
+using sprint2.Objects.NPC;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,15 +15,17 @@ namespace CSE3902_Sprint2.Controller
         private Game1 myGame;
         private Player player1;
         private Player player2;
+        private Enemy enemy;
         private Dictionary<Keys, ICommand> mappings;
         private List<Keys> acceptedStates;
         private List<Keys> oncePerActionStates;
 
-        public KeyMapping(Game1 game, Player player1, Player player2)
+        public KeyMapping(Game1 game, Player player1, Player player2, Enemy enemy)
         {
             myGame = game;
             this.player1 = player1;
             this.player2 = player2;
+            this.enemy = enemy;
 
             mappings = new Dictionary<Keys, ICommand>();
             acceptedStates = new List<Keys>();
@@ -64,15 +67,16 @@ namespace CSE3902_Sprint2.Controller
             this.addCommand(Keys.D0, new UseItemCommand(player2));
             this.addCommand(Keys.NumPad1, new UseItemCommand(player1));
             this.addCommand(Keys.NumPad0, new UseItemCommand(player2));
-            
+
             // other commands when implemented
+            this.addCommand(Keys.Z, new ChangeEnemyCharacterCommand(enemy));
         }
 
         public void addCommand(Keys key, ICommand command)
         {
             mappings.Add(key, command);
             acceptedStates.Add(key);
-            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I)
+            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.Z)
             {
                 oncePerActionStates.Add(key);
             }
