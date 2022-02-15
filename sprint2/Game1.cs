@@ -20,7 +20,7 @@ namespace CSE3902_Sprint2
 
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         private ArrayList controllerList;
         public Player player1;
@@ -43,7 +43,6 @@ namespace CSE3902_Sprint2
         public Texture2D bombTexture;
         public Dictionary<Vector2,int> staticBombList = new Dictionary<Vector2,int>();
         public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
-        //public Dictionary<Player, int> playerDic = new Dictionary<Player, int>();
         
         public ISprite staticBomb { get; set; }
         private StaticBomb temp;
@@ -141,55 +140,13 @@ namespace CSE3902_Sprint2
 
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
+
             enemy.Draw(spriteBatch);
 
             currItemIndex %= 7;
             currentItemList[currItemIndex].Draw(spriteBatch);
 
             spriteBatch.End();
-
-            // Generate NPC
-            Random rd = new Random();
-            //int randomNum = rd.Next(1, 6);
-            int randomNum = 1;
-
-            if (randomNum == 1)
-                {
-                    enemy.MoveUp();
-                    if (enemy.yPos < 0)
-                    {
-                    enemy.yPos = 0;
-                    }
-                }
-                if (randomNum == 2)
-                {
-                enemy.MoveDown();
-                    if (enemy.yPos >= graphics.PreferredBackBufferHeight)
-                    {
-                    enemy.yPos = graphics.PreferredBackBufferHeight;
-                    }
-                }
-                if (randomNum == 3)
-                {
-                enemy.MoveLeft();
-                    if (enemy.xPos < 0)
-                    {
-                    enemy.xPos = 0;
-                    }
-                }
-                if (randomNum == 4)
-                {
-                enemy.MoveRight();
-                    if (enemy.xPos >= graphics.PreferredBackBufferWidth)
-                    {
-                    enemy.xPos = graphics.PreferredBackBufferWidth;
-                    }
-                }
-                if (randomNum == 5)
-                {
-                enemy.DropBomb();                        
-                }
-                
                 
             List<Vector2> bombList = new List<Vector2>(staticBombList.Keys);
             foreach (Vector2 bomb in bombList)

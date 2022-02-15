@@ -23,6 +23,8 @@ namespace sprint2.Objects.NPC
         public float framePerStep = 6;
 
         public int direction = 2;
+        int randomNum = 1;
+        int count = 0;
 
         public static Boolean isDead = false;
         public Game1 Game { get; set; }
@@ -52,6 +54,56 @@ namespace sprint2.Objects.NPC
         {
             currState.Draw(spriteBatch);
             //if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
+
+            // Generate NPC
+            Random rd = new Random();
+
+            if(count % 20 == 0)
+            {
+                randomNum = rd.Next(1, 6);
+            }
+
+            if (randomNum == 1)
+            {
+                this.MoveUp();
+                if (this.yPos < 0)
+                {
+                    this.yPos = 0;
+                }
+                count++;
+            }
+            if (randomNum == 2)
+            {
+                this.MoveDown();
+                if (this.yPos >= Game.graphics.PreferredBackBufferHeight)
+                {
+                    this.yPos = Game.graphics.PreferredBackBufferHeight;
+                }
+                count++;
+            }
+            if (randomNum == 3)
+            {
+                this.MoveLeft();
+                if (this.xPos < 0)
+                {
+                    this.xPos = 0;
+                }
+                count++;
+            }
+            if (randomNum == 4)
+            {
+                this.MoveRight();
+                if (this.xPos >= Game.graphics.PreferredBackBufferWidth)
+                {
+                    this.xPos = Game.graphics.PreferredBackBufferWidth;
+                }
+                count++;
+            }
+            if (randomNum == 5)
+            {
+                this.DropBomb();
+                count++;
+            }
         }
 
         public void TakeDamage()
