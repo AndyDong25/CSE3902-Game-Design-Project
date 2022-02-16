@@ -165,7 +165,6 @@ namespace CSE3902_Sprint2
                         keyboard.IsKeyDown(Keys.Enter))
                     {
 
-
                         // Set the game state to play
                         currentGameState = GameState.GamePlay;
 
@@ -184,7 +183,7 @@ namespace CSE3902_Sprint2
                     break;
 
                 case GameState.GamePlay:
-                    if (keyboard.IsKeyDown(Keys.P))
+/*                    if (keyboard.IsKeyDown(Keys.P))
                     {
                         isPaused = !isPaused;
                     }
@@ -198,19 +197,19 @@ namespace CSE3902_Sprint2
                     {
                         //code when the game is paused.
                         currentGameState = GameState.GamePause;
-                    }
+                    }*/
                     // Press X or I during game play to return to main menu
-                    if (gamePad.Buttons.X == ButtonState.Pressed ||
+/*                    if (gamePad.Buttons.X == ButtonState.Pressed ||
                         keyboard.IsKeyDown(Keys.I))
                     {
                         currentGameState = GameState.GameMenu;
-                    }
+                    }*/
                     // Press ESC to quit game during game play
-                    if (gamePad.Buttons.Back == ButtonState.Pressed ||
+/*                    if (gamePad.Buttons.Back == ButtonState.Pressed ||
                 keyboard.IsKeyDown(Keys.Escape))
                     {
                         this.Exit();
-                    }
+                    }*/
                     foreach (IController controller in controllerList)
                     {
                         controller.Update();
@@ -218,16 +217,10 @@ namespace CSE3902_Sprint2
                     player1.Update();
                     player2.Update();
                     enemy.Update();
-
                     
                     break;
-
-
-                    base.Update(gameTime);
-
-
-
             }
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
