@@ -34,8 +34,9 @@ namespace CSE3902_Sprint2
         private ArrayList controllerList;
         public Player player1;
         public Player player2;
-        //public Player npcPlayer;
+
         public Enemy enemy;
+        public Enemy enemy2;
         GameState currentGameState;
         
 
@@ -73,8 +74,8 @@ namespace CSE3902_Sprint2
         public Game1()
         {         
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 768;
-            graphics.PreferredBackBufferWidth = 1024;
+            //graphics.PreferredBackBufferHeight = 768;
+            //graphics.PreferredBackBufferWidth = 1024;
             graphics.ApplyChanges();
             screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             Content.RootDirectory = "Content";
@@ -98,9 +99,10 @@ namespace CSE3902_Sprint2
             player2 = new Player(new Vector2(700, 30), this);
             //npcPlayer = new NPCPlayer(new Vector2(450, 300), this, randomNum); 
             enemy = new Enemy(new Vector2(450, 300), this);
+            enemy2 = new Enemy(new Vector2(300, 300), this);
 
             controllerList = new ArrayList();
-            controllerList.Add(new KeyboardController(this, player1, player2, enemy));
+            controllerList.Add(new KeyboardController(this, player1, player2, enemy, enemy2));
             //controllerList.Add(new MouseController(this));
 
             currentItemList = new List<BasicItem>();
@@ -217,6 +219,7 @@ namespace CSE3902_Sprint2
                     player1.Update();
                     player2.Update();
                     enemy.Update();
+                    enemy2.Update();
                     
                     break;
             }
@@ -242,6 +245,7 @@ namespace CSE3902_Sprint2
             player2.Draw(spriteBatch);
 
             enemy.Draw(spriteBatch);
+            enemy2.Draw(spriteBatch);
 
             currItemIndex %= 7;
             currentItemList[currItemIndex].Draw(spriteBatch);

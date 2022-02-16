@@ -19,10 +19,10 @@ namespace CSE3902_Sprint2.Controller
         private List<Keys> previousState;
         private KeyMapping keyMap;
 
-        public KeyboardController(Game1 game, Player player1, Player player2, Enemy enemy)
+        public KeyboardController(Game1 game, Player player1, Player player2, Enemy enemy, Enemy enemy2)
         {
             previousState = new List<Keys>(Keyboard.GetState().GetPressedKeys());
-            keyMap = new KeyMapping(game, player1, player2, enemy);
+            keyMap = new KeyMapping(game, player1, player2, enemy, enemy2);
         }
 
         public void Update()

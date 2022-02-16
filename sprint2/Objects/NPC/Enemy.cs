@@ -75,9 +75,9 @@ namespace sprint2.Objects.NPC
             if (randomNum == 2)
             {
                 this.MoveDown();
-                if (this.yPos >= Game.graphics.PreferredBackBufferHeight)
+                if (this.yPos > 400)
                 {
-                    this.yPos = Game.graphics.PreferredBackBufferHeight;
+                    this.yPos = 400;
                 }
                 count++;
             }
@@ -93,9 +93,9 @@ namespace sprint2.Objects.NPC
             if (randomNum == 4)
             {
                 this.MoveRight();
-                if (this.xPos >= Game.graphics.PreferredBackBufferWidth)
+                if (this.xPos > 700)
                 {
-                    this.xPos = Game.graphics.PreferredBackBufferWidth;
+                    this.xPos = 700;
                 }
                 count++;
             }
