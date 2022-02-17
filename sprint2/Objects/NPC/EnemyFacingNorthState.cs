@@ -14,7 +14,7 @@ namespace sprint2.Objects.NPC
         private int framesLeft;
         private static List<List<Rectangle>> mySources = new List<List<Rectangle>>
         {
-            SpriteConstants.BOMBER_NORTH,SpriteConstants.KNIGHT_NORTH, SpriteConstants.GOBLIN_NORTH,SpriteConstants.GHOST_NORTH
+            SpriteConstants.REDBOY_NORTH,SpriteConstants.WHITEGIRL_NORTH, SpriteConstants.GREENBOY_NORTH,SpriteConstants.BROWNBOY_NORTH
         };
 
         private int mySourceIndex;
@@ -34,19 +34,19 @@ namespace sprint2.Objects.NPC
         {
             if (myTextureIndex == 0)
             {
-                texture = PlayerTextureStorage.Instance.getBomberSpriteSheet();
+                texture = EnemyTextureStorage.Instance.getRedBoySpriteSheet();
             }
             else if (myTextureIndex == 1)
             {
-                texture = PlayerTextureStorage.Instance.getKnightSpriteSheet();
+                texture = EnemyTextureStorage.Instance.getWhiteGirlSpriteSheet();
             }
             else if (myTextureIndex == 2)
             {
-                texture = PlayerTextureStorage.Instance.getGoblinSpriteSheet();
+                texture = EnemyTextureStorage.Instance.getGreenBoySpriteSheet();
             }
             else if (myTextureIndex == 3)
             {
-                texture = PlayerTextureStorage.Instance.getGhostSpriteSheet();
+                texture = EnemyTextureStorage.Instance.getBrownBoySpriteSheet();
                 mySourceIndex = 0;
             }
             Rectangle source = mySources[myTextureIndex][mySourceIndex];

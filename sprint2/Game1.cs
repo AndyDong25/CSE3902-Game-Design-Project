@@ -25,8 +25,8 @@ namespace CSE3902_Sprint2
         public int score;
         Rectangle safeBounds;
         const float safeAreaPortion = 0.001f;
-        int TimeofGame = 0;
-        Boolean isPaused = false;
+        //int TimeofGame = 0;
+        //Boolean isPaused = false;
 
         public GraphicsDeviceManager graphics;
         public static ContentManager contentManager;
@@ -69,7 +69,7 @@ namespace CSE3902_Sprint2
 
         public List<BasicItem> currentItemList;
         public int currItemIndex = 0;
-        private SpriteFont font;
+        //private SpriteFont font;
 
         public Game1()
         {         
@@ -139,6 +139,7 @@ namespace CSE3902_Sprint2
             temp = (StaticBomb)staticBomb;
 
             PlayerTextureStorage.Instance.LoadAllResources(Content);
+            EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
             //load other texture storages
         }

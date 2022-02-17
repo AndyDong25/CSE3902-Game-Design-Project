@@ -20,7 +20,7 @@ namespace sprint2.Objects.NPC
         public bool hasNinjaStar = true;
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 3.0f;
-        public float framePerStep = 6;
+        public float framePerStep = 3;
 
         public int direction = 2;
         int randomNum = 1;

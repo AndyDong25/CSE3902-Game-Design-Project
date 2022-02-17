@@ -62,6 +62,75 @@ namespace CSE3902_Sprint2
         public static List<Rectangle> GHOST_EAST = new List<Rectangle> { new Rectangle(0, 0, 172, 172)};
         public static List<Rectangle> GHOST_WEST = new List<Rectangle> { new Rectangle(172, 172, 172, 172) };
 
+        // Enemy picture
+        public static List<Rectangle> REDBOY_NORTH = new List<Rectangle>
+        {
+            new Rectangle(0, 192, 64, 64), new Rectangle (64, 192, 64, 64), new Rectangle(192, 192, 64, 64)
+        };
+        public static List<Rectangle> REDBOY_SOUTH = new List<Rectangle>
+        {
+            new Rectangle(0, 0, 64, 64), new Rectangle (64, 0, 64, 64), new Rectangle(192, 0, 64, 64)
+        };
+        public static List<Rectangle> REDBOY_WEST = new List<Rectangle>
+        {
+            new Rectangle(0, 64, 64, 64), new Rectangle (64, 64, 64, 64), new Rectangle(192, 64, 64, 64)
+        };
+        public static List<Rectangle> REDBOY_EAST = new List<Rectangle>
+        {
+            new Rectangle(0, 128, 64, 64), new Rectangle (64, 128, 64, 64), new Rectangle(192, 128, 64, 64)
+        };
+
+        public static List<Rectangle> WHITEGIRL_NORTH = new List<Rectangle>
+        {
+            new Rectangle(0, 192, 64, 64), new Rectangle (64, 192, 64, 64), new Rectangle(192, 192, 64, 64)
+        };
+        public static List<Rectangle> WHITEGIRL_SOUTH = new List<Rectangle>
+        {
+            new Rectangle(0, 0, 64, 64), new Rectangle (64, 0, 64, 64), new Rectangle(192, 0, 64, 64)
+        };
+        public static List<Rectangle> WHITEGIRL_WEST = new List<Rectangle>
+        {
+            new Rectangle(0, 64, 64, 64), new Rectangle (64, 64, 64, 64), new Rectangle(192, 64, 64, 64)
+        };
+        public static List<Rectangle> WHITEGIRL_EAST = new List<Rectangle>
+        {
+            new Rectangle(0, 128, 64, 64), new Rectangle (64, 128, 64, 64), new Rectangle(192, 128, 64, 64)
+        };
+
+        public static List<Rectangle> GREENBOY_NORTH = new List<Rectangle>
+        {
+            new Rectangle(0, 192, 64, 64), new Rectangle (64, 192, 64, 64), new Rectangle(192, 192, 64, 64)
+        };
+        public static List<Rectangle> GREENBOY_SOUTH = new List<Rectangle>
+        {
+            new Rectangle(0, 0, 64, 64), new Rectangle (64, 0, 64, 64), new Rectangle(192, 0, 64, 64)
+        };
+        public static List<Rectangle> GREENBOY_WEST = new List<Rectangle>
+        {
+            new Rectangle(0, 64, 64, 64), new Rectangle (64, 64, 64, 64), new Rectangle(192, 64, 64, 64)
+        };
+        public static List<Rectangle> GREENBOY_EAST = new List<Rectangle>
+        {
+            new Rectangle(0, 128, 64, 64), new Rectangle (64, 128, 64, 64), new Rectangle(192, 128, 64, 64)
+        };
+
+        public static List<Rectangle> BROWNBOY_NORTH = new List<Rectangle>
+        {
+            new Rectangle(0, 192, 64, 64), new Rectangle (64, 192, 64, 64), new Rectangle(192, 192, 64, 64)
+        };
+        public static List<Rectangle> BROWNBOY_SOUTH = new List<Rectangle>
+        {
+            new Rectangle(0, 0, 64, 64), new Rectangle (64, 0, 64, 64), new Rectangle(192, 0, 64, 64)
+        };
+        public static List<Rectangle> BROWNBOY_WEST = new List<Rectangle>
+        {
+            new Rectangle(0, 64, 64, 64), new Rectangle (64, 64, 64, 64), new Rectangle(192, 64, 64, 64)
+        };
+        public static List<Rectangle> BROWNBOY_EAST = new List<Rectangle>
+        {
+            new Rectangle(0, 128, 64, 64), new Rectangle (64, 128, 64, 64), new Rectangle(192, 128, 64, 64)
+        };
+
         public static Rectangle NINJA_STAR = new Rectangle(0, 0, 459, 459);
 
         public static Rectangle EXPLOSION = new Rectangle(555, 124, 87, 87);
