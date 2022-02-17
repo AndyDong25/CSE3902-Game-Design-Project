@@ -97,6 +97,22 @@ namespace CSE3902_Sprint2.Objects.Player
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
+            if(xPos < 20)
+            {
+                xPos = 20;
+            }
+            if(yPos < 5)
+            {
+                yPos = 5;
+            }
+            if(xPos > 700)
+            {
+                xPos = 700;
+            }
+            if(yPos > 400)
+            {
+                yPos = 400;
+            }
             if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
         }
 

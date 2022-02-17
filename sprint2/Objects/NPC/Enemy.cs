@@ -66,9 +66,9 @@ namespace sprint2.Objects.NPC
             if (randomNum == 1)
             {
                 this.MoveUp();
-                if (this.yPos < 0)
+                if (this.yPos < 5)
                 {
-                    this.yPos = 0;
+                    this.yPos = 5;
                 }
                 count++;
             }
@@ -84,9 +84,9 @@ namespace sprint2.Objects.NPC
             if (randomNum == 3)
             {
                 this.MoveLeft();
-                if (this.xPos < 0)
+                if (this.xPos < 20)
                 {
-                    this.xPos = 0;
+                    this.xPos = 20;
                 }
                 count++;
             }
