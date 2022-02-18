@@ -1,1 +1,15 @@
-﻿
+﻿Reviewer - Andy Dong
+Date - 2/17/22
+Sprint2
+File - Enemy.cs
+File Author - Lanxi Li
+Time to Complete - 25 minutes
+
+Comments
+	- Currently only supports 1 enemy type with same functionality
+		- To have different enemy types, you would need to add more methods and/or if-else branching relating to the enemy's functionality, state and animation
+		- Might be better to have an IEnemy interface or Enemy abstract class to implement different types of enemys (traps, stationary NPCS, moving NPCS, projectile NPCS)
+	- Probably won't have dynamically changing enemies in final game, so we will not need a ChangeCharacter() method
+	- Some fields/objects/methods aren't being used : ninjaStar, isDead, bomb
+	- Move enemy random movement to separate function
+	- Medium-high coupling

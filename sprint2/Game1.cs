@@ -283,7 +283,7 @@ namespace CSE3902_Sprint2
 
         public void Reset()
         {
-            this.Initialize();
+            Initialize();
         }
     }
 }

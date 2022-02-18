@@ -32,7 +32,6 @@ namespace CSE3902_Sprint2
 
         public Game1 gameRef;
 
-
         public void Initialize(int xPos, int yPos, ISprite item, Game1 gameRef) { 
         
         
