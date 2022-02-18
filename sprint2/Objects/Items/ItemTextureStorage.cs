@@ -30,7 +30,8 @@ namespace CSE3902_Sprint2.Objects.Items
         private static Texture2D ghostItemTexture = null;
         private static Texture2D potionItemTexture = null;
         private static Texture2D shoeItemTexture = null;
-        
+        private static Texture2D bombObjectTexture = null;
+
 
         // add other items
 
@@ -49,6 +50,7 @@ namespace CSE3902_Sprint2.Objects.Items
             potionItemTexture = content.Load<Texture2D>("potionItemSprite");
             shoeItemTexture = content.Load<Texture2D>("shoeSprite");
             explosionTexture = content.Load<Texture2D>("ExplosionSpriteSheet");
+            bombObjectTexture = content.Load<Texture2D>("BigBomb");
 
             // load other item sprite sheets
         }
@@ -84,6 +86,10 @@ namespace CSE3902_Sprint2.Objects.Items
         public Texture2D getShoeItemSprite()
         {
             return shoeItemTexture;
+        }
+        public Texture2D getBombObjectSprite()
+        {
+            return bombObjectTexture;
         }
     }
 }

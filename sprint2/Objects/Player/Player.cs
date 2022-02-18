@@ -20,7 +20,7 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public bool hasNinjaStar = true;
 
-        
+        public int potionCount = 3;
 
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 3.0f;
@@ -30,8 +30,13 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public static Boolean isDead = false;
         public Game1 Game { get; set; }
-        private ISprite bomb { get; set; }
         private NinjaStar ninjaStar { get; set; } = null;
+
+        private StaticBomb staticBomb { get; set; }
+        private int maxBombs = 10;
+        public Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
+        public Dictionary<Vector2, int> staticBombList = new Dictionary<Vector2, int>();
+        public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
 
         public Player(Vector2 position, Game1 game)
         {
@@ -39,6 +44,8 @@ namespace CSE3902_Sprint2.Objects.Player
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
+
+            staticBomb = new StaticBomb(bombTexture, this);
         }
 
         public bool IsDead()
@@ -67,12 +74,10 @@ namespace CSE3902_Sprint2.Objects.Player
         {
             //Game.staticBomb.Draw(Game.spriteBatch, new Vector2((int)xPos, (int)yPos));
             Vector2 bombPos = new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10);
-            if (!Game.staticBombList.Keys.Contains(bombPos))
+            if (!staticBombList.Keys.Contains(bombPos) && staticBombList.Count < maxBombs)
             {
-                Game.staticBombList.Add(bombPos, 200);
+                staticBombList.Add(bombPos, 200);
             }        
-            //StaticBomb bomb = new StaticBomb(Game.bombTexture);
-
         }
         public void UseItem()
         {
@@ -85,34 +90,23 @@ namespace CSE3902_Sprint2.Objects.Player
         public void ChangeCharacter()
         {
             SpriteIndex = (++SpriteIndex % 4);
+            ApplyAbilities();
         }
+
         public void Update()
         {
-            if (ninjaStar != null) { ninjaStar.Update(); }
-            currState.Update();
             previousXPos = xPos;
             previousYPos = yPos;
+            if (ninjaStar != null) { ninjaStar.Update(); }
+            currState.Update();
+            checkMapBounds();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
-            if(xPos < 20)
-            {
-                xPos = 20;
-            }
-            if(yPos < 5)
-            {
-                yPos = 5;
-            }
-            if(xPos > 700)
-            {
-                xPos = 700;
-            }
-            if(yPos > 400)
-            {
-                yPos = 400;
-            }
+            DrawBombs(spriteBatch);
+            DrawExplosions(spriteBatch);
             if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
         }
 
@@ -120,6 +114,94 @@ namespace CSE3902_Sprint2.Objects.Player
         {
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset,60, 60);
             spriteBatch.Draw(texture, destination, source, Color.White);
+        }
+
+        public void ApplyAbilities()
+        {
+            switch(SpriteIndex)
+            {
+                // bomberman
+                case 0:
+                    speed = 3.0f;
+                    potionCount = 3;
+                    framePerStep = 6;
+                    break;
+                // knight
+                case 1:
+                    speed = 6.0f;
+                    potionCount = 3;
+                    framePerStep = 3;
+                    break;
+                case 2:
+                // goblin
+                    speed = 3.0f;
+                    potionCount = 6;
+                    framePerStep = 6;
+                    break;
+                case 3:
+                // ghost
+                    speed = -4.0f;
+                    potionCount = 3;
+                    framePerStep = 6;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void checkMapBounds()
+        {
+            if (xPos < 20)
+            {
+                xPos = 20;
+            }
+            if (yPos < 5)
+            {
+                yPos = 5;
+            }
+            if (xPos > 700)
+            {
+                xPos = 700;
+            }
+            if (yPos > 400)
+            {
+                yPos = 400;
+            }
+        }
+
+        private void DrawBombs(SpriteBatch spriteBatch)
+        {
+            List<Vector2> bombList = new List<Vector2>(staticBombList.Keys);
+            foreach (Vector2 bomb in bombList)
+            {
+                staticBombList[bomb]--;
+                if (staticBombList[bomb] < 0)
+                {
+                    staticBombList.Remove(bomb);
+                    staticExplosionList.Add(bomb, 20);
+                }
+            }
+            foreach (Vector2 bomb in bombList)
+            {
+                staticBomb.Draw(spriteBatch, bomb);
+            }
+        }
+
+        private void DrawExplosions(SpriteBatch spriteBatch)
+        {
+            List<Vector2> explosionList = new List<Vector2>(staticExplosionList.Keys);
+            foreach (Vector2 explosion in explosionList)
+            {
+                int timer = staticExplosionList[explosion]--;
+                if (timer != 0)
+                {
+                    staticBomb.Explode(spriteBatch, explosion);
+                }
+                else
+                {
+                    staticExplosionList.Remove(explosion);
+                }
+            }
         }
 
     }

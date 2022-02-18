@@ -1,8 +1,10 @@
 ﻿using CSE3902_Sprint2;
+using CSE3902_Sprint2.Objects.Items;
 using CSE3902_Sprint2.Objects.Player;
 using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint2.Objects.Bomb;
 using sprint2.Objects.Items;
 using System;
 using System.Collections.Generic;
@@ -30,6 +32,11 @@ namespace sprint2.Objects.NPC
         public Game1 Game { get; set; }
         private ISprite bomb { get; set; }
         private NinjaStar ninjaStar { get; set; } = null;
+        StaticBomb staticBomb { get; set; }
+        private int maxBombs = 10;
+        public Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
+        public Dictionary<Vector2, int> staticBombList = new Dictionary<Vector2, int>();
+        public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
 
         public Enemy (Vector2 position, Game1 game)
         {
@@ -37,14 +44,15 @@ namespace sprint2.Objects.NPC
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
+
         }
         public void DropBomb()
         {
             //Game.staticBomb.Draw(Game.spriteBatch, new Vector2((int)xPos, (int)yPos));
             Vector2 bombPos = new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10);
-            if (!Game.staticBombList.Keys.Contains(bombPos))
+            if (staticBombList.Keys.Contains(bombPos) && staticBombList.Count < maxBombs)
             {
-                Game.staticBombList.Add(bombPos, 200);
+                staticBombList.Add(bombPos, 200);
             }
             //StaticBomb bomb = new StaticBomb(Game.bombTexture);
 
@@ -103,6 +111,34 @@ namespace sprint2.Objects.NPC
             {
                 this.DropBomb();
                 count++;
+            }
+
+            List<Vector2> bombList = new List<Vector2>(staticBombList.Keys);
+            foreach (Vector2 bomb in bombList)
+            {
+                staticBombList[bomb]--;
+                if (staticBombList[bomb] < 0)
+                {
+                    staticBombList.Remove(bomb);
+                    staticExplosionList.Add(bomb, 20);
+                }
+            }
+            foreach (Vector2 bomb in bombList)
+            {
+                staticBomb.Draw(spriteBatch, bomb);
+            }
+            List<Vector2> explosionList = new List<Vector2>(staticExplosionList.Keys);
+            foreach (Vector2 explosion in explosionList)
+            {
+                int timer = staticExplosionList[explosion]--;
+                if (timer != 0)
+                {
+                    staticBomb.Explode(spriteBatch, explosion);
+                }
+                else
+                {
+                    staticExplosionList.Remove(explosion);
+                }
             }
         }
         public void ChangeCharacter()
