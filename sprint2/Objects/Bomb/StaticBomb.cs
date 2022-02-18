@@ -14,13 +14,14 @@ namespace sprint2.Objects.Bomb
     {
         public Texture2D Texture { get; set; }
         private Player player;
-
+        
         public int radius;
         public StaticBomb(Texture2D texture, Player player)
         {
             this.Texture = texture;
             this.player = player;
             radius = player.potionCount;
+            
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)
         {
@@ -51,15 +52,20 @@ namespace sprint2.Objects.Bomb
             // explosion origin
             spriteBatch.Draw(explosionTexture, new Rectangle(x, y, 50, 50), sourceRec, Color.White);
             // temporary hard coded explosion radius of 3
+            List<Rectangle> bombrange = new List<Rectangle> { };
             for (int i = 1; i < radius; i++)
             {
-                spriteBatch.Draw(explosionTexture, new Rectangle(50 * i + x, y, 50, 50), sourceRec, Color.White);
-                spriteBatch.Draw(explosionTexture, new Rectangle(x, 50 * i + y, 50, 50), sourceRec, Color.White);
-                spriteBatch.Draw(explosionTexture, new Rectangle(x - (50 * i), y, 50, 50), sourceRec, Color.White);
-                spriteBatch.Draw(explosionTexture, new Rectangle(x, y - (50 * i), 50, 50), sourceRec, Color.White);
+                bombrange.Add(new Rectangle(50 * i + x, y, 50, 50));
+                bombrange.Add(new Rectangle(x, 50 * i + y, 50, 50));
+                bombrange.Add(new Rectangle(x - (50 * i), y, 50, 50));
+                bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
+                foreach (Rectangle rec in bombrange) {
+                    spriteBatch.Draw(explosionTexture, rec, sourceRec, Color.White);
+                }
+            
             }
-
+            
         }
-
+            
     }
 }
