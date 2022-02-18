@@ -59,7 +59,9 @@ namespace CSE3902_Sprint2
         public Texture2D indestructableBlockTexture;
         public Texture2D tree1Texture;
         public Texture2D tree2Texture;
-        
+        public Dictionary<Vector2, ISprite> mapDir = new Dictionary<Vector2, ISprite> { };
+        public Map1 map1;
+
         public List<BasicItem> currentItemList;
         public int currItemIndex = 0;
         //private SpriteFont font;
@@ -130,6 +132,8 @@ namespace CSE3902_Sprint2
             PlayerTextureStorage.Instance.LoadAllResources(Content);
             EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
+            mapDir.Add(new Vector2(350, 350), destructableBlockSprite);
+            mapDir.Add(new Vector2(380, 350), indestructableBlockSprite);
             //load other texture storages
         }
 
@@ -218,19 +222,22 @@ namespace CSE3902_Sprint2
 
         protected override void Draw(GameTime gameTime)
         {
-                        
+            spriteBatch.Begin();
+
+
+            Texture2D background = Content.Load<Texture2D>("background2"); ;
+            //spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
+            spriteBatch.Draw(background, safeBounds, Color.White);
+            spriteBatch.End();
             this.IsMouseVisible = true;
             destructableBlockSprite.Draw(spriteBatch, new Vector2(250, 250));
             indestructableBlockSprite.Draw(spriteBatch, new Vector2(280, 250));
             tree1.Draw(spriteBatch, new Vector2(310, 250));
             tree2.Draw(spriteBatch, new Vector2(350, 250));
+            map1 = new Map1(mapDir, this);
+            map1.Draw();
             spriteBatch.Begin();
-            
-
-            Texture2D background = Content.Load<Texture2D>("background2"); ;
-            //spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
-            spriteBatch.Draw(background, safeBounds, Color.White);
-
+           
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
 
