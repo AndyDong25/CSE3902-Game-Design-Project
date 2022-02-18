@@ -49,8 +49,8 @@ namespace CSE3902_Sprint2
         }
 
 
-        private ISprite destructableBlockSprite { get; set; }
-        private ISprite indestructableBlockSprite { get; set; }
+        public ISprite destructableBlockSprite { get; set; }
+        public ISprite indestructableBlockSprite { get; set; }
         private ISprite tree1 { get; set; }
         private ISprite tree2 { get; set; }
 

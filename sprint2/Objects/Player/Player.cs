@@ -206,6 +206,20 @@ namespace CSE3902_Sprint2.Objects.Player
                         bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
                         staticBomb.Explode(spriteBatch, bombrange);
                     }
+                    List<Vector2> tilesPos = new List<Vector2>(Game.mapDir.Keys);
+      
+                    foreach (Rectangle rec in bombrange)
+                    {
+                        foreach (Vector2 pos in tilesPos)
+                        {
+                            if (rec.Contains(pos))
+                            {
+                                Game.mapDir.Remove(pos);
+                            }
+                        }
+                        
+                        
+                    }
                 }
                 else
                 {
