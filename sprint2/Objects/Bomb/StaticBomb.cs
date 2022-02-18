@@ -42,23 +42,16 @@ namespace sprint2.Objects.Bomb
         {
         }
 
-        public void Explode(SpriteBatch spriteBatch, Vector2 destination)
+        public void Explode(SpriteBatch spriteBatch, List<Rectangle> bombrange)
         {
             Texture2D explosionTexture = ItemTextureStorage.Instance.getExplosionSprite();
             Rectangle sourceRec = SpriteConstants.EXPLOSION;
-            int x = (int)destination.X;
-            int y = (int)destination.Y;
+    
             radius = player.potionCount;
             // explosion origin
-            spriteBatch.Draw(explosionTexture, new Rectangle(x, y, 50, 50), sourceRec, Color.White);
+
             // temporary hard coded explosion radius of 3
-            List<Rectangle> bombrange = new List<Rectangle> { };
-            for (int i = 1; i < radius; i++)
-            {
-                bombrange.Add(new Rectangle(50 * i + x, y, 50, 50));
-                bombrange.Add(new Rectangle(x, 50 * i + y, 50, 50));
-                bombrange.Add(new Rectangle(x - (50 * i), y, 50, 50));
-                bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
+            
                 foreach (Rectangle rec in bombrange) {
                     spriteBatch.Draw(explosionTexture, rec, sourceRec, Color.White);
                 }
@@ -68,4 +61,4 @@ namespace sprint2.Objects.Bomb
         }
             
     }
-}
+

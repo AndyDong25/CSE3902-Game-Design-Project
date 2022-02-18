@@ -195,7 +195,17 @@ namespace CSE3902_Sprint2.Objects.Player
                 int timer = staticExplosionList[explosion]--;
                 if (timer != 0)
                 {
-                    staticBomb.Explode(spriteBatch, explosion);
+                    int x = (int)explosion.X;
+                    int y = (int)explosion.Y;
+                    List<Rectangle> bombrange = new List<Rectangle> { };
+                    for (int i = 1; i < potionCount; i++)
+                    {
+                        bombrange.Add(new Rectangle(50 * i + x, y, 50, 50));
+                        bombrange.Add(new Rectangle(x, 50 * i + y, 50, 50));
+                        bombrange.Add(new Rectangle(x - (50 * i), y, 50, 50));
+                        bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
+                        staticBomb.Explode(spriteBatch, bombrange);
+                    }
                 }
                 else
                 {
