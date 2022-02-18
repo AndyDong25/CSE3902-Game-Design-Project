@@ -17,21 +17,15 @@ namespace CSE3902_Sprint2.Objects.Player
         public IPlayerState currState;
         public int SpriteIndex = 0;
         public int TextureIndex = 0;
-
         public bool hasNinjaStar = true;
-
         public int potionCount = 3;
-
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 3.0f;
         public static float framePerStep = 6;
-
         public int direction = 2;
-
         public static Boolean isDead = false;
         public Game1 Game { get; set; }
         private NinjaStar ninjaStar { get; set; } = null;
-
         private StaticBomb staticBomb { get; set; }
         private int maxBombs = 10;
         public Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
@@ -44,7 +38,6 @@ namespace CSE3902_Sprint2.Objects.Player
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
-
             staticBomb = new StaticBomb(bombTexture, this);
         }
 
@@ -52,6 +45,7 @@ namespace CSE3902_Sprint2.Objects.Player
         {
             return isDead;
         }
+
         public void MoveDown()
         {
             currState.MoveDown();
@@ -66,13 +60,14 @@ namespace CSE3902_Sprint2.Objects.Player
         {
             currState.MoveLeft();
         }
+
         public void MoveRight()
         {
             currState.MoveRight();
         }
+
         public void DropBomb()
         {
-            //Game.staticBomb.Draw(Game.spriteBatch, new Vector2((int)xPos, (int)yPos));
             Vector2 bombPos = new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10);
             if (!staticBombList.Keys.Contains(bombPos) && staticBombList.Count < maxBombs)
             {
@@ -81,12 +76,9 @@ namespace CSE3902_Sprint2.Objects.Player
         }
         public void UseItem()
         {
-            if (hasNinjaStar)
-            {
-                ninjaStar = new NinjaStar(this, Game);
-                //hasNinjaStar = false;
-            }
+            if (hasNinjaStar) ninjaStar = new NinjaStar(this, Game);
         }
+
         public void ChangeCharacter()
         {
             SpriteIndex = (++SpriteIndex % 4);
@@ -151,22 +143,13 @@ namespace CSE3902_Sprint2.Objects.Player
 
         private void checkMapBounds()
         {
-            if (xPos < 20)
-            {
-                xPos = 20;
-            }
-            if (yPos < 5)
-            {
-                yPos = 5;
-            }
-            if (xPos > 700)
-            {
-                xPos = 700;
-            }
-            if (yPos > 400)
-            {
-                yPos = 400;
-            }
+            if (xPos < 20) xPos = 20;
+            
+            if (yPos < 5) yPos = 5;
+            
+            if (xPos > 700) xPos = 700;
+            
+            if (yPos > 400) yPos = 400;            
         }
 
         private void DrawBombs(SpriteBatch spriteBatch)
@@ -216,9 +199,7 @@ namespace CSE3902_Sprint2.Objects.Player
                             {
                                 Game.mapDir.Remove(pos);
                             }
-                        }
-                        
-                        
+                        }                       
                     }
                 }
                 else
@@ -227,6 +208,5 @@ namespace CSE3902_Sprint2.Objects.Player
                 }
             }
         }
-
     }
 }

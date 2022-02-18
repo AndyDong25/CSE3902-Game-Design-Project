@@ -28,6 +28,5 @@ namespace CSE3902_Sprint2.Items
             Rectangle destination = new Rectangle(150, 100, 35, 35);
             spriteBatch.Draw(texture, destination, sourceRec, Color.White);
         }
-
     }
 }

@@ -34,7 +34,6 @@ namespace CSE3902_Sprint2
         private ArrayList controllerList;
         public Player player1;
         public Player player2;
-
         public Enemy enemy;
         public Enemy enemy2;
         GameState currentGameState;
@@ -92,12 +91,11 @@ namespace CSE3902_Sprint2
 
             player1 = new Player(new Vector2(30, 30), this);
             player2 = new Player(new Vector2(700, 30), this);
-            //npcPlayer = new NPCPlayer(new Vector2(450, 300), this, randomNum); 
             enemy = new Enemy(new Vector2(450, 300), this);
             enemy2 = new Enemy(new Vector2(300, 300), this);
 
             controllerList = new ArrayList();
-            controllerList.Add(new KeyboardController(this, player1, player2, enemy, enemy2));
+            controllerList.Add(new KeyboardController(this, player1, player2));
             //controllerList.Add(new MouseController(this));
 
             currentItemList = new List<BasicItem>();
@@ -246,7 +244,6 @@ namespace CSE3902_Sprint2
            
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
-
             enemy.Draw(spriteBatch);
             enemy2.Draw(spriteBatch);
 

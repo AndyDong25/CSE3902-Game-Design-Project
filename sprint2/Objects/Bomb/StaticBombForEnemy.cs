@@ -11,17 +11,17 @@ using System.Text;
 
 namespace sprint2.Objects.Bomb
 {
-    class StaticBomb : ISprite
+    class StaticBombForEnemy : ISprite
     {
         public Texture2D Texture { get; set; }
-        private Player player;
+        private Enemy enemy;
         
         public int radius;
-        public StaticBomb(Texture2D texture, Player player)
+        public StaticBombForEnemy(Texture2D texture, Enemy enemy)
         {
             this.Texture = texture;
-            this.player = player;
-            radius = player.potionCount;
+            this.enemy = enemy;
+            radius = enemy.potionCount;
             
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)
@@ -48,7 +48,7 @@ namespace sprint2.Objects.Bomb
             Texture2D explosionTexture = ItemTextureStorage.Instance.getExplosionSprite();
             Rectangle sourceRec = SpriteConstants.EXPLOSION;
     
-            radius = player.potionCount;
+            radius = enemy.potionCount;
             // explosion origin
 
             // temporary hard coded explosion radius of 3

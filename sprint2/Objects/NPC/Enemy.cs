@@ -18,21 +18,15 @@ namespace sprint2.Objects.NPC
         public IEnemyState currState;
         public int SpriteIndex = 0;
         public int TextureIndex = 0;
-
-        public bool hasNinjaStar = true;
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 3.0f;
         public float framePerStep = 3;
-
         public int direction = 2;
-        int randomNum = 1;
-        int count = 0;
-
-        public static Boolean isDead = false;
+        private int randomNum = 1;
+        private int count = 0;
+        public int potionCount = 3;
         public Game1 Game { get; set; }
-        private ISprite bomb { get; set; }
-        private NinjaStar ninjaStar { get; set; } = null;
-        StaticBomb staticBomb { get; set; }
+        StaticBombForEnemy staticBomb { get; set; }
         private int maxBombs = 10;
         public Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
         public Dictionary<Vector2, int> staticBombList = new Dictionary<Vector2, int>();
@@ -44,75 +38,49 @@ namespace sprint2.Objects.NPC
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
-
+            staticBomb = new StaticBombForEnemy(bombTexture, this);
         }
+
         public void DropBomb()
         {
-            //Game.staticBomb.Draw(Game.spriteBatch, new Vector2((int)xPos, (int)yPos));
             Vector2 bombPos = new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10);
-            if (staticBombList.Keys.Contains(bombPos) && staticBombList.Count < maxBombs)
+            if (!staticBombList.Keys.Contains(bombPos) && staticBombList.Count < maxBombs)
             {
                 staticBombList.Add(bombPos, 200);
             }
-            //StaticBomb bomb = new StaticBomb(Game.bombTexture);
-
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void GenerateNpc()
         {
-            currState.Draw(spriteBatch);
-            if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
-
-            // Generate NPC
             Random rd = new Random();
+            if (count % 20 == 0) randomNum = rd.Next(1, 7);
 
-            if(count % 20 == 0)
-            {
-                randomNum = rd.Next(1, 6);
-            }
+            if (randomNum == 1) this.MoveUp();
 
-            if (randomNum == 1)
-            {
-                this.MoveUp();
-                if (this.yPos < 5)
-                {
-                    this.yPos = 5;
-                }
-                count++;
-            }
-            if (randomNum == 2)
-            {
-                this.MoveDown();
-                if (this.yPos > 400)
-                {
-                    this.yPos = 400;
-                }
-                count++;
-            }
-            if (randomNum == 3)
-            {
-                this.MoveLeft();
-                if (this.xPos < 20)
-                {
-                    this.xPos = 20;
-                }
-                count++;
-            }
-            if (randomNum == 4)
-            {
-                this.MoveRight();
-                if (this.xPos > 700)
-                {
-                    this.xPos = 700;
-                }
-                count++;
-            }
-            if (randomNum == 5)
-            {
-                this.DropBomb();
-                count++;
-            }
+            if (randomNum == 2) this.MoveDown();
 
+            if (randomNum == 3) this.MoveLeft();
+
+            if (randomNum == 4) this.MoveRight();
+
+            if (randomNum == 5) this.DropBomb();
+
+            count++;
+        }
+
+        public void positionLimit()
+        {
+            if (xPos < 20) xPos = 20;
+
+            if (yPos < 5) yPos = 5;
+
+            if (xPos > 700) xPos = 700;
+
+            if (yPos > 400) yPos = 400;
+        }
+
+        private void DrawBombs(SpriteBatch spriteBatch)
+        {
             List<Vector2> bombList = new List<Vector2>(staticBombList.Keys);
             foreach (Vector2 bomb in bombList)
             {
@@ -127,6 +95,10 @@ namespace sprint2.Objects.NPC
             {
                 staticBomb.Draw(spriteBatch, bomb);
             }
+        }
+
+        private void DrawExplosions(SpriteBatch spriteBatch)
+        {
             List<Vector2> explosionList = new List<Vector2>(staticExplosionList.Keys);
             foreach (Vector2 explosion in explosionList)
             {
@@ -136,13 +108,25 @@ namespace sprint2.Objects.NPC
                     int x = (int)explosion.X;
                     int y = (int)explosion.Y;
                     List<Rectangle> bombrange = new List<Rectangle> { };
-                    for (int i = 1; i < 3; i++)
+                    for (int i = 1; i < potionCount; i++)
                     {
                         bombrange.Add(new Rectangle(50 * i + x, y, 50, 50));
                         bombrange.Add(new Rectangle(x, 50 * i + y, 50, 50));
                         bombrange.Add(new Rectangle(x - (50 * i), y, 50, 50));
                         bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
                         staticBomb.Explode(spriteBatch, bombrange);
+                    }
+                    List<Vector2> tilesPos = new List<Vector2>(Game.mapDir.Keys);
+
+                    foreach (Rectangle rec in bombrange)
+                    {
+                        foreach (Vector2 pos in tilesPos)
+                        {
+                            if (rec.Contains(pos))
+                            {
+                                Game.mapDir.Remove(pos);
+                            }
+                        }
                     }
                 }
                 else
@@ -151,17 +135,23 @@ namespace sprint2.Objects.NPC
                 }
             }
         }
-        public void ChangeCharacter()
+
+        public void Draw(SpriteBatch spriteBatch)
         {
-            SpriteIndex = (++SpriteIndex % 4);
+            currState.Draw(spriteBatch);
+            GenerateNpc();
+            positionLimit();
+            DrawBombs(spriteBatch);
+            DrawExplosions(spriteBatch);
         }
+
         public void TakeDamage()
         {
+
         }
 
         public void Update()
         {
-            if (ninjaStar != null) { ninjaStar.Update(); }
             currState.Update();
             previousXPos = xPos;
             previousYPos = yPos;
@@ -186,14 +176,7 @@ namespace sprint2.Objects.NPC
         {
             currState.MoveRight();
         }
-        public void UseItem()
-        {
-            //if (hasNinjaStar)
-            //{
-            //    ninjaStar = new NinjaStar(this, Game);
-            //    //hasNinjaStar = false;
-            //}
-        }
+
         public void DrawSprite(SpriteBatch spriteBatch, Texture2D texture, Rectangle source, int XOffset = 0, int YOffset = 0)
         {
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset, 60, 60);

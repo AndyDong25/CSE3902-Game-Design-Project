@@ -15,19 +15,15 @@ namespace CSE3902_Sprint2.Controller
         private Game1 myGame;
         private Player player1;
         private Player player2;
-        private Enemy enemy;
-        private Enemy enemy2;
         private Dictionary<Keys, ICommand> mappings;
         private List<Keys> acceptedStates;
         private List<Keys> oncePerActionStates;
 
-        public KeyMapping(Game1 game, Player player1, Player player2, Enemy enemy, Enemy enemy2)
+        public KeyMapping(Game1 game, Player player1, Player player2)
         {
             myGame = game;
             this.player1 = player1;
             this.player2 = player2;
-            this.enemy = enemy;
-            this.enemy2 = enemy2;
 
             mappings = new Dictionary<Keys, ICommand>();
             acceptedStates = new List<Keys>();
@@ -71,8 +67,6 @@ namespace CSE3902_Sprint2.Controller
             this.addCommand(Keys.NumPad0, new UseItemCommand(player2));
 
             // other commands when implemented
-            this.addCommand(Keys.Z, new ChangeEnemyCharacterCommand(enemy));
-            this.addCommand(Keys.M, new ChangeEnemyCharacterCommand(enemy2));
 
         }
 
@@ -80,8 +74,7 @@ namespace CSE3902_Sprint2.Controller
         {
             mappings.Add(key, command);
             acceptedStates.Add(key);
-            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.Z 
-                || key == Keys.M)
+            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I)
             {
                 oncePerActionStates.Add(key);
             }
