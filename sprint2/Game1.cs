@@ -134,6 +134,12 @@ namespace CSE3902_Sprint2
             ItemTextureStorage.Instance.LoadAllResources(Content);
             mapDir.Add(new Vector2(350, 350), destructableBlockSprite);
             mapDir.Add(new Vector2(380, 350), indestructableBlockSprite);
+            mapDir.Add(new Vector2(4100, 350), destructableBlockSprite);
+            mapDir.Add(new Vector2(430, 350), destructableBlockSprite);
+            mapDir.Add(new Vector2(460, 350), destructableBlockSprite);
+            mapDir.Add(new Vector2(490, 350), destructableBlockSprite);
+            mapDir.Add(new Vector2(520, 350), destructableBlockSprite);
+            //we can use a json file or something to load all the blocks here later
             //load other texture storages
         }
 
