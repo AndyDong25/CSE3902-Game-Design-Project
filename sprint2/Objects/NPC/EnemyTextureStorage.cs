@@ -29,6 +29,7 @@ namespace sprint2.Objects.NPC
         private static Texture2D deadPlayerTexture = null;
 
         private static Texture2D batTexture = null;
+        private static Texture2D snakeTexture = null;
 
         private EnemyTextureStorage()
         {
@@ -42,6 +43,7 @@ namespace sprint2.Objects.NPC
             brownBoyTexture = content.Load<Texture2D>("brownBoy");
             deadPlayerTexture = content.Load<Texture2D>("TombstoneSprite");
             batTexture = content.Load<Texture2D>("batSpriteSheet");
+            snakeTexture = content.Load<Texture2D>("snakeSpriteSheet");
         }
 
         public Texture2D getRedBoySpriteSheet()
@@ -67,6 +69,10 @@ namespace sprint2.Objects.NPC
         public Texture2D getBatSprite()
         {
             return batTexture;
+        }
+        public Texture2D getSnakeSprite()
+        {
+            return snakeTexture;
         }
     }
 }

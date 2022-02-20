@@ -151,6 +151,26 @@ namespace CSE3902_Sprint2
             new Rectangle(31, 0, 32, 31), new Rectangle (63, 0, 32, 31), new Rectangle(95, 0, 32, 31)
         };
 
+        public static List<Rectangle> SNAKE_EAST = new List<Rectangle>
+        {
+            new Rectangle(0, 124, 62, 63), new Rectangle (62, 124, 62, 63), new Rectangle(124, 124, 62, 63)
+        };
+
+        public static List<Rectangle> SNAKE_WEST = new List<Rectangle>
+        {
+            new Rectangle(0, 62, 62, 63), new Rectangle (62, 62, 62, 63), new Rectangle(124, 62, 62, 63)
+        };
+
+        public static List<Rectangle> SNAKE_SOUTH = new List<Rectangle>
+        {
+            new Rectangle(0, 0, 62, 63), new Rectangle (62, 0, 62, 63), new Rectangle(124, 0, 62, 63)
+        };
+
+        public static List<Rectangle> SNAKE_NORTH = new List<Rectangle>
+        {
+            new Rectangle(0, 189, 62, 63), new Rectangle (62, 189, 62, 63), new Rectangle(124, 189, 62, 63)
+        };
+
 
         public static Rectangle NINJA_STAR = new Rectangle(0, 0, 459, 459);
         public static Rectangle EXPLOSION = new Rectangle(555, 124, 87, 87);

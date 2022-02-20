@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.NPC;
 using sprint2.Objects.NPC.Bat;
+using sprint2.Objects.NPC.Snake;
 using sprint2.Sprites.Decorations;
 using System;
 using System.Collections.Generic;
@@ -96,6 +97,7 @@ namespace sprint2.Map
             sideWaysBat.currState = new BatFacingEastState(sideWaysBat);
             currentEnemyList.Add(sideWaysBat);
 
+            currentEnemyList.Add(new Snake(new Vector2(60, 430), game));
         }
 
         public void Update()
