@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.NPC;
+using sprint2.Objects.NPC.Bat;
 using sprint2.Sprites.Decorations;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace sprint2.Map
         private Game1 game;
         public int Timeplayed;
         public int score;
-        Rectangle safeBounds;
+        //Rectangle safeBounds;
         const float safeAreaPortion = 0.001f;
         //int TimeofGame = 0;
         //Boolean isPaused = false;
@@ -47,6 +48,10 @@ namespace sprint2.Map
 
         public List<ISprite> currentObstacleList;
         public int currObstacleIndex = 0;
+
+        public List<IEnemyState> currentEnemyList;
+        public int currEnemyIndex = 0;
+
         public Map(Game1 game)
         {
             this.game = game;
@@ -67,7 +72,7 @@ namespace sprint2.Map
             background = new Background1();
             player1 = new Player(new Vector2(30, 30), game);
             player2 = new Player(new Vector2(700, 30), game);
-            npc = new Enemy(new Vector2(450, 300), game);
+            //npc = new Enemy(new Vector2(450, 300), game);
             currentItemList = new List<BasicItem>();
             currentItemList.Add(new BombItem());
             currentItemList.Add(new PotionItem());
@@ -82,6 +87,15 @@ namespace sprint2.Map
             currentObstacleList.Add(new IndestructableBlockSprite());
             currentObstacleList.Add(new Tree1());
             currentObstacleList.Add(new Tree2());
+
+            currentEnemyList = new List<IEnemyState>();
+            currentEnemyList.Add(new Enemy(new Vector2(450, 300), game));
+            currentEnemyList.Add(new Bat(new Vector2(400, 240), game));
+
+            Bat sideWaysBat = new Bat(new Vector2(400, 380), game);
+            sideWaysBat.currState = new BatFacingEastState(sideWaysBat);
+            currentEnemyList.Add(sideWaysBat);
+
         }
 
         public void Update()
@@ -89,11 +103,13 @@ namespace sprint2.Map
             background.Update();
             player1.Update();
             player2.Update();
-            npc.Update();
+            //npc.Update();
             // unimplemented for sprint2
             //currentItemList[currItemIndex % 7].Update();
             // does nothing for sprint2
-            currentObstacleList[currObstacleIndex % 4].Update();
+            currentObstacleList[currObstacleIndex % currentObstacleList.Count].Update();
+
+            currentEnemyList[currEnemyIndex % currentEnemyList.Count].Update();
         }
 
         public void Draw()
@@ -101,9 +117,10 @@ namespace sprint2.Map
             background.Draw(spriteBatch, new Vector2(0, 0));
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
-            npc.Draw(spriteBatch);
-            currentItemList[currItemIndex % 7].Draw(spriteBatch);
-            currentObstacleList[currObstacleIndex % 4].Draw(spriteBatch, new Vector2(350, 350));
+            //npc.Draw(spriteBatch);
+            currentItemList[currItemIndex % currentItemList.Count].Draw(spriteBatch);
+            currentObstacleList[currObstacleIndex % currentObstacleList.Count].Draw(spriteBatch, new Vector2(350, 350));
+            currentEnemyList[currEnemyIndex % currentEnemyList.Count].Draw(spriteBatch);
         }
     }
 }
