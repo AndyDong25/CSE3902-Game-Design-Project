@@ -23,22 +23,16 @@ namespace CSE3902_Sprint2
 
     public class Game1 : Game
     {
-        public int Timeplayed;
+/*        public int Timeplayed;
         public int score;
         Rectangle safeBounds;
-        const float safeAreaPortion = 0.001f;
-        //int TimeofGame = 0;
-        //Boolean isPaused = false;
+        const float safeAreaPortion = 0.001f;*/
 
         public GraphicsDeviceManager graphics;
         public static ContentManager contentManager;
         public SpriteBatch spriteBatch;
         private ArrayList controllerList;
-        public Player player1;
-        public Player player2;
-        public Enemy enemy;
-        public Enemy enemy2;
-        GameState currentGameState;     
+        //private GameState currentGameState;
 
        enum GameState
         {
@@ -49,58 +43,32 @@ namespace CSE3902_Sprint2
         }
 
         public Map map;
-
         public Vector2 screenSize;
 
-        /*        private Texture2D background;
+/*        public Dictionary<Vector2, ISprite> mapDir;
+        public Map1 map1;*/
 
-                public ISprite destructableBlockSprite { get; set; }
-                public ISprite indestructableBlockSprite { get; set; }
-                private ISprite tree1 { get; set; }
-                private ISprite tree2 { get; set; }
-
-                public Texture2D destructableBlockTexture;
-                public Texture2D indestructableBlockTexture;
-                public Texture2D tree1Texture;
-                public Texture2D tree2Texture;
-                public Dictionary<Vector2, ISprite> mapDir;
-                public Map1 map1;
-
-                public List<BasicItem> currentItemList;
-                public int currItemIndex = 0;*/
-        //private SpriteFont font;
 
         public Game1()
         {         
             graphics = new GraphicsDeviceManager(this);
-            //graphics.PreferredBackBufferHeight = 768;
-            //graphics.PreferredBackBufferWidth = 1024;
-            graphics.ApplyChanges();
             screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            Content.RootDirectory = "Content";
-            
+            Content.RootDirectory = "Content";      
         }
 
         protected override void Initialize()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Viewport viewport = graphics.GraphicsDevice.Viewport;
+/*            Viewport viewport = graphics.GraphicsDevice.Viewport;
             safeBounds = new Rectangle(
                 (int)(viewport.Width * safeAreaPortion),
                 (int)(viewport.Height * safeAreaPortion),
                 (int)(viewport.Width * (1 - 2 * safeAreaPortion)),
-                (int)(viewport.Height * (1 - 2 * safeAreaPortion)));
+                (int)(viewport.Height * (1 - 2 * safeAreaPortion)));*/
             //TODO change in the future
-            currentGameState = GameState.GamePlay;
+            //currentGameState = GameState.GamePlay;
 
-
-
-            /*            player1 = new Player(new Vector2(30, 30), this);
-                        player2 = new Player(new Vector2(700, 30), this);
-                        enemy = new Enemy(new Vector2(450, 300), this);
-                        enemy2 = new Enemy(new Vector2(300, 300), this);
-
-                        mapDir = new Dictionary<Vector2, ISprite> { };*/
+            // mapDir = new Dictionary<Vector2, ISprite> { };
 
             map = new Map(this);
             map.Initialize();
@@ -109,18 +77,8 @@ namespace CSE3902_Sprint2
             controllerList.Add(new KeyboardController(this, map.player1, map.player2));
             //controllerList.Add(new MouseController(this));
 
-/*            currentItemList = new List<BasicItem>();
-            currentItemList.Add(new BombItem());
-            currentItemList.Add(new PotionItem());
-            currentItemList.Add(new ShoeItem());
-            currentItemList.Add(new NinjaStarItem());
-            currentItemList.Add(new GhostItem());
-            currentItemList.Add(new KnightItem());
-            currentItemList.Add(new GoblinItem());*/
-
             base.Initialize();
         }
-
        
         protected override void LoadContent()
         {
@@ -147,7 +105,9 @@ namespace CSE3902_Sprint2
 
         protected override void Update(GameTime gameTime)
         {
-            KeyboardState keyboard = Keyboard.GetState();
+            // GameState functionality not implemented yet
+
+/*            KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
             
             switch (currentGameState)
@@ -181,7 +141,7 @@ namespace CSE3902_Sprint2
                     break;
 
                 case GameState.GamePlay:
-/*                    if (keyboard.IsKeyDown(Keys.P))
+*//*                    if (keyboard.IsKeyDown(Keys.P))
                     {
                         isPaused = !isPaused;
                     }
@@ -195,31 +155,34 @@ namespace CSE3902_Sprint2
                     {
                         //code when the game is paused.
                         currentGameState = GameState.GamePause;
-                    }*/
+                    }*//*
                     // Press X or I during game play to return to main menu
-/*                    if (gamePad.Buttons.X == ButtonState.Pressed ||
+*//*                    if (gamePad.Buttons.X == ButtonState.Pressed ||
                         keyboard.IsKeyDown(Keys.I))
                     {
                         currentGameState = GameState.GameMenu;
-                    }*/
+                    }*//*
                     // Press ESC to quit game during game play
-/*                    if (gamePad.Buttons.Back == ButtonState.Pressed ||
+*//*                    if (gamePad.Buttons.Back == ButtonState.Pressed ||
                 keyboard.IsKeyDown(Keys.Escape))
                     {
                         this.Exit();
-                    }*/
+                    }*//*
                     foreach (IController controller in controllerList)
                     {
                         controller.Update();
                     }
-                    /*                    player1.Update();
-                                        player2.Update();
-                                        enemy.Update();
-                                        enemy2.Update();*/
                     map.Update();
                     
                     break;
+            }*/
+
+            foreach (IController controller in controllerList)
+            {
+                controller.Update();
             }
+            map.Update();
+
             base.Update(gameTime);
         }
 
@@ -227,25 +190,10 @@ namespace CSE3902_Sprint2
         {
             spriteBatch.Begin();
 
-            //spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
-            /*spriteBatch.Draw(background, safeBounds, Color.White);
-            spriteBatch.End();*/
             this.IsMouseVisible = true;
-/*            destructableBlockSprite.Draw(spriteBatch, new Vector2(250, 250));
-            indestructableBlockSprite.Draw(spriteBatch, new Vector2(280, 250));
-            tree1.Draw(spriteBatch, new Vector2(310, 250));
-            tree2.Draw(spriteBatch, new Vector2(350, 250));
-            map1 = new Map1(mapDir, this);
-            map1.Draw();
-            spriteBatch.Begin();
-           
-            player1.Draw(spriteBatch);
-            player2.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
-            enemy2.Draw(spriteBatch);
 
-            currItemIndex %= 7;
-            currentItemList[currItemIndex].Draw(spriteBatch);*/
+/*            map1 = new Map1(mapDir, this);
+            map1.Draw();*/    
 
             map.Draw();
             spriteBatch.End();

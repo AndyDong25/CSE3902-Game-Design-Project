@@ -62,7 +62,7 @@ namespace CSE3902_Sprint2
         public static List<Rectangle> GHOST_EAST = new List<Rectangle> { new Rectangle(375, 360, 200, 185)};
         public static List<Rectangle> GHOST_WEST = new List<Rectangle> { new Rectangle(175, 175, 200, 185) };
 
-        // Enemy picture
+        // NPC sprites
         public static List<Rectangle> REDBOY_NORTH = new List<Rectangle>
         {
             new Rectangle(0, 192, 64, 64), new Rectangle (64, 192, 64, 64), new Rectangle(192, 192, 64, 64)
@@ -171,7 +171,6 @@ namespace CSE3902_Sprint2
             new Rectangle(0, 189, 62, 63), new Rectangle (62, 189, 62, 63), new Rectangle(124, 189, 62, 63)
         };
 
-
         public static Rectangle NINJA_STAR = new Rectangle(0, 0, 459, 459);
         public static Rectangle EXPLOSION = new Rectangle(555, 124, 87, 87);
         public static Rectangle TOMBSTONE = new Rectangle(0, 0, 233, 233);
@@ -187,7 +186,6 @@ namespace CSE3902_Sprint2
         // decorations
         public static Rectangle TREE1 = new Rectangle(75, 40, 250, 260);
         public static Rectangle TREE2 = new Rectangle(120, 40, 550, 560);
-
         public static Rectangle INDESTRUCTIBLE_BLOCK = new Rectangle(0, 0, 250, 250);
         public static Rectangle DESTRUCTIBLE_BLOCK = new Rectangle(0, 0, 340, 340);
 

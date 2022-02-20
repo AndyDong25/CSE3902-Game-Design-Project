@@ -46,27 +46,29 @@ namespace CSE3902_Sprint2
 
         }
 
-        public abstract void Activate(Player currentPlayer);
+        public virtual void Activate(Player currentPlayer)
+        {
+            boostedPlayer = currentPlayer;
+        }
 
         public ISprite GetSprite()
         {
             return item;
         }
-
-        
+   
 
         public void Update()
         {
             if (activated)
             {
-                if (gameRef.player1.xPos == xPos && gameRef.player2.yPos == yPos)
+                if (gameRef.map.player1.xPos == xPos && gameRef.map.player2.yPos == yPos)
                 {
-                    Activate(gameRef.player1);
+                    Activate(gameRef.map.player1);
                     Destroy();
                 }
-                else if (gameRef.player2.xPos == xPos && gameRef.player2.yPos == yPos)
+                else if (gameRef.map.player2.xPos == xPos && gameRef.map.player2.yPos == yPos)
                 {
-                    Activate(gameRef.player2);
+                    Activate(gameRef.map.player2);
                     Destroy();
                 }
                 activated = false;
@@ -89,11 +91,10 @@ namespace CSE3902_Sprint2
             
         }
 
-        public virtual void Deactivate() {
-        
-        
-        }
+        public virtual void Deactivate()
+        {
 
+        }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
         }
