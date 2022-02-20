@@ -23,7 +23,7 @@ namespace CSE3902_Sprint2.Objects.Player
         {
 
             this.player = player;
-            framesLeft = (int)Player.framePerStep;
+            framesLeft = (int)player.framePerStep;
             mySourceIndex = 0;
             myTextureIndex = player.SpriteIndex;
             player.direction = 2;
@@ -68,7 +68,7 @@ namespace CSE3902_Sprint2.Objects.Player
             player.yPos += player.speed;
             if (--framesLeft <= 0)
             {
-                framesLeft = (int)Player.framePerStep;
+                framesLeft = (int)player.framePerStep;
                 mySourceIndex++;
                 mySourceIndex %= mySources[player.SpriteIndex].Count;
             }

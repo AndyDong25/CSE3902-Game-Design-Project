@@ -108,6 +108,8 @@ namespace sprint2.Objects.NPC
                     int x = (int)explosion.X;
                     int y = (int)explosion.Y;
                     List<Rectangle> bombrange = new List<Rectangle> { };
+                    // explosion origin
+                    bombrange.Add(new Rectangle(x, y, 50, 50));
                     for (int i = 1; i < potionCount; i++)
                     {
                         bombrange.Add(new Rectangle(50 * i + x, y, 50, 50));
@@ -116,7 +118,7 @@ namespace sprint2.Objects.NPC
                         bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
                         staticBomb.Explode(spriteBatch, bombrange);
                     }
-                    List<Vector2> tilesPos = new List<Vector2>(Game.mapDir.Keys);
+/*                    List<Vector2> tilesPos = new List<Vector2>(Game.mapDir.Keys);
 
                     foreach (Rectangle rec in bombrange)
                     {
@@ -127,7 +129,7 @@ namespace sprint2.Objects.NPC
                                 Game.mapDir.Remove(pos);
                             }
                         }
-                    }
+                    }*/
                 }
                 else
                 {

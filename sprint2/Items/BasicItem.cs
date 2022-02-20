@@ -41,7 +41,7 @@ namespace CSE3902_Sprint2
             this.yPos = yPos;
             this.item = item;
             this.gameRef = gameRef;
-            gameRef.currentItemList.Add(this);
+            gameRef.map.currentItemList.Add(this);
 
 
         }
@@ -87,7 +87,7 @@ namespace CSE3902_Sprint2
 
         public void Destroy()
         {
-            gameRef.currentItemList.Remove(this);
+            gameRef.map.currentItemList.Remove(this);
             
             
         }

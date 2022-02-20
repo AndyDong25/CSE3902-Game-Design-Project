@@ -15,6 +15,8 @@ using sprint2.Sprites.Decorations;
 using System;
 using sprint2.Objects.NPC;
 using Microsoft.Xna.Framework.Content;
+using sprint2.Objects.Decorations;
+using sprint2.Map;
 
 namespace CSE3902_Sprint2
 {
@@ -36,8 +38,7 @@ namespace CSE3902_Sprint2
         public Player player2;
         public Enemy enemy;
         public Enemy enemy2;
-        GameState currentGameState;
-        
+        GameState currentGameState;     
 
        enum GameState
         {
@@ -47,22 +48,26 @@ namespace CSE3902_Sprint2
             GamePause = 3,
         }
 
-
-        public ISprite destructableBlockSprite { get; set; }
-        public ISprite indestructableBlockSprite { get; set; }
-        private ISprite tree1 { get; set; }
-        private ISprite tree2 { get; set; }
+        public Map map;
 
         public Vector2 screenSize;
-        public Texture2D destructableBlockTexture;
-        public Texture2D indestructableBlockTexture;
-        public Texture2D tree1Texture;
-        public Texture2D tree2Texture;
-        public Dictionary<Vector2, ISprite> mapDir = new Dictionary<Vector2, ISprite> { };
-        public Map1 map1;
 
-        public List<BasicItem> currentItemList;
-        public int currItemIndex = 0;
+        /*        private Texture2D background;
+
+                public ISprite destructableBlockSprite { get; set; }
+                public ISprite indestructableBlockSprite { get; set; }
+                private ISprite tree1 { get; set; }
+                private ISprite tree2 { get; set; }
+
+                public Texture2D destructableBlockTexture;
+                public Texture2D indestructableBlockTexture;
+                public Texture2D tree1Texture;
+                public Texture2D tree2Texture;
+                public Dictionary<Vector2, ISprite> mapDir;
+                public Map1 map1;
+
+                public List<BasicItem> currentItemList;
+                public int currItemIndex = 0;*/
         //private SpriteFont font;
 
         public Game1()
@@ -78,6 +83,7 @@ namespace CSE3902_Sprint2
 
         protected override void Initialize()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             Viewport viewport = graphics.GraphicsDevice.Viewport;
             safeBounds = new Rectangle(
                 (int)(viewport.Width * safeAreaPortion),
@@ -86,26 +92,31 @@ namespace CSE3902_Sprint2
                 (int)(viewport.Height * (1 - 2 * safeAreaPortion)));
             //TODO change in the future
             currentGameState = GameState.GamePlay;
-            
 
 
-            player1 = new Player(new Vector2(30, 30), this);
-            player2 = new Player(new Vector2(700, 30), this);
-            enemy = new Enemy(new Vector2(450, 300), this);
-            enemy2 = new Enemy(new Vector2(300, 300), this);
+
+            /*            player1 = new Player(new Vector2(30, 30), this);
+                        player2 = new Player(new Vector2(700, 30), this);
+                        enemy = new Enemy(new Vector2(450, 300), this);
+                        enemy2 = new Enemy(new Vector2(300, 300), this);
+
+                        mapDir = new Dictionary<Vector2, ISprite> { };*/
+
+            map = new Map(this);
+            map.Initialize();
 
             controllerList = new ArrayList();
-            controllerList.Add(new KeyboardController(this, player1, player2));
+            controllerList.Add(new KeyboardController(this, map.player1, map.player2));
             //controllerList.Add(new MouseController(this));
 
-            currentItemList = new List<BasicItem>();
+/*            currentItemList = new List<BasicItem>();
             currentItemList.Add(new BombItem());
             currentItemList.Add(new PotionItem());
             currentItemList.Add(new ShoeItem());
             currentItemList.Add(new NinjaStarItem());
             currentItemList.Add(new GhostItem());
             currentItemList.Add(new KnightItem());
-            currentItemList.Add(new GoblinItem());
+            currentItemList.Add(new GoblinItem());*/
 
             base.Initialize();
         }
@@ -113,30 +124,18 @@ namespace CSE3902_Sprint2
        
         protected override void LoadContent()
         {
-
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            SpriteFont font = Content.Load<SpriteFont>("Score");
-
-            destructableBlockTexture = Content.Load<Texture2D>("DestructableCrate");
-            indestructableBlockTexture = Content.Load<Texture2D>("Concrete_Block_2x2");
-            tree1Texture = Content.Load<Texture2D>("Tree1");
-            tree2Texture = Content.Load<Texture2D>("Tree2");
-
-            destructableBlockSprite = new DestructableBlockSprite(destructableBlockTexture);
-            indestructableBlockSprite = new IndestructableBlockSprite(indestructableBlockTexture);
-            tree1 = new Tree1(tree1Texture);
-            tree2 = new Tree2(tree2Texture);
-
             PlayerTextureStorage.Instance.LoadAllResources(Content);
             EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
-            mapDir.Add(new Vector2(350, 350), destructableBlockSprite);
+            DecorationTextureStorage.Instance.LoadAllResources(Content);
+
+/*            mapDir.Add(new Vector2(350, 350), destructableBlockSprite);
             mapDir.Add(new Vector2(380, 350), indestructableBlockSprite);
             mapDir.Add(new Vector2(4100, 350), destructableBlockSprite);
             mapDir.Add(new Vector2(430, 350), destructableBlockSprite);
             mapDir.Add(new Vector2(460, 350), destructableBlockSprite);
             mapDir.Add(new Vector2(490, 350), destructableBlockSprite);
-            mapDir.Add(new Vector2(520, 350), destructableBlockSprite);
+            mapDir.Add(new Vector2(520, 350), destructableBlockSprite);*/
             //we can use a json file or something to load all the blocks here later
             //load other texture storages
         }
@@ -150,7 +149,6 @@ namespace CSE3902_Sprint2
         {
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
-
             
             switch (currentGameState)
             {
@@ -214,10 +212,11 @@ namespace CSE3902_Sprint2
                     {
                         controller.Update();
                     }
-                    player1.Update();
-                    player2.Update();
-                    enemy.Update();
-                    enemy2.Update();
+                    /*                    player1.Update();
+                                        player2.Update();
+                                        enemy.Update();
+                                        enemy2.Update();*/
+                    map.Update();
                     
                     break;
             }
@@ -228,13 +227,11 @@ namespace CSE3902_Sprint2
         {
             spriteBatch.Begin();
 
-
-            Texture2D background = Content.Load<Texture2D>("background2"); ;
             //spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
-            spriteBatch.Draw(background, safeBounds, Color.White);
-            spriteBatch.End();
+            /*spriteBatch.Draw(background, safeBounds, Color.White);
+            spriteBatch.End();*/
             this.IsMouseVisible = true;
-            destructableBlockSprite.Draw(spriteBatch, new Vector2(250, 250));
+/*            destructableBlockSprite.Draw(spriteBatch, new Vector2(250, 250));
             indestructableBlockSprite.Draw(spriteBatch, new Vector2(280, 250));
             tree1.Draw(spriteBatch, new Vector2(310, 250));
             tree2.Draw(spriteBatch, new Vector2(350, 250));
@@ -248,8 +245,9 @@ namespace CSE3902_Sprint2
             enemy2.Draw(spriteBatch);
 
             currItemIndex %= 7;
-            currentItemList[currItemIndex].Draw(spriteBatch);
+            currentItemList[currItemIndex].Draw(spriteBatch);*/
 
+            map.Draw();
             spriteBatch.End();
                 
             base.Draw(gameTime);

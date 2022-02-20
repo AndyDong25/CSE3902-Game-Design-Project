@@ -21,7 +21,7 @@ namespace CSE3902_Sprint2.Objects.Player
         public int potionCount = 3;
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 3.0f;
-        public static float framePerStep = 6;
+        public float framePerStep = 6;
         public int direction = 2;
         public static Boolean isDead = false;
         public Game1 Game { get; set; }
@@ -181,6 +181,8 @@ namespace CSE3902_Sprint2.Objects.Player
                     int x = (int)explosion.X;
                     int y = (int)explosion.Y;
                     List<Rectangle> bombrange = new List<Rectangle> { };
+                    //explosion origin
+                    bombrange.Add(new Rectangle(x, y, 50, 50));
                     for (int i = 1; i < potionCount; i++)
                     {
                         bombrange.Add(new Rectangle(50 * i + x, y, 50, 50));
@@ -189,7 +191,7 @@ namespace CSE3902_Sprint2.Objects.Player
                         bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
                         staticBomb.Explode(spriteBatch, bombrange);
                     }
-                    List<Vector2> tilesPos = new List<Vector2>(Game.mapDir.Keys);
+/*                    List<Vector2> tilesPos = new List<Vector2>(Game.mapDir.Keys);
       
                     foreach (Rectangle rec in bombrange)
                     {
@@ -200,7 +202,7 @@ namespace CSE3902_Sprint2.Objects.Player
                                 Game.mapDir.Remove(pos);
                             }
                         }                       
-                    }
+                    }*/
                 }
                 else
                 {

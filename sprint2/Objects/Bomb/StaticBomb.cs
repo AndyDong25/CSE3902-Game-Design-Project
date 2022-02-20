@@ -49,13 +49,9 @@ namespace sprint2.Objects.Bomb
             Rectangle sourceRec = SpriteConstants.EXPLOSION;
     
             radius = player.potionCount;
-            // explosion origin
-
-            // temporary hard coded explosion radius of 3
-            
-                foreach (Rectangle rec in bombrange) {
-                    spriteBatch.Draw(explosionTexture, rec, sourceRec, Color.White);
-                }
+            foreach (Rectangle rec in bombrange) {
+                spriteBatch.Draw(explosionTexture, rec, sourceRec, Color.White);
+            }
             
             }
             

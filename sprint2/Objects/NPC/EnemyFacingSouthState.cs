@@ -57,7 +57,7 @@ namespace sprint2.Objects.NPC
             enemy.yPos += enemy.speed;
             if (--framesLeft <= 0)
             {
-                framesLeft = (int)Player.framePerStep;
+                framesLeft = (int)enemy.framePerStep;
                 mySourceIndex++;
                 mySourceIndex %= mySources[enemy.SpriteIndex].Count;
             }

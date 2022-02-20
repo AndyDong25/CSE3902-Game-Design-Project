@@ -22,11 +22,11 @@ namespace sprint2.Objects.Decorations
             }
         }
 
-        private static Texture2D redBoyTexture = null;
-        private static Texture2D whiteGirlTexture = null;
-        private static Texture2D greenBoyTexture = null;
-        private static Texture2D brownBoyTexture = null;
-        private static Texture2D deadPlayerTexture = null;
+        private static Texture2D tree1Texture;
+        private static Texture2D tree2Texture;
+        private static Texture2D destructibleBlockTexture;
+        private static Texture2D indestructibleBlockTexture;
+        private static Texture2D background1;
 
         private DecorationTextureStorage()
         {
@@ -34,32 +34,32 @@ namespace sprint2.Objects.Decorations
 
         public void LoadAllResources(ContentManager content)
         {
-            redBoyTexture = content.Load<Texture2D>("redBoy");
-            whiteGirlTexture = content.Load<Texture2D>("whiteGirl");
-            greenBoyTexture = content.Load<Texture2D>("greenBoy");
-            brownBoyTexture = content.Load<Texture2D>("brownBoy");
-            deadPlayerTexture = content.Load<Texture2D>("TombstoneSprite");
-        }
+            tree1Texture = content.Load<Texture2D>("tree1");
+            tree2Texture = content.Load<Texture2D>("tree2");
+            destructibleBlockTexture = content.Load<Texture2D>("DestructableCrate");
+            indestructibleBlockTexture = content.Load<Texture2D>("Concrete_Block_2x2");
+            background1 = content.Load<Texture2D>("background2");
+    }
 
-        public Texture2D getRedBoySpriteSheet()
+    public Texture2D getTree1Sprite()
         {
-            return redBoyTexture;
+            return tree1Texture;
         }
-        public Texture2D getWhiteGirlSpriteSheet()
+        public Texture2D getTree2Sprite()
         {
-            return whiteGirlTexture;
+            return tree2Texture;
         }
-        public Texture2D getGreenBoySpriteSheet()
+        public Texture2D getDestructibleBlockSprite()
         {
-            return greenBoyTexture;
+            return destructibleBlockTexture;
         }
-        public Texture2D getBrownBoySpriteSheet()
+        public Texture2D getIndestructibleBlockSprite()
         {
-            return brownBoyTexture;
+            return indestructibleBlockTexture;
         }
-        public Texture2D getTombstoneSprite()
+        public Texture2D getBackground1Sprite()
         {
-            return deadPlayerTexture;
+            return background1;
         }
     }
 }
