@@ -46,10 +46,7 @@ namespace CSE3902_Sprint2
 
         }
 
-        public virtual void Activate(Player currentPlayer)
-        {
-            boostedPlayer = currentPlayer;
-        }
+        public abstract void Activate(Player currentPlayer);
 
         public ISprite GetSprite()
         {
@@ -92,10 +89,11 @@ namespace CSE3902_Sprint2
             
         }
 
-        public virtual void Deactivate()
-        {
-
+        public virtual void Deactivate() {
+        
+        
         }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
         }
