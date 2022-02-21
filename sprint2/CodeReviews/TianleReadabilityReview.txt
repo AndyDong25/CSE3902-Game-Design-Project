@@ -1,4 +1,4 @@
-﻿Reviewer - Andy Dong
+﻿Reviewer - Tianle Chen
 Date - 2/20/22
 Sprint2
 File - Bomb.cs

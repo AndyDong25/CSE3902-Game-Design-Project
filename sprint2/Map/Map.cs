@@ -17,9 +17,7 @@ namespace sprint2.Map
     {
         private Game1 game;
         public int Timeplayed;
-        public int score;
-        //Rectangle safeBounds;
-        const float safeAreaPortion = 0.001f;
+        public int score;              
         //int TimeofGame = 0;
         //Boolean isPaused = false;
 
@@ -59,14 +57,9 @@ namespace sprint2.Map
         }
         public void Initialize()
         {
-/*            Viewport viewport = graphics.GraphicsDevice.Viewport;
-            safeBounds = new Rectangle(
-                (int)(viewport.Width * safeAreaPortion),
-                (int)(viewport.Height * safeAreaPortion),
-                (int)(viewport.Width * (1 - 2 * safeAreaPortion)),
-                (int)(viewport.Height * (1 - 2 * safeAreaPortion)));
+
             //TODO change in the future
-            currentGameState = GameState.GamePlay;*/
+            //currentGameState = GameState.GamePlay;*/
 
             background = new Background1();
             player1 = new Player(new Vector2(30, 30), game);
@@ -112,6 +105,7 @@ namespace sprint2.Map
 
         public void Draw()
         {
+            //graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             background.Draw(spriteBatch, new Vector2(0, 0));
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
