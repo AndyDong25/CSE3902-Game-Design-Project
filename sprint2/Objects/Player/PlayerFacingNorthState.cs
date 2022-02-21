@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CSE3902_Sprint2.Objects.Player
 {
@@ -26,7 +24,7 @@ namespace CSE3902_Sprint2.Objects.Player
             this.player = player;
             framesLeft = (int)player.framePerStep;
             mySourceIndex = 0;
-            myTextureIndex = player.SpriteIndex;
+            myTextureIndex = player.spriteIndex;
             player.direction = 0;
         }
 
@@ -56,11 +54,7 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void Update()
         {
-            myTextureIndex = player.SpriteIndex;
-        }
-        public void setTextureIndex(int index)
-        {
-            
+            myTextureIndex = player.spriteIndex;
         }
 
         public void MoveDown()
@@ -86,7 +80,7 @@ namespace CSE3902_Sprint2.Objects.Player
             {
                 framesLeft = (int)player.framePerStep;
                 mySourceIndex++;
-                mySourceIndex %= mySources[player.SpriteIndex].Count;
+                mySourceIndex %= mySources[player.spriteIndex].Count;
             }
         }
 

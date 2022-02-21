@@ -1,9 +1,4 @@
-﻿using CSE3902_Sprint2.Objects.Player;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint2.Objects.NPC
 {
@@ -16,6 +11,5 @@ namespace sprint2.Objects.NPC
         void MoveDown();
         void MoveLeft();
         void MoveRight();
-
     }
 }

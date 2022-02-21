@@ -1,15 +1,11 @@
 ﻿using CSE3902_Sprint2;
 using CSE3902_Sprint2.Objects.Items;
-using CSE3902_Sprint2.Objects.Player;
-using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.Bomb;
-using sprint2.Objects.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace sprint2.Objects.NPC
 {
@@ -25,7 +21,9 @@ namespace sprint2.Objects.NPC
         private int randomNum = 1;
         private int count = 0;
         public int potionCount = 3;
-        public Game1 Game { get; set; }
+
+        private Game1 Game { get; set; }
+
         StaticBombForEnemy staticBomb { get; set; }
         private int maxBombs = 10;
         public Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
@@ -68,7 +66,7 @@ namespace sprint2.Objects.NPC
             count++;
         }
 
-        public void positionLimit()
+        public void PositionLimit()
         {
             if (xPos < 20) xPos = 20;
 
@@ -142,14 +140,13 @@ namespace sprint2.Objects.NPC
         {
             currState.Draw(spriteBatch);
             GenerateNpc();
-            positionLimit();
+            PositionLimit();
             DrawBombs(spriteBatch);
             DrawExplosions(spriteBatch);
         }
 
         public void TakeDamage()
         {
-
         }
 
         public void Update()

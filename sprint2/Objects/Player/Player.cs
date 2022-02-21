@@ -1,6 +1,4 @@
-﻿using CSE3902_Sprint2.Objects;
-using CSE3902_Sprint2.Sprites;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.Bomb;
 using sprint2.Objects.Items;
@@ -8,15 +6,14 @@ using CSE3902_Sprint2.Objects.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CSE3902_Sprint2.Objects.Player
 {
     public class Player
     {
         public IPlayerState currState;
-        public int SpriteIndex = 0;
-        public int TextureIndex = 0;
+        public int spriteIndex = 0;
+        public int textureIndex = 0;
         public bool hasNinjaStar = true;
         public int potionCount = 3;
         public float xPos, yPos, previousXPos, previousYPos;
@@ -24,13 +21,15 @@ namespace CSE3902_Sprint2.Objects.Player
         public float framePerStep = 6;
         public int direction = 2;
         public static Boolean isDead = false;
-        public Game1 Game { get; set; }
+
+        private Game1 Game { get; set; }
         private NinjaStar ninjaStar { get; set; } = null;
+
         private StaticBomb staticBomb { get; set; }
         private int maxBombs = 10;
-        public Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
-        public Dictionary<Vector2, int> staticBombList = new Dictionary<Vector2, int>();
-        public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
+        private Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
+        private Dictionary<Vector2, int> staticBombList = new Dictionary<Vector2, int>();
+        private Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
 
         public Player(Vector2 position, Game1 game)
         {
@@ -74,6 +73,7 @@ namespace CSE3902_Sprint2.Objects.Player
                 staticBombList.Add(bombPos, 200);
             }        
         }
+
         public void UseItem()
         {
             if (hasNinjaStar) ninjaStar = new NinjaStar(this, Game);
@@ -81,7 +81,7 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void ChangeCharacter()
         {
-            SpriteIndex = (++SpriteIndex % 4);
+            spriteIndex = (++spriteIndex % 4);
             ApplyAbilities();
         }
 
@@ -110,7 +110,7 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void ApplyAbilities()
         {
-            switch(SpriteIndex)
+            switch(spriteIndex)
             {
                 // bomberman
                 case 0:
@@ -191,6 +191,8 @@ namespace CSE3902_Sprint2.Objects.Player
                         bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
                         staticBomb.Explode(spriteBatch, bombrange);
                     }
+
+                    // tiles for later
 /*                    List<Vector2> tilesPos = new List<Vector2>(Game.mapDir.Keys);
       
                     foreach (Rectangle rec in bombrange)

@@ -1,15 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using CSE3902_Sprint2.Commands;
 using CSE3902_Sprint2.Objects.Player;
-using sprint2.Objects.NPC;
 
 namespace CSE3902_Sprint2.Controller
 {

@@ -1,9 +1,7 @@
 ﻿using CSE3902_Sprint2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace sprint2.Objects.NPC.Bat
 {

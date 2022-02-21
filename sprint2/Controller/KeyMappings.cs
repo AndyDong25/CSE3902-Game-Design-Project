@@ -2,11 +2,7 @@
 using CSE3902_Sprint2.Objects.Player;
 using Microsoft.Xna.Framework.Input;
 using sprint2.Commands;
-using sprint2.Objects.NPC;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace CSE3902_Sprint2.Controller
 {
@@ -36,7 +32,6 @@ namespace CSE3902_Sprint2.Controller
         {
 
             //Game Commands
-            //this.addCommand(Keys.D0, new QuitCommand(myGame));
             this.addCommand(Keys.Q, new QuitCommand(myGame));
             this.addCommand(Keys.R, new ResetCommand(myGame));
 
@@ -65,11 +60,6 @@ namespace CSE3902_Sprint2.Controller
 
             this.addCommand(Keys.D1, new UseItemCommand(player1));
             this.addCommand(Keys.D0, new UseItemCommand(player2));
-/*            this.addCommand(Keys.NumPad1, new UseItemCommand(player1));
-            this.addCommand(Keys.NumPad0, new UseItemCommand(player2));*/
-
-            // other commands when implemented
-
         }
 
         public void addCommand(Keys key, ICommand command)

@@ -1,18 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System.Collections;
-using CSE3902_Sprint2.Sprites.BlockSprites;
-using CSE3902_Sprint2.Sprites;
 using CSE3902_Sprint2.Controller;
 using CSE3902_Sprint2.Objects.Player;
-using sprint2.Objects.Bomb;
-using CSE3902_Sprint2.Items;
-using System.Collections.Generic;
-using sprint2.Objects.Items;
 using CSE3902_Sprint2.Objects.Items;
-using sprint2.Sprites.Decorations;
-using System;
 using sprint2.Objects.NPC;
 using Microsoft.Xna.Framework.Content;
 using sprint2.Objects.Decorations;
@@ -23,7 +14,7 @@ namespace CSE3902_Sprint2
 
     public class Game1 : Game
     {
-/*        public int Timeplayed;
+/*        pqpublic int Timeplayed;
         public int score;
         Rectangle safeBounds;
         const float safeAreaPortion = 0.001f;*/
@@ -33,21 +24,16 @@ namespace CSE3902_Sprint2
         public SpriteBatch spriteBatch;
         private ArrayList controllerList;
         //private GameState currentGameState;
-
-       enum GameState
+/*       enum GameState
         {
             GameMenu = 0,
             GamePlay = 1,
             GameOver = 2,
             GamePause = 3,
-        }
+        }*/
 
         public Map map;
         public Vector2 screenSize;
-
-/*        public Dictionary<Vector2, ISprite> mapDir;
-        public Map1 map1;*/
-
 
         public Game1()
         {         
@@ -70,32 +56,22 @@ namespace CSE3902_Sprint2
 
             // mapDir = new Dictionary<Vector2, ISprite> { };
 
+            base.Initialize();
+
             map = new Map(this);
             map.Initialize();
 
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, map.player1, map.player2));
             //controllerList.Add(new MouseController(this));
-
-            base.Initialize();
         }
-       
+
         protected override void LoadContent()
         {
             PlayerTextureStorage.Instance.LoadAllResources(Content);
             EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
             DecorationTextureStorage.Instance.LoadAllResources(Content);
-
-/*            mapDir.Add(new Vector2(350, 350), destructableBlockSprite);
-            mapDir.Add(new Vector2(380, 350), indestructableBlockSprite);
-            mapDir.Add(new Vector2(4100, 350), destructableBlockSprite);
-            mapDir.Add(new Vector2(430, 350), destructableBlockSprite);
-            mapDir.Add(new Vector2(460, 350), destructableBlockSprite);
-            mapDir.Add(new Vector2(490, 350), destructableBlockSprite);
-            mapDir.Add(new Vector2(520, 350), destructableBlockSprite);*/
-            //we can use a json file or something to load all the blocks here later
-            //load other texture storages
         }
 
 
@@ -189,11 +165,7 @@ namespace CSE3902_Sprint2
         protected override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-
-            this.IsMouseVisible = true;
-
-/*            map1 = new Map1(mapDir, this);
-            map1.Draw();*/    
+            this.IsMouseVisible = true;  
 
             map.Draw();
             spriteBatch.End();
