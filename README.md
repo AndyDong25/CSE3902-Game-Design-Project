@@ -61,7 +61,11 @@ Other:
   I. Swtich Item
   
   
+  # Other things to note:
   
+    Collisions have not been implemented yet as this is sprint 2 still, so item and bomb functionality is partially unavalible
+    
+  Team responsibility spreadsheet: https://docs.google.com/spreadsheets/d/1C56Z-13CeJ7uicKJGbocY6O8JArwAjoMr41DtI3Xig4/edit#gid=0
   
   
   
