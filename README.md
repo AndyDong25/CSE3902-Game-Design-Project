@@ -21,9 +21,13 @@ General:
   R: Reset the Game
 
 Player 1: 
+
   Move Up: W
+  
   Move Left: A
+  
   Move Right: D
+  
   Move Down: S
 
   Drop Bomb: Space
@@ -33,9 +37,13 @@ Player 1:
   Change Character: E
 
 Player 2:
+
   Move Up: Up Arrow Key
+  
   Move Left: Left Arrow Key
+  
   Move Right: Right Arrow Key
+  
   Move Down: Down Arrow Key
 
   Drop Bomb: Enter
@@ -45,6 +53,7 @@ Player 2:
   Change Character: P
 
 Other:
+
   O: Switch NPC
   
   T: Switch Decoration
