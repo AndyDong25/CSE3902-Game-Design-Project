@@ -46,8 +46,11 @@ Player 2:
 
 Other:
   O: Switch NPC
+  
   T: Switch Decoration
+  
   I. Swtich Item
+  
   
   
   
