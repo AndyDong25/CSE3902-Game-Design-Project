@@ -4,7 +4,7 @@ Group project for CSE3902 - Sprint 2
 By Andy Dong, Alex Zhang, Devan Mallory, Tianle Chen, Lianxi Li
 
 
-Idea: Bomberman - a clone of the popular 2D game Bomberman, a multiplayer game where 2-4 players compete against each other inside a small explosive arena to be the last one standing. Players compete by dropping bombs that will eliminate other players if they get to close to the radius. In addition, players can gain a competitive advantage by collecting certain items that are spawned when blocks in the arena are destroyed by nearby bombs.
+Idea: Bomberman - a clone of the popular 2D game Bomberman, a multiplayer game where 2-4 players compete against each other inside a small explosive arena to be the last one standing. Players compete by dropping bombs that will eliminate other players if they get too close to the radius. In addition, players can gain a competitive advantage by collecting certain items that are spawned when blocks in the arena are destroyed by nearby bombs.
 
 
 # Running the Game
