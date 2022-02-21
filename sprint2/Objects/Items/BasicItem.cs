@@ -31,20 +31,6 @@ namespace CSE3902_Sprint2
             gameRef = game;
         }
 
-        public Game1 gameRef;
-
-        public void Initialize(int xPos, int yPos, ISprite item, Game1 gameRef) { 
-        
-        
-            //we might be able to put this in some initialization function
-            // as opposed to the constructor and destructor, might be neater/more efficient
-            this.xPos = xPos;
-            this.yPos = yPos;
-            this.item = item;
-            this.gameRef = gameRef;
-            gameRef.map.currentItemList.Add(this);
-        }*/
-
         public virtual void Activate(Player currentPlayer)
         {
             boostedPlayer = currentPlayer;
