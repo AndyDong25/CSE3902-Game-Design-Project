@@ -14,9 +14,8 @@ namespace CSE3902_Sprint2.Items
 
         public override void Activate(Player currentPlayer)
         {
-            /*TODO: This functionality cannot be implemented until
-             * Bomb class is implemented
-             */
+            boostedPlayer = currentPlayer;
+            currentPlayer.potionCount += 3;
 
         }
 
@@ -24,6 +23,12 @@ namespace CSE3902_Sprint2.Items
         {
             this.texture = ItemTextureStorage.Instance.getPotionItemSprite();
             this.sourceRec = SpriteConstants.POTION_ITEM;
+        }
+
+        public override void Deactivate()
+        {
+            base.Deactivate();
+            boostedPlayer.potionCount-= 3;
         }
     }
 }

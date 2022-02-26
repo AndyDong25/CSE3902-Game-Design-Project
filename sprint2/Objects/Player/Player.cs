@@ -29,7 +29,7 @@ namespace CSE3902_Sprint2.Objects.Player
         private NinjaStar ninjaStar { get; set; } = null;
 
         private StaticBomb staticBomb { get; set; }
-        private int maxBombs = 10;
+        public int maxBombs { get; set; } = 10;
         private Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
         private Dictionary<Vector2, int> staticBombList = new Dictionary<Vector2, int>();
         private Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();

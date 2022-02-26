@@ -19,8 +19,16 @@ namespace CSE3902_Sprint2.Items
 
         public override void Activate(Player currentPlayer)
         {
-            /*TODO: bomb delay timer must be implemented in player class first
-            * before this functionality can be added */
+            boostedPlayer = currentPlayer;
+            currentPlayer.maxBombs = 15;
+        }
+
+
+        public override void Deactivate()
+        {
+            base.Deactivate();
+            boostedPlayer.maxBombs = 10;
+            
         }
     }
 }
