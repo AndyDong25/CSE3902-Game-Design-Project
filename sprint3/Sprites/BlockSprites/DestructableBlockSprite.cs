@@ -1,11 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint2.Collisions;
 using sprint2.Objects.Decorations;
 
 namespace CSE3902_Sprint2.Sprites.BlockSprites
 {
     class DestructableBlockSprite : ISprite
     {
+
+        ICollisionHandler collisionHandler;
         public Texture2D texture { get; set; }
 
         public DestructableBlockSprite()

@@ -8,10 +8,9 @@ namespace sprint2.Collisions
 {
     class PlayerBlockCollisionHandler : ICollisionHandler
     {
-        public void HandleCollision(object o1, object o2)
+        public void HandleCollision(object o)
         {
-            Player p = (Player)o1;
-            DestructableBlockSprite b = (DestructableBlockSprite)o2;
+            Player p = (Player) o;
 
             // TODO: implement collision responses
         }

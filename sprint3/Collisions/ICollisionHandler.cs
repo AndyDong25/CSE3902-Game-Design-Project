@@ -8,6 +8,6 @@ namespace sprint2.Collisions
 {
     public interface ICollisionHandler
     {
-        public void HandleCollision(object o1, object o2);
+        public void HandleCollision(object o);
     }
 }
