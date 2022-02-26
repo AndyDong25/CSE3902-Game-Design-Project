@@ -20,14 +20,14 @@ namespace CSE3902_Sprint2.Items
         public override void Activate(Player currentPlayer)
         {
             boostedPlayer = currentPlayer;
-            currentPlayer.maxBombs = 15;
+            currentPlayer.maxBombs++;
         }
 
 
         public override void Deactivate()
         {
             base.Deactivate();
-            boostedPlayer.maxBombs = 10;
+            boostedPlayer.maxBombs--;
             
         }
     }
