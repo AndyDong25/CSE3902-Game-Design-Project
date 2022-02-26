@@ -5,6 +5,7 @@ using CSE3902_Sprint2.Sprites;
 using CSE3902_Sprint2.Sprites.BlockSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint2.Collisions;
 using sprint2.Objects.NPC;
 using sprint2.Objects.NPC.Bat;
 using sprint2.Objects.NPC.Snake;

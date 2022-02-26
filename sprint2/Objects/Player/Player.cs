@@ -6,6 +6,7 @@ using CSE3902_Sprint2.Objects.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using sprint2.Collisions;
 
 namespace CSE3902_Sprint2.Objects.Player
 {
@@ -21,6 +22,8 @@ namespace CSE3902_Sprint2.Objects.Player
         public float framePerStep = 6;
         public int direction = 2;
         public static Boolean isDead = false;
+
+        public ICollisionHandler collisionHandler;
 
         private Game1 Game { get; set; }
         private NinjaStar ninjaStar { get; set; } = null;
