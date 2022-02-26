@@ -1,0 +1,14 @@
+﻿Reviewer - Andy Dong
+Date - 2/17/22
+Sprint2
+File - BasicItems.cs
+File Author - Devan Mallory
+Time to Complete - 20 minutes
+
+Comments
+	- Put initializing and reference setup in class constructor
+	- Update() method unclear with item activation
+		- Ex.) if (activated) { Activate(gameRef.player1); }
+	- "timer" field is uninitialized
+	- Some methods are empty, but will probably be filled later as more functionality is implemented
+	- Some inconsistent line spacing

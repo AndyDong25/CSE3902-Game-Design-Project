@@ -1,0 +1,12 @@
+﻿Reviewer - Lanxi Li
+Date - 2/18/22
+Sprint2
+File - Player.cs
+File Author - Alex Zhang, Lanxi Li, Tianle Chen, Andy Dong
+Time to Complete - 15 minutes
+
+Comments
+	- Unnecessary blank lines can be deleted
+	- Delete the commented statement
+	- For the if statement that only have one statement in it can be written in one line
+		Exp: if (xPos < 20) xPos = 20;
