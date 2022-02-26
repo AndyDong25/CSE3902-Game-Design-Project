@@ -18,7 +18,9 @@ namespace CSE3902_Sprint2.Items
         }
         public override void Activate(Player currentPlayer)
         {
-            currentPlayer.ChangeCharacter();
+            boostedPlayer = currentPlayer;
+            currentPlayer.spriteIndex = 2;
+            currentPlayer.ApplyAbilities();
 
         }
 

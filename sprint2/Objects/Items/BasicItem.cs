@@ -20,7 +20,7 @@ namespace CSE3902_Sprint2
 
         public bool activated;
 
-        public int timer;
+        public int timer = 600;
         
         public Rectangle sourceRec;
   
