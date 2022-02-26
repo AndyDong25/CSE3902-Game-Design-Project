@@ -22,22 +22,21 @@ namespace CSE3902_Sprint2
         {
            new Rectangle(0, 93, 31, 31),new Rectangle(62, 93, 31, 31),new Rectangle(155, 93, 31, 31)
         };
-
         public static List<Rectangle> KNIGHT_NORTH = new List<Rectangle>
         {
-           new Rectangle(0, 0, 190, 190),new Rectangle(160, 0, 190, 190),new Rectangle(380, 0, 190, 190)
-        };
-        public static List<Rectangle> KNIGHT_SOUTH = new List<Rectangle>
-        {
-           new Rectangle(575, 0, 190, 190),new Rectangle(0, 190, 190, 190),new Rectangle(190, 190, 190, 190)
-        };
-        public static List<Rectangle> KNIGHT_WEST = new List<Rectangle>
-        {
-          new Rectangle(380, 190, 190, 190),new Rectangle(560, 190, 190, 190),new Rectangle(0, 380, 160, 190)
+           new Rectangle(280, 0, 70, 92),new Rectangle(350, 0, 70, 92),new Rectangle(420, 0, 70, 92)
         };
         public static List<Rectangle> KNIGHT_EAST = new List<Rectangle>
         {
-          new Rectangle(160, 380, 180, 190),new Rectangle(345, 380, 190, 190),new Rectangle(540, 380, 190, 190)
+           new Rectangle(280, 276, 70, 92),new Rectangle(350, 276, 70, 92),new Rectangle(420, 276, 70, 92)
+        };
+        public static List<Rectangle> KNIGHT_WEST = new List<Rectangle>
+        {
+           new Rectangle(0, 276, 70, 92),new Rectangle(70, 276, 70, 92),new Rectangle(140, 276, 70, 92)
+        };
+        public static List<Rectangle> KNIGHT_SOUTH = new List<Rectangle>
+        {
+           new Rectangle(280, 184, 70, 92),new Rectangle(350, 184, 70, 92),new Rectangle(420, 184, 70, 92)
         };
         public static List<Rectangle> GOBLIN_SOUTH = new List<Rectangle>
         {

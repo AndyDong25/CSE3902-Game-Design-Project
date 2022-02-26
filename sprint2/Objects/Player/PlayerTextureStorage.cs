@@ -32,7 +32,7 @@ namespace CSE3902_Sprint2.Objects.Player
         {
             bombermanTexture = content.Load<Texture2D>("bomberSpritesheet");
             goblinTexture = content.Load<Texture2D>("goblinSpriteSheet");
-            knightTexture = content.Load<Texture2D>("knightSpritesheet");
+            knightTexture = content.Load<Texture2D>("knightSprite");
             ghostTexture = content.Load<Texture2D>("GhostPacmanSpriteSheet");
             deadPlayerTexture = content.Load<Texture2D>("TombstoneSprite");
         }
