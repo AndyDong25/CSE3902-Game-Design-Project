@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using sprint2.Collisions;
+using System.Diagnostics;
 
 namespace CSE3902_Sprint2.Objects.Player
 {
@@ -24,6 +25,7 @@ namespace CSE3902_Sprint2.Objects.Player
         public static Boolean isDead = false;
 
         public ICollisionHandler collisionHandler;
+        public Rectangle collider2D;
 
         private Game1 Game { get; set; }
         private NinjaStar ninjaStar { get; set; } = null;
@@ -41,6 +43,7 @@ namespace CSE3902_Sprint2.Objects.Player
             yPos = position.Y;
             this.Game = game;
             staticBomb = new StaticBomb(bombTexture, this);
+            collider2D = new Rectangle((int)xPos + 20, (int)yPos + 10, 20, 30);
         }
 
         public bool IsDead()
@@ -90,11 +93,10 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void Update()
         {
-            previousXPos = xPos;
-            previousYPos = yPos;
             if (ninjaStar != null) { ninjaStar.Update(); }
             currState.Update();
             checkMapBounds();
+            UpdateCollider();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -214,6 +216,24 @@ namespace CSE3902_Sprint2.Objects.Player
                     staticExplosionList.Remove(explosion);
                 }
             }
+        }
+        private void UpdateCollider()
+        {
+            collider2D.X = (int)xPos + 20;
+            collider2D.Y = (int)yPos + 20;
+        }
+
+        public void PlayerCollisionTest()
+        {
+            xPos = previousXPos;
+            yPos = previousYPos;
+            UpdateCollider();
+        }
+
+        public void UpdatePreviousPosition()
+        {
+            previousXPos = xPos;
+            previousYPos = yPos;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CSE3902_Sprint2;
+using CSE3902_Sprint2.Controller;
 using CSE3902_Sprint2.Items;
 using CSE3902_Sprint2.Objects.Player;
 using CSE3902_Sprint2.Sprites;
@@ -10,7 +11,9 @@ using sprint2.Objects.NPC;
 using sprint2.Objects.NPC.Bat;
 using sprint2.Objects.NPC.Snake;
 using sprint2.Sprites.Decorations;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace sprint2.Map
 {
@@ -95,13 +98,23 @@ namespace sprint2.Map
         public void Update()
         {
             background.Update();
-
             player1.Update();
             player2.Update();
 
             currentItemList[currItemIndex % currentItemList.Count].Update();
             currentObstacleList[currObstacleIndex % currentObstacleList.Count].Update();
             currentEnemyList[currEnemyIndex % currentEnemyList.Count].Update();
+
+            // CHECK FOR COLLISIONS
+            if (player1.collider2D.Intersects(player2.collider2D))
+            {
+                player1.PlayerCollisionTest();
+                player2.PlayerCollisionTest();
+            }
+
+            // players kept getting stuck - update previous position after collision checks
+            player1.UpdatePreviousPosition();
+            player2.UpdatePreviousPosition();
         }
 
         public void Draw()

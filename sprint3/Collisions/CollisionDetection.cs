@@ -8,7 +8,7 @@ namespace sprint2.Collisions
     {
         public void Update()
         {
-            // loops to detect collision
+            
         }
 
     }

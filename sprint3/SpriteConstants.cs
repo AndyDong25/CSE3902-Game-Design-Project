@@ -8,19 +8,19 @@ namespace CSE3902_Sprint2
         // player sprites
         public static List<Rectangle> BOMBER_NORTH = new List<Rectangle>
         {
-            new Rectangle(0, 0, 31, 31),new Rectangle(62, 0, 31, 31), new Rectangle(155, 0, 31, 31)
+            new Rectangle(0, 0, 32, 32),new Rectangle(64, 0, 32, 32), new Rectangle(160, 0, 32, 32)
         };
         public static List<Rectangle> BOMBER_EAST = new List<Rectangle>
         {
-           new Rectangle(0, 31, 31, 31),new Rectangle(62, 31, 31, 31),new Rectangle(155, 31, 31, 31)
+           new Rectangle(0, 32, 32, 32),new Rectangle(64, 32, 32, 32),new Rectangle(160, 32, 32, 32)
         };
         public static List<Rectangle> BOMBER_SOUTH = new List<Rectangle>
         {
-           new Rectangle(0, 62, 31, 31),new Rectangle(62, 62, 31, 31),new Rectangle(155, 62, 31, 31)
+           new Rectangle(0, 64, 32, 32),new Rectangle(64, 64, 32, 32),new Rectangle(160, 64, 32, 32)
         };
         public static List<Rectangle> BOMBER_WEST = new List<Rectangle>
         {
-           new Rectangle(0, 93, 31, 31),new Rectangle(62, 93, 31, 31),new Rectangle(155, 93, 31, 31)
+           new Rectangle(0, 96, 32, 32),new Rectangle(64, 96, 32, 32),new Rectangle(160, 96, 32, 32)
         };
         public static List<Rectangle> KNIGHT_NORTH = new List<Rectangle>
         {

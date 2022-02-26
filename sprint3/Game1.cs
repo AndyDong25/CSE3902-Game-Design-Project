@@ -22,7 +22,7 @@ namespace CSE3902_Sprint2
         public GraphicsDeviceManager graphics;
         public static ContentManager contentManager;
         public SpriteBatch spriteBatch;
-        private ArrayList controllerList;
+        public ArrayList controllerList;
         //private GameState currentGameState;
 /*       enum GameState
         {
@@ -152,7 +152,7 @@ namespace CSE3902_Sprint2
                     
                     break;
             }*/
-
+                        
             foreach (IController controller in controllerList)
             {
                 controller.Update();
