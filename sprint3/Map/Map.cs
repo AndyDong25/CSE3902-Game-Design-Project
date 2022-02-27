@@ -11,6 +11,7 @@ using sprint2.Objects.NPC;
 using sprint2.Objects.NPC.Bat;
 using sprint2.Objects.NPC.Snake;
 using sprint2.Sprites.Decorations;
+using sprint3.Objects.Bomb;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,6 +33,8 @@ namespace sprint2.Map
         public Player player1;
         public Player player2;
         public Enemy npc;
+
+        private List<Explosion> explosionList;
 
 /*        GameState currentGameState;
         enum GameState
@@ -68,6 +71,9 @@ namespace sprint2.Map
             background = new Background1();
             player1 = new Player(new Vector2(30, 30), game);
             player2 = new Player(new Vector2(700, 30), game);
+
+            explosionList = player1.staticBomb.explosionList;
+            explosionList.AddRange(player2.staticBomb.explosionList);
 
             currentItemList = new List<BasicItem>();
             currentItemList.Add(new BombItem(new Vector2(150, 100), game));
@@ -110,6 +116,18 @@ namespace sprint2.Map
             {
                 player1.PlayerCollisionTest();
                 player2.PlayerCollisionTest();
+            }
+
+            foreach (Explosion e in explosionList)
+            {
+                if (e.collider2D.Intersects(player1.collider2D))
+                {
+                    player1.currState = new PlayerDeathState(player1);
+                }
+                if (e.collider2D.Intersects(player2.collider2D))
+                {
+                    player2.currState = new PlayerDeathState(player2);
+                }
             }
 
             // players kept getting stuck - update previous position after collision checks

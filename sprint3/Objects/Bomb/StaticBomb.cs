@@ -4,22 +4,22 @@ using CSE3902_Sprint2.Objects.Player;
 using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint3.Objects.Bomb;
 using System.Collections.Generic;
 
 namespace sprint2.Objects.Bomb
 {
-    class StaticBomb : ISprite
+    public class StaticBomb : ISprite
     {
         private Player player;
+        public List<Explosion> explosionList;
         public Texture2D texture { get; set; }
-        public int radius;
 
-        public StaticBomb(Texture2D texture, Player player)
+        public StaticBomb(Player player)
         {
-            this.texture = texture;
+            texture = ItemTextureStorage.Instance.getBombObjectSprite();
             this.player = player;
-            radius = player.potionCount;
-
+            explosionList = new List<Explosion>();
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)
@@ -31,19 +31,44 @@ namespace sprint2.Objects.Bomb
             spriteBatch.Draw(texture, destinationrectangle, sourcerectangle, Color.White, rotation, new Vector2(100, 50), SpriteEffects.None, 0f);
         }
 
-        public void Update()
+        public void AddNewExplosion(Vector2 pos, int potionCount)
         {
+            int xOffset = -12;
+            int yOffset = -7;
+            // origin
+            explosionList.Add(new Explosion(new Vector2(pos.X + xOffset, pos.Y + yOffset)));
+            int x = (int)pos.X;
+            int y = (int)pos.Y;
+            // radius in each direction
+            for (int i = 1; i < potionCount; i++)
+            {
+                explosionList.Add(new Explosion(new Vector2(xOffset + 50 * i + x, yOffset + y)));
+                explosionList.Add(new Explosion(new Vector2(xOffset + x - (50 * i), yOffset + y)));
+                explosionList.Add(new Explosion(new Vector2(xOffset + x, yOffset + 50 * i + y)));
+                explosionList.Add(new Explosion(new Vector2(xOffset + x, yOffset + y - (50 * i))));
+            }
+        }
+        public void DrawExplosions(SpriteBatch spriteBatch)
+        {
+            foreach (Explosion e in explosionList)
+            {
+                e.DrawExplosions(spriteBatch);
+            }
         }
 
-        public void Explode(SpriteBatch spriteBatch, List<Rectangle> bombrange)
+        public void Update()
         {
-            Texture2D explosionTexture = ItemTextureStorage.Instance.getExplosionSprite();
-            Rectangle sourceRec = SpriteConstants.EXPLOSION;
-
-            radius = player.potionCount;
-            foreach (Rectangle rec in bombrange)
+            List<Explosion> finishedExplosions = new List<Explosion>();
+            foreach (Explosion explosion in explosionList)
             {
-                spriteBatch.Draw(explosionTexture, rec, sourceRec, Color.White);
+                if (explosion.timer <= 0)
+                {
+                    finishedExplosions.Add(explosion);
+                }
+            }
+            foreach (Explosion explosion in finishedExplosions)
+            {
+                explosionList.Remove(explosion);
             }
         }
 

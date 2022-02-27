@@ -30,11 +30,9 @@ namespace CSE3902_Sprint2.Objects.Player
         private Game1 Game { get; set; }
         private NinjaStar ninjaStar { get; set; } = null;
 
-        private StaticBomb staticBomb { get; set; }
+        public StaticBomb staticBomb { get; set; }
         public int maxBombs { get; set; } = 10;
-        private Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
         private Dictionary<Vector2, int> staticBombList = new Dictionary<Vector2, int>();
-        private Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
 
         public Player(Vector2 position, Game1 game)
         {
@@ -42,7 +40,7 @@ namespace CSE3902_Sprint2.Objects.Player
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
-            staticBomb = new StaticBomb(bombTexture, this);
+            staticBomb = new StaticBomb(this);
             collider2D = new Rectangle((int)xPos + 20, (int)yPos + 10, 20, 30);
         }
 
@@ -95,6 +93,7 @@ namespace CSE3902_Sprint2.Objects.Player
         {
             if (ninjaStar != null) { ninjaStar.Update(); }
             currState.Update();
+            staticBomb.Update();
             checkMapBounds();
             UpdateCollider();
         }
@@ -103,7 +102,7 @@ namespace CSE3902_Sprint2.Objects.Player
         {
             currState.Draw(spriteBatch);
             DrawBombs(spriteBatch);
-            DrawExplosions(spriteBatch);
+            staticBomb.DrawExplosions(spriteBatch);
             if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
         }
 
@@ -166,7 +165,8 @@ namespace CSE3902_Sprint2.Objects.Player
                 if (staticBombList[bomb] < 0)
                 {
                     staticBombList.Remove(bomb);
-                    staticExplosionList.Add(bomb, 20);
+                    staticBomb.AddNewExplosion(bomb, potionCount);
+                    //staticBomb.explosion.AddNewExplosionOrigin(bomb, 20);
                 }
             }
             foreach (Vector2 bomb in bombList)
@@ -175,48 +175,6 @@ namespace CSE3902_Sprint2.Objects.Player
             }
         }
 
-        private void DrawExplosions(SpriteBatch spriteBatch)
-        {
-            List<Vector2> explosionList = new List<Vector2>(staticExplosionList.Keys);
-            foreach (Vector2 explosion in explosionList)
-            {
-                int timer = staticExplosionList[explosion]--;
-                if (timer != 0)
-                {
-                    int x = (int)explosion.X;
-                    int y = (int)explosion.Y;
-                    List<Rectangle> bombrange = new List<Rectangle> { };
-                    //explosion origin
-                    bombrange.Add(new Rectangle(x, y, 50, 50));
-                    for (int i = 1; i < potionCount; i++)
-                    {
-                        bombrange.Add(new Rectangle(50 * i + x, y, 50, 50));
-                        bombrange.Add(new Rectangle(x, 50 * i + y, 50, 50));
-                        bombrange.Add(new Rectangle(x - (50 * i), y, 50, 50));
-                        bombrange.Add(new Rectangle(x, y - (50 * i), 50, 50));
-                        staticBomb.Explode(spriteBatch, bombrange);
-                    }
-
-                    // tiles for later
-/*                    List<Vector2> tilesPos = new List<Vector2>(Game.mapDir.Keys);
-      
-                    foreach (Rectangle rec in bombrange)
-                    {
-                        foreach (Vector2 pos in tilesPos)
-                        {
-                            if (rec.Contains(pos))
-                            {
-                                Game.mapDir.Remove(pos);
-                            }
-                        }                       
-                    }*/
-                }
-                else
-                {
-                    staticExplosionList.Remove(explosion);
-                }
-            }
-        }
         private void UpdateCollider()
         {
             collider2D.X = (int)xPos + 20;
