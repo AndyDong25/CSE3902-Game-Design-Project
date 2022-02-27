@@ -32,7 +32,10 @@ namespace sprint2.Map
 
         public Player player1;
         public Player player2;
-        public Enemy npc;
+        public Bat horizontalBat;
+        public Bat verticalBat;
+        public Enemy enemy;
+        public Snake snake;
 
         private List<Explosion> explosionList;
 
@@ -75,6 +78,12 @@ namespace sprint2.Map
             explosionList = player1.staticBomb.explosionList;
             explosionList.AddRange(player2.staticBomb.explosionList);
 
+            enemy = new Enemy(new Vector2(450, 300), game);
+            verticalBat = new Bat(new Vector2(400, 240), game);
+            horizontalBat = new Bat(new Vector2(400, 380), game);
+            horizontalBat.currState = new BatFacingEastState(horizontalBat);
+            snake = new Snake(new Vector2(60, 430), game);
+
             currentItemList = new List<BasicItem>();
             currentItemList.Add(new BombItem(new Vector2(150, 100), game));
             currentItemList.Add(new PotionItem(new Vector2(150, 100), game));
@@ -91,14 +100,10 @@ namespace sprint2.Map
             currentObstacleList.Add(new Tree2());
 
             currentEnemyList = new List<IEnemyState>();
-            currentEnemyList.Add(new Enemy(new Vector2(450, 300), game));
-            currentEnemyList.Add(new Bat(new Vector2(400, 240), game));
-
-            Bat sideWaysBat = new Bat(new Vector2(400, 380), game);
-            sideWaysBat.currState = new BatFacingEastState(sideWaysBat);
-            currentEnemyList.Add(sideWaysBat);
-
-            currentEnemyList.Add(new Snake(new Vector2(60, 430), game));
+            currentEnemyList.Add(enemy);
+            currentEnemyList.Add(verticalBat);
+            currentEnemyList.Add(horizontalBat);
+            currentEnemyList.Add(snake);
         }
 
         public void Update()
@@ -109,9 +114,14 @@ namespace sprint2.Map
 
             currentItemList[currItemIndex % currentItemList.Count].Update();
             currentObstacleList[currObstacleIndex % currentObstacleList.Count].Update();
-            currentEnemyList[currEnemyIndex % currentEnemyList.Count].Update();
+            
+            // currentEnemyList[currEnemyIndex % currentEnemyList.Count].Update();
+            foreach (IEnemyState e in currentEnemyList)
+            {
+                e.Update();
+            }
 
-            // CHECK FOR COLLISIONS
+            // CHECK FOR COLLISIONS - hard coded for now to test collisions
             if (player1.collider2D.Intersects(player2.collider2D))
             {
                 player1.PlayerCollisionTest();
@@ -130,9 +140,28 @@ namespace sprint2.Map
                 }
             }
 
+            // will need to clean up
+            Rectangle enemyCollider = (currentEnemyList[0] as Enemy).collider2D;
+            Rectangle batVerticalCollider = (currentEnemyList[1] as Bat).collider2D;
+            Rectangle batHorizontalCollider = (currentEnemyList[2] as Bat).collider2D;
+            Rectangle snakeCollider = (currentEnemyList[3] as Snake).collider2D;
+
+            if (player1.collider2D.Intersects(enemyCollider) || player1.collider2D.Intersects(batVerticalCollider) || player1.collider2D.Intersects(batHorizontalCollider) || player1.collider2D.Intersects(snakeCollider))
+            {
+                player1.currState = new PlayerDeathState(player1);
+            }
+            if (player2.collider2D.Intersects(enemyCollider) || player2.collider2D.Intersects(batVerticalCollider) || player2.collider2D.Intersects(batHorizontalCollider) || player2.collider2D.Intersects(snakeCollider))
+            {
+                player2.currState = new PlayerDeathState(player2);
+            }
+
             // players kept getting stuck - update previous position after collision checks
             player1.UpdatePreviousPosition();
             player2.UpdatePreviousPosition();
+            (currentEnemyList[0] as Enemy).UpdatePreviousPosition();
+            (currentEnemyList[1] as Bat).UpdatePreviousPosition();
+            (currentEnemyList[2] as Bat).UpdatePreviousPosition();
+            (currentEnemyList[3] as Snake).UpdatePreviousPosition();
         }
 
         public void Draw()
@@ -144,7 +173,11 @@ namespace sprint2.Map
             //npc.Draw(spriteBatch);
             currentItemList[currItemIndex % currentItemList.Count].Draw(spriteBatch, new Vector2(150, 100));
             currentObstacleList[currObstacleIndex % currentObstacleList.Count].Draw(spriteBatch, new Vector2(350, 350));
-            currentEnemyList[currEnemyIndex % currentEnemyList.Count].Draw(spriteBatch);
+            //currentEnemyList[currEnemyIndex % currentEnemyList.Count].Draw(spriteBatch);
+            foreach (IEnemyState e in currentEnemyList)
+            {
+                e.Draw(spriteBatch);
+            }
         }
 
         // different implementation for later sprints

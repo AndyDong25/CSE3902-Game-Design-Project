@@ -1,6 +1,7 @@
 ﻿using CSE3902_Sprint2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint2.Collisions;
 using System;
 
 namespace sprint2.Objects.NPC.Bat
@@ -12,6 +13,10 @@ namespace sprint2.Objects.NPC.Bat
         public float speed = 4.5f;
         public float framePerStep = 3;
         public int timeCounter = 150;
+
+        public ICollisionHandler collisionHandler;
+        public Rectangle collider2D;
+
         public Game1 Game { get; set; }
 
         Random r = new Random();
@@ -22,6 +27,7 @@ namespace sprint2.Objects.NPC.Bat
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
+            collider2D = new Rectangle((int)xPos + 8, (int)yPos + 5, 24, 23);
         }
 
         public void positionLimit()
@@ -38,6 +44,7 @@ namespace sprint2.Objects.NPC.Bat
         {
             currState.Draw(spriteBatch);
             positionLimit();
+            UpdateCollider();
         }
 
         public void TakeDamage()
@@ -47,8 +54,6 @@ namespace sprint2.Objects.NPC.Bat
         public void Update()
         {
             currState.Update();
-            previousXPos = xPos;
-            previousYPos = yPos;
         }
 
         public void MoveUp()
@@ -75,6 +80,18 @@ namespace sprint2.Objects.NPC.Bat
         {
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset, 40, 40);
             spriteBatch.Draw(texture, destination, source, Color.White);
+        }
+
+        private void UpdateCollider()
+        {
+            collider2D.X = (int)xPos + 15;
+            collider2D.Y = (int)yPos + 5;
+        }
+
+        public void UpdatePreviousPosition()
+        {
+            previousXPos = xPos;
+            previousYPos = yPos;
         }
     }
 }

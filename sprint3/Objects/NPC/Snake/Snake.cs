@@ -1,11 +1,12 @@
 ﻿using CSE3902_Sprint2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint2.Collisions;
 using System;
 
 namespace sprint2.Objects.NPC.Snake
 {
-    class Snake : IEnemyState
+    public class Snake : IEnemyState
     {
         private Game1 game;
         public IEnemyState currState;
@@ -14,12 +15,16 @@ namespace sprint2.Objects.NPC.Snake
         public float framePerStep = 7;
         public Random r = new Random();
 
+        public ICollisionHandler collisionHandler;
+        public Rectangle collider2D;
+
         public Snake(Vector2 position, Game1 game)
         {
             currState = new SnakeFacingNorthState(this);
             xPos = position.X;
             yPos = position.Y;
             this.game = game;
+            collider2D = new Rectangle((int)xPos + 3, (int)yPos + 3, 34, 34);
         }
 
         public void wallRedirect()
@@ -36,6 +41,7 @@ namespace sprint2.Objects.NPC.Snake
         {
             currState.Draw(spriteBatch);
             wallRedirect();
+            UpdateCollider();
         }
 
         public void TakeDamage()
@@ -45,8 +51,6 @@ namespace sprint2.Objects.NPC.Snake
         public void Update()
         {
             currState.Update();
-            previousXPos = xPos;
-            previousYPos = yPos;
         }
 
         public void MoveUp()
@@ -73,6 +77,18 @@ namespace sprint2.Objects.NPC.Snake
         {
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset, 40, 40);
             spriteBatch.Draw(texture, destination, source, Color.White);
+        }
+
+        private void UpdateCollider()
+        {
+            collider2D.X = (int)xPos + 3;
+            collider2D.Y = (int)yPos + 3;
+        }
+
+        public void UpdatePreviousPosition()
+        {
+            previousXPos = xPos;
+            previousYPos = yPos;
         }
     }
 }

@@ -2,6 +2,7 @@
 using CSE3902_Sprint2.Objects.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint2.Collisions;
 using sprint2.Objects.Bomb;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace sprint2.Objects.NPC
         private int count = 0;
         public int potionCount = 3;
 
+        public ICollisionHandler collisionHandler;
+        public Rectangle collider2D;
         private Game1 Game { get; set; }
 
         StaticBombForEnemy staticBomb { get; set; }
@@ -37,6 +40,7 @@ namespace sprint2.Objects.NPC
             yPos = position.Y;
             this.Game = game;
             staticBomb = new StaticBombForEnemy(bombTexture, this);
+            collider2D = new Rectangle((int)xPos + 20, (int)yPos + 10, 20, 30);
         }
 
         public void DropBomb()
@@ -143,6 +147,7 @@ namespace sprint2.Objects.NPC
             PositionLimit();
             DrawBombs(spriteBatch);
             DrawExplosions(spriteBatch);
+            UpdateCollider();
         }
 
         public void TakeDamage()
@@ -152,8 +157,6 @@ namespace sprint2.Objects.NPC
         public void Update()
         {
             currState.Update();
-            previousXPos = xPos;
-            previousYPos = yPos;
         }
 
         public void MoveUp()
@@ -180,6 +183,17 @@ namespace sprint2.Objects.NPC
         {
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset, 60, 60);
             spriteBatch.Draw(texture, destination, source, Color.White);
+        }
+        private void UpdateCollider()
+        {
+            collider2D.X = (int)xPos + 20;
+            collider2D.Y = (int)yPos + 10;
+        }
+
+        public void UpdatePreviousPosition()
+        {
+            previousXPos = xPos;
+            previousYPos = yPos;
         }
     }
 }
