@@ -31,9 +31,7 @@ namespace CSE3902_Sprint2.Objects.Player
         private Game1 Game { get; set; }
         private NinjaStar ninjaStar { get; set; } = null;
 
-        public StaticBomb staticBomb { get; set; }
         public int maxBombs { get; set; } = 10;
-        private Dictionary<Vector2, int> staticBombList = new Dictionary<Vector2, int>();
 
         public Player(Vector2 position, Game1 game)
         {
@@ -41,7 +39,6 @@ namespace CSE3902_Sprint2.Objects.Player
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
-            staticBomb = new StaticBomb(this);
             collider2D = new Rectangle((int)xPos + 20, (int)yPos + 10, 20, 30);
         }
 
@@ -72,11 +69,7 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void DropBomb()
         {
-            Vector2 bombPos = new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10);
-            if (!staticBombList.Keys.Contains(bombPos) && staticBombList.Count < maxBombs)
-            {
-                staticBombList.Add(bombPos, 200);
-            }        
+            Game.map.AddBomb(this, new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10));
         }
 
         public void UseItem()
@@ -94,7 +87,7 @@ namespace CSE3902_Sprint2.Objects.Player
         {
             if (ninjaStar != null) { ninjaStar.Update(); }
             currState.Update();
-            staticBomb.Update();
+            //staticBomb.Update();
             checkMapBounds();
             UpdateCollider();
         }
@@ -102,8 +95,6 @@ namespace CSE3902_Sprint2.Objects.Player
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
-            DrawBombs(spriteBatch);
-            staticBomb.DrawExplosions(spriteBatch);
             if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
         }
 
@@ -155,25 +146,6 @@ namespace CSE3902_Sprint2.Objects.Player
             if (xPos > 700) xPos = 700;
             
             if (yPos > 400) yPos = 400;            
-        }
-
-        private void DrawBombs(SpriteBatch spriteBatch)
-        {
-            List<Vector2> bombList = new List<Vector2>(staticBombList.Keys);
-            foreach (Vector2 bomb in bombList)
-            {
-                staticBombList[bomb]--;
-                if (staticBombList[bomb] < 0)
-                {
-                    staticBombList.Remove(bomb);
-                    staticBomb.AddNewExplosion(bomb, potionCount);
-                    //staticBomb.explosion.AddNewExplosionOrigin(bomb, 20);
-                }
-            }
-            foreach (Vector2 bomb in bombList)
-            {
-                staticBomb.Draw(spriteBatch, bomb);
-            }
         }
 
         public void UpdateCollider()

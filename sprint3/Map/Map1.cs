@@ -7,6 +7,7 @@ using CSE3902_Sprint2.Sprites.BlockSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Collisions;
+using sprint2.Objects.Bomb;
 using sprint2.Objects.NPC;
 using sprint2.Objects.NPC.Bat;
 using sprint2.Objects.NPC.Snake;
@@ -51,15 +52,18 @@ namespace sprint2.Map
         public BasicItem shoeItem;
 
         public List<Explosion> explosionList;
+        public List<Explosion> finishedExplosions;
+        public List<StaticBomb> staticBombList;
+        public List<StaticBomb> finishedBombs;
 
-/*        GameState currentGameState;
-        enum GameState
-        {
-            GameMenu = 0,
-            GamePlay = 1,
-            GameOver = 2,
-            GamePause = 3,
-        }*/
+        /*        GameState currentGameState;
+                enum GameState
+                {
+                    GameMenu = 0,
+                    GamePlay = 1,
+                    GameOver = 2,
+                    GamePause = 3,
+                }*/
 
         //private Vector2 screenSize;
 
@@ -88,8 +92,11 @@ namespace sprint2.Map
             player1 = new Player(new Vector2(30, 30), game);
             player2 = new Player(new Vector2(700, 30), game);
 
-            explosionList = player1.staticBomb.explosionList;
-            explosionList.AddRange(player2.staticBomb.explosionList);
+            staticBombList = new List<StaticBomb>();
+            explosionList = new List<Explosion>();
+
+/*            explosionList = player1.staticBomb.explosionList;
+            explosionList.AddRange(player2.staticBomb.explosionList);*/
 
             enemy = new Enemy(new Vector2(450, 300), game);
             verticalBat = new Bat(new Vector2(400, 240), game);
@@ -151,6 +158,26 @@ namespace sprint2.Map
             foreach (IEnemyState e in currentEnemyList)
             {
                 e.Update();
+            }
+
+            finishedBombs = new List<StaticBomb>();
+            foreach (StaticBomb s in staticBombList)
+            {
+                s.Update();
+            }
+            foreach (StaticBomb s in finishedBombs)
+            {
+                staticBombList.Remove(s);
+            }
+
+            finishedExplosions = new List<Explosion>();
+            foreach (Explosion e in explosionList)
+            {
+                e.Update();
+            }
+            foreach (Explosion e in finishedExplosions)
+            {
+                explosionList.Remove(e);
             }
 
             // CHECK FOR COLLISIONS - hard coded for now to test collisions
@@ -220,6 +247,16 @@ namespace sprint2.Map
             {
                 e.Draw(spriteBatch);
             }
+
+            foreach (StaticBomb s in staticBombList)
+            {
+                s.Draw(spriteBatch, new Vector2(0, 0));
+            }
+
+            foreach (Explosion e in explosionList)
+            {
+                e.Draw(spriteBatch, new Vector2(0, 0));
+            }
         }
 
         // different implementation for later sprints
@@ -249,5 +286,31 @@ namespace sprint2.Map
             mapDir.Add(new Vector2(520, 350), destructableBlockSprite);*/
         //we can use a json file or something to load all the blocks here later
         //load other texture storages
+
+        public void AddBomb(Player player, Vector2 pos)
+        {
+            if (staticBombList.Count < 10)
+            {
+                staticBombList.Add(new StaticBomb(game, player, pos));
+            }
+        }
+
+        public void AddExplosions(Vector2 pos, int potionCount)
+        {
+            int xOffset = -12;
+            int yOffset = -7;
+            // origin
+            explosionList.Add(new Explosion(game, new Vector2(pos.X + xOffset, pos.Y + yOffset)));
+            int x = (int)pos.X;
+            int y = (int)pos.Y;
+            // radius in each direction
+            for (int i = 1; i < potionCount; i++)
+            {
+                explosionList.Add(new Explosion(game, new Vector2(xOffset + 50 * i + x, yOffset + y)));
+                explosionList.Add(new Explosion(game, new Vector2(xOffset + x - (50 * i), yOffset + y)));
+                explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 50 * i + y)));
+                explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (50 * i))));
+            }
+        }
     }
 }

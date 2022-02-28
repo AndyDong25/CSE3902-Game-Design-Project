@@ -12,69 +12,42 @@ namespace sprint2.Objects.Bomb
 {
     public class StaticBomb : ISprite, ICollideable
     {
+        public Game1 game;
         private Player player;
-        public List<Explosion> explosionList;
+        public Vector2 pos;
         public Texture2D texture { get; set; }
         public Rectangle collider2D;
+        public int timer;
 
-        public StaticBomb(Player player)
+        public StaticBomb(Game1 game, Player player, Vector2 pos)
         {
-            texture = ItemTextureStorage.Instance.getBombObjectSprite();
             this.player = player;
-            explosionList = new List<Explosion>();
+            this.game = game;
+            texture = ItemTextureStorage.Instance.getBombObjectSprite();
+            this.pos = pos;
+            timer = 200;
             /** 
              * TODO: find the actual hitbox
              * */
             collider2D = new Rectangle(0, 0, 0, 0);
         }
 
+
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)
         {
-            texture = ItemTextureStorage.Instance.getBombObjectSprite();
             Rectangle sourcerectangle = new Rectangle(0, 0, 1340, 1340);
-            Rectangle destinationrectangle = new Rectangle((int)destination.X, (int)destination.Y, 50, 50);
+            Rectangle destinationrectangle = new Rectangle((int)pos.X, (int)pos.Y, 50, 50);
             float rotation = .0f;
             spriteBatch.Draw(texture, destinationrectangle, sourcerectangle, Color.White, rotation, new Vector2(100, 50), SpriteEffects.None, 0f);
         }
 
-        public void AddNewExplosion(Vector2 pos, int potionCount)
-        {
-            int xOffset = -12;
-            int yOffset = -7;
-            // origin
-            explosionList.Add(new Explosion(new Vector2(pos.X + xOffset, pos.Y + yOffset)));
-            int x = (int)pos.X;
-            int y = (int)pos.Y;
-            // radius in each direction
-            for (int i = 1; i < potionCount; i++)
-            {
-                explosionList.Add(new Explosion(new Vector2(xOffset + 50 * i + x, yOffset + y)));
-                explosionList.Add(new Explosion(new Vector2(xOffset + x - (50 * i), yOffset + y)));
-                explosionList.Add(new Explosion(new Vector2(xOffset + x, yOffset + 50 * i + y)));
-                explosionList.Add(new Explosion(new Vector2(xOffset + x, yOffset + y - (50 * i))));
-            }
-        }
-        public void DrawExplosions(SpriteBatch spriteBatch)
-        {
-            foreach (Explosion e in explosionList)
-            {
-                e.DrawExplosions(spriteBatch);
-            }
-        }
-
         public void Update()
         {
-            List<Explosion> finishedExplosions = new List<Explosion>();
-            foreach (Explosion explosion in explosionList)
+            timer--;
+            if (timer <= 0)
             {
-                if (explosion.timer <= 0)
-                {
-                    finishedExplosions.Add(explosion);
-                }
-            }
-            foreach (Explosion explosion in finishedExplosions)
-            {
-                explosionList.Remove(explosion);
+                game.map.finishedBombs.Add(this);
+                game.map.AddExplosions(pos, player.potionCount);
             }
         }
 
