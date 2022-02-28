@@ -32,7 +32,7 @@ namespace CSE3902_Sprint2
             GamePause = 3,
         }*/
 
-        public Map map;
+        public Map1 map;
         public Vector2 screenSize;
 
         public Game1()
@@ -58,7 +58,7 @@ namespace CSE3902_Sprint2
 
             base.Initialize();
 
-            map = new Map(this);
+            map = new Map1(this);
             map.Initialize();
 
             controllerList = new ArrayList();

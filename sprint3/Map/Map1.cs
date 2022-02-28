@@ -18,7 +18,7 @@ using System.Diagnostics;
 
 namespace sprint2.Map
 {
-    public class Map
+    public class Map1
     {
         private Game1 game;
         public int Timeplayed;
@@ -37,7 +37,20 @@ namespace sprint2.Map
         public Enemy enemy;
         public Snake snake;
 
-        private List<Explosion> explosionList;
+        public DestructableBlockSprite dBlock;
+        public IndestructableBlockSprite iBlock;
+        public Tree1 tree1;
+        public Tree2 tree2;
+
+        public BasicItem bombItem;
+        public BasicItem ghostItem;
+        public BasicItem goblinItem;
+        public BasicItem knightItem;
+        public BasicItem ninjasStarItem;
+        public BasicItem potionItem;
+        public BasicItem shoeItem;
+
+        public List<Explosion> explosionList;
 
 /*        GameState currentGameState;
         enum GameState
@@ -59,7 +72,7 @@ namespace sprint2.Map
         public List<IEnemyState> currentEnemyList;
         public int currEnemyIndex = 0;
 
-        public Map(Game1 game)
+        public Map1(Game1 game)
         {
             this.game = game;
             spriteBatch = game.spriteBatch;
@@ -84,20 +97,33 @@ namespace sprint2.Map
             horizontalBat.currState = new BatFacingEastState(horizontalBat);
             snake = new Snake(new Vector2(60, 430), game);
 
+            dBlock = new DestructableBlockSprite(new Vector2(250, 250));
+            iBlock = new IndestructableBlockSprite(new Vector2(290, 250));
+            tree1 = new Tree1(new Vector2(330, 250));
+            tree2 = new Tree2(new Vector2(370, 250));
+
+            bombItem = new BombItem(new Vector2(150, 100), game);
+            ghostItem = new GhostItem(new Vector2(185, 100), game);
+            goblinItem = new GoblinItem(new Vector2(220, 100), game);
+            knightItem = new KnightItem(new Vector2(255, 100), game);
+            ninjasStarItem = new NinjaStarItem(new Vector2(290, 100), game);
+            potionItem = new PotionItem(new Vector2(325, 100), game);
+            shoeItem = new ShoeItem(new Vector2(360, 100), game);
+
             currentItemList = new List<BasicItem>();
-            currentItemList.Add(new BombItem(new Vector2(150, 100), game));
-            currentItemList.Add(new PotionItem(new Vector2(150, 100), game));
-            currentItemList.Add(new ShoeItem(new Vector2(150, 100), game));
-            currentItemList.Add(new NinjaStarItem(new Vector2(150, 100), game));
-            currentItemList.Add(new GhostItem(new Vector2(150, 100), game));
-            currentItemList.Add(new KnightItem(new Vector2(150, 100), game));
-            currentItemList.Add(new GoblinItem(new Vector2(150, 100), game));
+            currentItemList.Add(bombItem);
+            currentItemList.Add(ghostItem);
+            currentItemList.Add(goblinItem);
+            currentItemList.Add(knightItem);
+            currentItemList.Add(ninjasStarItem);
+            currentItemList.Add(potionItem);
+            currentItemList.Add(shoeItem);
 
             currentObstacleList = new List<ISprite>();
-            currentObstacleList.Add(new DestructableBlockSprite());
-            currentObstacleList.Add(new IndestructableBlockSprite());
-            currentObstacleList.Add(new Tree1());
-            currentObstacleList.Add(new Tree2());
+            currentObstacleList.Add(dBlock);
+            currentObstacleList.Add(iBlock);
+            currentObstacleList.Add(tree1);
+            currentObstacleList.Add(tree2);
 
             currentEnemyList = new List<IEnemyState>();
             currentEnemyList.Add(enemy);
@@ -112,10 +138,16 @@ namespace sprint2.Map
             player1.Update();
             player2.Update();
 
-            currentItemList[currItemIndex % currentItemList.Count].Update();
-            currentObstacleList[currObstacleIndex % currentObstacleList.Count].Update();
-            
-            // currentEnemyList[currEnemyIndex % currentEnemyList.Count].Update();
+            foreach (BasicItem i in currentItemList)
+            {
+                i.Update();
+            }
+
+            foreach (ISprite s in currentObstacleList)
+            {
+                s.Update();
+            }
+
             foreach (IEnemyState e in currentEnemyList)
             {
                 e.Update();
@@ -140,7 +172,7 @@ namespace sprint2.Map
                 }
             }
 
-            // will need to clean up
+            // will need to clean up and move to CollisionDetection.cs class once fully implemented
             Rectangle enemyCollider = (currentEnemyList[0] as Enemy).collider2D;
             Rectangle batVerticalCollider = (currentEnemyList[1] as Bat).collider2D;
             Rectangle batHorizontalCollider = (currentEnemyList[2] as Bat).collider2D;
@@ -170,9 +202,19 @@ namespace sprint2.Map
             background.Draw(spriteBatch, new Vector2(0, 0));
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
-            //npc.Draw(spriteBatch);
-            currentItemList[currItemIndex % currentItemList.Count].Draw(spriteBatch, new Vector2(150, 100));
-            currentObstacleList[currObstacleIndex % currentObstacleList.Count].Draw(spriteBatch, new Vector2(350, 350));
+
+            //currentItemList[currItemIndex % currentItemList.Count].Draw(spriteBatch, new Vector2(150, 100));
+            foreach (BasicItem i in currentItemList)
+            {
+                i.Draw(spriteBatch, new Vector2(0, 0));
+            }
+
+            //currentObstacleList[currObstacleIndex % currentObstacleList.Count].Draw(spriteBatch, new Vector2(350, 350));
+            foreach (ISprite s in currentObstacleList)
+            {
+                s.Draw(spriteBatch, new Vector2(0, 0));
+            }
+
             //currentEnemyList[currEnemyIndex % currentEnemyList.Count].Draw(spriteBatch);
             foreach (IEnemyState e in currentEnemyList)
             {

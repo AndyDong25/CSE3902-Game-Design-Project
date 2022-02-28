@@ -5,6 +5,7 @@ namespace sprint2.Objects.NPC
 {
     public interface IEnemyState
     {
+
         void Draw(SpriteBatch spriteBatch);
         void TakeDamage();
         void Update();

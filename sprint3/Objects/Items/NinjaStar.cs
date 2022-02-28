@@ -17,6 +17,8 @@ namespace sprint2.Objects.Items
         public float speed = 10.0f;
         public float direction;
         private Rectangle sourceRec = SpriteConstants.NINJA_STAR;
+        public Rectangle collider2D;
+
         public NinjaStar(Player p, Game1 game)
         {
             player = p;
@@ -24,6 +26,10 @@ namespace sprint2.Objects.Items
             position = new Vector2(player.xPos, player.yPos);
             rotation = 0f;
             this.direction = player.direction;
+            /** 
+ * TODO: find the actual hitbox
+ * */
+            collider2D = new Rectangle(0, 0, 0, 0);
         }
 
         public void DrawSprite(SpriteBatch spriteBatch)

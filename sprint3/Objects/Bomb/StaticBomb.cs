@@ -14,12 +14,17 @@ namespace sprint2.Objects.Bomb
         private Player player;
         public List<Explosion> explosionList;
         public Texture2D texture { get; set; }
+        public Rectangle collider2D;
 
         public StaticBomb(Player player)
         {
             texture = ItemTextureStorage.Instance.getBombObjectSprite();
             this.player = player;
             explosionList = new List<Explosion>();
+            /** 
+             * TODO: find the actual hitbox
+             * */
+            collider2D = new Rectangle(0, 0, 0, 0);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)

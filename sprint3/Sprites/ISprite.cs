@@ -6,6 +6,13 @@ namespace CSE3902_Sprint2.Sprites
 {
     public interface ISprite
     {
+        public Rectangle collider2D
+        {
+            get
+            {
+                return collider2D;
+            }
+        }
         public Texture2D texture {
             get
             {

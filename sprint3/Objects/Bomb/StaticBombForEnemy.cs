@@ -13,12 +13,17 @@ namespace sprint2.Objects.Bomb
         private Enemy enemy;
         public Texture2D texture { get; set; }
         public int radius;
+        public Rectangle collider2D;
 
         public StaticBombForEnemy(Texture2D texture, Enemy enemy)
         {
             this.texture = texture;
             this.enemy = enemy;
             radius = enemy.potionCount;
+            /** 
+             * TODO: find the actual hitbox
+             * */
+            collider2D = new Rectangle(0, 0, 0, 0);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)

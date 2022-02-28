@@ -23,12 +23,18 @@ namespace CSE3902_Sprint2
         public int timer = 600;
         
         public Rectangle sourceRec;
-  
+
+        public Rectangle collider2D;
+
         public BasicItem(Vector2 position, Game1 game)
         {
             xPos = position.X;
             yPos = position.Y;
             gameRef = game;
+            /** 
+ * TODO: find the actual hitbox
+ * */
+            collider2D = new Rectangle(0, 0, 0, 0);
         }
 
         public virtual void Activate(Player currentPlayer)

@@ -6,19 +6,27 @@ using sprint2.Objects.Decorations;
 
 namespace sprint2.Sprites.Decorations
 {
-    class Tree1 : ISprite
+    public class Tree1 : ISprite
     {
 
+        public Vector2 pos;
         public Texture2D texture { get; set; }
-        public Tree1()
+        public Rectangle collider2D;
+
+        public Tree1(Vector2 pos)
         {
+            this.pos = pos;
+            /** 
+ * TODO: find the actual hitbox
+ * */
+            collider2D = new Rectangle(0, 0, 0, 0);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)
         {
             texture = DecorationTextureStorage.Instance.getTree1Sprite();
             Rectangle sourceRectangle = SpriteConstants.TREE1;
-            Rectangle destinationRectangle = new Rectangle((int)destination.X, (int)destination.Y, 40, 40);
+            Rectangle destinationRectangle = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
 
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
         }
