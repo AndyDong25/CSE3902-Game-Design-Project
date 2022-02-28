@@ -12,7 +12,9 @@ namespace sprint2.Collisions
         {
             Player p = (Player) o;
 
-            // TODO: implement collision responses
+            p.xPos = p.previousXPos;
+            p.yPos = p.previousYPos;
+            p.UpdateCollider();
         }
     }
 }

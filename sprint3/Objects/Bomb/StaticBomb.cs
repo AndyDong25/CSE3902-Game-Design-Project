@@ -4,6 +4,7 @@ using CSE3902_Sprint2.Objects.Player;
 using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint2.Collisions;
 using sprint3.Collisions;
 using sprint3.Objects.Bomb;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace sprint2.Objects.Bomb
         private Player player;
         public Vector2 pos;
         public Texture2D texture { get; set; }
+        public ICollisionHandler collisionHandler;
         public Rectangle collider2D;
         public int timer;
 

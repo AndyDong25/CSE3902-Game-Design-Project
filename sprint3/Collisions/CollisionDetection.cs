@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using sprint3.Collisions;
+using sprint2.Objects.Bomb;
 
 namespace sprint2.Collisions
 {
@@ -34,12 +35,54 @@ namespace sprint2.Collisions
             Player p2 = map.player2;
             List<Explosion> exList = map.explosionList;
             List<IEnemyState> enemyList = map.currentEnemyList;
+            List<StaticBomb> staticBombList = map.staticBombList;
+            List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
+            List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
+            
+            if (p1.collider2D.Intersects(p2.collider2D))
+            {
+                p1.collisionHandler = new PlayerBlockCollisionHandler();
+                p1.collisionHandler.HandleCollision(p1);
+                p2.collisionHandler = new PlayerBlockCollisionHandler();
+                p2.collisionHandler.HandleCollision(p2);
+            }
+
+            foreach (DestructableBlockSprite b in destructibleBlockList)
+            {
+                if (p1.collider2D.Intersects(b.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(b.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    //(p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
+                }
+            }
+            foreach (IndestructableBlockSprite b in indestructibleBlockList)
+            {
+                if (p1.collider2D.Intersects(b.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(b.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    //(p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
+                }
+            }
 
             // will need to separate obstacles into different list so we can properly cast the CollisionHandler
             foreach (ISprite s in map.currentObstacleList)
             {
                 // no responses for blocks needed
-                if (p1.collider2D.Intersects(s.collider2D))
+/*                if (p1.collider2D.Intersects(s.collider2D))
                 {
                     (p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
                 }
@@ -57,7 +100,7 @@ namespace sprint2.Collisions
 
                         // add destructible block collision response
                     }
-                }
+                }*/
 
                 foreach (IEnemyState e in enemyList)
                 {
@@ -69,16 +112,33 @@ namespace sprint2.Collisions
             {
                 if (p1.collider2D.Intersects(e.collider2D))
                 {
-                    (p1.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p1);
+                    p1.collisionHandler = new PlayerExplosionCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    //(p1.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p1);
                 }
                 if (p2.collider2D.Intersects(e.collider2D))
                 {
-                    (p2.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p2);
+                    p2.collisionHandler = new PlayerExplosionCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    //(p2.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p2);
                 }
                 // bomb-explosion interactions below
                 // enemy-explosion interactions below
                 foreach (IEnemyState enemy in enemyList)
                 {
+                }
+
+                foreach (StaticBomb b in staticBombList)
+                {
+                    if (e.collider2D.Intersects(b.collider2D))
+                    {
+                        e.collisionHandler = new ExplosionBombCollisionHandler();
+                        e.collisionHandler.HandleCollision(e);
+                        //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
+                        b.collisionHandler = new BombExplosionCollisionHandler();
+                        b.collisionHandler.HandleCollision(b);
+                        //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
+                    }
                 }
             }
         }

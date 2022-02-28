@@ -22,6 +22,7 @@ namespace sprint2.Map
     public class Map1
     {
         private Game1 game;
+        public CollisionDetection collisionDetection;
         public int Timeplayed;
         public int score;              
         //int TimeofGame = 0;
@@ -73,6 +74,9 @@ namespace sprint2.Map
         public List<ISprite> currentObstacleList;
         public int currObstacleIndex = 0;
 
+        public List<DestructableBlockSprite> destructibleBlockList;
+        public List<IndestructableBlockSprite> indestructibleBlockList;
+
         public List<IEnemyState> currentEnemyList;
         public int currEnemyIndex = 0;
 
@@ -88,12 +92,17 @@ namespace sprint2.Map
             //TODO change in the future
             //currentGameState = GameState.GamePlay;*/
 
+            collisionDetection = new CollisionDetection(this);
+
             background = new Background1();
             player1 = new Player(new Vector2(30, 30), game);
             player2 = new Player(new Vector2(700, 30), game);
 
             staticBombList = new List<StaticBomb>();
             explosionList = new List<Explosion>();
+
+            destructibleBlockList = new List<DestructableBlockSprite>();
+            indestructibleBlockList = new List<IndestructableBlockSprite>();
 
 /*            explosionList = player1.staticBomb.explosionList;
             explosionList.AddRange(player2.staticBomb.explosionList);*/
@@ -137,6 +146,14 @@ namespace sprint2.Map
             currentEnemyList.Add(verticalBat);
             currentEnemyList.Add(horizontalBat);
             currentEnemyList.Add(snake);
+
+            destructibleBlockList.Add(dBlock);
+            destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 290)));
+            destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 330)));
+
+            indestructibleBlockList.Add(iBlock);
+            indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 290)));
+            indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 330)));
         }
 
         public void Update()
@@ -180,8 +197,10 @@ namespace sprint2.Map
                 explosionList.Remove(e);
             }
 
+            collisionDetection.Update();
+
             // CHECK FOR COLLISIONS - hard coded for now to test collisions
-            if (player1.collider2D.Intersects(player2.collider2D))
+/*            if (player1.collider2D.Intersects(player2.collider2D))
             {
                 player1.PlayerCollisionTest();
                 player2.PlayerCollisionTest();
@@ -212,9 +231,10 @@ namespace sprint2.Map
             if (player2.collider2D.Intersects(enemyCollider) || player2.collider2D.Intersects(batVerticalCollider) || player2.collider2D.Intersects(batHorizontalCollider) || player2.collider2D.Intersects(snakeCollider))
             {
                 player2.currState = new PlayerDeathState(player2);
-            }
+            }*/
 
             // players kept getting stuck - update previous position after collision checks
+
             player1.UpdatePreviousPosition();
             player2.UpdatePreviousPosition();
             (currentEnemyList[0] as Enemy).UpdatePreviousPosition();
