@@ -3,10 +3,11 @@ using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.Decorations;
+using sprint3.Collisions;
 
 namespace sprint2.Sprites.Decorations
 {
-    public class Tree1 : ISprite
+    public class Tree1 : ISprite, ICollideable
     {
 
         public Vector2 pos;
@@ -34,6 +35,9 @@ namespace sprint2.Sprites.Decorations
         public void Update()
         {
         }
-    
-}
+
+        public void UpdateCollider()
+        {
+        }
+    }
 }

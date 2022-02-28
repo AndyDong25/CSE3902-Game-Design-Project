@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using sprint2.Collisions;
 using System.Diagnostics;
+using sprint3.Collisions;
 
 namespace CSE3902_Sprint2.Objects.Player
 {
-    public class Player
+    public class Player : ICollideable
     {
         public IPlayerState currState;
         public int spriteIndex = 0;
@@ -175,7 +176,7 @@ namespace CSE3902_Sprint2.Objects.Player
             }
         }
 
-        private void UpdateCollider()
+        public void UpdateCollider()
         {
             collider2D.X = (int)xPos + 20;
             collider2D.Y = (int)yPos + 20;

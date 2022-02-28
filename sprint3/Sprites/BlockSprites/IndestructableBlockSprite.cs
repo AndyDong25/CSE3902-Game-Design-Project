@@ -2,10 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Collisions;
 using sprint2.Objects.Decorations;
+using sprint3.Collisions;
 
 namespace CSE3902_Sprint2.Sprites.BlockSprites
 {
-    public class IndestructableBlockSprite : ISprite 
+    public class IndestructableBlockSprite : ISprite, ICollideable 
     {
         public Vector2 pos;
         public Texture2D texture { get; set; }
@@ -33,6 +34,10 @@ namespace CSE3902_Sprint2.Sprites.BlockSprites
         public void Update()
         {
 
+        }
+
+        public void UpdateCollider()
+        {
         }
     }
 }

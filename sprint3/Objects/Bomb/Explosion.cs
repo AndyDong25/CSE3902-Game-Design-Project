@@ -4,13 +4,14 @@ using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Collisions;
+using sprint3.Collisions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace sprint3.Objects.Bomb
 {
-    public class Explosion : ISprite
+    public class Explosion : ISprite, ICollideable
     {
         public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
         private Texture2D texture;
@@ -51,6 +52,10 @@ namespace sprint3.Objects.Bomb
         }*/
 
         public void Update()
+        {
+        }
+
+        public void UpdateCollider()
         {
         }
     }

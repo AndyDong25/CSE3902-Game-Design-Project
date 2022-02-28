@@ -4,11 +4,12 @@ using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.NPC;
+using sprint3.Collisions;
 using System.Collections.Generic;
 
 namespace sprint2.Objects.Bomb
 {
-    class StaticBombForEnemy : ISprite
+    class StaticBombForEnemy : ISprite, ICollideable
     {
         private Enemy enemy;
         public Texture2D texture { get; set; }
@@ -49,6 +50,10 @@ namespace sprint2.Objects.Bomb
             {
                 spriteBatch.Draw(explosionTexture, rec, sourceRec, Color.White);
             }
+        }
+
+        public void UpdateCollider()
+        {
         }
     }
 }

@@ -4,12 +4,13 @@ using CSE3902_Sprint2.Objects.Player;
 using CSE3902_Sprint2.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint3.Collisions;
 using sprint3.Objects.Bomb;
 using System.Collections.Generic;
 
 namespace sprint2.Objects.Bomb
 {
-    public class StaticBomb : ISprite
+    public class StaticBomb : ISprite, ICollideable
     {
         private Player player;
         public List<Explosion> explosionList;
@@ -77,6 +78,9 @@ namespace sprint2.Objects.Bomb
             }
         }
 
+        public void UpdateCollider()
+        {
+        }
     }
 }
 

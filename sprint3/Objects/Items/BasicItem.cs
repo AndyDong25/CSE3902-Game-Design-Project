@@ -3,10 +3,11 @@ using CSE3902_Sprint2.Sprites;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint3.Collisions;
 
 namespace CSE3902_Sprint2
 {
-    public abstract class BasicItem : IItem, ISprite
+    public abstract class BasicItem : IItem, ISprite, ICollideable
     {
         public Texture2D texture;
 
@@ -87,6 +88,10 @@ namespace CSE3902_Sprint2
         {
             Rectangle destination = new Rectangle((int)xPos, (int)yPos, 35, 35);
             spriteBatch.Draw(texture, destination, sourceRec, Color.White);
+        }
+
+        public void UpdateCollider()
+        {
         }
     }
 }
