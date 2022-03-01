@@ -17,6 +17,9 @@ namespace CSE3902_Sprint2.Sprites
                 texture = value;
             }
         }
+
+        public Rectangle collider2D { get; set; }
+
         void Update();
         void Draw(SpriteBatch spriteBatch, Vector2 destination);
     }

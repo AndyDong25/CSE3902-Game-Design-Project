@@ -18,7 +18,8 @@ namespace sprint2.Objects.Bomb
         public Vector2 pos;
         public Texture2D texture { get; set; }
         public ICollisionHandler collisionHandler;
-        public Rectangle collider2D;
+        //public Rectangle collider2D;
+        public Rectangle collider2D { get; set; }
         public int timer;
 
         public StaticBomb(Game1 game, Player player, Vector2 pos)

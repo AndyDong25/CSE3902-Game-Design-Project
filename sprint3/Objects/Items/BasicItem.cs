@@ -25,7 +25,8 @@ namespace CSE3902_Sprint2
         
         public Rectangle sourceRec;
 
-        public Rectangle collider2D;
+        //public Rectangle collider2D;
+        public Rectangle collider2D { get; set; }
 
         public BasicItem(Vector2 position, Game1 game)
         {

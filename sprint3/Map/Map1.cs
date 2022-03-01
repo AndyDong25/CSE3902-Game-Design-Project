@@ -148,12 +148,12 @@ namespace sprint2.Map
             currentEnemyList.Add(snake);
 
             destructibleBlockList.Add(dBlock);
-            destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 290)));
-            destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 330)));
+            //destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 290)));
+            //destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 330)));
 
             indestructibleBlockList.Add(iBlock);
-            indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 290)));
-            indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 330)));
+            //indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 290)));
+            //indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 330)));
         }
 
         public void Update()

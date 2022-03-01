@@ -33,18 +33,47 @@ namespace sprint2.Collisions
         {
             Player p1 = map.player1;
             Player p2 = map.player2;
+            Enemy e1 = map.enemy;
             List<Explosion> exList = map.explosionList;
             List<IEnemyState> enemyList = map.currentEnemyList;
             List<StaticBomb> staticBombList = map.staticBombList;
             List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
             List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
-            
+            List<ISprite> currentObstacleList = map.currentObstacleList;
+            //List<Tree1> tree1List = map.tree1List;
+            //Tree1 tree1 = map.tree1;
+            //if (p1.collider2D.Intersects(tree1.collider2D))
+            //{
+            //    p1.collisionHandler = new PlayerBlockCollisionHandler();
+            //    p1.collisionHandler.HandleCollision(p1);
+
+            //}
+
             if (p1.collider2D.Intersects(p2.collider2D))
             {
                 p1.collisionHandler = new PlayerBlockCollisionHandler();
                 p1.collisionHandler.HandleCollision(p1);
                 p2.collisionHandler = new PlayerBlockCollisionHandler();
                 p2.collisionHandler.HandleCollision(p2);
+            }
+
+            foreach (ISprite s in currentObstacleList)
+            {
+                if (p1.collider2D.Intersects(s.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(s.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                }
+                if (e1.collider2D.Intersects(s.collider2D))
+                {
+                    e1.collisionHandler = new EnemyBlockCollisionHandler();
+                    e1.collisionHandler.HandleCollision(e1);
+                }
             }
 
             foreach (DestructableBlockSprite b in destructibleBlockList)

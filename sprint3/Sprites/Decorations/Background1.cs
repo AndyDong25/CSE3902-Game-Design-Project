@@ -8,6 +8,7 @@ namespace sprint2.Sprites.Decorations
     class Background1 : ISprite
     {
         public Texture2D texture { get; set; }
+        public Rectangle collider2D { get; set; }
         public Background1()
         {
         }

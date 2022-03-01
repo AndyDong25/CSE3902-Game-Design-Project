@@ -12,7 +12,8 @@ namespace sprint2.Sprites.Decorations
 
         public Vector2 pos;
         public Texture2D texture { get; set; }
-        public Rectangle collider2D;
+        //public Rectangle collider2D;
+        public Rectangle collider2D { get; set; }
 
         public Tree2(Vector2 pos)
         {
@@ -20,7 +21,7 @@ namespace sprint2.Sprites.Decorations
             /** 
  * TODO: find the actual hitbox
  * */
-            collider2D = new Rectangle(0, 0, 0, 0);
+            collider2D = new Rectangle((int)pos.X + 10, (int)pos.Y + 15, 20, 25);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)

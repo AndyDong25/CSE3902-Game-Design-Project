@@ -19,7 +19,8 @@ namespace sprint3.Objects.Bomb
         public int timer;
         private Vector2 pos;
 
-        public Rectangle collider2D;
+        //public Rectangle collider2D;
+        public Rectangle collider2D { get; set; }
         public ICollisionHandler collisionHandler;
 
         public Explosion(Game1 game, Vector2 pos)

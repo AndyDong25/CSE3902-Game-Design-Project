@@ -14,7 +14,8 @@ namespace sprint2.Objects.Bomb
         private Enemy enemy;
         public Texture2D texture { get; set; }
         public int radius;
-        public Rectangle collider2D;
+        //public Rectangle collider2D;
+        public Rectangle collider2D { get; set; }
 
         public StaticBombForEnemy(Texture2D texture, Enemy enemy)
         {
