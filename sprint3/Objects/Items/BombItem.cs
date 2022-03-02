@@ -19,7 +19,7 @@ namespace CSE3902_Sprint2.Items
 
         public override void Activate(Player currentPlayer)
         {
-            boostedPlayer = currentPlayer;
+            base.Activate(currentPlayer);
             currentPlayer.maxBombs++;
         }
 

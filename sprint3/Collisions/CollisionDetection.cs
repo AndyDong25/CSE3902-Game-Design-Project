@@ -40,6 +40,7 @@ namespace sprint2.Collisions
             List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
             List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
             List<ISprite> currentObstacleList = map.currentObstacleList;
+            List<BasicItem> currentItemList = map.currentItemList;
             //List<Tree1> tree1List = map.tree1List;
             //Tree1 tree1 = map.tree1;
             //if (p1.collider2D.Intersects(tree1.collider2D))
@@ -106,6 +107,20 @@ namespace sprint2.Collisions
                     //(p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
                 }
             }
+            foreach (BasicItem item in currentItemList)
+            {
+                if (p1.collider2D.Intersects(item.collider2D))
+                {
+                    p1.collisionHandler = new PlayerItemCollisionHandler();
+                    p1.collisionHandler.HandleCollision(item);
+                }
+                if (p2.collider2D.Intersects(item.collider2D))
+                {
+                    p2.collisionHandler = new PlayerItemCollisionHandler();
+                    p2.collisionHandler.HandleCollision(item);
+                }
+            }
+
 
             // will need to separate obstacles into different list so we can properly cast the CollisionHandler
             foreach (ISprite s in map.currentObstacleList)
@@ -170,6 +185,7 @@ namespace sprint2.Collisions
                     }
                 }
             }
+            
         }
 
     }

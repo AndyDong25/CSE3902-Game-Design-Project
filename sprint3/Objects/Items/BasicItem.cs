@@ -17,6 +17,8 @@ namespace CSE3902_Sprint2
 
         private float xPos;
         private float yPos;
+
+
         private Game1 gameRef;
 
         public bool activated;
@@ -25,23 +27,28 @@ namespace CSE3902_Sprint2
         
         public Rectangle sourceRec;
 
-        //public Rectangle collider2D;
         public Rectangle collider2D { get; set; }
+
+
 
         public BasicItem(Vector2 position, Game1 game)
         {
             xPos = position.X;
             yPos = position.Y;
             gameRef = game;
-            /** 
- * TODO: find the actual hitbox
- * */
-            collider2D = new Rectangle(0, 0, 0, 0);
+
+            
+            collider2D = new Rectangle((int)xPos, (int)yPos, 10, 10);
         }
 
         public virtual void Activate(Player currentPlayer)
         {
             boostedPlayer = currentPlayer;
+            activated = true;
+
+        
+            
+
         }
 
         public ISprite GetSprite()
@@ -87,12 +94,16 @@ namespace CSE3902_Sprint2
 
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            Rectangle destination = new Rectangle((int)xPos, (int)yPos, 35, 35);
-            spriteBatch.Draw(texture, destination, sourceRec, Color.White);
+            if (!activated)
+            {
+                Rectangle destination = new Rectangle((int)xPos, (int)yPos, 35, 35);
+                spriteBatch.Draw(texture, destination, sourceRec, Color.White);
+            }
         }
 
         public void UpdateCollider()
         {
+            // items will be stationary, so nothing needs to be done here
         }
     }
 }
