@@ -79,7 +79,7 @@ namespace sprint2.Objects.NPC.Snake
             spriteBatch.Draw(texture, destination, source, Color.White);
         }
 
-        private void UpdateCollider()
+        public void UpdateCollider()
         {
             collider2D.X = (int)xPos + 3;
             collider2D.Y = (int)yPos + 3;

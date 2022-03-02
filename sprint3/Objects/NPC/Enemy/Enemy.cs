@@ -184,7 +184,7 @@ namespace sprint2.Objects.NPC
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset, 60, 60);
             spriteBatch.Draw(texture, destination, source, Color.White);
         }
-        private void UpdateCollider()
+        public void UpdateCollider()
         {
             collider2D.X = (int)xPos + 20;
             collider2D.Y = (int)yPos + 10;

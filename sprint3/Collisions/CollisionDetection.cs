@@ -41,14 +41,6 @@ namespace sprint2.Collisions
             List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
             List<ISprite> currentObstacleList = map.currentObstacleList;
             List<BasicItem> currentItemList = map.currentItemList;
-            //List<Tree1> tree1List = map.tree1List;
-            //Tree1 tree1 = map.tree1;
-            //if (p1.collider2D.Intersects(tree1.collider2D))
-            //{
-            //    p1.collisionHandler = new PlayerBlockCollisionHandler();
-            //    p1.collisionHandler.HandleCollision(p1);
-
-            //}
 
             if (p1.collider2D.Intersects(p2.collider2D))
             {
@@ -74,6 +66,65 @@ namespace sprint2.Collisions
                 {
                     e1.collisionHandler = new EnemyBlockCollisionHandler();
                     e1.collisionHandler.HandleCollision(e1);
+                }
+            }
+
+            foreach(Enemy e in map.enemyList)
+            {
+                if (p1.collider2D.Intersects(e.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    e.collisionHandler = new EnemyCollisionHandler();
+                    e.collisionHandler.HandleCollision(e);
+                }
+                if (p2.collider2D.Intersects(e.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    e.collisionHandler = new EnemyCollisionHandler();
+                    e.collisionHandler.HandleCollision(e);
+                }
+            }
+
+            foreach(Bat b in map.batList)
+            {
+                if (p1.collider2D.Intersects(b.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    b.collisionHandler = new BatCollisionHandler();
+                    b.collisionHandler.HandleCollision(b);                        
+                   
+                }
+
+                if (p2.collider2D.Intersects(b.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    b.collisionHandler = new BatCollisionHandler();
+                    b.collisionHandler.HandleCollision(b);
+                }
+            }
+
+            foreach (Snake s in map.snakeList)
+            {
+                if (p1.collider2D.Intersects(s.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    s.collisionHandler = new SnakeCollisionHandler();
+                    s.collisionHandler.HandleCollision(s);
+                    p1.speed = p1.speed - 0.01f;
+                }
+
+                if (p2.collider2D.Intersects(s.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    s.collisionHandler = new SnakeCollisionHandler();
+                    s.collisionHandler.HandleCollision(s);
+                    p2.speed = p2.speed - 0.01f;
                 }
             }
 

@@ -21,7 +21,7 @@ namespace sprint2.Sprites.Decorations
             /** 
  * TODO: find the actual hitbox
  * */
-            collider2D = new Rectangle((int)pos.X + 10, (int)pos.Y + 15, 20, 25);
+            collider2D = new Rectangle((int)pos.X, (int)pos.Y, 35, 50);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)

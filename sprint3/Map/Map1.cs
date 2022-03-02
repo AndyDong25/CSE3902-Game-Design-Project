@@ -77,6 +77,10 @@ namespace sprint2.Map
         public List<DestructableBlockSprite> destructibleBlockList;
         public List<IndestructableBlockSprite> indestructibleBlockList;
 
+        public List<Enemy> enemyList;
+        public List<Snake> snakeList;
+        public List<Bat> batList;
+
         public List<IEnemyState> currentEnemyList;
         public int currEnemyIndex = 0;
 
@@ -140,6 +144,14 @@ namespace sprint2.Map
             currentObstacleList.Add(iBlock);
             currentObstacleList.Add(tree1);
             currentObstacleList.Add(tree2);
+
+            enemyList = new List<Enemy>();
+            enemyList.Add(enemy);
+            snakeList = new List<Snake>();
+            snakeList.Add(snake);
+            batList = new List<Bat>();
+            batList.Add(horizontalBat);
+            batList.Add(verticalBat);
 
             currentEnemyList = new List<IEnemyState>();
             currentEnemyList.Add(enemy);

@@ -12,7 +12,7 @@ namespace sprint2.Objects.NPC.Bat
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 4.5f;
         public float framePerStep = 3;
-        public int timeCounter = 150;
+        public int timeCounter = 150; 
 
         public ICollisionHandler collisionHandler;
         public Rectangle collider2D;
@@ -82,7 +82,7 @@ namespace sprint2.Objects.NPC.Bat
             spriteBatch.Draw(texture, destination, source, Color.White);
         }
 
-        private void UpdateCollider()
+        public void UpdateCollider()
         {
             collider2D.X = (int)xPos + 15;
             collider2D.Y = (int)yPos + 5;
