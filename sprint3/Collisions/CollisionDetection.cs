@@ -42,6 +42,7 @@ namespace sprint2.Collisions
             List<ISprite> currentObstacleList = map.currentObstacleList;
             List<BasicItem> currentItemList = map.currentItemList;
             List<NinjaStar> currentNinjaStar = map.ninjaStarList;
+            
             if (p1.collider2D.Intersects(p2.collider2D))
             {
                 p1.collisionHandler = new PlayerBlockCollisionHandler();
@@ -244,6 +245,7 @@ namespace sprint2.Collisions
                     {
                         n.collisionHandler = new NinjaStarBombCollisionHandler();
                         n.collisionHandler.HandleCollision(b);
+                        n.exist = false;
                         //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
                    
 

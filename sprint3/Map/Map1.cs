@@ -164,6 +164,7 @@ namespace sprint2.Map
             currentEnemyList.Add(snake);
 
             destructibleBlockList.Add(dBlock);
+            
             //destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 290)));
             //destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 330)));
 
@@ -212,11 +213,19 @@ namespace sprint2.Map
             {
                 explosionList.Remove(e);
             }
-
+            finishedNinjaStar = new List<NinjaStar>();
             
             foreach (NinjaStar n in ninjaStarList)
             {
                 n.Update();
+                if (!n.exist)
+                {
+                    finishedNinjaStar.Add(n);
+                }
+            }
+            foreach (NinjaStar n in finishedNinjaStar)
+            {
+                ninjaStarList.Remove(n);
             }
             collisionDetection.Update();
 
