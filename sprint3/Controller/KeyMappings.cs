@@ -66,7 +66,7 @@ namespace CSE3902_Sprint2.Controller
         {
             mappings.Add(key, command);
             acceptedStates.Add(key);
-            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.T || key == Keys.O)
+            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.T || key == Keys.O ||key == Keys.D0 || key == Keys.D1)
             {
                 oncePerActionStates.Add(key);
             }

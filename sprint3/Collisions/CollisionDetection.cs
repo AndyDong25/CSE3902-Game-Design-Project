@@ -128,6 +128,7 @@ namespace sprint2.Collisions
                 }
             }
 
+
             foreach (DestructableBlockSprite b in destructibleBlockList)
             {
                 if (p1.collider2D.Intersects(b.collider2D))

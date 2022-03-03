@@ -7,12 +7,14 @@ using CSE3902_Sprint2.Sprites.BlockSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Collisions;
+using sprint2.Objects;
 using sprint2.Objects.Bomb;
 using sprint2.Objects.NPC;
 using sprint2.Objects.NPC.Bat;
 using sprint2.Objects.NPC.Snake;
 using sprint2.Sprites.Decorations;
 using sprint3.Objects.Bomb;
+using sprint2.Objects.NinjaStar;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,7 +40,7 @@ namespace sprint2.Map
         public Bat verticalBat;
         public Enemy enemy;
         public Snake snake;
-
+        public NinjaStar ninjastar;
         public DestructableBlockSprite dBlock;
         public IndestructableBlockSprite iBlock;
         public Tree1 tree1;
@@ -56,6 +58,8 @@ namespace sprint2.Map
         public List<Explosion> finishedExplosions;
         public List<StaticBomb> staticBombList;
         public List<StaticBomb> finishedBombs;
+
+        
 
         /*        GameState currentGameState;
                 enum GameState
@@ -80,7 +84,7 @@ namespace sprint2.Map
         public List<Enemy> enemyList;
         public List<Snake> snakeList;
         public List<Bat> batList;
-
+        public List<NinjaStar> ninjaStarList;
         public List<IEnemyState> currentEnemyList;
         public int currEnemyIndex = 0;
 
@@ -104,7 +108,7 @@ namespace sprint2.Map
 
             staticBombList = new List<StaticBomb>();
             explosionList = new List<Explosion>();
-
+            ninjaStarList = new List<NinjaStar>();
             destructibleBlockList = new List<DestructableBlockSprite>();
             indestructibleBlockList = new List<IndestructableBlockSprite>();
 
@@ -210,6 +214,11 @@ namespace sprint2.Map
             }
 
             collisionDetection.Update();
+            foreach (NinjaStar n in ninjaStarList)
+            {
+                n.Update();
+            }
+            
 
             // CHECK FOR COLLISIONS - hard coded for now to test collisions
 /*            if (player1.collider2D.Intersects(player2.collider2D))
@@ -289,6 +298,10 @@ namespace sprint2.Map
             {
                 e.Draw(spriteBatch, new Vector2(0, 0));
             }
+            foreach (NinjaStar n in ninjaStarList)
+            {
+                n.DrawSprite(spriteBatch);
+            }
         }
 
         // different implementation for later sprints
@@ -343,6 +356,10 @@ namespace sprint2.Map
                 explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 50 * i + y)));
                 explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (50 * i))));
             }
+        }
+        public void AddNinjaStar(Player p)
+        {
+            ninjaStarList.Add(new NinjaStar(p));
         }
     }
 }

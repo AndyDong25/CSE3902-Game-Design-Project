@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint2.Objects.Bomb;
-using sprint2.Objects.Items;
+
 using CSE3902_Sprint2.Objects.Items;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using System.Linq;
 using sprint2.Collisions;
 using System.Diagnostics;
 using sprint3.Collisions;
+using sprint2.Objects.NinjaStar;
 
 namespace CSE3902_Sprint2.Objects.Player
 {
@@ -74,7 +75,10 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void UseItem()
         {
-            if (hasNinjaStar) ninjaStar = new NinjaStar(this, Game);
+            if (hasNinjaStar)
+            {
+                Game.map.AddNinjaStar(this);
+            }
         }
 
         public void ChangeCharacter()

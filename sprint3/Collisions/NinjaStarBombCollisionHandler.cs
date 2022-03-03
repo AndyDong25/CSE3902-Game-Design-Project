@@ -1,4 +1,5 @@
 ﻿using sprint2.Collisions;
+using sprint2.Objects.Bomb;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,9 @@ namespace sprint3.Collisions
     {
         public void HandleCollision(object o)
         {
-            // TODO: implement collision responses
+            StaticBomb b = (StaticBomb)o;
+            
+            
         }
     }
 }
