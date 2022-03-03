@@ -252,6 +252,16 @@ namespace sprint2.Collisions
                         //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
                     }
                 }
+                foreach (IndestructableBlockSprite bl in indestructibleBlockList)
+                {
+                    if (n.collider2D.Intersects(bl.collider2D))
+                    {
+                        n.collisionHandler = new NinjaStarBlockCollisionHandler();
+                        n.collisionHandler.HandleCollision(n);
+                        //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
+                    }
+                   
+                }
             }
             
         }
