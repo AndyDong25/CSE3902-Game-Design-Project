@@ -58,7 +58,7 @@ namespace sprint2.Map
         public List<Explosion> finishedExplosions;
         public List<StaticBomb> staticBombList;
         public List<StaticBomb> finishedBombs;
-
+        public List<NinjaStar> finishedNinjaStar;
         
 
         /*        GameState currentGameState;
@@ -213,46 +213,47 @@ namespace sprint2.Map
                 explosionList.Remove(e);
             }
 
-            collisionDetection.Update();
+            
             foreach (NinjaStar n in ninjaStarList)
             {
                 n.Update();
             }
-            
+            collisionDetection.Update();
+
 
             // CHECK FOR COLLISIONS - hard coded for now to test collisions
-/*            if (player1.collider2D.Intersects(player2.collider2D))
-            {
-                player1.PlayerCollisionTest();
-                player2.PlayerCollisionTest();
-            }
+            /*            if (player1.collider2D.Intersects(player2.collider2D))
+                        {
+                            player1.PlayerCollisionTest();
+                            player2.PlayerCollisionTest();
+                        }
 
-            foreach (Explosion e in explosionList)
-            {
-                if (e.collider2D.Intersects(player1.collider2D))
-                {
-                    player1.currState = new PlayerDeathState(player1);
-                }
-                if (e.collider2D.Intersects(player2.collider2D))
-                {
-                    player2.currState = new PlayerDeathState(player2);
-                }
-            }
+                        foreach (Explosion e in explosionList)
+                        {
+                            if (e.collider2D.Intersects(player1.collider2D))
+                            {
+                                player1.currState = new PlayerDeathState(player1);
+                            }
+                            if (e.collider2D.Intersects(player2.collider2D))
+                            {
+                                player2.currState = new PlayerDeathState(player2);
+                            }
+                        }
 
-            // will need to clean up and move to CollisionDetection.cs class once fully implemented
-            Rectangle enemyCollider = (currentEnemyList[0] as Enemy).collider2D;
-            Rectangle batVerticalCollider = (currentEnemyList[1] as Bat).collider2D;
-            Rectangle batHorizontalCollider = (currentEnemyList[2] as Bat).collider2D;
-            Rectangle snakeCollider = (currentEnemyList[3] as Snake).collider2D;
+                        // will need to clean up and move to CollisionDetection.cs class once fully implemented
+                        Rectangle enemyCollider = (currentEnemyList[0] as Enemy).collider2D;
+                        Rectangle batVerticalCollider = (currentEnemyList[1] as Bat).collider2D;
+                        Rectangle batHorizontalCollider = (currentEnemyList[2] as Bat).collider2D;
+                        Rectangle snakeCollider = (currentEnemyList[3] as Snake).collider2D;
 
-            if (player1.collider2D.Intersects(enemyCollider) || player1.collider2D.Intersects(batVerticalCollider) || player1.collider2D.Intersects(batHorizontalCollider) || player1.collider2D.Intersects(snakeCollider))
-            {
-                player1.currState = new PlayerDeathState(player1);
-            }
-            if (player2.collider2D.Intersects(enemyCollider) || player2.collider2D.Intersects(batVerticalCollider) || player2.collider2D.Intersects(batHorizontalCollider) || player2.collider2D.Intersects(snakeCollider))
-            {
-                player2.currState = new PlayerDeathState(player2);
-            }*/
+                        if (player1.collider2D.Intersects(enemyCollider) || player1.collider2D.Intersects(batVerticalCollider) || player1.collider2D.Intersects(batHorizontalCollider) || player1.collider2D.Intersects(snakeCollider))
+                        {
+                            player1.currState = new PlayerDeathState(player1);
+                        }
+                        if (player2.collider2D.Intersects(enemyCollider) || player2.collider2D.Intersects(batVerticalCollider) || player2.collider2D.Intersects(batHorizontalCollider) || player2.collider2D.Intersects(snakeCollider))
+                        {
+                            player2.currState = new PlayerDeathState(player2);
+                        }*/
 
             // players kept getting stuck - update previous position after collision checks
 

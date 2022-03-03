@@ -20,6 +20,7 @@ namespace sprint2.Objects.Bomb
         public ICollisionHandler collisionHandler;
         //public Rectangle collider2D;
         public Rectangle collider2D { get; set; }
+     
         public int timer;
 
         public StaticBomb(Game1 game, Player player, Vector2 pos)
@@ -32,7 +33,7 @@ namespace sprint2.Objects.Bomb
             /** 
              * TODO: find the actual hitbox
              * */
-            collider2D = new Rectangle((int)pos.X + 3, (int)pos.Y + 3, 34, 34);
+            collider2D = new Rectangle((int)pos.X + 3, (int)pos.Y + 3, 100, 100);
         }
 
 
@@ -56,8 +57,7 @@ namespace sprint2.Objects.Bomb
 
         public void UpdateCollider()
         {
-            game.map.finishedBombs.Add(this);
-            game.map.AddExplosions(pos, player.potionCount);
+            
         }
     }
 }

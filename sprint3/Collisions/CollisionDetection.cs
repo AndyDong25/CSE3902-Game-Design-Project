@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using sprint3.Collisions;
 using sprint2.Objects.Bomb;
-
+using sprint2.Objects.NinjaStar;
 namespace sprint2.Collisions
 {
     public class CollisionDetection
@@ -41,7 +41,7 @@ namespace sprint2.Collisions
             List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
             List<ISprite> currentObstacleList = map.currentObstacleList;
             List<BasicItem> currentItemList = map.currentItemList;
-
+            List<NinjaStar> currentNinjaStar = map.ninjaStarList;
             if (p1.collider2D.Intersects(p2.collider2D))
             {
                 p1.collisionHandler = new PlayerBlockCollisionHandler();
@@ -223,7 +223,6 @@ namespace sprint2.Collisions
                 foreach (IEnemyState enemy in enemyList)
                 {
                 }
-
                 foreach (StaticBomb b in staticBombList)
                 {
                     if (e.collider2D.Intersects(b.collider2D))
@@ -233,6 +232,21 @@ namespace sprint2.Collisions
                         //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
                         b.collisionHandler = new BombExplosionCollisionHandler();
                         b.collisionHandler.HandleCollision(b);
+                        //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
+                    }
+                }
+            }
+            foreach (NinjaStar n in currentNinjaStar)
+            {
+                foreach (StaticBomb b in staticBombList)
+                {
+                    if (n.collider2D.Intersects(b.collider2D))
+                    {
+                        n.collisionHandler = new NinjaStarBombCollisionHandler();
+                        n.collisionHandler.HandleCollision(b);
+                        //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
+                   
+
                         //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
                     }
                 }
