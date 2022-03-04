@@ -40,7 +40,7 @@ namespace CSE3902_Sprint2.Objects.Player
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
-            collider2D = new Rectangle((int)xPos + 20, (int)yPos + 10, 20, 30);
+            collider2D = new Rectangle((int)xPos + 20, (int)yPos + 17, 20, 26);
         }
 
         public bool IsDead()

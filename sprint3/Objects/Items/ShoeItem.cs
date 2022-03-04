@@ -14,6 +14,7 @@ namespace CSE3902_Sprint2.Items
 
         public override void Activate(Player currentPlayer)
         {
+            base.Activate(currentPlayer);
             boostedPlayer = currentPlayer;
             currentPlayer.speed += increaseAmount;
         }

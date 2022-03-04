@@ -3,6 +3,7 @@ using CSE3902_Sprint2.Sprites;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint2.Collisions;
 using sprint3.Collisions;
 
 namespace CSE3902_Sprint2
@@ -11,7 +12,7 @@ namespace CSE3902_Sprint2
     {
         public Texture2D texture;
 
-        public int increaseAmount = 3;
+        public int increaseAmount = 1;
 
         public Player boostedPlayer;
 
@@ -28,7 +29,7 @@ namespace CSE3902_Sprint2
         public Rectangle sourceRec;
 
         public Rectangle collider2D { get; set; }
-
+        public ICollisionHandler collisionHandler;
 
 
         public BasicItem(Vector2 position, Game1 game)
@@ -38,17 +39,13 @@ namespace CSE3902_Sprint2
             gameRef = game;
 
             
-            collider2D = new Rectangle((int)xPos, (int)yPos, 10, 10);
+            collider2D = new Rectangle((int)xPos, (int)yPos, 35, 35);
         }
 
         public virtual void Activate(Player currentPlayer)
         {
             boostedPlayer = currentPlayer;
             activated = true;
-
-        
-            
-
         }
 
         public ISprite GetSprite()
@@ -85,7 +82,7 @@ namespace CSE3902_Sprint2
 
         public void Destroy()
         {
-            gameRef.map.currentItemList.Remove(this);        
+            gameRef.map.finishedItems.Add(this);        
         }
 
         public virtual void Deactivate()
