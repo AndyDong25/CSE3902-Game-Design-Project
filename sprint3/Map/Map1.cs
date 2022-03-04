@@ -27,12 +27,7 @@ namespace sprint2.Map
 {
     public class Map1
     {
-        public class Map
-        {
-            public ArrayList player1;
-            public ArrayList player2;
-            
-        }
+        
         private Game1 game;
         public CollisionDetection collisionDetection;
         public int Timeplayed;
@@ -105,6 +100,12 @@ namespace sprint2.Map
             spriteBatch = game.spriteBatch;
             graphics = game.graphics;
         }
+        public class Map
+        {
+            public List<int> player1;
+            public List<int> player2;
+            public Dictionary<String,List<int>> destructableBlocks;
+        }
         public void Initialize()
         {
 
@@ -121,8 +122,8 @@ namespace sprint2.Map
 
             background = new Background1();
             player1 = new Player(new Vector2(30, 30), game);
-            player2 = new Player(new Vector2(700, 30), game);
-            player2.xPos = (int)(long)m2.player2[0];
+            player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
+            
             staticBombList = new List<StaticBomb>();
             explosionList = new List<Explosion>();
             ninjaStarList = new List<NinjaStar>();
