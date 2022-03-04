@@ -12,7 +12,8 @@ namespace sprint2.Objects.NPC.Bat
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 4.5f;
         public float framePerStep = 3;
-        public int timeCounter = 150; 
+        public int timeCounter = 150;
+        public Boolean isDead = false;
 
         public ICollisionHandler collisionHandler;
         public Rectangle collider2D;
@@ -45,6 +46,10 @@ namespace sprint2.Objects.NPC.Bat
             currState.Draw(spriteBatch);
             positionLimit();
             UpdateCollider();
+        }
+        public bool IsDead()
+        {
+            return isDead;
         }
 
         public void TakeDamage()

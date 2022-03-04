@@ -22,11 +22,11 @@ namespace sprint2.Objects.NPC
         private int randomNum = 1;
         private int count = 0;
         public int potionCount = 3;
+        public Boolean isDead = false;
 
         public ICollisionHandler collisionHandler;
         public Rectangle collider2D;
         private Game1 Game { get; set; }
-
         StaticBombForEnemy staticBomb { get; set; }
         private int maxBombs = 10;
         public Texture2D bombTexture = ItemTextureStorage.Instance.getBombObjectSprite();
@@ -148,6 +148,10 @@ namespace sprint2.Objects.NPC
             DrawBombs(spriteBatch);
             DrawExplosions(spriteBatch);
             UpdateCollider();
+        }
+        public bool IsDead()
+        {
+            return isDead;
         }
 
         public void TakeDamage()

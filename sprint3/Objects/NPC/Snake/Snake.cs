@@ -13,6 +13,7 @@ namespace sprint2.Objects.NPC.Snake
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 2.0f;
         public float framePerStep = 7;
+        public Boolean isDead = false;
         public Random r = new Random();
 
         public ICollisionHandler collisionHandler;
@@ -42,6 +43,11 @@ namespace sprint2.Objects.NPC.Snake
             currState.Draw(spriteBatch);
             wallRedirect();
             UpdateCollider();
+        }
+
+        public bool IsDead()
+        {
+            return isDead;
         }
 
         public void TakeDamage()
