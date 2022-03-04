@@ -268,7 +268,6 @@ namespace sprint2.Collisions
                         n.collisionHandler.HandleCollision(n);
                         //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
                     }
-                   
                 }
             }
             
