@@ -1,9 +1,9 @@
-﻿using CSE3902_Sprint2.Sprites;
+﻿using CSE3902_CSE3902_Project.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using sprint2.Objects.Decorations;
+using CSE3902_Project.Objects.Decorations;
 
-namespace sprint2.Sprites.Decorations
+namespace CSE3902_Project.Sprites.Decorations
 {
     class Background1 : ISprite
     {

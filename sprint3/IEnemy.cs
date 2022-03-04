@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace sprint2
+namespace CSE3902_Project
 {
     public interface IEnemy
     {

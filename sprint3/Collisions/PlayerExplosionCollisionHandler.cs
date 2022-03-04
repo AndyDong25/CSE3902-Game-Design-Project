@@ -1,10 +1,6 @@
-﻿using sprint2.Collisions;
-using System;
-using System.Collections.Generic;
-using CSE3902_Sprint2.Objects.Player;
-using System.Text;
+﻿using CSE3902_CSE3902_Project.Objects.Player;
 
-namespace sprint3.Collisions
+namespace CSE3902_Project.Collisions
 {
     class PlayerExplosionCollisionHandler : ICollisionHandler
     {

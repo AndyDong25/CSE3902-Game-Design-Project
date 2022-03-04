@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace CSE3902_Sprint2.Objects.Player
+namespace CSE3902_CSE3902_Project.Objects.Player
 {
     class PlayerFacingNorthState : IPlayerState
     {

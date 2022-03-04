@@ -1,6 +1,6 @@
 ﻿Reveiwer - Devan Mallory
 Date: 2/20/22
-Sprint2
+CSE3902_Project
 File - PlayerFacingEast.cs 
 File Authors: Alex Zhang, Lanxi Li, Andy Dong
 Time to Complete - 30 minutes

@@ -1,10 +1,6 @@
-﻿using sprint2.Collisions;
-using sprint2.Objects.Bomb;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CSE3902_Project.Objects.Bomb;
 
-namespace sprint3.Collisions
+namespace CSE3902_Project.Collisions
 {
     class BombExplosionCollisionHandler : ICollisionHandler
     {

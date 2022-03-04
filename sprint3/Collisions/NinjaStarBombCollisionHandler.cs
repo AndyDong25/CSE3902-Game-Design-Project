@@ -1,11 +1,8 @@
-﻿using sprint2.Collisions;
-using sprint2.Objects.Bomb;
-using sprint2.Objects.NinjaStar;
+﻿using CSE3902_Project.Objects.Bomb;
+using CSE3902_Project.Objects.NinjaStar;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace sprint3.Collisions
+namespace CSE3902_Project.Collisions
 {
     class NinjaStarBombCollisionHandler : ICollisionHandler
     {

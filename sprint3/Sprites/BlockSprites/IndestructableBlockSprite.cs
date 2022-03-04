@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using sprint2.Collisions;
-using sprint2.Objects.Decorations;
-using sprint3.Collisions;
+using CSE3902_Project.Collisions;
+using CSE3902_Project.Objects.Decorations;
 
-namespace CSE3902_Sprint2.Sprites.BlockSprites
+namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
 {
     public class IndestructableBlockSprite : ISprite, ICollideable 
     {

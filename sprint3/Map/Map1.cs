@@ -1,29 +1,24 @@
-﻿using CSE3902_Sprint2;
-using CSE3902_Sprint2.Controller;
-using CSE3902_Sprint2.Items;
-using CSE3902_Sprint2.Objects.Player;
-using CSE3902_Sprint2.Sprites;
-using CSE3902_Sprint2.Sprites.BlockSprites;
+﻿using CSE3902_CSE3902_Project;
+using CSE3902_CSE3902_Project.Items;
+using CSE3902_CSE3902_Project.Objects.Player;
+using CSE3902_CSE3902_Project.Sprites;
+using CSE3902_CSE3902_Project.Sprites.BlockSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using sprint2.Collisions;
-using sprint2.Objects;
-using sprint2.Objects.Bomb;
-using sprint2.Objects.NPC;
-using sprint2.Objects.NPC.Bat;
-using sprint2.Objects.NPC.Snake;
-using sprint2.Sprites.Decorations;
-using sprint3.Objects.Bomb;
-using sprint2.Objects.NinjaStar;
+using CSE3902_Project.Collisions;
+using CSE3902_Project.Objects.Bomb;
+using CSE3902_Project.Objects.NPC;
+using CSE3902_Project.Objects.NPC.Bat;
+using CSE3902_Project.Objects.NPC.Snake;
+using CSE3902_Project.Sprites.Decorations;
+using CSE3902_Project.Objects.NinjaStar;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using sprint3.Collisions;
 using System.IO;
 using Newtonsoft.Json;
-using System.Collections;
 
-namespace sprint2.Map
+namespace CSE3902_Project.Map
 {
     public class Map1
     {

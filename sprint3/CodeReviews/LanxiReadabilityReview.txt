@@ -1,6 +1,6 @@
 ﻿Reviewer - Lanxi Li
 Date - 2/18/22
-Sprint2
+CSE3902_Project
 File - Player.cs
 File Author - Alex Zhang, Lanxi Li, Tianle Chen, Andy Dong
 Time to Complete - 15 minutes

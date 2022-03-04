@@ -1,8 +1,8 @@
-﻿using CSE3902_Sprint2;
+﻿using CSE3902_CSE3902_Project;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace sprint2.Objects.NPC
+namespace CSE3902_Project.Objects.NPC
 {
     class EnemyTextureStorage : ISpriteFactory
     {

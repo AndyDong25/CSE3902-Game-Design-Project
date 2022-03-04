@@ -1,10 +1,6 @@
-﻿using CSE3902_Sprint2.Sprites.BlockSprites;
-using sprint2.Collisions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CSE3902_CSE3902_Project.Sprites.BlockSprites;
 
-namespace sprint3.Collisions
+namespace CSE3902_Project.Collisions
 {
     class BlockPlayerCollisionHandler : ICollisionHandler
     {

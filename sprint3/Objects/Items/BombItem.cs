@@ -1,8 +1,8 @@
-﻿using CSE3902_Sprint2.Objects.Player;
-using CSE3902_Sprint2.Objects.Items;
+﻿using CSE3902_CSE3902_Project.Objects.Player;
+using CSE3902_CSE3902_Project.Objects.Items;
 using Microsoft.Xna.Framework;
 
-namespace CSE3902_Sprint2.Items
+namespace CSE3902_CSE3902_Project.Items
 {
     class BombItem : BasicItem
     {

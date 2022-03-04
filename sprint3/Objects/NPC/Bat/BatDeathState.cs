@@ -1,12 +1,8 @@
-﻿using CSE3902_Sprint2;
+﻿using CSE3902_CSE3902_Project;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using sprint2.Objects.NPC;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace sprint2.Objects.NPC.Bat
+namespace CSE3902_Project.Objects.NPC.Bat
 {
     class BatDeathState : IEnemyState
     {

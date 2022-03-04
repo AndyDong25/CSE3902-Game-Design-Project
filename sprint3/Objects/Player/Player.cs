@@ -1,17 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using sprint2.Objects.Bomb;
-
-using CSE3902_Sprint2.Objects.Items;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using sprint2.Collisions;
-using System.Diagnostics;
-using sprint3.Collisions;
-using sprint2.Objects.NinjaStar;
+using CSE3902_Project.Collisions;
+using CSE3902_Project.Objects.NinjaStar;
 
-namespace CSE3902_Sprint2.Objects.Player
+namespace CSE3902_CSE3902_Project.Objects.Player
 {
     public class Player : ICollideable
     {

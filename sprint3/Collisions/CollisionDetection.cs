@@ -1,24 +1,15 @@
-﻿using CSE3902_Sprint2;
-using CSE3902_Sprint2.Controller;
-using CSE3902_Sprint2.Items;
-using CSE3902_Sprint2.Objects.Player;
-using CSE3902_Sprint2.Sprites;
-using CSE3902_Sprint2.Sprites.BlockSprites;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using sprint2.Collisions;
-using sprint2.Objects.NPC;
-using sprint2.Objects.NPC.Bat;
-using sprint2.Objects.NPC.Snake;
-using sprint2.Sprites.Decorations;
-using sprint3.Objects.Bomb;
-using sprint2.Map;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using sprint2.Objects.Bomb;
-using sprint2.Objects.NinjaStar;
-namespace sprint3.Collisions
+﻿using System.Collections.Generic;
+using CSE3902_CSE3902_Project;
+using CSE3902_CSE3902_Project.Objects.Player;
+using CSE3902_CSE3902_Project.Sprites;
+using CSE3902_CSE3902_Project.Sprites.BlockSprites;
+using CSE3902_Project.Map;
+using CSE3902_Project.Objects.Bomb;
+using CSE3902_Project.Objects.NinjaStar;
+using CSE3902_Project.Objects.NPC;
+using CSE3902_Project.Objects.NPC.Bat;
+using CSE3902_Project.Objects.NPC.Snake;
+namespace CSE3902_Project.Collisions
 {
     public class CollisionDetection
     {

@@ -1,19 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections;
-using CSE3902_Sprint2.Controller;
-using CSE3902_Sprint2.Objects.Player;
-using CSE3902_Sprint2.Objects.Items;
-using sprint2.Objects.NPC;
+using CSE3902_CSE3902_Project.Controller;
+using CSE3902_CSE3902_Project.Objects.Player;
+using CSE3902_CSE3902_Project.Objects.Items;
+using CSE3902_Project.Objects.NPC;
 using Microsoft.Xna.Framework.Content;
-using sprint2.Objects.Decorations;
-using sprint2.Map;
-using System.IO;
-using System.Text.Json;
-using Newtonsoft.Json;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+using CSE3902_Project.Objects.Decorations;
+using CSE3902_Project.Map;
 
-namespace CSE3902_Sprint2
+namespace CSE3902_CSE3902_Project
 {
 
     public class Game1 : Game

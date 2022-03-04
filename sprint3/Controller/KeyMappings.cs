@@ -1,10 +1,10 @@
-﻿using CSE3902_Sprint2.Commands;
-using CSE3902_Sprint2.Objects.Player;
+﻿using CSE3902_CSE3902_Project.Commands;
+using CSE3902_CSE3902_Project.Objects.Player;
 using Microsoft.Xna.Framework.Input;
-using sprint2.Commands;
+using CSE3902_Project.Commands;
 using System.Collections.Generic;
 
-namespace CSE3902_Sprint2.Controller
+namespace CSE3902_CSE3902_Project.Controller
 {
     class KeyMapping
     {

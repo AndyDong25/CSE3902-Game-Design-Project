@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace CSE3902_Sprint2.Objects.Player
+namespace CSE3902_CSE3902_Project.Objects.Player
 {
     public interface IPlayerState
     {

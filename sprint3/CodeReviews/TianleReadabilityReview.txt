@@ -1,6 +1,6 @@
 ﻿Reviewer - Tianle Chen
 Date - 2/20/22
-Sprint2
+CSE3902_Project
 File - Bomb.cs
 File Author - Lanxi Li
 Time to Complete - 20 minutes

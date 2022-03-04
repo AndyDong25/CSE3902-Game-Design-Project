@@ -1,7 +1,7 @@
-﻿using CSE3902_Sprint2.Objects.Player;
-using CSE3902_Sprint2.Sprites;
+﻿using CSE3902_CSE3902_Project.Objects.Player;
+using CSE3902_CSE3902_Project.Sprites;
 
-namespace CSE3902_Sprint2
+namespace CSE3902_CSE3902_Project
 {
     public interface IItem
     {

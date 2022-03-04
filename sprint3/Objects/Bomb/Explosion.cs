@@ -1,15 +1,12 @@
-﻿using CSE3902_Sprint2;
-using CSE3902_Sprint2.Objects.Items;
-using CSE3902_Sprint2.Sprites;
+﻿using CSE3902_CSE3902_Project;
+using CSE3902_CSE3902_Project.Objects.Items;
+using CSE3902_CSE3902_Project.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using sprint2.Collisions;
-using sprint3.Collisions;
-using System;
+using CSE3902_Project.Collisions;
 using System.Collections.Generic;
-using System.Text;
 
-namespace sprint3.Objects.Bomb
+namespace CSE3902_Project.Objects.Bomb
 {
     public class Explosion : ISprite, ICollideable
     {

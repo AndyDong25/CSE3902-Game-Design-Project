@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace CSE3902_Sprint2.Sprites
+namespace CSE3902_CSE3902_Project.Sprites
 {
     public interface ISprite
     {

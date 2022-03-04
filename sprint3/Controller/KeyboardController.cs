@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using CSE3902_Sprint2.Objects.Player;
+using CSE3902_CSE3902_Project.Objects.Player;
 
-namespace CSE3902_Sprint2.Controller
+namespace CSE3902_CSE3902_Project.Controller
 {
     class KeyboardController : IController
     {

@@ -1,12 +1,11 @@
-﻿using CSE3902_Sprint2.Objects.Player;
-using CSE3902_Sprint2.Sprites;
+﻿using CSE3902_CSE3902_Project.Objects.Player;
+using CSE3902_CSE3902_Project.Sprites;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using sprint2.Collisions;
-using sprint3.Collisions;
+using CSE3902_Project.Collisions;
 
-namespace CSE3902_Sprint2
+namespace CSE3902_CSE3902_Project
 {
     public abstract class BasicItem : IItem, ISprite, ICollideable
     {

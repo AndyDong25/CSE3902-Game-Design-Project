@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace CSE3902_Sprint2
+namespace CSE3902_CSE3902_Project
 {
     class SpriteConstants
     {

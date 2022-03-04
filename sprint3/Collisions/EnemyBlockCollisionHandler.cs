@@ -1,9 +1,4 @@
-﻿using sprint2.Collisions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace sprint3.Collisions
+﻿namespace CSE3902_Project.Collisions
 {
     class EnemyBlockCollisionHandler : ICollisionHandler
     {

@@ -1,7 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace sprint2.Objects.NPC
+namespace CSE3902_Project.Objects.NPC
 {
     public interface IEnemyState
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content;
 
-namespace CSE3902_Sprint2
+namespace CSE3902_CSE3902_Project
 {
     public interface ISpriteFactory
     {
