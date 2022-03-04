@@ -6,7 +6,8 @@ using System.Text;
 
 namespace sprint3.Collisions
 {
-    class EnemyExplosionCollisionHandler : ICollisionHandler
+    class EnemyExplosionCollision
+        : ICollisionHandler
     {
         public void HandleCollision(object o)
         {

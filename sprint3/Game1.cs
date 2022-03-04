@@ -40,6 +40,7 @@ namespace CSE3902_Sprint2
             graphics = new GraphicsDeviceManager(this);
             screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             Content.RootDirectory = "Content";      
+
         }
 
         protected override void Initialize()

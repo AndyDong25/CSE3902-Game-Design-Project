@@ -1,4 +1,4 @@
-﻿using sprint2.Collisions;
+﻿ using sprint2.Collisions;
 using sprint2.Objects.NinjaStar;
 using System;
 using System.Collections.Generic;

@@ -18,6 +18,7 @@ using sprint2.Objects.NinjaStar;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using sprint3.Collisions;
 
 namespace sprint2.Map
 {

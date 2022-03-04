@@ -12,7 +12,7 @@ namespace sprint2.Objects.NinjaStar
     public class NinjaStar: ICollideable
     {
         private Player player;
-        private Game1 game;
+        public Boolean hit = false;
         private Vector2 position;
         private float rotation;
         private float rotationVelocity = 20.0f;
@@ -28,10 +28,11 @@ namespace sprint2.Objects.NinjaStar
             position = new Vector2(player.xPos, player.yPos);
             rotation = 0f;
             this.direction = player.direction;
-            /** 
- * TODO: find the actual hitbox
- * */
+            /**
+             * TODO: find the actual hitbox
+             **/
             collider2D = new Rectangle((int)position.X+3, (int)position.Y+3 , 30, 30);
+            
         }
 
         public void DrawSprite(SpriteBatch spriteBatch)
@@ -69,8 +70,32 @@ namespace sprint2.Objects.NinjaStar
 
         public void UpdateCollider()
         {
-            collider2D.X = (int)position.X + 3;
-            collider2D.Y = (int)position.Y + 3;
+            
+            
+                collider2D.X = (int)position.X + 3;
+                collider2D.Y = (int)position.Y + 3;
+                 
+
+            
         }
+        /*   Jiachen zhang used for de_bug, I will delete this after Im sure it is useless
+        public void SetHitTo(Boolean flag)
+        {
+            this.hit = flag;
+        }
+
+        public void HitBoxChecking(Rectangle r)
+        {
+            if (this.collider2D.Intersects(r))
+            {
+                this.hit = true;
+                this.exist = true;
+            }
+            else
+            {
+                this.hit = false;
+            }
+        }
+        */
     }
 }

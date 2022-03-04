@@ -16,10 +16,9 @@ using sprint2.Map;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using sprint3.Collisions;
 using sprint2.Objects.Bomb;
 using sprint2.Objects.NinjaStar;
-namespace sprint2.Collisions
+namespace sprint3.Collisions
 {
     public class CollisionDetection
     {
@@ -29,6 +28,9 @@ namespace sprint2.Collisions
         {
             this.map = map;
         }
+
+        internal NinjaStarBombCollisionHandler ICollisionHandler { get; private set; }
+
         public void Update()
         {
             Player p1 = map.player1;
@@ -255,11 +257,11 @@ namespace sprint2.Collisions
                 {
                     if (n.collider2D.Intersects(b.collider2D))
                     {
-                        n.collisionHandler = new NinjaStarBombCollisionHandler();
-                        n.collisionHandler.HandleCollision(b);
-                        n.exist = false;
+                        ICollisionHandler = new NinjaStarBombCollisionHandler();
+                        ICollisionHandler.HandleCollision2(n, b);
+
                         //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
-                   
+
 
                         //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
                     }

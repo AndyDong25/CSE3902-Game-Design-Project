@@ -33,7 +33,7 @@ namespace sprint2.Objects.Bomb
             /** 
              * TODO: find the actual hitbox
              * */
-            collider2D = new Rectangle((int)pos.X + 3, (int)pos.Y + 3, 100, 100);
+            collider2D = new Rectangle((int)pos.X + 3, (int)pos.Y + 3, 150, 150);
         }
 
 
