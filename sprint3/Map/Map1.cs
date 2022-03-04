@@ -19,11 +19,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using sprint3.Collisions;
+using System.IO;
+using Newtonsoft.Json;
+using System.Collections;
 
 namespace sprint2.Map
 {
     public class Map1
     {
+        public class Map
+        {
+            public ArrayList player1;
+            public ArrayList player2;
+            
+        }
         private Game1 game;
         public CollisionDetection collisionDetection;
         public int Timeplayed;
@@ -101,13 +110,19 @@ namespace sprint2.Map
 
             //TODO change in the future
             //currentGameState = GameState.GamePlay;*/
-
+            Map m2;
+            using (StreamReader file = File.OpenText(@"content\json_data.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                m2 = (Map)serializer.Deserialize(file, typeof(Map));
+            }
+            
             collisionDetection = new CollisionDetection(this);
 
             background = new Background1();
             player1 = new Player(new Vector2(30, 30), game);
             player2 = new Player(new Vector2(700, 30), game);
-
+            player2.xPos = (int)(long)m2.player2[0];
             staticBombList = new List<StaticBomb>();
             explosionList = new List<Explosion>();
             ninjaStarList = new List<NinjaStar>();

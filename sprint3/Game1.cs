@@ -38,11 +38,7 @@ namespace CSE3902_Sprint2
 
         public Map1 map;
         public Vector2 screenSize;
-        public class Map
-        {
-            public ArrayList player1;
-            public ArrayList player2;
-        }
+        
         public Game1()
         {         
             graphics = new GraphicsDeviceManager(this);
@@ -66,17 +62,11 @@ namespace CSE3902_Sprint2
             // mapDir = new Dictionary<Vector2, ISprite> { };
 
             base.Initialize();
-            Map m2;
-            using (StreamReader file = File.OpenText(@"content\json_data.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                m2 = (Map)serializer.Deserialize(file, typeof(Map));
-            }
-
+           
             map = new Map1(this);
             
             map.Initialize();
-            map.player2.xPos = (int)(long)m2.player2[0];
+            
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, map.player1, map.player2));
             //controllerList.Add(new MouseController(this));
