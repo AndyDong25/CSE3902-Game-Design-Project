@@ -1,0 +1,18 @@
+{
+    "player1": [ 30, 30 ],
+    "player2": [ 700, 30 ],
+    "destructableBlocks": {
+        "block1": [ 250, 250 ],
+        "block2": [ 340, 250 ]
+    },
+    "indestructableBlocks": {
+        "block1": [ 290, 250 ],
+        "block2": [ 380, 250 ],
+        "block3": [ 420, 250 ],
+        "block4": [ 460, 250 ],
+        "block5": [ 500, 250 ],
+        "block6": [ 540, 250 ],
+        "block7": [ 580, 250 ]
+    },
+    "snakes": { "Snake1": [ 60, 430 ] }
+}
