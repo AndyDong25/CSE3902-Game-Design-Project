@@ -105,6 +105,8 @@ namespace sprint2.Map
             public List<int> player1;
             public List<int> player2;
             public Dictionary<String,List<int>> destructableBlocks;
+            public Dictionary<String, List<int>> indestructableBlocks;
+            public Dictionary<String, List<int>> enemys;
         }
         public void Initialize()
         {
@@ -121,7 +123,7 @@ namespace sprint2.Map
             collisionDetection = new CollisionDetection(this);
 
             background = new Background1();
-            player1 = new Player(new Vector2(30, 30), game);
+            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
             player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
             
             staticBombList = new List<StaticBomb>();
@@ -139,8 +141,8 @@ namespace sprint2.Map
             horizontalBat.currState = new BatFacingEastState(horizontalBat);
             snake = new Snake(new Vector2(60, 430), game);
 
-            dBlock = new DestructableBlockSprite(new Vector2(250, 250));
-            iBlock = new IndestructableBlockSprite(new Vector2(290, 250));
+  
+         
             tree1 = new Tree1(new Vector2(330, 250));
             tree2 = new Tree2(new Vector2(370, 250));
 
@@ -162,8 +164,8 @@ namespace sprint2.Map
             currentItemList.Add(shoeItem);
 
             currentObstacleList = new List<ISprite>();
-            currentObstacleList.Add(dBlock);
-            currentObstacleList.Add(iBlock);
+            
+            
             currentObstacleList.Add(tree1);
             currentObstacleList.Add(tree2);
 
@@ -181,12 +183,21 @@ namespace sprint2.Map
             currentEnemyList.Add(horizontalBat);
             currentEnemyList.Add(snake);
 
-            destructibleBlockList.Add(dBlock);
-            
+            foreach (List<int> pos in m2.destructableBlocks.Values){
+                dBlock = (new DestructableBlockSprite(new Vector2(pos[0], pos[1])));
+                destructibleBlockList.Add(dBlock);
+                currentObstacleList.Add(dBlock);
+            }
+
+
             //destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 290)));
             //destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 330)));
-
-            indestructibleBlockList.Add(iBlock);
+            foreach (List<int> pos in m2.indestructableBlocks.Values)
+            {
+                iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]));
+                currentObstacleList.Add(iBlock);
+                indestructibleBlockList.Add(iBlock);
+            }
             //indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 290)));
             //indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 330)));
         }
