@@ -106,7 +106,7 @@ namespace sprint2.Map
             public List<int> player2;
             public Dictionary<String,List<int>> destructableBlocks;
             public Dictionary<String, List<int>> indestructableBlocks;
-            public Dictionary<String, List<int>> enemys;
+            public Dictionary<String, List<int>> snakes;
         }
         public void Initialize()
         {
@@ -139,7 +139,7 @@ namespace sprint2.Map
             verticalBat = new Bat(new Vector2(400, 240), game);
             horizontalBat = new Bat(new Vector2(400, 380), game);
             horizontalBat.currState = new BatFacingEastState(horizontalBat);
-            snake = new Snake(new Vector2(60, 430), game);
+            
 
   
          
@@ -172,7 +172,7 @@ namespace sprint2.Map
             enemyList = new List<Enemy>();
             enemyList.Add(enemy);
             snakeList = new List<Snake>();
-            snakeList.Add(snake);
+            
             batList = new List<Bat>();
             batList.Add(horizontalBat);
             batList.Add(verticalBat);
@@ -181,7 +181,7 @@ namespace sprint2.Map
             currentEnemyList.Add(enemy);
             currentEnemyList.Add(verticalBat);
             currentEnemyList.Add(horizontalBat);
-            currentEnemyList.Add(snake);
+            
 
             foreach (List<int> pos in m2.destructableBlocks.Values){
                 dBlock = (new DestructableBlockSprite(new Vector2(pos[0], pos[1])));
@@ -197,6 +197,12 @@ namespace sprint2.Map
                 iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]));
                 currentObstacleList.Add(iBlock);
                 indestructibleBlockList.Add(iBlock);
+            }
+            foreach (List<int> pos in m2.snakes.Values)
+            {
+                snake = new Snake(new Vector2(pos[0], pos[1]), game);
+                snakeList.Add(snake);
+                currentEnemyList.Add(snake);
             }
             //indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 290)));
             //indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 330)));
