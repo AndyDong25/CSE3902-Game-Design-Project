@@ -46,10 +46,6 @@ namespace CSE3902_Sprint2
         {
             boostedPlayer = currentPlayer;
             activated = true;
-
-        
-            
-
         }
 
         public ISprite GetSprite()

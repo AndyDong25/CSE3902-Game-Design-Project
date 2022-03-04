@@ -21,7 +21,6 @@ namespace CSE3902_Sprint2.Items
         {
             base.Activate(currentPlayer);
             currentPlayer.maxBombs++;
-            activated = true;
         }
 
 

@@ -201,10 +201,6 @@ namespace sprint2.Map
             {
                 s.Update();
             }
-            foreach (StaticBomb s in finishedBombs)
-            {
-                staticBombList.Remove(s);
-            }
 
             finishedExplosions = new List<Explosion>();
             foreach (Explosion e in explosionList)
@@ -225,16 +221,20 @@ namespace sprint2.Map
                     finishedNinjaStar.Add(n);
                 }
             }
+
             foreach (NinjaStar n in finishedNinjaStar)
             {
                 ninjaStarList.Remove(n);
             }
             collisionDetection.Update();
-
             foreach (BasicItem i in finishedItems)
             {
                 Debug.WriteLine("removingitem");
                 currentItemList.Remove(i);
+            }
+            foreach (StaticBomb s in finishedBombs)
+            {
+                staticBombList.Remove(s);
             }
 
             // CHECK FOR COLLISIONS - hard coded for now to test collisions

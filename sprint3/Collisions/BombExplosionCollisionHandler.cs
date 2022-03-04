@@ -6,11 +6,12 @@ using System.Text;
 
 namespace sprint3.Collisions
 {
-    class ExplosionBombCollisionHandler : ICollisionHandler
+    class BombExplosionCollisionHandler : ICollisionHandler
     {
         public void HandleCollision(object o)
         {
-           
+            StaticBomb b = (StaticBomb)o;
+            b.timer = 0;
         }
     }
 }
