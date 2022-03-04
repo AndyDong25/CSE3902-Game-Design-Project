@@ -22,6 +22,7 @@ namespace CSE3902_Sprint2.Items
             boostedPlayer = currentPlayer;
             currentPlayer.spriteIndex = 2;
             currentPlayer.ApplyAbilities();
+            activated = true;
         }
 
         public override void Deactivate()

@@ -166,11 +166,15 @@ namespace sprint2.Collisions
                 {
                     p1.collisionHandler = new PlayerItemCollisionHandler();
                     p1.collisionHandler.HandleCollision(item);
+                    item.collisionHandler = new ItemPlayerCollisionHandler(p1);
+                    item.collisionHandler.HandleCollision(item);
                 }
                 if (p2.collider2D.Intersects(item.collider2D))
                 {
                     p2.collisionHandler = new PlayerItemCollisionHandler();
                     p2.collisionHandler.HandleCollision(item);
+                    item.collisionHandler = new ItemPlayerCollisionHandler(p2);
+                    item.collisionHandler.HandleCollision(item);
                 }
             }
 

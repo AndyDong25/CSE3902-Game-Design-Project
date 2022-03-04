@@ -15,8 +15,8 @@ namespace CSE3902_Sprint2.Items
         public override void Activate(Player currentPlayer)
         {
             boostedPlayer = currentPlayer;
-            currentPlayer.potionCount += 3;
-
+            currentPlayer.potionCount++;
+            activated = true;
         }
 
         public void setTexture()
@@ -28,7 +28,7 @@ namespace CSE3902_Sprint2.Items
         public override void Deactivate()
         {
             base.Deactivate();
-            boostedPlayer.potionCount-= 3;
+            boostedPlayer.potionCount--; ;
         }
     }
 }

@@ -19,14 +19,13 @@ namespace CSE3902_Sprint2.Items
         public override void Activate(Player currentPlayer)
         {
             boostedPlayer = currentPlayer;
-            currentPlayer.spriteIndex = 2;
+            currentPlayer.spriteIndex = 3;
             currentPlayer.ApplyAbilities();
-
+            activated = true;
         }
 
         public override void Deactivate()
-        {
-            
+        {       
             boostedPlayer.ChangeCharacter();
             base.Deactivate();
         }

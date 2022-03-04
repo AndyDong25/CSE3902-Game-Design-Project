@@ -9,6 +9,7 @@ namespace sprint3.Collisions
     {
         public void HandleCollision(object o)
         {
+
             // TODO: implement collision responses
         }
     }

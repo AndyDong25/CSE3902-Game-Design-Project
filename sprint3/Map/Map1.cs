@@ -59,7 +59,7 @@ namespace sprint2.Map
         public List<StaticBomb> staticBombList;
         public List<StaticBomb> finishedBombs;
         public List<NinjaStar> finishedNinjaStar;
-        
+
 
         /*        GameState currentGameState;
                 enum GameState
@@ -74,6 +74,7 @@ namespace sprint2.Map
 
         public List<BasicItem> currentItemList;
         public int currItemIndex = 0;
+        public List<BasicItem> finishedItems;
 
         public List<ISprite> currentObstacleList;
         public int currObstacleIndex = 0;
@@ -179,6 +180,7 @@ namespace sprint2.Map
             player1.Update();
             player2.Update();
 
+            finishedItems = new List<BasicItem>();
             foreach (BasicItem i in currentItemList)
             {
                 i.Update();
@@ -229,6 +231,11 @@ namespace sprint2.Map
             }
             collisionDetection.Update();
 
+            foreach (BasicItem i in finishedItems)
+            {
+                Debug.WriteLine("removingitem");
+                currentItemList.Remove(i);
+            }
 
             // CHECK FOR COLLISIONS - hard coded for now to test collisions
             /*            if (player1.collider2D.Intersects(player2.collider2D))
