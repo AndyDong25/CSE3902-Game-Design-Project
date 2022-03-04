@@ -21,6 +21,7 @@ namespace CSE3902_Sprint2.Items
         public override void Deactivate()
         {
             boostedPlayer.speed -= increaseAmount;
+            base.Deactivate();
         }
 
         public void setTexture()

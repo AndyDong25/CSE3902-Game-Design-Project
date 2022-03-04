@@ -90,6 +90,7 @@ namespace CSE3902_Sprint2
 
         public virtual void Deactivate()
         {
+            Destroy();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 position)

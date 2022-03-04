@@ -27,6 +27,7 @@ namespace CSE3902_Sprint2.Items
         public override void Deactivate()
         {
             boostedPlayer.ChangeCharacter();
+            base.Deactivate();
         }
     }
 }

@@ -20,5 +20,7 @@ namespace CSE3902_Sprint2.Items
             this.texture = ItemTextureStorage.Instance.getNinjaStarSprite();
             this.sourceRec = SpriteConstants.NINJA_STAR;
         }
+
+
     }
 }

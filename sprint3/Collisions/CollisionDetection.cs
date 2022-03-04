@@ -236,6 +236,14 @@ namespace sprint2.Collisions
                         //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
                     }
                 }
+                foreach (BasicItem item in currentItemList)
+                {
+                    if (e.collider2D.Intersects(item.collider2D))
+                    {
+                        e.collisionHandler = new ItemExplosionCollisionHandler();
+                        e.collisionHandler.HandleCollision(item);
+                    }
+                }
             }
             foreach (NinjaStar n in currentNinjaStar)
             {
