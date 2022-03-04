@@ -43,6 +43,8 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void TakeDamage()
         {
+
+
         }
     }
 }

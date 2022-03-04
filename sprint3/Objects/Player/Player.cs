@@ -24,7 +24,7 @@ namespace CSE3902_Sprint2.Objects.Player
         public float speed = 3.0f;
         public float framePerStep = 6;
         public int direction = 2;
-        public static Boolean isDead = false;
+        public Boolean isDead = false;
 
         public ICollisionHandler collisionHandler;
         public Rectangle collider2D;
@@ -104,6 +104,7 @@ namespace CSE3902_Sprint2.Objects.Player
 
         public void DrawSprite(SpriteBatch spriteBatch, Texture2D texture, Rectangle source, int XOffset = 0, int YOffset = 0)
         {
+            
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset,60, 60);
             spriteBatch.Draw(texture, destination, source, Color.White);
         }
