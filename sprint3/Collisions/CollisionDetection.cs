@@ -210,6 +210,7 @@ namespace CSE3902_Project.Collisions
                     //(p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
                 }
             }
+            
             foreach (BasicItem item in currentItemList)
             {
                 if (p1.collider2D.Intersects(item.collider2D))

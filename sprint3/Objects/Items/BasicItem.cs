@@ -47,6 +47,7 @@ namespace CSE3902_CSE3902_Project
         {
             boostedPlayer = currentPlayer;
             activated = true;
+            Destroy();
         }
 
         public ISprite GetSprite()
@@ -62,7 +63,7 @@ namespace CSE3902_CSE3902_Project
                 invincible = false;
             }
             // later sprints
-/*            if (activated)
+            /*if (activated)
             {
                 if (gameRef.map.player1.xPos == xPos && gameRef.map.player2.yPos == yPos)
                 {
@@ -88,12 +89,24 @@ namespace CSE3902_CSE3902_Project
 
         public void Destroy()
         {
-            gameRef.map.finishedItems.Add(this);        
+            gameRef.map.finishedItems.Add(this);
+            
+            // this is an optional implmentation to take place if we don't want to call !activated in the Draw function
+            
+            /*if (gameRef.map.currentItemList.Contains(this))
+            {
+                gameRef.map.currentItemList.Remove(this);
+            }
+            */
         }
 
         public virtual void Deactivate()
         {
-            Destroy();
+
+            if (gameRef.map.finishedItems.Contains(this))
+            {
+                gameRef.map.finishedItems.Remove(this);
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 position)

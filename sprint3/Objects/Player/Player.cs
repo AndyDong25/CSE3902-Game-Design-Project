@@ -63,7 +63,10 @@ namespace CSE3902_CSE3902_Project.Objects.Player
 
         public void DropBomb()
         {
-            Game.map.AddBomb(this, new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10));
+            if (!isDead)
+            {
+                Game.map.AddBomb(this, new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10));
+            }
         }
 
         public void UseItem()
