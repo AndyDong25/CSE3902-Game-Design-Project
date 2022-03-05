@@ -42,7 +42,6 @@ namespace CSE3902_Project.Objects.NPC.Snake
         {
             currState.Draw(spriteBatch);
             wallRedirect();
-            UpdateCollider();
         }
 
         public bool IsDead()
@@ -57,6 +56,7 @@ namespace CSE3902_Project.Objects.NPC.Snake
         public void Update()
         {
             currState.Update();
+            UpdateCollider();
         }
 
         public void MoveUp()

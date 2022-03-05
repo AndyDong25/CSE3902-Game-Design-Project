@@ -12,6 +12,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public PlayerDeathState(Player player)
         {
             this.player = player;
+            player.maxBombs = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch)

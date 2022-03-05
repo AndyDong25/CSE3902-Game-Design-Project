@@ -45,7 +45,6 @@ namespace CSE3902_Project.Objects.NPC.Bat
         {
             currState.Draw(spriteBatch);
             positionLimit();
-            UpdateCollider();
         }
         public bool IsDead()
         {
@@ -59,6 +58,7 @@ namespace CSE3902_Project.Objects.NPC.Bat
         public void Update()
         {
             currState.Update();
+            UpdateCollider();
         }
 
         public void MoveUp()
@@ -89,7 +89,7 @@ namespace CSE3902_Project.Objects.NPC.Bat
 
         public void UpdateCollider()
         {
-            collider2D.X = (int)xPos + 15;
+            collider2D.X = (int)xPos + 8;
             collider2D.Y = (int)yPos + 5;
         }
 

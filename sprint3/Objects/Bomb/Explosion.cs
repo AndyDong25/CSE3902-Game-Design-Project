@@ -26,7 +26,7 @@ namespace CSE3902_Project.Objects.Bomb
             this.pos = pos;
             timer = 20;
             texture = ItemTextureStorage.Instance.getExplosionSprite();
-            collider2D = new Rectangle((int)pos.X + 3, (int)pos.Y + 3, 44, 44);
+            collider2D = new Rectangle((int)pos.X + 7, (int)pos.Y + 7, 36, 36);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)

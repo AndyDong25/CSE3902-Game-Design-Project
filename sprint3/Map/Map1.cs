@@ -59,8 +59,9 @@ namespace CSE3902_Project.Map
         public List<StaticBomb> staticBombList;
         public List<StaticBomb> finishedBombs;
         public List<NinjaStar> finishedNinjaStar;
+        public List<ISprite> finishedObstacles;
 
-
+        public List<BasicItem> itemsToSpawn;
         /*        GameState currentGameState;
                 enum GameState
                 {
@@ -89,6 +90,8 @@ namespace CSE3902_Project.Map
         public List<IEnemyState> currentEnemyList;
         public int currEnemyIndex = 0;
 
+        static Random rnd = new Random();
+
         public Map1(Game1 game)
         {
             this.game = game;
@@ -105,7 +108,6 @@ namespace CSE3902_Project.Map
         }
         public void Initialize()
         {
-
             //TODO change in the future
             //currentGameState = GameState.GamePlay;*/
             Map m2;
@@ -131,12 +133,9 @@ namespace CSE3902_Project.Map
             explosionList.AddRange(player2.staticBomb.explosionList);*/
 
             enemy = new Enemy(new Vector2(450, 300), game);
-            verticalBat = new Bat(new Vector2(400, 240), game);
+            verticalBat = new Bat(new Vector2(400, 140), game);
             horizontalBat = new Bat(new Vector2(400, 380), game);
-            horizontalBat.currState = new BatFacingEastState(horizontalBat);
-            
-
-  
+            horizontalBat.currState = new BatFacingEastState(horizontalBat);        
          
             tree1 = new Tree1(new Vector2(330, 250));
             tree2 = new Tree2(new Vector2(370, 250));
@@ -179,7 +178,7 @@ namespace CSE3902_Project.Map
             
 
             foreach (List<int> pos in m2.destructableBlocks.Values){
-                dBlock = (new DestructableBlockSprite(new Vector2(pos[0], pos[1])));
+                dBlock = (new DestructableBlockSprite(game, new Vector2(pos[0], pos[1])));
                 destructibleBlockList.Add(dBlock);
                 currentObstacleList.Add(dBlock);
             }
@@ -210,11 +209,12 @@ namespace CSE3902_Project.Map
             player2.Update();
 
             finishedItems = new List<BasicItem>();
+            itemsToSpawn = new List<BasicItem>();
             foreach (BasicItem i in currentItemList)
             {
                 i.Update();
             }
-
+            finishedObstacles = new List<ISprite>();
             foreach (ISprite s in currentObstacleList)
             {
                 s.Update();
@@ -236,10 +236,6 @@ namespace CSE3902_Project.Map
             {
                 e.Update();
             }
-            foreach (Explosion e in finishedExplosions)
-            {
-                explosionList.Remove(e);
-            }
             finishedNinjaStar = new List<NinjaStar>();
             
             foreach (NinjaStar n in ninjaStarList)
@@ -251,54 +247,29 @@ namespace CSE3902_Project.Map
                 }
             }
 
+            collisionDetection.Update();
+            foreach (Explosion e in finishedExplosions)
+            {
+                explosionList.Remove(e);
+            }
             foreach (NinjaStar n in finishedNinjaStar)
             {
                 ninjaStarList.Remove(n);
             }
-            collisionDetection.Update();
             foreach (BasicItem i in finishedItems)
             {
-                Debug.WriteLine("removingitem");
                 currentItemList.Remove(i);
             }
             foreach (StaticBomb s in finishedBombs)
             {
                 staticBombList.Remove(s);
             }
-
-            // CHECK FOR COLLISIONS - hard coded for now to test collisions
-            /*            if (player1.collider2D.Intersects(player2.collider2D))
-                        {
-                            player1.PlayerCollisionTest();
-                            player2.PlayerCollisionTest();
-                        }
-
-                        foreach (Explosion e in explosionList)
-                        {
-                            if (e.collider2D.Intersects(player1.collider2D))
-                            {
-                                player1.currState = new PlayerDeathState(player1);
-                            }
-                            if (e.collider2D.Intersects(player2.collider2D))
-                            {
-                                player2.currState = new PlayerDeathState(player2);
-                            }
-                        }
-
-                        // will need to clean up and move to CollisionDetection.cs class once fully implemented
-                        Rectangle enemyCollider = (currentEnemyList[0] as Enemy).collider2D;
-                        Rectangle batVerticalCollider = (currentEnemyList[1] as Bat).collider2D;
-                        Rectangle batHorizontalCollider = (currentEnemyList[2] as Bat).collider2D;
-                        Rectangle snakeCollider = (currentEnemyList[3] as Snake).collider2D;
-
-                        if (player1.collider2D.Intersects(enemyCollider) || player1.collider2D.Intersects(batVerticalCollider) || player1.collider2D.Intersects(batHorizontalCollider) || player1.collider2D.Intersects(snakeCollider))
-                        {
-                            player1.currState = new PlayerDeathState(player1);
-                        }
-                        if (player2.collider2D.Intersects(enemyCollider) || player2.collider2D.Intersects(batVerticalCollider) || player2.collider2D.Intersects(batHorizontalCollider) || player2.collider2D.Intersects(snakeCollider))
-                        {
-                            player2.currState = new PlayerDeathState(player2);
-                        }*/
+            foreach (ISprite s in finishedObstacles)
+            {
+                destructibleBlockList.Remove(s as DestructableBlockSprite);
+                currentObstacleList.Remove(s);
+            }
+            SpawnItems();
 
             // players kept getting stuck - update previous position after collision checks
 
@@ -406,6 +377,59 @@ namespace CSE3902_Project.Map
         public void AddNinjaStar(Player p)
         {
             ninjaStarList.Add(new NinjaStar(p));
+        }
+
+        public void AddItem(Vector2 pos)
+        {
+            BasicItem newItem;
+            int rand = rnd.Next(1, 10);
+            // normal items (twice as frequent spawn)
+            if (rand < 7)
+            {
+                switch (rand % 3)
+                {
+                    case 0:
+                        newItem = new BombItem(pos, game);
+                        break;
+                    case 1:
+                        newItem = new PotionItem(pos, game);
+                        break;
+                    case 2:
+                        newItem = new ShoeItem(pos, game);
+                        break;
+                    default:
+                        newItem = new BombItem(pos, game);
+                        break;
+                }
+            }
+            // special items (changes character sprite)
+            else
+            {
+                switch (rand)
+                {
+                    case 7:
+                        newItem = new GoblinItem(pos, game);
+                        break;
+                    case 8:
+                        newItem = new KnightItem(pos, game);
+                        break;
+                    case 9:
+                        newItem = new GhostItem(pos, game);
+                        break;
+                    default:
+                        newItem = new BombItem(pos, game);
+                        break;
+                }
+            }
+            itemsToSpawn.Add(newItem);
+        }
+
+        public void SpawnItems()
+        {
+            foreach (BasicItem i in itemsToSpawn)
+            {
+                currentItemList.Add(i);
+            }
         }
     }
 }

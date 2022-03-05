@@ -44,6 +44,47 @@ namespace CSE3902_Project.Collisions
                 p2.collisionHandler.HandleCollision(p2);
             }
 
+            foreach (StaticBomb b in staticBombList)
+            {
+                if (p1.collider2D.Intersects(b.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBombCollisionHandler(b);
+                    p1.collisionHandler.HandleCollision(p1);
+                }
+
+                if (p2.collider2D.Intersects(b.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBombCollisionHandler(b);
+                    p2.collisionHandler.HandleCollision(p2);
+                }
+
+                foreach (Enemy e in map.enemyList)
+                {
+                    if (b.collider2D.Intersects(e.collider2D))
+                    {
+                        e.collisionHandler = new  EnemyBombCollisionHandler();
+                        e.collisionHandler.HandleCollision(e);
+                    }
+                }
+                foreach (Bat bt in map.batList)
+                {
+                    if (b.collider2D.Intersects(bt.collider2D))
+                    {
+                        bt.collisionHandler = new BatCollisionHandler();
+                        bt.collisionHandler.HandleCollision(bt);
+                    }
+                }
+
+                foreach (Snake s in map.snakeList)
+                {
+                    if (b.collider2D.Intersects(s.collider2D))
+                    {
+                        s.collisionHandler = new SnakeCollisionHandler();
+                        s.collisionHandler.HandleCollision(s);
+                    }
+                }
+            }
+
             foreach (ISprite s in currentObstacleList)
             {
                 if (p1.collider2D.Intersects(s.collider2D))
@@ -60,6 +101,22 @@ namespace CSE3902_Project.Collisions
                 {
                     e1.collisionHandler = new EnemyBlockCollisionHandler();
                     e1.collisionHandler.HandleCollision(e1);
+                }
+                foreach (Bat b in map.batList)
+                {
+                    if (b.collider2D.Intersects(s.collider2D))
+                    {
+                        b.collisionHandler = new BatCollisionHandler();
+                        b.collisionHandler.HandleCollision(b);
+                    }
+                }
+                foreach (Snake sn in map.snakeList)
+                {
+                    if (sn.collider2D.Intersects(s.collider2D))
+                    {
+                        sn.collisionHandler = new SnakeCollisionHandler();
+                        sn.collisionHandler.HandleCollision(sn);
+                    }
                 }
             }
 
@@ -241,6 +298,15 @@ namespace CSE3902_Project.Collisions
                         e.collisionHandler.HandleCollision(item);
                     }
                 }
+                foreach (DestructableBlockSprite b in destructibleBlockList)
+                {
+                    if (e.collider2D.Intersects(b.collider2D))
+                    {
+                        // stop explosion range
+                        b.collisionHandler = new DBlockExplosionCollisionHandler();
+                        b.collisionHandler.HandleCollision(b);
+                    }
+                }
             }
             foreach (NinjaStar n in currentNinjaStar)
             {
@@ -257,7 +323,7 @@ namespace CSE3902_Project.Collisions
                         //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
                     }
                 }
-                foreach (IndestructableBlockSprite bl in indestructibleBlockList)
+                foreach (ISprite bl in currentObstacleList)
                 {
                     if (n.collider2D.Intersects(bl.collider2D))
                     {

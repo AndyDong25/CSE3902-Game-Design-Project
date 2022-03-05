@@ -30,15 +30,17 @@ namespace CSE3902_CSE3902_Project
         public Rectangle collider2D { get; set; }
         public ICollisionHandler collisionHandler;
 
-
+        public int invincibilityTimer;
+        public bool invincible;
         public BasicItem(Vector2 position, Game1 game)
         {
             xPos = position.X;
             yPos = position.Y;
             gameRef = game;
-
             
             collider2D = new Rectangle((int)xPos, (int)yPos, 35, 35);
+            invincibilityTimer = 20;
+            invincible = true;
         }
 
         public virtual void Activate(Player currentPlayer)
@@ -54,6 +56,11 @@ namespace CSE3902_CSE3902_Project
 
         public void Update()
         {
+            invincibilityTimer--;
+            if (invincibilityTimer <= 0)
+            {
+                invincible = false;
+            }
             // later sprints
 /*            if (activated)
             {

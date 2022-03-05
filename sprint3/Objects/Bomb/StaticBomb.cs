@@ -20,6 +20,7 @@ namespace CSE3902_Project.Objects.Bomb
      
         public int timer;
 
+        public bool passable;
         public StaticBomb(Game1 game, Player player, Vector2 pos)
         {
             this.player = player;
@@ -30,7 +31,11 @@ namespace CSE3902_Project.Objects.Bomb
             /** 
              * TODO: find the actual hitbox
              * */
-            collider2D = new Rectangle((int)pos.X + 3, (int)pos.Y + 3, 150, 150);
+            collider2D = new Rectangle((int)pos.X + 2, (int)pos.Y + 6, 25, 34);
+            if (player.collider2D.Intersects(collider2D))
+            {
+                passable = true;
+            }
         }
 
 
@@ -49,6 +54,10 @@ namespace CSE3902_Project.Objects.Bomb
             {
                 game.map.finishedBombs.Add(this);
                 game.map.AddExplosions(pos, player.potionCount);
+            }
+            if (!player.collider2D.Intersects(collider2D))
+            {
+                passable = false;
             }
         }
 

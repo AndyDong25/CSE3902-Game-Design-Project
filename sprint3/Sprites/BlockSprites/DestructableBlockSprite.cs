@@ -7,16 +7,18 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
 {
     public class DestructableBlockSprite : ISprite, ICollideable
     {
+        private Game1 game;
         public Vector2 pos;
 
-        ICollisionHandler collisionHandler;
+        public ICollisionHandler collisionHandler;
         //public Rectangle collider2D;
         public Rectangle collider2D { get; set; }
 
         public Texture2D texture { get; set; }
 
-        public DestructableBlockSprite(Vector2 pos)
+        public DestructableBlockSprite(Game1 game, Vector2 pos)
         {
+            this.game = game;
             this.pos = pos;
             /** 
  * TODO: find the actual hitbox
@@ -31,6 +33,12 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
             Rectangle destinationRectangle = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
 
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+        }
+
+        public void Remove()
+        {
+            game.map.finishedObstacles.Add(this);
+            game.map.AddItem(pos);
         }
 
         public void Update()

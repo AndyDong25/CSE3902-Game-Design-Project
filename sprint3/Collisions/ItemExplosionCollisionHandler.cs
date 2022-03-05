@@ -8,7 +8,10 @@ namespace CSE3902_Project.Collisions
         {
             //Debug.WriteLine("Item Explosion Collided");
             BasicItem item = (BasicItem)o;
-            item.Destroy();
+            if (!item.invincible)
+            {
+                item.Destroy();
+            }
         }
     }
 }

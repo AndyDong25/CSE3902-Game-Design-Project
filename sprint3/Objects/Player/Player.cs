@@ -33,7 +33,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
-            collider2D = new Rectangle((int)xPos + 20, (int)yPos + 17, 20, 26);
+            collider2D = new Rectangle((int)xPos + 18, (int)yPos + 19, 24, 26);
         }
 
         public bool IsDead()
