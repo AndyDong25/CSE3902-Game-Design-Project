@@ -39,11 +39,11 @@ namespace CSE3902_Project.Objects.Bomb
 
         public void Update()
         {
-            timer--;
+/*            timer--;
             if (timer <= 0)
             {
                 game.map.finishedExplosions.Add(this);
-            }
+            }*/
         }
 
         public void UpdateCollider()

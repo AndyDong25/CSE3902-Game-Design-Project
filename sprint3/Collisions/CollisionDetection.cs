@@ -9,6 +9,8 @@ using CSE3902_Project.Objects.NinjaStar;
 using CSE3902_Project.Objects.NPC;
 using CSE3902_Project.Objects.NPC.Bat;
 using CSE3902_Project.Objects.NPC.Snake;
+using sprint3.Objects.Bomb;
+
 namespace CSE3902_Project.Collisions
 {
     public class CollisionDetection
@@ -27,7 +29,10 @@ namespace CSE3902_Project.Collisions
             Player p1 = map.player1;
             Player p2 = map.player2;
             Enemy e1 = map.enemy;
-            List<Explosion> exList = map.explosionList;
+            //List<Explosion> exList = map.explosionList;
+            List<ExplosionCross> eCrossList = map.explosionCrossList;
+            map.GetAllExplosions();
+            List<Explosion> explosionList = map.allExplosionsList;
             List<IEnemyState> enemyList = map.currentEnemyList;
             List<StaticBomb> staticBombList = map.staticBombList;
             List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
@@ -260,7 +265,7 @@ namespace CSE3902_Project.Collisions
                 }
             }
 
-            foreach (Explosion e in exList)
+            foreach (Explosion e in explosionList)
             {
                 if (p1.collider2D.Intersects(e.collider2D))
                 {
@@ -331,6 +336,48 @@ namespace CSE3902_Project.Collisions
                         n.collisionHandler = new NinjaStarBlockCollisionHandler();
                         n.collisionHandler.HandleCollision(n);
                         //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
+                    }
+                }
+            }
+            foreach (ExplosionCross eCross in map.explosionCrossList)
+            {
+                foreach (ISprite o in currentObstacleList)
+                {
+                    for (int i = 0; i < eCross.upExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.upExplosions[i];
+                        if (e.collider2D.Intersects(o.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i);
+                            e.collisionHandler.HandleCollision(eCross.upExplosions);
+                        }
+                    }
+                    for (int i = 0; i < eCross.leftExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.leftExplosions[i];
+                        if (e.collider2D.Intersects(o.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i);
+                            e.collisionHandler.HandleCollision(eCross.leftExplosions);
+                        }
+                    }
+                    for (int i = 0; i < eCross.rightExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.rightExplosions[i];
+                        if (e.collider2D.Intersects(o.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i);
+                            e.collisionHandler.HandleCollision(eCross.rightExplosions);
+                        }
+                    }
+                    for (int i = 0; i < eCross.downExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.downExplosions[i];
+                        if (e.collider2D.Intersects(o.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i);
+                            e.collisionHandler.HandleCollision(eCross.downExplosions);
+                        }
                     }
                 }
             }

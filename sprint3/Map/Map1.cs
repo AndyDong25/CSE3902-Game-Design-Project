@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
+using sprint3.Objects.Bomb;
 
 namespace CSE3902_Project.Map
 {
@@ -54,8 +55,11 @@ namespace CSE3902_Project.Map
         public BasicItem potionItem;
         public BasicItem shoeItem;
 
-        public List<Explosion> explosionList;
-        public List<Explosion> finishedExplosions;
+        public List<ExplosionCross> explosionCrossList;
+        public List<ExplosionCross> finishedExplosionCross;
+        public List<Explosion> allExplosionsList;
+/*        public List<Explosion> explosionList;
+        public List<Explosion> finishedExplosions;*/
         public List<StaticBomb> staticBombList;
         public List<StaticBomb> finishedBombs;
         public List<NinjaStar> finishedNinjaStar;
@@ -124,7 +128,8 @@ namespace CSE3902_Project.Map
             player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
             
             staticBombList = new List<StaticBomb>();
-            explosionList = new List<Explosion>();
+            //explosionList = new List<Explosion>();
+            explosionCrossList = new List<ExplosionCross>();
             ninjaStarList = new List<NinjaStar>();
             destructibleBlockList = new List<DestructableBlockSprite>();
             indestructibleBlockList = new List<IndestructableBlockSprite>();
@@ -231,11 +236,18 @@ namespace CSE3902_Project.Map
                 s.Update();
             }
 
-            finishedExplosions = new List<Explosion>();
+            finishedExplosionCross = new List<ExplosionCross>();
+/*            finishedExplosions = new List<Explosion>();
             foreach (Explosion e in explosionList)
             {
                 e.Update();
+            }*/
+
+            foreach (ExplosionCross e in explosionCrossList)
+            {
+                e.Update();
             }
+
             finishedNinjaStar = new List<NinjaStar>();
             
             foreach (NinjaStar n in ninjaStarList)
@@ -248,10 +260,16 @@ namespace CSE3902_Project.Map
             }
 
             collisionDetection.Update();
-            foreach (Explosion e in finishedExplosions)
+/*            foreach (Explosion e in finishedExplosions)
             {
                 explosionList.Remove(e);
+            }*/
+
+            foreach (ExplosionCross e in finishedExplosionCross)
+            {
+                explosionCrossList.Remove(e);
             }
+
             foreach (NinjaStar n in finishedNinjaStar)
             {
                 ninjaStarList.Remove(n);
@@ -269,10 +287,14 @@ namespace CSE3902_Project.Map
                 destructibleBlockList.Remove(s as DestructableBlockSprite);
                 currentObstacleList.Remove(s);
             }
+            foreach (ExplosionCross e in explosionCrossList)
+            {
+                e.SetAllEplosions();
+            }
             SpawnItems();
 
             // players kept getting stuck - update previous position after collision checks
-
+            GetAllExplosions();
             player1.UpdatePreviousPosition();
             player2.UpdatePreviousPosition();
             (currentEnemyList[0] as Enemy).UpdatePreviousPosition();
@@ -311,9 +333,13 @@ namespace CSE3902_Project.Map
                 s.Draw(spriteBatch, new Vector2(0, 0));
             }
 
-            foreach (Explosion e in explosionList)
+/*            foreach (Explosion e in explosionList)
             {
                 e.Draw(spriteBatch, new Vector2(0, 0));
+            }*/
+            foreach (ExplosionCross e in explosionCrossList)
+            {
+                e.Draw(spriteBatch);
             }
             foreach (NinjaStar n in ninjaStarList)
             {
@@ -359,20 +385,30 @@ namespace CSE3902_Project.Map
 
         public void AddExplosions(Vector2 pos, int potionCount)
         {
+            ExplosionCross eCross = new ExplosionCross(game);
+
             int xOffset = -12;
             int yOffset = -7;
             // origin
-            explosionList.Add(new Explosion(game, new Vector2(pos.X + xOffset, pos.Y + yOffset)));
+            //explosionList.Add(new Explosion(game, new Vector2(pos.X + xOffset, pos.Y + yOffset)));
             int x = (int)pos.X;
             int y = (int)pos.Y;
+            eCross.originExplosion = new Explosion(game, new Vector2(x + xOffset, y + yOffset));
             // radius in each direction
             for (int i = 1; i < potionCount; i++)
             {
-                explosionList.Add(new Explosion(game, new Vector2(xOffset + 50 * i + x, yOffset + y)));
+/*                explosionList.Add(new Explosion(game, new Vector2(xOffset + 50 * i + x, yOffset + y)));
                 explosionList.Add(new Explosion(game, new Vector2(xOffset + x - (50 * i), yOffset + y)));
                 explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 50 * i + y)));
-                explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (50 * i))));
+                explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (50 * i))));*/
+                eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 50 * i + x, yOffset + y)));
+                eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (50 * i), yOffset + y)));
+                eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 50 * i + y)));
+                eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (50 * i))));
+
             }
+            eCross.SetAllEplosions();
+            explosionCrossList.Add(eCross);
         }
         public void AddNinjaStar(Player p)
         {
@@ -429,6 +465,15 @@ namespace CSE3902_Project.Map
             foreach (BasicItem i in itemsToSpawn)
             {
                 currentItemList.Add(i);
+            }
+        }
+
+        public void GetAllExplosions()
+        {
+            allExplosionsList = new List<Explosion>();
+            foreach (ExplosionCross e in explosionCrossList)
+            {
+                allExplosionsList.AddRange(e.allExplosions);
             }
         }
     }
