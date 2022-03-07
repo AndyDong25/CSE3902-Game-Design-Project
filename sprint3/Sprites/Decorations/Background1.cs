@@ -15,9 +15,10 @@ namespace CSE3902_Project.Sprites.Decorations
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)
         {
-            texture = DecorationTextureStorage.Instance.getBackground1Sprite();
+            texture = DecorationTextureStorage.Instance.getBackground2Sprite();
             Rectangle destinationRectangle = new Rectangle((int)destination.X, (int)destination.Y, 800, 480);
 
+            //spriteBatch.Draw(texture, destinationRectangle, Color.White);
             spriteBatch.Draw(texture, destinationRectangle, Color.White);
         }
 

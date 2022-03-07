@@ -24,6 +24,7 @@ namespace CSE3902_Project.Objects.Decorations
         private static Texture2D destructibleBlockTexture;
         private static Texture2D indestructibleBlockTexture;
         private static Texture2D background1;
+        private static Texture2D background2;
 
         private DecorationTextureStorage()
         {
@@ -36,7 +37,8 @@ namespace CSE3902_Project.Objects.Decorations
             destructibleBlockTexture = content.Load<Texture2D>("DestructableCrate");
             indestructibleBlockTexture = content.Load<Texture2D>("Concrete_Block_2x2");
             background1 = content.Load<Texture2D>("background2");
-    }
+            background2 = content.Load<Texture2D>("grass_template2");
+        }
 
     public Texture2D getTree1Sprite()
         {
@@ -57,6 +59,10 @@ namespace CSE3902_Project.Objects.Decorations
         public Texture2D getBackground1Sprite()
         {
             return background1;
+        }
+        public Texture2D getBackground2Sprite()
+        {
+            return background2;
         }
     }
 }

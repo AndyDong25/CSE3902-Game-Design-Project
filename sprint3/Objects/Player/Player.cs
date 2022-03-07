@@ -140,11 +140,11 @@ namespace CSE3902_CSE3902_Project.Objects.Player
 
         private void checkMapBounds()
         {
-            if (xPos < 20) xPos = 20;
+            if (xPos < -15) xPos = -15;
             
             if (yPos < 5) yPos = 5;
             
-            if (xPos > 700) xPos = 700;
+            if (xPos > 785) xPos = 785;
             
             if (yPos > 400) yPos = 400;            
         }
