@@ -1,0 +1,26 @@
+﻿Reveiwer - Devan Mallory
+Date: 2/20/22
+CSE3902_Project
+File - PlayerFacingEast.cs 
+File Authors: Alex Zhang, Lanxi Li, Andy Dong
+Time to Complete - 30 minutes
+
+
+
+Comments:
+
+-Style is good, PascalCase and camelCase are followed apropriately and according to conventions There is one case with an
+incorrect property, but that property is from a different class, so it should be changed there instead.
+-Variable names are also good, although some variable names could be shorter.
+(i.e PlayerFacingWestState -> PlayerWestState)
+-changeTexture method unimplemented? if the goal is to implement in other classes, maybe add some
+comment to notify that that is the case. At least, that is my opinion, otherwise it could be confusing to have a blank method
+
+-I feel like there could be some confusion from using duplicate terminology 
+(i.e East, Right, and North, Up are refering to the same thing, but it is confusing at first because they have different implementations).
+
+I also think it's a somewhat confusing design choice to assign states to seperate entire classes, when they could theoretically be represented
+as an int instead. Especially when calling the new PlayerFacingXState(), it's unclear as to how that class is being assigned. However, since
+this is the way that have done it in class, I guess I cannot harp on it too much.
+
+
