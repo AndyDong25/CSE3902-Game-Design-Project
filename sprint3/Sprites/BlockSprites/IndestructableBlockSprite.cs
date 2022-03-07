@@ -19,7 +19,7 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
             /** 
  * TODO: find the actual hitbox
  * */
-            collider2D = new Rectangle((int)pos.X - 5, (int)pos.Y, 55, 50);
+            collider2D = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)
