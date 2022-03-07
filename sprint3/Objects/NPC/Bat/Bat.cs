@@ -33,13 +33,13 @@ namespace CSE3902_Project.Objects.NPC.Bat
 
         public void positionLimit()
         {
-            if (xPos < 40) xPos = 40;
+            if (xPos < -15) xPos = -15;
 
-            if (yPos < 5) yPos = 5;
+            if (yPos < -20) yPos = -20;
 
-            if (xPos > 700) xPos = 700;
+            if (xPos > 760) xPos = 760;
 
-            if (yPos > 430) yPos = 430;
+            if (yPos > 440) yPos = 440;
         }
         public void Draw(SpriteBatch spriteBatch)
         {

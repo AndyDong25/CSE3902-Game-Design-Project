@@ -30,13 +30,13 @@ namespace CSE3902_Project.Objects.NPC.Snake
 
         public void wallRedirect()
         {
-            if (xPos < 40) currState = new SnakeFacingEastState(this);
+            if (xPos < -15) currState = new SnakeFacingEastState(this);
 
-            if (yPos < 5) currState = new SnakeFacingSouthState(this);
+            if (yPos < -20) currState = new SnakeFacingSouthState(this);
 
-            if (xPos > 700) currState = new SnakeFacingWestState(this);
+            if (xPos > 760) currState = new SnakeFacingWestState(this);
 
-            if (yPos > 430) currState = new SnakeFacingNorthState(this);
+            if (yPos > 440) currState = new SnakeFacingNorthState(this);
         }
         public void Draw(SpriteBatch spriteBatch)
         {

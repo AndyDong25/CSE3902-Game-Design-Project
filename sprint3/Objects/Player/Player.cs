@@ -142,11 +142,11 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             if (xPos < -15) xPos = -15;
             
-            if (yPos < 5) yPos = 5;
+            if (yPos < -20) yPos = -20;
             
-            if (xPos > 785) xPos = 785;
+            if (xPos > 760) xPos = 760;
             
-            if (yPos > 400) yPos = 400;            
+            if (yPos > 440) yPos = 440;            
         }
 
         public void UpdateCollider()
