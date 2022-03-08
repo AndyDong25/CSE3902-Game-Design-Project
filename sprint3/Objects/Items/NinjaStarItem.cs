@@ -14,8 +14,7 @@ namespace CSE3902_CSE3902_Project.Items
         public override void Activate(Player currentPlayer)
         {
             base.Activate(currentPlayer);
-            currentPlayer.hasNinjaStar = true;
-            activated = true;
+            currentPlayer.inventory["ninjaStar"]++;
         }
         public void setTexture()
         {

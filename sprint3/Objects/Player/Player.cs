@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using CSE3902_Project.Collisions;
 using CSE3902_Project.Objects.NinjaStar;
+using System.Collections.Generic;
 
 namespace CSE3902_CSE3902_Project.Objects.Player
 {
@@ -11,7 +12,6 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public IPlayerState currState;
         public int spriteIndex = 0;
         public int textureIndex = 0;
-        public bool hasNinjaStar = true;
         public int potionCount = 3;
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 3.0f;
@@ -23,7 +23,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public Rectangle collider2D;
 
         private Game1 Game { get; set; }
-        private NinjaStar ninjaStar { get; set; } = null;
+        public Dictionary<String, int> inventory;
 
         public int maxBombs { get; set; } = 10;
 
@@ -34,6 +34,9 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             yPos = position.Y;
             this.Game = game;
             collider2D = new Rectangle((int)xPos + 18, (int)yPos + 19, 24, 22);
+            // initialize inventory to 1 ninja star
+            inventory = new Dictionary<String, int>();
+            inventory.Add("ninjaStar", 1);
         }
 
         public bool IsDead()
@@ -76,9 +79,10 @@ namespace CSE3902_CSE3902_Project.Objects.Player
 
         public void UseItem()
         {
-            if (hasNinjaStar)
+            if (inventory["ninjaStar"] > 0)
             {
                 Game.map.AddNinjaStar(this);
+                inventory["ninjaStar"]--;
             }
         }
 
@@ -90,9 +94,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
 
         public void Update()
         {
-            if (ninjaStar != null) { ninjaStar.Update(); }
             currState.Update();
-            //staticBomb.Update();
             checkMapBounds();
             UpdateCollider();
         }
@@ -100,7 +102,6 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
-            if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
         }
 
         public void DrawSprite(SpriteBatch spriteBatch, Texture2D texture, Rectangle source, int XOffset = 0, int YOffset = 0)

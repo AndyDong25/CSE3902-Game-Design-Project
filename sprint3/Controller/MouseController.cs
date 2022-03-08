@@ -9,11 +9,11 @@ namespace CSE3902_CSE3902_Project.Controller
     class MouseController : IController
     {
         private Game1 game;
-        private Boolean previousLeft = false;
+        private Boolean previousLeft;
         public MouseController(Game1 game)
         {
-            this.game = game;      
-            
+            this.game = game;
+            previousLeft = true;
         }
         
         public void Update()
@@ -47,11 +47,8 @@ namespace CSE3902_CSE3902_Project.Controller
             else
             {
                 game.changedMap = false;
-            }
-                
-            //else if (mouseState.RightButton == ButtonState.Pressed)
-            
-            
+            }          
+            //else if (mouseState.RightButton == ButtonState.Pressed)     
         }
     }
 }

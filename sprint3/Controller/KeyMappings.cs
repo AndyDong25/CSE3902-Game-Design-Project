@@ -12,7 +12,7 @@ namespace CSE3902_CSE3902_Project.Controller
         private Player player1;
         private Player player2;
         private Dictionary<Keys, ICommand> mappings;
-        private List<Keys> acceptedStates;
+        private List<Keys> basicStates;
         private List<Keys> oncePerActionStates;
 
         public KeyMapping(Game1 game, Player player1, Player player2)
@@ -22,7 +22,7 @@ namespace CSE3902_CSE3902_Project.Controller
             this.player2 = player2;
 
             mappings = new Dictionary<Keys, ICommand>();
-            acceptedStates = new List<Keys>();
+            basicStates = new List<Keys>();
             oncePerActionStates = new List<Keys>();
 
             setDefaults();
@@ -65,10 +65,14 @@ namespace CSE3902_CSE3902_Project.Controller
         public void addCommand(Keys key, ICommand command)
         {
             mappings.Add(key, command);
-            acceptedStates.Add(key);
+            //acceptedStates.Add(key);
             if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.T || key == Keys.O ||key == Keys.D0 || key == Keys.D1)
             {
                 oncePerActionStates.Add(key);
+            }
+            else
+            {
+                basicStates.Add(key);
             }
         }
 
@@ -76,17 +80,13 @@ namespace CSE3902_CSE3902_Project.Controller
         {
             foreach (Keys k in pressedKeys)
             {
-                if (acceptedStates.Contains(k))
+                if (basicStates.Contains(k))
                 {
-                    if (oncePerActionStates.Contains(k))
-                    {
-                        if (!previousKeys.Contains(k)) {
-                            mappings[k].Execute();
-                        }
-                    }
-                    else {
-                        mappings[k].Execute();
-                    }
+                    mappings[k].Execute();
+                }
+                else if (oncePerActionStates.Contains(k) && !previousKeys.Contains(k))
+                {
+                    mappings[k].Execute();
                 }
             }
         }
