@@ -60,8 +60,6 @@ namespace CSE3902_Project.Map
         public List<ExplosionCross> explosionCrossList;
         public List<ExplosionCross> finishedExplosionCross;
         public List<Explosion> allExplosionsList;
-/*        public List<Explosion> explosionList;
-        public List<Explosion> finishedExplosions;*/
         public List<StaticBomb> staticBombList;
         public List<StaticBomb> finishedBombs;
         public List<NinjaStar> finishedNinjaStar;
@@ -129,16 +127,12 @@ namespace CSE3902_Project.Map
             background = new Background1();
             player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
             player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
-            
+
             staticBombList = new List<StaticBomb>();
-            //explosionList = new List<Explosion>();
             explosionCrossList = new List<ExplosionCross>();
             ninjaStarList = new List<NinjaStar>();
             destructibleBlockList = new List<DestructableBlockSprite>();
             indestructibleBlockList = new List<IndestructableBlockSprite>();
-
-/*            explosionList = player1.staticBomb.explosionList;
-            explosionList.AddRange(player2.staticBomb.explosionList);*/
 
             enemy = new Enemy(new Vector2(450, 300), game);
             verticalBat = new Bat(new Vector2(400, 140), game);
@@ -191,9 +185,6 @@ namespace CSE3902_Project.Map
                 currentObstacleList.Add(dBlock);
             }
 
-
-            //destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 290)));
-            //destructibleBlockList.Add(new DestructableBlockSprite(new Vector2(250, 330)));
             foreach (List<int> pos in m2.indestructableBlocks.Values)
             {
                 iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]));
@@ -206,8 +197,6 @@ namespace CSE3902_Project.Map
                 snakeList.Add(snake);
                 currentEnemyList.Add(snake);
             }
-            //indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 290)));
-            //indestructibleBlockList.Add(new IndestructableBlockSprite(new Vector2(290, 330)));
         }
 
         public void Update()
@@ -240,11 +229,6 @@ namespace CSE3902_Project.Map
             }
 
             finishedExplosionCross = new List<ExplosionCross>();
-/*            finishedExplosions = new List<Explosion>();
-            foreach (Explosion e in explosionList)
-            {
-                e.Update();
-            }*/
 
             foreach (ExplosionCross e in explosionCrossList)
             {
@@ -308,24 +292,20 @@ namespace CSE3902_Project.Map
 
         public void Draw()
         {
-            //graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             background.Draw(spriteBatch, new Vector2(0, 0));
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
 
-            //currentItemList[currItemIndex % currentItemList.Count].Draw(spriteBatch, new Vector2(150, 100));
             foreach (BasicItem i in currentItemList)
             {
                 i.Draw(spriteBatch, new Vector2(0, 0));
             }
 
-            //currentObstacleList[currObstacleIndex % currentObstacleList.Count].Draw(spriteBatch, new Vector2(350, 350));
             foreach (ISprite s in currentObstacleList)
             {
                 s.Draw(spriteBatch, new Vector2(0, 0));
             }
 
-            //currentEnemyList[currEnemyIndex % currentEnemyList.Count].Draw(spriteBatch);
             foreach (IEnemyState e in currentEnemyList)
             {
                 e.Draw(spriteBatch);
@@ -336,10 +316,6 @@ namespace CSE3902_Project.Map
                 s.Draw(spriteBatch, new Vector2(0, 0));
             }
 
-/*            foreach (Explosion e in explosionList)
-            {
-                e.Draw(spriteBatch, new Vector2(0, 0));
-            }*/
             foreach (ExplosionCross e in explosionCrossList)
             {
                 e.Draw(spriteBatch);
@@ -392,25 +368,16 @@ namespace CSE3902_Project.Map
 
             int xOffset = 0;
             int yOffset = 0;
-/*            int xOffset = -12;
-            int yOffset = -7;*/
-            // origin
-            //explosionList.Add(new Explosion(game, new Vector2(pos.X + xOffset, pos.Y + yOffset)));
             int x = (int)pos.X;
             int y = (int)pos.Y;
             eCross.originExplosion = new Explosion(game, new Vector2(x + xOffset, y + yOffset));
             // radius in each direction
             for (int i = 1; i < potionCount; i++)
             {
-/*                explosionList.Add(new Explosion(game, new Vector2(xOffset + 50 * i + x, yOffset + y)));
-                explosionList.Add(new Explosion(game, new Vector2(xOffset + x - (50 * i), yOffset + y)));
-                explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 50 * i + y)));
-                explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (50 * i))));*/
                 eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y)));
                 eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y)));
                 eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y)));
                 eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i))));
-
             }
             eCross.SetAllEplosions();
             explosionCrossList.Add(eCross);

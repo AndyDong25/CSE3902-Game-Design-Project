@@ -18,7 +18,16 @@ namespace CSE3902_CSE3902_Project.Sprites
             }
         }
 
-        public Rectangle collider2D { get; set; }
+        public Rectangle collider2D {
+            get
+            {
+                return collider2D;
+            }
+            set
+            {
+                collider2D = value;
+            }
+        }
 
         void Update();
         void Draw(SpriteBatch spriteBatch, Vector2 destination);

@@ -28,7 +28,6 @@ namespace CSE3902_Project.Objects.Bomb
             this.game = game;
             texture = ItemTextureStorage.Instance.getBombObjectSprite();
             this.pos = pos;
-            Debug.WriteLine(pos);
             timer = 200;
             /** 
              * TODO: find the actual hitbox
@@ -56,6 +55,7 @@ namespace CSE3902_Project.Objects.Bomb
                 game.map.tileMap.tileMap.Remove(pos);
                 game.map.finishedBombs.Add(this);
                 game.map.AddExplosions(pos, player.potionCount);
+                player.bombCount++;
             }
             if (!player.collider2D.Intersects(collider2D))
             {

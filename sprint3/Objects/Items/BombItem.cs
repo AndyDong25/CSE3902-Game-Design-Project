@@ -20,7 +20,11 @@ namespace CSE3902_CSE3902_Project.Items
         public override void Activate(Player currentPlayer)
         {
             base.Activate(currentPlayer);
-            currentPlayer.maxBombs++;
+            if (currentPlayer.inventory["bomb"] < currentPlayer.maxBombs)
+            {
+                currentPlayer.inventory["bomb"]++;
+                currentPlayer.bombCount++;
+            }
         }
 
 

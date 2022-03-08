@@ -14,9 +14,13 @@ namespace CSE3902_CSE3902_Project.Items
 
         public override void Activate(Player currentPlayer)
         {
-            boostedPlayer = currentPlayer;
-            currentPlayer.potionCount++;
-            activated = true;
+            base.Activate(currentPlayer);
+            if (currentPlayer.inventory["potion"] < currentPlayer.maxPotions)
+            {
+                boostedPlayer = currentPlayer;
+                currentPlayer.inventory["potion"]++;
+                currentPlayer.potionCount++;
+            }
         }
 
         public void setTexture()

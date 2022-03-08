@@ -14,7 +14,10 @@ namespace CSE3902_CSE3902_Project.Items
         public override void Activate(Player currentPlayer)
         {
             base.Activate(currentPlayer);
-            currentPlayer.inventory["ninjaStar"]++;
+            if (currentPlayer.inventory["ninjaStar"] < 3)
+            {
+                currentPlayer.inventory["ninjaStar"]++;
+            }
         }
         public void setTexture()
         {

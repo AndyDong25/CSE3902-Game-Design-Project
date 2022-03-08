@@ -318,7 +318,6 @@ namespace CSE3902_Project.Collisions
             {
                 if (p1.collider2D.Intersects(e.collider2D))
                 {
-                    Debug.WriteLine("Dead");
                     p1.collisionHandler = new PlayerExplosionCollisionHandler();
                     p1.collisionHandler.HandleCollision(p1);
                     //(p1.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p1);

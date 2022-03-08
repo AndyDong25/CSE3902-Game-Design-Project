@@ -15,6 +15,12 @@ namespace CSE3902_CSE3902_Project.Items
         public override void Activate(Player currentPlayer)
         {
             base.Activate(currentPlayer);
+            if (currentPlayer.inventory["shoe"] < currentPlayer.maxShoes)
+            {
+                boostedPlayer = currentPlayer;
+                currentPlayer.inventory["shoe"]++;
+                currentPlayer.speed++;
+            }
             boostedPlayer = currentPlayer;
             currentPlayer.speed += increaseAmount;
         }
