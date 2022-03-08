@@ -30,6 +30,12 @@
     <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Content\initial_map0.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\initial_map1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Content\json_data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

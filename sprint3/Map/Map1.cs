@@ -95,9 +95,9 @@ namespace CSE3902_Project.Map
         public List<NinjaStar> ninjaStarList;
         public List<IEnemyState> currentEnemyList;
         public int currEnemyIndex = 0;
-
+        public int map_index = 0;
         static Random rnd = new Random();
-
+        
         public Map1(Game1 game)
         {
             this.game = game;
@@ -117,7 +117,8 @@ namespace CSE3902_Project.Map
             //TODO change in the future
             //currentGameState = GameState.GamePlay;*/
             Map m2;
-            using (StreamReader file = File.OpenText(@"content\json_data.json"))
+            string map_name =  "content\\initial_map" + map_index.ToString() + ".json";
+            using (StreamReader file = File.OpenText(map_name))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 m2 = (Map)serializer.Deserialize(file, typeof(Map));
