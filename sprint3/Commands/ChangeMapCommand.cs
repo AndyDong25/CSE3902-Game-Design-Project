@@ -13,9 +13,16 @@ namespace CSE3902_CSE3902_Project.Commands
 
         public void Execute()
         {
-            
-            game.map_index = ++game.map_index % 2;
-            game.map.Initialize();
+            if (!game.changedMap)
+            {
+                game.map_index = ++game.map_index % 2;
+                game.Reset();
+                game.changedMap = !game.changedMap;
+            }
+            else
+            {
+                game.changedMap = !game.changedMap;
+            }
         }
     }
 }

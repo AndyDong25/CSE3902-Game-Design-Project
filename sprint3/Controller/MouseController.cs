@@ -29,7 +29,7 @@ namespace CSE3902_CSE3902_Project.Controller
 
             if (mouseState.RightButton == ButtonState.Pressed)
             {
-                if (!previousLeft)
+                if (!game.changedMap)
                 {
                     changeMap.Execute();
                     previousLeft = true;
@@ -46,7 +46,7 @@ namespace CSE3902_CSE3902_Project.Controller
             }
             else
             {
-                previousLeft = false;
+                game.changedMap = false;
             }
                 
             //else if (mouseState.RightButton == ButtonState.Pressed)
