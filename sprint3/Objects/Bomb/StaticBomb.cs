@@ -5,6 +5,7 @@ using CSE3902_CSE3902_Project.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
+using System.Diagnostics;
 
 namespace CSE3902_Project.Objects.Bomb
 {
@@ -27,11 +28,12 @@ namespace CSE3902_Project.Objects.Bomb
             this.game = game;
             texture = ItemTextureStorage.Instance.getBombObjectSprite();
             this.pos = pos;
+            Debug.WriteLine(pos);
             timer = 200;
             /** 
              * TODO: find the actual hitbox
              * */
-            collider2D = new Rectangle((int)pos.X + 2, (int)pos.Y + 6, 25, 34);
+            collider2D = new Rectangle((int)pos.X + 2, (int)pos.Y + 6, 35, 40);
             if (player.collider2D.Intersects(collider2D))
             {
                 passable = true;
@@ -41,10 +43,9 @@ namespace CSE3902_Project.Objects.Bomb
 
         public void Draw(SpriteBatch spriteBatch, Vector2 destination)
         {
-            Rectangle sourcerectangle = new Rectangle(0, 0, 1340, 1340);
-            Rectangle destinationrectangle = new Rectangle((int)pos.X, (int)pos.Y, 50, 50);
-            float rotation = .0f;
-            spriteBatch.Draw(texture, destinationrectangle, sourcerectangle, Color.White, rotation, new Vector2(100, 50), SpriteEffects.None, 0f);
+            Rectangle sourcerectangle = new Rectangle(0, 0, 255, 255);
+            Rectangle destinationrectangle = new Rectangle((int)pos.X, (int)pos.Y, 45, 45);
+            spriteBatch.Draw(texture, destinationrectangle, sourcerectangle, Color.White);
         }
 
         public void Update()
@@ -52,6 +53,7 @@ namespace CSE3902_Project.Objects.Bomb
             timer--;
             if (timer <= 0)
             {
+                game.map.tileMap.tileMap.Remove(pos);
                 game.map.finishedBombs.Add(this);
                 game.map.AddExplosions(pos, player.potionCount);
             }

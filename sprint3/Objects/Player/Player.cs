@@ -33,7 +33,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             xPos = position.X;
             yPos = position.Y;
             this.Game = game;
-            collider2D = new Rectangle((int)xPos + 18, (int)yPos + 19, 24, 26);
+            collider2D = new Rectangle((int)xPos + 18, (int)yPos + 19, 24, 22);
         }
 
         public bool IsDead()
@@ -65,7 +65,12 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             if (!isDead)
             {
-                Game.map.AddBomb(this, new Vector2(((int)xPos + 30) / 10 * 10, ((int)yPos + 30) / 10 * 10));
+                Vector2 tilePos = Game.map.tileMap.RoundToNearestTile(new Vector2((int)xPos + 12, (int)yPos + 15));
+                bool success = Game.map.tileMap.AddBombToTileMap(tilePos);
+                if (success)
+                {
+                    Game.map.AddBomb(this, tilePos);
+                }
             }
         }
 

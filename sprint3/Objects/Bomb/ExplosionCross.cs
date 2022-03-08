@@ -63,6 +63,7 @@ namespace sprint3.Objects.Bomb
         public void SetAllEplosions()
         {
             allExplosions = new List<Explosion>();
+            allExplosions.Add(originExplosion);
             allExplosions.AddRange(upExplosions);
             allExplosions.AddRange(downExplosions);
             allExplosions.AddRange(leftExplosions);

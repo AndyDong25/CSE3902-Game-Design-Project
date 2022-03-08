@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using sprint3.Objects.Bomb;
+using sprint3.Map;
 
 namespace CSE3902_Project.Map
 {
@@ -26,6 +27,7 @@ namespace CSE3902_Project.Map
         
         private Game1 game;
         public CollisionDetection collisionDetection;
+        public TileMap tileMap;
         public int Timeplayed;
         public int score;              
         //int TimeofGame = 0;
@@ -123,6 +125,7 @@ namespace CSE3902_Project.Map
             }
             
             collisionDetection = new CollisionDetection(this);
+            tileMap = new TileMap(game);
 
             background = new Background1();
             player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
@@ -388,8 +391,10 @@ namespace CSE3902_Project.Map
         {
             ExplosionCross eCross = new ExplosionCross(game);
 
-            int xOffset = -12;
-            int yOffset = -7;
+            int xOffset = 0;
+            int yOffset = 0;
+/*            int xOffset = -12;
+            int yOffset = -7;*/
             // origin
             //explosionList.Add(new Explosion(game, new Vector2(pos.X + xOffset, pos.Y + yOffset)));
             int x = (int)pos.X;
@@ -402,10 +407,10 @@ namespace CSE3902_Project.Map
                 explosionList.Add(new Explosion(game, new Vector2(xOffset + x - (50 * i), yOffset + y)));
                 explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 50 * i + y)));
                 explosionList.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (50 * i))));*/
-                eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 50 * i + x, yOffset + y)));
-                eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (50 * i), yOffset + y)));
-                eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 50 * i + y)));
-                eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (50 * i))));
+                eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y)));
+                eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y)));
+                eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y)));
+                eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i))));
 
             }
             eCross.SetAllEplosions();
