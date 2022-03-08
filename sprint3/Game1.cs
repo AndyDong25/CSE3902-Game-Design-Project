@@ -31,10 +31,10 @@ namespace CSE3902_CSE3902_Project
             GameOver = 2,
             GamePause = 3,
         }*/
-
+        
         public Map1 map;
         public Vector2 screenSize;
-        
+        public int map_index = 0;
         public Game1()
         {         
             graphics = new GraphicsDeviceManager(this);
