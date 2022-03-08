@@ -46,7 +46,7 @@ namespace CSE3902_CSE3902_Project.Objects.Items
             potionItemTexture = content.Load<Texture2D>("potionItemSprite");
             shoeItemTexture = content.Load<Texture2D>("shoeSprite");
             explosionTexture = content.Load<Texture2D>("ExplosionSpriteSheet");
-            bombObjectTexture = content.Load<Texture2D>("BigBomb");
+            bombObjectTexture = content.Load<Texture2D>("bomb2");
 
             // load other item sprite sheets
         }
