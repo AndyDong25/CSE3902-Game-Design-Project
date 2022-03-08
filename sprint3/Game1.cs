@@ -65,6 +65,7 @@ namespace CSE3902_CSE3902_Project
             
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, map.player1, map.player2));
+            controllerList.Add(new MouseController(this));
             //controllerList.Add(new MouseController(this));
         }
 

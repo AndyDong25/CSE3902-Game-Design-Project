@@ -95,7 +95,7 @@ namespace CSE3902_Project.Map
         public int currEnemyIndex = 0;
         public int map_index = 0;
         static Random rnd = new Random();
-
+        
         public Map1(Game1 game)
         {
             this.game = game;
