@@ -24,7 +24,7 @@ namespace CSE3902_Project.Sprites.Decorations
             collider2D = new Rectangle((int)pos.X, (int)pos.Y, 35, 50);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
+        public void Draw(SpriteBatch spriteBatch)
         {
             texture = DecorationTextureStorage.Instance.getTree2Sprite();
             Rectangle sourceRectangle = SpriteConstants.TREE2;

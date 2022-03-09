@@ -32,6 +32,10 @@ namespace CSE3902_CSE3902_Project
 
         public int invincibilityTimer;
         public bool invincible;
+
+        private int animationSpeed;
+        private int moveAmount;
+        private int direction;
         public BasicItem(Vector2 position, Game1 game)
         {
             xPos = position.X;
@@ -39,8 +43,12 @@ namespace CSE3902_CSE3902_Project
             gameRef = game;
             
             collider2D = new Rectangle((int)xPos, (int)yPos, 35, 35);
-            invincibilityTimer = 20;
+            invincibilityTimer = 25;
             invincible = true;
+
+            animationSpeed = 24;
+            moveAmount = 0;
+            direction = 1;
         }
 
         public virtual void Activate(Player currentPlayer)
@@ -57,6 +65,17 @@ namespace CSE3902_CSE3902_Project
 
         public void Update()
         {
+            if (animationSpeed % 8 == 0)
+            {
+                moveAmount += direction;
+            }
+            if (--animationSpeed <= 0)
+            {
+                animationSpeed = 24;
+                moveAmount = 0;
+                direction *= -1;
+            }
+
             invincibilityTimer--;
             if (invincibilityTimer <= 0)
             {
@@ -90,6 +109,8 @@ namespace CSE3902_CSE3902_Project
         public void Destroy()
         {
             gameRef.map.finishedItems.Add(this);
+/*            gameRef.map.currentItemList.Remove(this);
+            gameRef.map.allObjects.Remove(this);*/
             
             // this is an optional implmentation to take place if we don't want to call !activated in the Draw function
             
@@ -109,11 +130,11 @@ namespace CSE3902_CSE3902_Project
             }
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (!activated)
             {
-                Rectangle destination = new Rectangle((int)xPos, (int)yPos, 35, 35);
+                Rectangle destination = new Rectangle((int)xPos + 2, (int)yPos + 2 + moveAmount, 35, 35);
                 spriteBatch.Draw(texture, destination, sourceRec, Color.White);
             }
         }

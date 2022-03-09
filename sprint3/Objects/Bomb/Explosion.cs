@@ -29,7 +29,7 @@ namespace CSE3902_Project.Objects.Bomb
             collider2D = new Rectangle((int)pos.X + 2, (int)pos.Y + 2, 36, 36);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
+        public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destinationRec = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
             Rectangle sourceRec = SpriteConstants.EXPLOSION;

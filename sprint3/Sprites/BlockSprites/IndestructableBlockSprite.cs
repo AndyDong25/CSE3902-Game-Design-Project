@@ -22,7 +22,7 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
             collider2D = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
+        public void Draw(SpriteBatch spriteBatch)
         {
             texture = DecorationTextureStorage.Instance.getIndestructibleBlockSprite();
             Rectangle sourceRectangle = SpriteConstants.INDESTRUCTIBLE_BLOCK;

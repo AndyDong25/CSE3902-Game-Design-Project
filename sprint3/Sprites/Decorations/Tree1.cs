@@ -24,7 +24,7 @@ namespace CSE3902_Project.Sprites.Decorations
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
+        public void Draw(SpriteBatch spriteBatch)
         {
             texture = DecorationTextureStorage.Instance.getTree1Sprite();
             Rectangle sourceRectangle = SpriteConstants.TREE1;

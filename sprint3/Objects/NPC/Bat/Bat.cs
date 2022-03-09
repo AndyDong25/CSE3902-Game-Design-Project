@@ -3,10 +3,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
 using System;
+using CSE3902_CSE3902_Project.Sprites;
 
 namespace CSE3902_Project.Objects.NPC.Bat
 {
-    public class Bat : IEnemyState
+    public class Bat : IEnemyState, ICollideable, ISprite
     {
         public IEnemyState currState;
         public float xPos, yPos, previousXPos, previousYPos;
@@ -97,6 +98,11 @@ namespace CSE3902_Project.Objects.NPC.Bat
         {
             previousXPos = xPos;
             previousYPos = yPos;
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,14 +1,12 @@
 ﻿using CSE3902_CSE3902_Project;
+using CSE3902_CSE3902_Project.Sprites;
 using CSE3902_Project.Objects.Bomb;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace sprint3.Objects.Bomb
 {
-    public class ExplosionCross
+    public class ExplosionCross : ISprite
     {
         public Explosion originExplosion;
         public List<Explosion> upExplosions;
@@ -31,22 +29,22 @@ namespace sprint3.Objects.Bomb
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            originExplosion.Draw(spriteBatch, new Vector2(0, 0));
+            originExplosion.Draw(spriteBatch);
             foreach (Explosion e in upExplosions)
             {
-                e.Draw(spriteBatch, new Vector2(0, 0));
+                e.Draw(spriteBatch);
             }
             foreach (Explosion e in downExplosions)
             {
-                e.Draw(spriteBatch, new Vector2(0, 0));
+                e.Draw(spriteBatch);
             }
             foreach (Explosion e in leftExplosions)
             {
-                e.Draw(spriteBatch, new Vector2(0, 0));
+                e.Draw(spriteBatch);
             }
             foreach (Explosion e in rightExplosions)
             {
-                e.Draw(spriteBatch, new Vector2(0, 0));
+                e.Draw(spriteBatch);
             }
         }
 

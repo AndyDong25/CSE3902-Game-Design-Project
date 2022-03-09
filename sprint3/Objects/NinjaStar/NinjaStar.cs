@@ -5,10 +5,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
 using System;
+using CSE3902_CSE3902_Project.Sprites;
 
 namespace CSE3902_Project.Objects.NinjaStar
 {
-    public class NinjaStar: ICollideable
+    public class NinjaStar: ICollideable, ISprite
     {
         private Player player;
         public Boolean hit = false;
@@ -34,13 +35,11 @@ namespace CSE3902_Project.Objects.NinjaStar
             
         }
 
-        public void DrawSprite(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             Texture2D ninjaStarSprite = ItemTextureStorage.Instance.getNinjaStarSprite();
             Rectangle destination = new Rectangle((int)position.X + 30, (int)position.Y + 25, 45, 45);
             spriteBatch.Draw(ninjaStarSprite, destination, sourceRec, Color.White, rotation, new Vector2(ninjaStarSprite.Width / 2, ninjaStarSprite.Height / 2), SpriteEffects.None, 0f);
-            //spriteBatch.Draw(ninjaStarSprite, new Vector2(destination.X, destination.Y), sourceRec, Color.White, rotation, new Vector2(destination.X / 2, destination.Y / 2), 1, SpriteEffects.None, 0f);
-            //spriteBatch.Draw(_texture, Position, null, Color.White, _rotation, Origin, 1, SpriteEffects.None, 0f);
             UpdateCollider();
         }
         public void Update()
@@ -68,14 +67,9 @@ namespace CSE3902_Project.Objects.NinjaStar
         }
 
         public void UpdateCollider()
-        {
-            
-            
+        {     
                 collider2D.X = (int)position.X + 3;
-                collider2D.Y = (int)position.Y + 3;
-                 
-
-            
+                collider2D.Y = (int)position.Y + 3;     
         }
         /*   Jiachen zhang used for de_bug, I will delete this after Im sure it is useless
         public void SetHitTo(Boolean flag)

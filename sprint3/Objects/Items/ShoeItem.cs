@@ -18,7 +18,7 @@ namespace CSE3902_CSE3902_Project.Items
             if (currentPlayer.inventory["shoe"] < currentPlayer.maxShoes)
             {
                 boostedPlayer = currentPlayer;
-                currentPlayer.inventory["shoe"]++;
+                currentPlayer.inventory["shoe"] ++;
                 currentPlayer.speed++;
             }
             boostedPlayer = currentPlayer;

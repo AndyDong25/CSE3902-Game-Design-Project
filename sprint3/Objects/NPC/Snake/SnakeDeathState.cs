@@ -24,6 +24,7 @@ namespace CSE3902_Project.Objects.NPC.Snake
 
         public void Update()
         {
+
         }
 
         public void MoveDown()

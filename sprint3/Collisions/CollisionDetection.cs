@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using CSE3902_CSE3902_Project;
 using CSE3902_CSE3902_Project.Objects.Player;
 using CSE3902_CSE3902_Project.Sprites;
@@ -29,12 +28,11 @@ namespace CSE3902_Project.Collisions
         {
             Player p1 = map.player1;
             Player p2 = map.player2;
-            Enemy e1 = map.enemy;
             //List<Explosion> exList = map.explosionList;
             List<ExplosionCross> eCrossList = map.explosionCrossList;
             map.GetAllExplosions();
             List<Explosion> explosionList;
-            List<IEnemyState> enemyList = map.currentEnemyList;
+            List<ISprite> enemyList = map.currentEnemyList;
             List<StaticBomb> staticBombList = map.staticBombList;
             List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
             List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
@@ -64,14 +62,6 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler.HandleCollision(p2);
                 }
 
-                foreach (Enemy e in map.enemyList)
-                {
-                    if (b.collider2D.Intersects(e.collider2D))
-                    {
-                        e.collisionHandler = new  EnemyBombCollisionHandler();
-                        e.collisionHandler.HandleCollision(e);
-                    }
-                }
                 foreach (Bat bt in map.batList)
                 {
                     if (b.collider2D.Intersects(bt.collider2D))
@@ -151,11 +141,6 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler = new PlayerBlockCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
                 }
-                if (e1.collider2D.Intersects(s.collider2D))
-                {
-                    e1.collisionHandler = new EnemyBlockCollisionHandler();
-                    e1.collisionHandler.HandleCollision(e1);
-                }
                 foreach (Bat b in map.batList)
                 {
                     if (b.collider2D.Intersects(s.collider2D))
@@ -171,24 +156,6 @@ namespace CSE3902_Project.Collisions
                         sn.collisionHandler = new SnakeCollisionHandler();
                         sn.collisionHandler.HandleCollision(sn);
                     }
-                }
-            }
-
-            foreach(Enemy e in map.enemyList)
-            {
-                if (p1.collider2D.Intersects(e.collider2D))
-                {
-                    p1.collisionHandler = new PlayerBlockCollisionHandler();
-                    p1.collisionHandler.HandleCollision(p1);
-                    e.collisionHandler = new EnemyCollisionHandler();
-                    e.collisionHandler.HandleCollision(e);
-                }
-                if (p2.collider2D.Intersects(e.collider2D))
-                {
-                    p2.collisionHandler = new PlayerBlockCollisionHandler();
-                    p2.collisionHandler.HandleCollision(p2);
-                    e.collisionHandler = new EnemyCollisionHandler();
-                    e.collisionHandler.HandleCollision(e);
                 }
             }
 
@@ -330,9 +297,6 @@ namespace CSE3902_Project.Collisions
                 }
                 // bomb-explosion interactions below
                 // enemy-explosion interactions below
-                foreach (IEnemyState enemy in enemyList)
-                {
-                }
                 foreach (StaticBomb b in staticBombList)
                 {
                     if (e.collider2D.Intersects(b.collider2D))
@@ -343,6 +307,22 @@ namespace CSE3902_Project.Collisions
                         b.collisionHandler = new BombExplosionCollisionHandler();
                         b.collisionHandler.HandleCollision(b);
                         //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
+                    }
+                }
+                foreach (Bat b in map.batList)
+                {
+                    if (e.collider2D.Intersects(b.collider2D))
+                    {
+                        b.collisionHandler = new BatExplosionCollisionHandler();
+                        b.collisionHandler.HandleCollision(b);
+                    }
+                }
+                foreach (Snake s in map.snakeList)
+                {
+                    if (e.collider2D.Intersects(s.collider2D))
+                    {
+                        s.collisionHandler = new SnakeExplosionCollisionHandler();
+                        s.collisionHandler.HandleCollision(s);
                     }
                 }
                 foreach (BasicItem item in currentItemList)

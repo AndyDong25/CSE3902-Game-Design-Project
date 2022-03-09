@@ -30,6 +30,6 @@ namespace CSE3902_CSE3902_Project.Sprites
         }
 
         void Update();
-        void Draw(SpriteBatch spriteBatch, Vector2 destination);
+        void Draw(SpriteBatch spriteBatch);
     }
 }

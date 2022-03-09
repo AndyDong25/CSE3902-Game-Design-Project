@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using CSE3902_Project.Collisions;
-using CSE3902_Project.Objects.NinjaStar;
 using System.Collections.Generic;
 using CSE3902_CSE3902_Project.Sprites;
 
@@ -20,7 +19,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
 
         public int maxBombs { get; set; } = 10;
         public int maxPotions { get; set; } = 8;
-        public int maxShoes { get; set; } = 9;
+        public int maxShoes { get; set; } = 8;
 
 
         public float xPos, yPos, previousXPos, previousYPos;
@@ -135,7 +134,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
                     break;
                 // knight
                 case 1:
-                    speed = 10.0f;
+                    speed = 9.0f;
                     potionCount = 4;                 
                     framePerStep = 3;
                     break;

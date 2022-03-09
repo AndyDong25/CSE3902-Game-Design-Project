@@ -3,12 +3,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
 using System;
+using CSE3902_CSE3902_Project.Sprites;
 
 namespace CSE3902_Project.Objects.NPC.Snake
 {
-    public class Snake : IEnemyState
+    public class Snake : IEnemyState, ICollideable, ISprite
     {
-        private Game1 game;
+        public Game1 game;
         public IEnemyState currState;
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 2.0f;

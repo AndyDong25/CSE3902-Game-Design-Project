@@ -26,7 +26,7 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
             collider2D = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
+        public void Draw(SpriteBatch spriteBatch)
         {
             texture = DecorationTextureStorage.Instance.getDestructibleBlockSprite();
             Rectangle sourceRectangle = SpriteConstants.DESTRUCTIBLE_BLOCK;
@@ -37,6 +37,8 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
 
         public void Remove()
         {
+/*            game.map.currentObstacleList.Remove(this);
+            game.map.allObjects.Remove(this);*/
             game.map.finishedObstacles.Add(this);
             game.map.AddItem(pos);
         }
