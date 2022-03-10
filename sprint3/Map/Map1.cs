@@ -17,6 +17,7 @@ using System.IO;
 using Newtonsoft.Json;
 using sprint3.Objects.Bomb;
 using sprint3.Map;
+using sprint3.Sprites.Decorations;
 
 namespace CSE3902_Project.Map
 {
@@ -45,6 +46,7 @@ namespace CSE3902_Project.Map
         public IndestructableBlockSprite iBlock;
         public Tree1 tree1;
         public Tree2 tree2;
+        public Mashroom1 mashroom1;
 
         public BasicItem bombItem;
         public BasicItem ghostItem;
@@ -139,6 +141,7 @@ namespace CSE3902_Project.Map
          
             tree1 = new Tree1(new Vector2(330, 250));
             tree2 = new Tree2(new Vector2(370, 250));
+            mashroom1 = new Mashroom1(new Vector2(300, 300));
 
             // spawn all items initially for testing purposes
             bombItem = new BombItem(new Vector2(150, 100), game);
@@ -162,6 +165,7 @@ namespace CSE3902_Project.Map
             
             currentObstacleList.Add(tree1);
             currentObstacleList.Add(tree2);
+            currentObstacleList.Add(mashroom1);
 
             snakeList = new List<Snake>();
             

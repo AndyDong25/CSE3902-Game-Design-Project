@@ -186,6 +186,7 @@ namespace CSE3902_CSE3902_Project
         public static Rectangle TREE2 = new Rectangle(120, 40, 550, 560);
         public static Rectangle INDESTRUCTIBLE_BLOCK = new Rectangle(0, 0, 250, 250);
         public static Rectangle DESTRUCTIBLE_BLOCK = new Rectangle(0, 0, 340, 340);
+        public static Rectangle MASHROOM1 = new Rectangle(0, 0, 800, 800);
 
     }
 }
