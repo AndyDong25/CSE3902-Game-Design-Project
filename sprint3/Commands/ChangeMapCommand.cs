@@ -12,7 +12,7 @@
         {
             if (!game.changedMap)
             {
-                game.map_index = ++game.map_index % 2;
+                game.map_index = ++game.map_index % 4;
                 game.Reset();
                 game.changedMap = !game.changedMap;
             }
