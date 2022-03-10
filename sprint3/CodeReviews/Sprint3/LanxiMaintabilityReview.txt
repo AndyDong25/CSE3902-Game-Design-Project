@@ -1,9 +1,13 @@
 ﻿Reviewer - Lanxi Li
-Date - 2/18/22
+Date - 3/10/22
 CSE3902_Project
-File - NinjaStarItem.cs
-File Author - Devan Mallory
-Time to Complete - 10 minutes
+File - CollisionDetection.cs
+File Author - Everyone
+Time to Complete - 15 minutes
 
 Comments
-	- Good
+	- Add some helper methods to reduce nested loops
+	- Medium coupling
+	- Good extensibility 
+		- We can add new functionality easily and don't need to fix lots of code we already done. 
+
