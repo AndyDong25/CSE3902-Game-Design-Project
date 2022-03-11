@@ -1,13 +1,11 @@
 ﻿Reviewer - Tianle Chen
 Date - 3/10/22
 CSE3902_Project
-File - KeyMapping.cs
+File - Map1.cs
 File Author - Andy Dong, Tianle Chen
 Time to Complete - 20 minutes
 
-Comments
-	- We create lots of objects and lists in this class, and used many foreach look to check through every object we hope to update in the map which is a bit messy I think.
-	Probably we can use some helper functions for the foreach part. 
+Comments 
 	- We didn't separate the object that "finish-able" or "static (couldn't disappear once set it in the map)". It would take two forloops for checking if something would be diappeared.
 	I am thinkng if it would be better for us to catogorize them.
 	- For now we are using a map_index to changing map, but it would be better to store the map info in a other data type such as Dir or creating a class for determining what the map
