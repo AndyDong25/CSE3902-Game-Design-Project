@@ -1,25 +1,25 @@
 ﻿Reviewer - Devan Mallory
-Date - 2/20/22
+Date - 3/11/22
 CSE3902_Project
-File - KeyboardController.cs
-File Author - Andy Dong
+File - CollisionDetection.cs
+File Author - Everyone
 Time to Complete - 20 minutes
 
-File looks good and clean, and implements all methods of the interface as expected.
+
+Overall:
+
+For the content and expectation of this file, the code quality is good, and I belive it meets the requirements for this class in terms of
+of the desired functionality. However, in terms of maintanability, there are some potential refactoring strategies that
+could make the code a little bit easier to maintain, since it is a bit spread out right now. Specifically, I think it could be a good idea to seperate out all of our for loops into a single
+call that can be repeatedly be called for all of for loops, which would make things much more maintanable, since adding new collisions can just be a single call to that function, instead of 
+a for loop with lots of lines of code.
 
 
 Comments:
 	
-	-Capitalization is good, style correctly uses Camelcase and PascalCase as specified.
+	-Again, capitalization is good, style correctly uses Camelcase and PascalCase as specified.
+	-As mentioned in the above section, code redundancy and total length of the file code hurts maintanability, but it can be corrected, or can be left as is.
+	I say this because I have seen code bases that have awful maintanability, but are used professionally (i.e, OpenCV, Tensorflow)
 	
-	-Still has inconsistant namespace importing, which could use some refactoring, but that is moreso an 
-	issue for the files that are using alternate namespaces, and not for this file in particular.
-	
-	-If the keyboard state is private and can only be called in the Update() method, is there really 
-	a reason to have a seperate variable for it? It is good for readability, but could be
-	affecting performance a tiny amount. But since the amount affected is probably minimal it's fine,
-	just wanted to point it out for discussion purposes.
-
-	-Very easy to maintain, as it is very encapsulated and privated, as long as the above issues are discussed.
 
 

@@ -27,6 +27,7 @@ namespace CSE3902_Project.Objects.NPC
 
         private static Texture2D batTexture = null;
         private static Texture2D snakeTexture = null;
+        private static Texture2D alienTexture = null;
 
         private EnemyTextureStorage()
         {
@@ -41,6 +42,8 @@ namespace CSE3902_Project.Objects.NPC
             deadPlayerTexture = content.Load<Texture2D>("TombstoneSprite");
             batTexture = content.Load<Texture2D>("batSpriteSheet");
             snakeTexture = content.Load<Texture2D>("snakeSpriteSheet");
+            
+
         }
 
         public Texture2D getRedBoySpriteSheet()
@@ -71,5 +74,15 @@ namespace CSE3902_Project.Objects.NPC
         {
             return snakeTexture;
         }
+
+
+
+        public Texture2D getAlienSprite()
+        {
+            return null;
+        }
+
+
+
     }
 }
