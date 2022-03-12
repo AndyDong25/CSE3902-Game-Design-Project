@@ -36,6 +36,12 @@
     <None Update="Content\initial_map1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Content\initial_map2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\initial_map3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Content\json_data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -109,6 +109,8 @@ namespace CSE3902_Project.Map
             public Dictionary<String,List<int>> destructableBlocks;
             public Dictionary<String, List<int>> indestructableBlocks;
             public Dictionary<String, List<int>> snakes;
+            public Dictionary<String, List<int>> tree1;
+            public Dictionary<String, List<int>> tree2;
         }
         public void Initialize()
         {
@@ -139,8 +141,8 @@ namespace CSE3902_Project.Map
             horizontalBat = new Bat(new Vector2(400, 380), game);
             horizontalBat.currState = new BatFacingEastState(horizontalBat);        
          
-            tree1 = new Tree1(new Vector2(330, 250));
-            tree2 = new Tree2(new Vector2(370, 250));
+            // tree1 = new Tree1(new Vector2(330, 250));
+            // tree2 = new Tree2(new Vector2(370, 250));
             mashroom1 = new Mashroom1(new Vector2(300, 300));
 
             // spawn all items initially for testing purposes
@@ -163,8 +165,8 @@ namespace CSE3902_Project.Map
 
             currentObstacleList = new List<ISprite>();
             
-            currentObstacleList.Add(tree1);
-            currentObstacleList.Add(tree2);
+            //currentObstacleList.Add(tree1);
+            //currentObstacleList.Add(tree2);
             currentObstacleList.Add(mashroom1);
 
             snakeList = new List<Snake>();
@@ -176,7 +178,16 @@ namespace CSE3902_Project.Map
             currentEnemyList = new List<ISprite>();
             currentEnemyList.Add(verticalBat);
             currentEnemyList.Add(horizontalBat);
-            
+            foreach (List<int> pos in m2.tree1.Values)
+            {
+                tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
+                currentObstacleList.Add(tree1);
+            }
+            foreach (List<int> pos in m2.tree2.Values)
+            {
+                tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
+                currentObstacleList.Add(tree2);
+            }
 
             foreach (List<int> pos in m2.destructableBlocks.Values){
                 dBlock = (new DestructableBlockSprite(game, new Vector2(pos[0], pos[1])));
