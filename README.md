@@ -1,10 +1,10 @@
-# CSE3902 - Sprint 2
-Group project for CSE3902 - Sprint 3 
+# CSE3902
+Group project for CSE3902
 
-Team Random Forest By Andy Dong, Alex Zhang, Devan Mallory, Tianle Chen, Lianxi Li
+By Andy Dong, Alex Zhang, Devan Mallory, Tianle Chen, Lianxi Li
 
 
-The Game: Bomberman - a spin-off of the popular 2D game Bomberman, a multiplayer game where 2-4 players compete against each other inside a small explosive arena to be the last one standing. Players compete by dropping bombs that will eliminate other players if they get too close to the radius. In addition, players can gain a competitive advantage by collecting certain items that are spawned when blocks in the arena are destroyed by nearby bombs.
+Idea: Bomberman - a clone of the popular 2D game Bomberman, a multiplayer game where 2-4 players compete against each other inside a small explosive arena to be the last one standing. Players compete by dropping bombs that will eliminate other players if they get too close to the radius. In addition, players can gain a competitive advantage by collecting certain items that are spawned when blocks in the arena are destroyed by nearby bombs.
 
 
 # Running the Game
@@ -16,9 +16,12 @@ To run this game, open the .sln file with Visual Studio, and press "Start withou
 # Controls
 
 General:
+
   Q: Quit the Game
   
   R: Reset the Game
+
+  Change Map: Right Mouse Click
 
 Player 1: 
 
@@ -33,6 +36,8 @@ Player 1:
   Drop Bomb: Space
 
   Auto Death: G
+
+  Use Item: D1
 
   Change Character: E
 
@@ -50,20 +55,21 @@ Player 2:
 
   Auto Death: L
 
+  Use Item: D0
+
   Change Character: P
 
+Gameplay:
+
+  Try to eliminate other player by hitting them with bomb explosion, while avoiding enemies and explosions. Destroy crates and collect items to increase stats or obtain special abilities.
+
+  Special Items: 
+	Goblin: Transform to Goblin Character - bomb explosion has radius of 10
+	Knight: Transform to Knight Character - super speed
+	Ghost: Transform to Ghost Character - reversed movement and better stats
+	Ninja Star: Usable item stored in inventory - triggers bomb explosion on contact
+
 Other:
-
-  O: Switch NPC
-  
-  T: Switch Decoration
-  
-  I. Swtich Item
-  
-  
-  # Other things to note:
-  
-
     
   Team responsibility spreadsheet: https://docs.google.com/spreadsheets/d/1C56Z-13CeJ7uicKJGbocY6O8JArwAjoMr41DtI3Xig4/edit#gid=0
   
