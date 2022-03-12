@@ -13,7 +13,7 @@ namespace CSE3902_Project.Objects.NPC.Alien
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 4.5f;
         public float framePerStep = 3;
-        public int timeCounter = 150;
+        public int timeCounter = 300;
         public Boolean isDead = false;
 
         public ICollisionHandler collisionHandler;

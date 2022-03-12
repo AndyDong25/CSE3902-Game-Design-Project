@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System;
 
 namespace CSE3902_Project.Objects.NPC.Alien
 {
@@ -9,21 +10,25 @@ namespace CSE3902_Project.Objects.NPC.Alien
     {
         private int framesLeft;
         private int frameIndex;
-        private int timeCounter;
+        
         private Alien alien;
+
+        Random actionSelect = new Random();
+        int actionProba;
+
 
         private static List<Rectangle> mySources = SpriteConstants.ALIEN_WEST;
 
         public AlienFacingWestState(Alien alien)
         {
-            timeCounter = alien.timeCounter + 40;
+            
             this.alien = alien;
             framesLeft = (int)alien.framePerStep;
             frameIndex = 0;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            Texture2D texture = EnemyTextureStorage.Instance.getBatSprite();
+            Texture2D texture = EnemyTextureStorage.Instance.getAlienSprite();
             Rectangle source = mySources[frameIndex];
             alien.DrawSprite(spriteBatch, texture, source);
         }
@@ -51,8 +56,8 @@ namespace CSE3902_Project.Objects.NPC.Alien
 
         public void Update()
         {
-            timeCounter--;
-            if (timeCounter == 0)
+            actionProba = actionSelect.Next(0, 10);
+            if (actionProba > 8)
             {
                 alien.currState = new AlienFacingEastState(alien);
             }
