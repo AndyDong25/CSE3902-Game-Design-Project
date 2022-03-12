@@ -1,10 +1,10 @@
 # CSE3902 - Sprint 2
-Group project for CSE3902 - Sprint 2
+Group project for CSE3902 - Sprint 3 
 
-By Andy Dong, Alex Zhang, Devan Mallory, Tianle Chen, Lianxi Li
+Team Random Forest By Andy Dong, Alex Zhang, Devan Mallory, Tianle Chen, Lianxi Li
 
 
-Idea: Bomberman - a clone of the popular 2D game Bomberman, a multiplayer game where 2-4 players compete against each other inside a small explosive arena to be the last one standing. Players compete by dropping bombs that will eliminate other players if they get too close to the radius. In addition, players can gain a competitive advantage by collecting certain items that are spawned when blocks in the arena are destroyed by nearby bombs.
+The Game: Bomberman - a spin-off of the popular 2D game Bomberman, a multiplayer game where 2-4 players compete against each other inside a small explosive arena to be the last one standing. Players compete by dropping bombs that will eliminate other players if they get too close to the radius. In addition, players can gain a competitive advantage by collecting certain items that are spawned when blocks in the arena are destroyed by nearby bombs.
 
 
 # Running the Game
@@ -63,7 +63,7 @@ Other:
   
   # Other things to note:
   
-    Collisions have not been implemented yet as this is sprint 2 still, so item and bomb functionality is partially unavalible
+
     
   Team responsibility spreadsheet: https://docs.google.com/spreadsheets/d/1C56Z-13CeJ7uicKJGbocY6O8JArwAjoMr41DtI3Xig4/edit#gid=0
   
