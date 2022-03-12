@@ -1,13 +1,15 @@
 ﻿Reviewer - Jiachen zhang (Alex)
-Date - 2/21/22
+Date - 3/11/2022
 CSE3902_Project
-File - Map.cs
-File Author - Jiachen zhang, Andy Dong
-Time to Complete - 15 minutes
+File - Map1.cs
+File Author - Jiachen; Devan; Andy; Tianle; Lanxi
+Time to Complete - 35 minutes
 
 
 Comments
-	-Medium_high readable
-	-We commented out too much things that makes the code slightly difficult to read
-	-But most of the commented out code are useful in the future, like: Time, Ispusle, GameState, 
-	-If we'll have more code in here, we will create a void method to add these things. But so far not really affecting the readability.
+	-highly readable
+	-We use the class to initialize the whole map, at first it is short and very clearly to read. 
+	-But after our update, more variables and lists were declared, it is slightly not friendly to readers.
+	-We should create a void method like LoadLists() to make the class shorter, or AddObjects in the same class, so that it is more readable and maintanable. 
+	-Most of commented out code were writeen by me, I think in the future it will be useful and necessary for the class. 
+	-Overall, I think we can have some comment, plaintext do help the reader understand why we are doing this and that.
