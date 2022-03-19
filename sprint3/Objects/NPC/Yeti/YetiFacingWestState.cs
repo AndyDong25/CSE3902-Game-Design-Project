@@ -13,9 +13,6 @@ namespace CSE3902_Project.Objects.NPC.Yeti
 
         private Yeti yeti;
 
-        Random actionSelect = new Random();
-        int actionProba;
-
 
         private static List<Rectangle> mySources = SpriteConstants.YETI_WEST;
 

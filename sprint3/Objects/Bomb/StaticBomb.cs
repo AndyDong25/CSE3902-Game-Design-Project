@@ -70,11 +70,11 @@ namespace CSE3902_Project.Objects.Bomb
             timer--;
             if (timer <= 0)
             {
-                game.map.tileMap.tileMap.Remove(pos);
-                game.map.finishedBombs.Add(this);
+                game.currentMap.tileMap.tileMap.Remove(pos);
+                game.currentMap.finishedBombs.Add(this);
 /*                game.map.staticBombList.Remove(this);
                 game.map.allObjects.Remove(this);*/
-                game.map.AddExplosions(pos, player.potionCount, directionChained);
+                game.currentMap.AddExplosions(pos, player.potionCount, directionChained);
                 player.bombCount++;
             }
         }
@@ -87,11 +87,11 @@ namespace CSE3902_Project.Objects.Bomb
         // boundary case where bomb is dropped on top of a player - needs to disable the bomb collider until player leaves collider range
         private void CheckInitialBombColliderState()
         {
-            if (game.map.player1.collider2D.Intersects(collider2D))
+            if (game.currentMap.player1.collider2D.Intersects(collider2D))
             {
                 p1Passable = true;
             }
-            if (game.map.player2.collider2D.Intersects(collider2D))
+            if (game.currentMap.player2.collider2D.Intersects(collider2D))
             {
                 p2Passable = true;
             }
@@ -103,11 +103,11 @@ namespace CSE3902_Project.Objects.Bomb
             // only need to check if bomb is a player is still in the bomb
             if (p1Passable || p2Passable)
             {
-                if (!game.map.player1.collider2D.Intersects(collider2D))
+                if (!game.currentMap.player1.collider2D.Intersects(collider2D))
                 {
                     p1Passable = false;
                 }
-                if (!game.map.player2.collider2D.Intersects(collider2D))
+                if (!game.currentMap.player2.collider2D.Intersects(collider2D))
                 {
                     p2Passable = false;
                 }
@@ -116,7 +116,7 @@ namespace CSE3902_Project.Objects.Bomb
 
         public bool PlayerPassable(Player p)
         {
-            if (p == game.map.player1)
+            if (p == game.currentMap.player1)
             {
                 return p1Passable;
             }

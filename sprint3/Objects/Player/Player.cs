@@ -86,11 +86,11 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             if (!isDead && bombCount != 0)
             {
-                Vector2 tilePos = Game.map.tileMap.RoundToNearestTile(new Vector2((int)xPos + 12, (int)yPos + 15));
-                bool success = Game.map.tileMap.AddBombToTileMap(tilePos);
+                Vector2 tilePos = Game.currentMap.tileMap.RoundToNearestTile(new Vector2((int)xPos + 12, (int)yPos + 15));
+                bool success = Game.currentMap.tileMap.AddBombToTileMap(tilePos);
                 if (success)
                 {
-                    Game.map.AddBomb(this, tilePos);
+                    Game.currentMap.AddBomb(this, tilePos);
                     bombCount--;
                 }
             }
@@ -101,7 +101,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             if (inventory["ninjaStar"] > 0)
             {
-                Game.map.AddNinjaStar(this);
+                Game.currentMap.AddNinjaStar(this);
                 inventory["ninjaStar"]--;
             }
         }

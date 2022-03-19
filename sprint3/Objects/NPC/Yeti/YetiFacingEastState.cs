@@ -64,7 +64,6 @@ namespace CSE3902_Project.Objects.NPC.Yeti
                 frameIndex = (frameIndex + 1) % 9;
                 framesLeft = (int)yeti.framePerStep;
             }
-
         }
         public void UpdatePreviousPosition()
         {

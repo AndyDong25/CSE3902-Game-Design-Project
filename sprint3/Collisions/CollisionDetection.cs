@@ -10,7 +10,9 @@ using CSE3902_Project.Objects.NinjaStar;
 using CSE3902_Project.Objects.NPC;
 using CSE3902_Project.Objects.NPC.Bat;
 using CSE3902_Project.Objects.NPC.Snake;
+using sprint3.Collisions;
 using sprint3.Objects.Bomb;
+using sprint3.Objects.Decorations;
 
 namespace CSE3902_Project.Collisions
 {
@@ -420,7 +422,27 @@ namespace CSE3902_Project.Collisions
                         //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
                     }
                 }
-            }       
+                CheckPlayerPortalCollision();
+            }    
+        }
+
+        private void CheckPlayerPortalCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            foreach (Portal p in map.portalList)
+            {
+                if (p1.collider2D.Intersects(p.collider2D))
+                {
+                    p1.collisionHandler = new PlayerPortalCollisionHandler(p);
+                    p1.collisionHandler.HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(p.collider2D))
+                {
+                    p2.collisionHandler = new PlayerPortalCollisionHandler(p);
+                    p2.collisionHandler.HandleCollision(p2);
+                }
+            }
         }
 
     }

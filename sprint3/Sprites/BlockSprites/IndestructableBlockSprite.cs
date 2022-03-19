@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
 using CSE3902_Project.Objects.Decorations;
+using CSE3902_Project.Map;
 
 namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
 {

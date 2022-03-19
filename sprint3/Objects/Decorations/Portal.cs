@@ -13,8 +13,8 @@ namespace sprint3.Objects.Decorations
     public class Portal : ICollideable, ISprite
     {
         private Game1 game;
-        private Portal otherPortal;
-        private Vector2 position;
+        public Portal otherPortal;
+        public Vector2 position;
         private List<Rectangle> sources;
         private Rectangle sourceRec;
         private Rectangle destinationRec;
@@ -23,6 +23,8 @@ namespace sprint3.Objects.Decorations
         private int frameRate;
         public Rectangle collider2D;
         public ICollisionHandler collisionHandler;
+        public int cooldownTimer;
+        public bool cooldown;
         public Portal(Vector2 position, Game1 game)
         {
             this.game = game;
@@ -34,6 +36,8 @@ namespace sprint3.Objects.Decorations
             sourceRec = sources[sourceIndex];
             frameRate = 5;
             collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 24, 60);
+            cooldownTimer = 500;
+            cooldown = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -43,6 +47,14 @@ namespace sprint3.Objects.Decorations
 
         public void Update()
         {
+            if (cooldown)
+            {
+                if (--cooldownTimer <= 0)
+                {
+                    cooldownTimer = 500;
+                    cooldown = false;
+                }
+            }
             if (--frameRate <= 0)
             {
                 frameRate = 5;

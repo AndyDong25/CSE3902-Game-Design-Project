@@ -108,7 +108,7 @@ namespace CSE3902_CSE3902_Project
 
         public void Destroy()
         {
-            gameRef.map.finishedItems.Add(this);
+            gameRef.currentMap.finishedItems.Add(this);
 /*            gameRef.map.currentItemList.Remove(this);
             gameRef.map.allObjects.Remove(this);*/
             
@@ -124,9 +124,9 @@ namespace CSE3902_CSE3902_Project
         public virtual void Deactivate()
         {
 
-            if (gameRef.map.finishedItems.Contains(this))
+            if (gameRef.currentMap.finishedItems.Contains(this))
             {
-                gameRef.map.finishedItems.Remove(this);
+                gameRef.currentMap.finishedItems.Remove(this);
             }
         }
 

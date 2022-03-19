@@ -57,7 +57,7 @@ namespace sprint3.Objects.Bomb
             timer--;
             if (timer <= 0)
             {
-                game.map.finishedExplosionCross.Add(this);
+                game.currentMap.finishedExplosionCross.Add(this);
                 //game.map.finishedExplosions.Add(this);
             }
         }

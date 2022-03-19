@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
 using CSE3902_Project.Objects.Decorations;
+using CSE3902_Project.Map;
 
 namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
 {
@@ -16,12 +17,12 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
         public Rectangle sourceRec;
         public Texture2D texture { get; set; }
 
-        public DestructableBlockSprite(Game1 game, Vector2 pos)
+        public DestructableBlockSprite(Game1 game, int mapIndex, Vector2 pos)
         {
             this.game = game;
             this.pos = pos;
             collider2D = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
-            SelectBlockTexture(game.map_index);
+            SelectBlockTexture(mapIndex);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -35,8 +36,8 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
         {
 /*            game.map.currentObstacleList.Remove(this);
             game.map.allObjects.Remove(this);*/
-            game.map.finishedObstacles.Add(this);
-            game.map.AddItem(pos);
+            game.currentMap.finishedObstacles.Add(this);
+            game.currentMap.AddItem(pos);
         }
 
         public void Update()

@@ -12,7 +12,7 @@ namespace CSE3902_Project.Commands
         }
         public void Execute()
         {
-            game.map.currEnemyIndex++;
+            //game.currentMap.currEnemyIndex++;
         }
     }
 }
