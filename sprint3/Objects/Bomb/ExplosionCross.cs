@@ -8,7 +8,7 @@ namespace sprint3.Objects.Bomb
 {
     public class ExplosionCross : ISprite
     {
-        public Explosion originExplosion;
+        public List<Explosion> originExplosion;
         public List<Explosion> upExplosions;
         public List<Explosion> downExplosions;
         public List<Explosion> rightExplosions;
@@ -21,6 +21,7 @@ namespace sprint3.Objects.Bomb
         {
             timer = 20;
             this.game = game;
+            originExplosion = new List<Explosion>();
             upExplosions = new List<Explosion>();
             downExplosions = new List<Explosion>();
             leftExplosions = new List<Explosion>();
@@ -29,7 +30,10 @@ namespace sprint3.Objects.Bomb
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            originExplosion.Draw(spriteBatch);
+            foreach (Explosion e in originExplosion)
+            {
+                e.Draw(spriteBatch);
+            }
             foreach (Explosion e in upExplosions)
             {
                 e.Draw(spriteBatch);
@@ -61,7 +65,7 @@ namespace sprint3.Objects.Bomb
         public void SetAllEplosions()
         {
             allExplosions = new List<Explosion>();
-            allExplosions.Add(originExplosion);
+            allExplosions.AddRange(originExplosion);
             allExplosions.AddRange(upExplosions);
             allExplosions.AddRange(downExplosions);
             allExplosions.AddRange(leftExplosions);

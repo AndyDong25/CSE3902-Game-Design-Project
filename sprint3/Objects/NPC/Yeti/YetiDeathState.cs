@@ -2,29 +2,28 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CSE3902_Project.Objects.NPC.Snake
+namespace CSE3902_Project.Objects.NPC.Yeti
 {
-    class SnakeDeathState : IEnemyState
+    class YetiDeathState : IEnemyState
     {
-        private Snake snake;
+        private Yeti yeti;
         private static Rectangle sourceRec;
         private Texture2D texture;
 
-        public SnakeDeathState(Snake snake)
+        public YetiDeathState(Yeti yeti)
         {
-            this.snake = snake;
+            this.yeti = yeti;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             texture = EnemyTextureStorage.Instance.getTombstoneSprite();
             sourceRec = SpriteConstants.TOMBSTONE;
-            snake.DrawSprite(spriteBatch, texture, sourceRec);
+            yeti.DrawSprite(spriteBatch, texture, sourceRec);
         }
 
         public void Update()
         {
-
         }
 
         public void MoveDown()

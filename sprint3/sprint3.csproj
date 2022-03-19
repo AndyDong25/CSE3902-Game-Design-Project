@@ -33,6 +33,9 @@
     <None Update="Content\initial_map0.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Content\initial_map4.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Content\initial_map1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -8,6 +8,7 @@ using CSE3902_Project.Objects.NPC;
 using Microsoft.Xna.Framework.Content;
 using CSE3902_Project.Objects.Decorations;
 using CSE3902_Project.Map;
+using System.Collections.Generic;
 
 namespace CSE3902_CSE3902_Project
 {
@@ -33,6 +34,7 @@ namespace CSE3902_CSE3902_Project
         }*/
         
         public Map1 map;
+        public List<Map1> mapList;
         public Vector2 screenSize;
         public int map_index = 0;
         public bool changedMap = false;
@@ -63,7 +65,7 @@ namespace CSE3902_CSE3902_Project
             map = new Map1(this);
             
             map.Initialize();
-            
+            mapList = new List<Map1>();
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, map.player1, map.player2));
             controllerList.Add(new MouseController(this));

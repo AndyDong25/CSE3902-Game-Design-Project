@@ -43,7 +43,7 @@ namespace CSE3902_CSE3902_Project
             gameRef = game;
             
             collider2D = new Rectangle((int)xPos, (int)yPos, 35, 35);
-            invincibilityTimer = 25;
+            invincibilityTimer = 35;
             invincible = true;
 
             animationSpeed = 24;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using CSE3902_CSE3902_Project;
 using CSE3902_CSE3902_Project.Objects.Player;
 using CSE3902_CSE3902_Project.Sprites;
@@ -40,13 +41,13 @@ namespace CSE3902_Project.Collisions
             List<BasicItem> currentItemList = map.currentItemList;
             List<NinjaStar> currentNinjaStar = map.ninjaStarList;
             
-            if (p1.collider2D.Intersects(p2.collider2D))
+/*            if (p1.collider2D.Intersects(p2.collider2D))
             {
                 p1.collisionHandler = new PlayerBlockCollisionHandler();
                 p1.collisionHandler.HandleCollision(p1);
                 p2.collisionHandler = new PlayerBlockCollisionHandler();
                 p2.collisionHandler.HandleCollision(p2);
-            }
+            }*/
 
             foreach (StaticBomb b in staticBombList)
             {
@@ -121,6 +122,58 @@ namespace CSE3902_Project.Collisions
                         {
                             e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
                             e.collisionHandler.HandleCollision(eCross.downExplosions);
+                            break;
+                        }
+                    }
+                }
+                eCross.SetAllEplosions();
+                foreach (StaticBomb b in staticBombList)
+                {
+                    for (int i = 0; i < eCross.upExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.upExplosions[i];
+                        if (e.collider2D.Intersects(b.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
+                            e.collisionHandler.HandleCollision(eCross.upExplosions);
+                            b.collisionHandler = new BombExplosionCollisionHandler(1);
+                            b.collisionHandler.HandleCollision(b);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < eCross.leftExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.leftExplosions[i];
+                        if (e.collider2D.Intersects(b.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
+                            e.collisionHandler.HandleCollision(eCross.leftExplosions);
+                            b.collisionHandler = new BombExplosionCollisionHandler(4);
+                            b.collisionHandler.HandleCollision(b);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < eCross.rightExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.rightExplosions[i];
+                        if (e.collider2D.Intersects(b.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
+                            e.collisionHandler.HandleCollision(eCross.rightExplosions);
+                            b.collisionHandler = new BombExplosionCollisionHandler(2);
+                            b.collisionHandler.HandleCollision(b);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < eCross.downExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.downExplosions[i];
+                        if (e.collider2D.Intersects(b.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
+                            e.collisionHandler.HandleCollision(eCross.downExplosions);
+                            b.collisionHandler = new BombExplosionCollisionHandler(3);
+                            b.collisionHandler.HandleCollision(b);
                             break;
                         }
                     }
@@ -297,7 +350,7 @@ namespace CSE3902_Project.Collisions
                 }
                 // bomb-explosion interactions below
                 // enemy-explosion interactions below
-                foreach (StaticBomb b in staticBombList)
+/*                foreach (StaticBomb b in staticBombList)
                 {
                     if (e.collider2D.Intersects(b.collider2D))
                     {
@@ -308,7 +361,7 @@ namespace CSE3902_Project.Collisions
                         b.collisionHandler.HandleCollision(b);
                         //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
                     }
-                }
+                }*/
                 foreach (Bat b in map.batList)
                 {
                     if (e.collider2D.Intersects(b.collider2D))

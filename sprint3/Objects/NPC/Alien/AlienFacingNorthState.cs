@@ -72,5 +72,9 @@ namespace CSE3902_Project.Objects.NPC.Alien
                 MoveUp();
             }
         }
+        public void UpdatePreviousPosition()
+        {
+            alien.UpdatePreviousPosition();
+        }
     }
 }

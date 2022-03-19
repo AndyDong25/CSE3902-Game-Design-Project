@@ -19,15 +19,19 @@ namespace CSE3902_Project.Objects.NPC
             }
         }
 
-        private static Texture2D redBoyTexture = null;
-        private static Texture2D whiteGirlTexture = null;
-        private static Texture2D greenBoyTexture = null;
-        private static Texture2D brownBoyTexture = null;
-        private static Texture2D deadPlayerTexture = null;
+        private static Texture2D redBoyTexture;
+        private static Texture2D whiteGirlTexture;
+        private static Texture2D greenBoyTexture;
+        private static Texture2D brownBoyTexture;
+        private static Texture2D deadPlayerTexture;
 
-        private static Texture2D batTexture = null;
-        private static Texture2D snakeTexture = null;
-        private static Texture2D alienTexture = null;
+        private static Texture2D batTexture;
+        private static Texture2D snakeTexture;
+        private static Texture2D alienTexture;
+
+        private static Texture2D yetiLeftTexture;
+        private static Texture2D yetiRightTexture;
+
 
         private EnemyTextureStorage()
         {
@@ -42,7 +46,8 @@ namespace CSE3902_Project.Objects.NPC
             deadPlayerTexture = content.Load<Texture2D>("TombstoneSprite");
             batTexture = content.Load<Texture2D>("batSpriteSheet");
             snakeTexture = content.Load<Texture2D>("snakeSpriteSheet");
-            
+            yetiLeftTexture = content.Load<Texture2D>("yetiLeftSpritesheet");
+            yetiRightTexture = content.Load<Texture2D>("yetiRightSpritesheet");
 
         }
 
@@ -74,15 +79,18 @@ namespace CSE3902_Project.Objects.NPC
         {
             return snakeTexture;
         }
-
-
-
         public Texture2D getAlienSprite()
         {
             return null;
         }
-
-
+        public Texture2D getYetiLeftSprite()
+        {
+            return yetiLeftTexture;
+        }
+        public Texture2D getYetiRightSprite()
+        {
+            return yetiRightTexture;
+        }
 
     }
 }

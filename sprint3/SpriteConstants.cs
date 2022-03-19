@@ -169,8 +169,6 @@ namespace CSE3902_CSE3902_Project
         };
 
 
-
-
         public static List<Rectangle> ALIEN_EAST = new List<Rectangle>
         {
             new Rectangle(0, 124, 62, 63), new Rectangle (62, 124, 62, 63), new Rectangle(124, 124, 62, 63)
@@ -190,13 +188,38 @@ namespace CSE3902_CSE3902_Project
         {
             new Rectangle(0, 189, 62, 63), new Rectangle (62, 189, 62, 63), new Rectangle(124, 189, 62, 63)
         };
+        /*
+                public static List<Rectangle> YETI_EAST = new List<Rectangle>
+                {
+                    new Rectangle(74, 83, 81, 81), new Rectangle(155, 83, 81, 81), new Rectangle(236, 83, 81, 81), new Rectangle(317, 83, 81, 81), new Rectangle(398, 83, 81, 81),
+                    new Rectangle(479, 83, 81, 81), new Rectangle(560, 83, 81, 81), new Rectangle(641, 83, 81, 81), new Rectangle(722, 83, 81, 81),
+                };
 
+                public static List<Rectangle> YETI_WEST = new List<Rectangle>
+                {
+                    new Rectangle(641, 83, 81, 81), new Rectangle(560, 83, 81, 81), new Rectangle(479, 83, 81, 81), new Rectangle(398, 83, 81, 81), new Rectangle(317, 83, 81, 81),
+                     new Rectangle(236, 83, 81, 81), new Rectangle(155, 83, 81, 81), new Rectangle(74, 83, 81, 81), new Rectangle(0, 83, 81, 81),
+                };*/
+
+
+        public static List<Rectangle> YETI_EAST = new List<Rectangle>
+        {
+                    new Rectangle(641, 83, 81, 81), new Rectangle(560, 83, 81, 81), new Rectangle(479, 83, 81, 81), new Rectangle(398, 83, 81, 81), new Rectangle(317, 83, 81, 81),
+                     new Rectangle(236, 83, 81, 81), new Rectangle(155, 83, 81, 81), new Rectangle(74, 83, 81, 81), new Rectangle(0, 83, 81, 81),
+        };
+
+        public static List<Rectangle> YETI_WEST = new List<Rectangle>
+        {
+            new Rectangle(74, 83, 81, 81), new Rectangle(155, 83, 81, 81), new Rectangle(236, 83, 81, 81), new Rectangle(317, 83, 81, 81), new Rectangle(398, 83, 81, 81),
+            new Rectangle(479, 83, 81, 81), new Rectangle(560, 83, 81, 81), new Rectangle(641, 83, 81, 81), new Rectangle(722, 83, 81, 81),
+        };
 
 
         public static Rectangle NINJA_STAR = new Rectangle(0, 0, 459, 459);
         //public static Rectangle EXPLOSION = new Rectangle(555, 124, 87, 87);
         public static Rectangle EXPLOSION = new Rectangle(561, 129, 75, 75);
         public static Rectangle TOMBSTONE = new Rectangle(0, 0, 233, 233);
+        public static Rectangle STATIC_BOMB = new Rectangle(0, 0, 255, 255);
 
         // spawnable items
         public static Rectangle BOMB_ITEM = new Rectangle(0, 0, 363, 480);
@@ -209,9 +232,23 @@ namespace CSE3902_CSE3902_Project
         // decorations
         public static Rectangle TREE1 = new Rectangle(75, 40, 250, 260);
         public static Rectangle TREE2 = new Rectangle(120, 40, 550, 560);
-        public static Rectangle INDESTRUCTIBLE_BLOCK = new Rectangle(0, 0, 250, 250);
-        public static Rectangle DESTRUCTIBLE_BLOCK = new Rectangle(0, 0, 340, 340);
+        public static Rectangle CRATE_I_BLOCK = new Rectangle(0, 0, 250, 250);
+        public static Rectangle CRATE_D_BLOCK = new Rectangle(0, 0, 340, 340);
+
+        public static Rectangle ICE_D_BLOCK = new Rectangle(13, 18, 100, 100);
+        public static Rectangle ICE_I_BLOCK = new Rectangle(0, 0, 160, 160);
+
+        public static Rectangle CHEST_BLOCK = new Rectangle(0, 84, 254, 170);
+        public static Rectangle MINERAL_BLOCK = new Rectangle(188, 69, 279, 260);
+
+        public static Rectangle KELP_BLOCK = new Rectangle(232, 39, 200, 291);
+        public static Rectangle WATER_BLOCK = new Rectangle(0, 0, 96, 96);
+
         public static Rectangle MASHROOM1 = new Rectangle(0, 0, 800, 800);
 
+        public static List<Rectangle> PORTAL = new List<Rectangle>
+        {
+            new Rectangle(0, 38, 50, 120), new Rectangle(50, 38, 50, 120), new Rectangle(100, 38, 50, 120), new Rectangle(150, 38, 50, 120)
+        };
     }
 }

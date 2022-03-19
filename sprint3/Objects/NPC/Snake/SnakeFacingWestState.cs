@@ -67,5 +67,9 @@ namespace CSE3902_Project.Objects.NPC.Snake
                 MoveLeft();
             }
         }
+        public void UpdatePreviousPosition()
+        {
+            snake.UpdatePreviousPosition();
+        }
     }
 }
