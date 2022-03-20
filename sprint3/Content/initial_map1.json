@@ -4,6 +4,7 @@
     "player1": [ 30, 30 ],
     "player2": [ 700, 30 ],
     "snakes": { "Snake1": [ 60, 430 ] },
+    "bats": {},
     "portals": {},
     "destructableBlocks": {
         "0": [ 40, 0 ],

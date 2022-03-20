@@ -2,6 +2,7 @@
     "player1": [ 360, 0 ],
     "player2": [ 420, 0 ],
     "snakes": { "Snake1": [ 60, 430 ] },
+    "bats": {},
     "portals": {},
     "destructableBlocks": {
         "0": [ 0, 0 ],

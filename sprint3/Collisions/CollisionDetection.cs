@@ -398,9 +398,15 @@ namespace CSE3902_Project.Collisions
                     }
                 }
             }
-            foreach (NinjaStar n in currentNinjaStar)
+            CheckNinjaStarCollision();
+            CheckPlayerPortalCollision();
+        }
+
+        private void CheckNinjaStarCollision()
+        {
+            foreach (NinjaStar n in map.ninjaStarList)
             {
-                foreach (StaticBomb b in staticBombList)
+                foreach (StaticBomb b in map.staticBombList)
                 {
                     if (n.collider2D.Intersects(b.collider2D))
                     {
@@ -413,7 +419,7 @@ namespace CSE3902_Project.Collisions
                         //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
                     }
                 }
-                foreach (ISprite bl in currentObstacleList)
+                foreach (ISprite bl in map.currentObstacleList)
                 {
                     if (n.collider2D.Intersects(bl.collider2D))
                     {
@@ -422,10 +428,8 @@ namespace CSE3902_Project.Collisions
                         //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
                     }
                 }
-                CheckPlayerPortalCollision();
-            }    
+            }
         }
-
         private void CheckPlayerPortalCollision()
         {
             Player p1 = map.player1;

@@ -142,8 +142,8 @@ namespace CSE3902_Project.Map
             tileMap = new TileMap(game);
 
             background = new Background1(new Vector2(0, 0), mapIndex);
-            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
-            player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
+/*            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
+            player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);*/
 
             staticBombList = new List<StaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
@@ -152,9 +152,9 @@ namespace CSE3902_Project.Map
             indestructibleBlockList = new List<IndestructableBlockSprite>();
             portalList = new List<Portal>();
 
-            verticalBat = new Bat(new Vector2(400, 140), game);
+/*            verticalBat = new Bat(new Vector2(400, 140), game);
             horizontalBat = new Bat(new Vector2(400, 380), game);
-            horizontalBat.currState = new BatFacingEastState(horizontalBat);        
+            horizontalBat.currState = new BatFacingEastState(horizontalBat);     */   
          
             // tree1 = new Tree1(new Vector2(330, 250));
             // tree2 = new Tree2(new Vector2(370, 250));
@@ -187,49 +187,59 @@ namespace CSE3902_Project.Map
             snakeList = new List<Snake>();
             
             batList = new List<Bat>();
-            batList.Add(horizontalBat);
-            batList.Add(verticalBat);
+/*            batList.Add(horizontalBat);
+            batList.Add(verticalBat);*/
 
             currentEnemyList = new List<ISprite>();
-            currentEnemyList.Add(verticalBat);
-            currentEnemyList.Add(horizontalBat);
+/*            currentEnemyList.Add(verticalBat);
+            currentEnemyList.Add(horizontalBat);*/
 
-/*            portalA = new Portal(new Vector2(0, 240), game);
-            portalB = new Portal(new Vector2(770, 240), game);*/
+            /*            portalA = new Portal(new Vector2(0, 240), game);
+                        portalB = new Portal(new Vector2(770, 240), game);*/
 
-            foreach (List<int> pos in m2.tree1.Values)
-            {
-                tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
-                currentObstacleList.Add(tree1);
-            }
-            foreach (List<int> pos in m2.tree2.Values)
-            {
-                tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
-                currentObstacleList.Add(tree2);
-            }
+            /*            foreach (List<int> pos in m2.tree1.Values)
+                        {
+                            tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
+                            currentObstacleList.Add(tree1);
+                        }
+                        foreach (List<int> pos in m2.tree2.Values)
+                        {
+                            tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
+                            currentObstacleList.Add(tree2);
+                        }
 
-            foreach (List<int> pos in m2.destructableBlocks.Values){
-                dBlock = (new DestructableBlockSprite(game, mapIndex, new Vector2(pos[0], pos[1])));
-                destructibleBlockList.Add(dBlock);
-                currentObstacleList.Add(dBlock);
-            }
-            foreach (List<int> pos in m2.indestructableBlocks.Values)
+                        foreach (List<int> pos in m2.destructableBlocks.Values){
+                            dBlock = (new DestructableBlockSprite(game, mapIndex, new Vector2(pos[0], pos[1])));
+                            destructibleBlockList.Add(dBlock);
+                            currentObstacleList.Add(dBlock);
+                        }
+                        foreach (List<int> pos in m2.indestructableBlocks.Values)
+                        {
+                            iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]), mapIndex);
+                            currentObstacleList.Add(iBlock);
+                            indestructibleBlockList.Add(iBlock);
+                        }
+                        foreach (List<int> pos in m2.snakes.Values)
+                        {
+                            snake = new Snake(new Vector2(pos[0], pos[1]), game);
+                            snakeList.Add(snake);
+                            currentEnemyList.Add(snake);
+                        }
+                        foreach (List<int> pos in m2.portals.Values)
+                        {
+                            portalA = new Portal(new Vector2(pos[0], pos[1]), game);
+                            portalList.Add(portalA);
+                        }*/
+            LoadFromJson();
+            // change some bats to move horizontally
+            for (int i = 0; i < batList.Count; i++)
             {
-                iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]), mapIndex);
-                currentObstacleList.Add(iBlock);
-                indestructibleBlockList.Add(iBlock);
+                if (i % 2 == 1)
+                {
+                    batList[i].currState = new BatFacingEastState(batList[i]);
+                }
             }
-            foreach (List<int> pos in m2.snakes.Values)
-            {
-                snake = new Snake(new Vector2(pos[0], pos[1]), game);
-                snakeList.Add(snake);
-                currentEnemyList.Add(snake);
-            }
-            foreach (List<int> pos in m2.portals.Values)
-            {
-                portalA = new Portal(new Vector2(pos[0], pos[1]), game);
-                portalList.Add(portalA);
-            }
+            // set "other" portal references
             if (portalList.Count != 0)
             {
                 portalList[0].SetOtherPortal(portalList[1]);
@@ -289,6 +299,52 @@ namespace CSE3902_Project.Map
             foreach (ISprite s in allObjects)
             {
                 s.Draw(spriteBatch);
+            }
+        }
+
+        private void LoadFromJson()
+        {
+            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
+            player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
+            foreach (List<int> pos in m2.tree1.Values)
+            {
+                tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
+                currentObstacleList.Add(tree1);
+            }
+            foreach (List<int> pos in m2.tree2.Values)
+            {
+                tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
+                currentObstacleList.Add(tree2);
+            }
+
+            foreach (List<int> pos in m2.destructableBlocks.Values)
+            {
+                dBlock = (new DestructableBlockSprite(game, mapIndex, new Vector2(pos[0], pos[1])));
+                destructibleBlockList.Add(dBlock);
+                currentObstacleList.Add(dBlock);
+            }
+            foreach (List<int> pos in m2.indestructableBlocks.Values)
+            {
+                iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]), mapIndex);
+                currentObstacleList.Add(iBlock);
+                indestructibleBlockList.Add(iBlock);
+            }
+            foreach (List<int> pos in m2.snakes.Values)
+            {
+                snake = new Snake(new Vector2(pos[0], pos[1]), game);
+                snakeList.Add(snake);
+                currentEnemyList.Add(snake);
+            }
+            foreach (List<int> pos in m2.portals.Values)
+            {
+                portalA = new Portal(new Vector2(pos[0], pos[1]), game);
+                portalList.Add(portalA);
+            }
+            foreach (List<int> pos in m2.bats.Values)
+            {
+                verticalBat = new Bat(new Vector2(pos[0], pos[1]), game);
+                batList.Add(verticalBat);
+                currentEnemyList.Add(verticalBat);
             }
         }
 

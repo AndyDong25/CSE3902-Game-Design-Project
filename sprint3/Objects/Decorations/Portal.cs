@@ -36,7 +36,7 @@ namespace sprint3.Objects.Decorations
             sourceRec = sources[sourceIndex];
             frameRate = 5;
             collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 24, 60);
-            cooldownTimer = 500;
+            cooldownTimer = 300;
             cooldown = false;
         }
 
@@ -49,10 +49,12 @@ namespace sprint3.Objects.Decorations
         {
             if (cooldown)
             {
+                frameRate = 300;
                 if (--cooldownTimer <= 0)
                 {
-                    cooldownTimer = 500;
+                    cooldownTimer = 300;
                     cooldown = false;
+                    frameRate = 0;
                 }
             }
             if (--frameRate <= 0)
