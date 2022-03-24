@@ -10,6 +10,7 @@ using CSE3902_Project.Objects.NinjaStar;
 using CSE3902_Project.Objects.NPC;
 using CSE3902_Project.Objects.NPC.Bat;
 using CSE3902_Project.Objects.NPC.Snake;
+using CSE3902_Project.Objects.NPC.Alien;
 using sprint3.Collisions;
 using sprint3.Objects.Bomb;
 using sprint3.Objects.Decorations;
@@ -212,6 +213,8 @@ namespace CSE3902_Project.Collisions
                         sn.collisionHandler.HandleCollision(sn);
                     }
                 }
+                //I'm delaying putting in the aliens here because I think we can encapsulate all of our sprites into 1 collision handler
+                //foreach (Alien a in map.alienList)
             }
 
             foreach(Bat b in map.batList)

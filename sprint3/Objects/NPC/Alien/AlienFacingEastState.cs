@@ -18,7 +18,7 @@ namespace CSE3902_Project.Objects.NPC.Alien
         int actionProba;
 
 
-        private static List<Rectangle> mySources = SpriteConstants.BAT_EAST;
+        private static List<Rectangle> mySources = SpriteConstants.ALIEN_EAST;
 
         public AlienFacingEastState(Alien alien)
         {

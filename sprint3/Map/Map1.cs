@@ -9,6 +9,7 @@ using CSE3902_Project.Collisions;
 using CSE3902_Project.Objects.Bomb;
 using CSE3902_Project.Objects.NPC.Bat;
 using CSE3902_Project.Objects.NPC.Snake;
+using CSE3902_Project.Objects.NPC.Alien;
 using CSE3902_Project.Sprites.Decorations;
 using CSE3902_Project.Objects.NinjaStar;
 using System;
@@ -46,6 +47,9 @@ namespace CSE3902_Project.Map
         public Bat horizontalBat;
         public Bat verticalBat;
         public Snake snake;
+        public Alien alien;
+
+
         public NinjaStar ninjastar;
         public DestructableBlockSprite dBlock;
         public IndestructableBlockSprite iBlock;
@@ -247,7 +251,10 @@ namespace CSE3902_Project.Map
             }
 
             Yeti yeti = new Yeti(new Vector2(700, 400), game);
+            //alien testing, can adjust later
+            alien = new Alien(new Vector2(1100, 400), game);
             currentEnemyList.Add(yeti);
+            currentEnemyList.Add(alien);
 
             GetAllExplosions();
 

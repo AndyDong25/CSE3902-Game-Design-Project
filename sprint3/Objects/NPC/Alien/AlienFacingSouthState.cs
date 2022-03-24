@@ -17,7 +17,7 @@ namespace CSE3902_Project.Objects.NPC.Alien
         int actionProba;
 
 
-        private static List<Rectangle> mySources = null; // Need to grab alien sprite still 
+        private static List<Rectangle> mySources = SpriteConstants.ALIEN_SOUTH; // Need to grab alien sprite still 
 
         public AlienFacingSouthState(Alien alien)
         {

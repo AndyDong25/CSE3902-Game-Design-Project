@@ -30,7 +30,7 @@ namespace CSE3902_Project.Objects.NPC.Alien
             yPos = position.Y;
             this.Game = game;
             // using same stats as bat for now
-            collider2D = new Rectangle((int)xPos + 8, (int)yPos + 5, 24, 23);
+            collider2D = new Rectangle((int)xPos, (int)yPos, 30, 30);
         }
 
         public void positionLimit()

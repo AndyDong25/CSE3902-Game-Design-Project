@@ -46,6 +46,7 @@ namespace CSE3902_Project.Objects.NPC
             deadPlayerTexture = content.Load<Texture2D>("TombstoneSprite");
             batTexture = content.Load<Texture2D>("batSpriteSheet");
             snakeTexture = content.Load<Texture2D>("snakeSpriteSheet");
+            alienTexture = content.Load<Texture2D>("alien");
             yetiLeftTexture = content.Load<Texture2D>("yetiLeftSpritesheet");
             yetiRightTexture = content.Load<Texture2D>("yetiRightSpritesheet");
 
@@ -81,7 +82,7 @@ namespace CSE3902_Project.Objects.NPC
         }
         public Texture2D getAlienSprite()
         {
-            return null;
+            return alienTexture;
         }
         public Texture2D getYetiLeftSprite()
         {
