@@ -19,10 +19,8 @@ namespace CSE3902_CSE3902_Project.Items
             {
                 boostedPlayer = currentPlayer;
                 currentPlayer.inventory["shoe"] ++;
-                currentPlayer.speed++;
+                if (currentPlayer.speed < 8.0f) currentPlayer.speed = currentPlayer.speed + 0.5f;
             }
-            boostedPlayer = currentPlayer;
-            currentPlayer.speed += increaseAmount;
         }
 
         public override void Deactivate()

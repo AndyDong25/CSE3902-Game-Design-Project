@@ -4,6 +4,7 @@ using System;
 using CSE3902_Project.Collisions;
 using System.Collections.Generic;
 using CSE3902_CSE3902_Project.Sprites;
+using System.Diagnostics;
 
 namespace CSE3902_CSE3902_Project.Objects.Player
 {
@@ -12,14 +13,15 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public IPlayerState currState;
         public int spriteIndex = 0;
         public int textureIndex = 0;
+        public Color color;
 
         public int potionCount = 2;
         public int bombCount = 3;
         public float speed = 3.0f;
 
         public int maxBombs { get; set; } = 10;
-        public int maxPotions { get; set; } = 8;
-        public int maxShoes { get; set; } = 8;
+        public int maxPotions { get; set; } = 7;
+        public int maxShoes { get; set; } = 14;
 
 
         public float xPos, yPos, previousXPos, previousYPos;
@@ -29,6 +31,10 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public Boolean isDead = false;
 
         public ICollisionHandler collisionHandler;
+
+        public bool boosted;
+        public int boostedTimer;
+        public float boostFadeAmount;
         public Rectangle collider2D { get; set; }
 
         private Game1 Game { get; set; }
@@ -38,12 +44,16 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public Player(Vector2 position, Game1 game)
         {
             currState = new PlayerFacingSouthState(this);
+            color = Color.White;
             xPos = position.X;
             yPos = position.Y;
             previousXPos = xPos;
             previousYPos = yPos;
             this.Game = game;
-            collider2D = new Rectangle((int)xPos + 18, (int)yPos + 19, 24, 22);
+            UpdateCollider();
+            boosted = false;
+            boostedTimer = 1200;
+            boostFadeAmount = 1.0f;
             InitializeInventory();
         }
 
@@ -76,11 +86,11 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             if (!isDead && bombCount != 0)
             {
-                Vector2 tilePos = Game.map.tileMap.RoundToNearestTile(new Vector2((int)xPos + 12, (int)yPos + 15));
-                bool success = Game.map.tileMap.AddBombToTileMap(tilePos);
+                Vector2 tilePos = Game.currentMap.tileMap.RoundToNearestTile(new Vector2((int)xPos + 12, (int)yPos + 15));
+                bool success = Game.currentMap.tileMap.AddBombToTileMap(tilePos);
                 if (success)
                 {
-                    Game.map.AddBomb(this, tilePos);
+                    Game.currentMap.AddBomb(this, tilePos);
                     bombCount--;
                 }
             }
@@ -91,7 +101,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             if (inventory["ninjaStar"] > 0)
             {
-                Game.map.AddNinjaStar(this);
+                Game.currentMap.AddNinjaStar(this);
                 inventory["ninjaStar"]--;
             }
         }
@@ -104,6 +114,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
 
         public void Update()
         {
+            UpdateBoostEffects();
             currState.Update();
             CheckMapBounds();
             UpdateCollider();
@@ -118,7 +129,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset,60, 60);
-            spriteBatch.Draw(texture, destination, source, Color.White);
+            spriteBatch.Draw(texture, destination, source, color * boostFadeAmount);
         }
 
         public void ApplyAbilities()
@@ -127,7 +138,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             {
                 // bomberman
                 case 0:
-                    speed = inventory["shoe"];
+                    speed = inventory["shoe"] * 0.5f;
                     potionCount = inventory["potion"];
                     bombCount = inventory["bomb"];
                     framePerStep = 6;
@@ -141,12 +152,12 @@ namespace CSE3902_CSE3902_Project.Objects.Player
                 case 2:
                 // goblin
                     speed = 5.0f;
-                    potionCount = 6;
+                    potionCount = 8;
                     framePerStep = 6;
                     break;
                 case 3:
                 // ghost
-                    speed = -5.0f;
+                    speed = -6.0f;
                     potionCount = 5;
                     framePerStep = 6;
                     break;
@@ -168,14 +179,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
 
         public void UpdateCollider()
         {
-            collider2D  = new Rectangle((int)xPos + 18, (int)yPos + 19, 24, 22);
-        }
-
-        public void PlayerCollisionTest()
-        {
-            xPos = previousXPos;
-            yPos = previousYPos;
-            UpdateCollider();
+            collider2D = new Rectangle((int)xPos + 18, (int)yPos + 22, 24, 20);
         }
 
         public void UpdatePreviousPosition()
@@ -190,11 +194,27 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             inventory.Add("ninjaStar", 1);
             inventory.Add("bomb", 3);
             inventory.Add("potion", 2);
-            inventory.Add("shoe", 3);
+            inventory.Add("shoe", 6);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
+        public void UpdateBoostEffects()
         {
+            if (boosted)
+            {
+                boostedTimer--;
+                if (boostedTimer <= 0)
+                {
+                    boostFadeAmount = 1.0f;
+                    boosted = false;
+                    boostedTimer = 1200;
+                    spriteIndex = 0;
+                    ApplyAbilities();
+                }
+                else if (boostedTimer <= 300)
+                {
+                    boostFadeAmount -= 0.002f;
+                }
+            }
         }
     }
 }

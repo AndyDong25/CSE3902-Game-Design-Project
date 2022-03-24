@@ -67,5 +67,9 @@ namespace CSE3902_Project.Objects.NPC.Bat
                 MoveRight();
             }
         }
+        public void UpdatePreviousPosition()
+        {
+            bat.UpdatePreviousPosition();
+        }
     }
 }

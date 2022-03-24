@@ -45,8 +45,9 @@ namespace CSE3902_Project.Objects.NPC.Snake
 
         public void TakeDamage()
         {
-
-
+        }
+        public void UpdatePreviousPosition()
+        {
         }
     }
 }

@@ -43,7 +43,7 @@ namespace CSE3902_CSE3902_Project
             gameRef = game;
             
             collider2D = new Rectangle((int)xPos, (int)yPos, 35, 35);
-            invincibilityTimer = 25;
+            invincibilityTimer = 35;
             invincible = true;
 
             animationSpeed = 24;
@@ -108,7 +108,7 @@ namespace CSE3902_CSE3902_Project
 
         public void Destroy()
         {
-            gameRef.map.finishedItems.Add(this);
+            gameRef.currentMap.finishedItems.Add(this);
 /*            gameRef.map.currentItemList.Remove(this);
             gameRef.map.allObjects.Remove(this);*/
             
@@ -124,9 +124,9 @@ namespace CSE3902_CSE3902_Project
         public virtual void Deactivate()
         {
 
-            if (gameRef.map.finishedItems.Contains(this))
+            if (gameRef.currentMap.finishedItems.Contains(this))
             {
-                gameRef.map.finishedItems.Remove(this);
+                gameRef.currentMap.finishedItems.Remove(this);
             }
         }
 

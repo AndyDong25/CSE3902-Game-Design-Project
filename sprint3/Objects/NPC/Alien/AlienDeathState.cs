@@ -44,8 +44,10 @@ namespace CSE3902_Project.Objects.NPC.Alien
 
         public void TakeDamage()
         {
+        }
 
-
+        public void UpdatePreviousPosition()
+        {
         }
     }
 }

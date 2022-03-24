@@ -8,6 +8,10 @@ using CSE3902_Project.Objects.NPC;
 using Microsoft.Xna.Framework.Content;
 using CSE3902_Project.Objects.Decorations;
 using CSE3902_Project.Map;
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
+using static CSE3902_Project.Map.Map1;
 
 namespace CSE3902_CSE3902_Project
 {
@@ -32,16 +36,18 @@ namespace CSE3902_CSE3902_Project
             GamePause = 3,
         }*/
         
-        public Map1 map;
+        public Map1 currentMap;
+        public int totalMaps;
+        public List<Map1> mapList;
         public Vector2 screenSize;
         public int map_index = 0;
         public bool changedMap = false;
+        private bool mapsLoaded = false;
         public Game1()
         {         
             graphics = new GraphicsDeviceManager(this);
             screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             Content.RootDirectory = "Content";      
-
         }
 
         protected override void Initialize()
@@ -59,15 +65,31 @@ namespace CSE3902_CSE3902_Project
             // mapDir = new Dictionary<Vector2, ISprite> { };
 
             base.Initialize();
-           
-            map = new Map1(this);
-            
-            map.Initialize();
-            
+            if (!mapsLoaded)
+            {
+                mapList = new List<Map1>();
+                totalMaps = 5;
+
+                for (int i = 0; i < totalMaps; i++)
+                {
+                    Map jsonMap = new Map();
+                    string map_name = "content\\initial_map" + i + ".json";
+                    using (StreamReader file = File.OpenText(map_name))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+                        jsonMap = (Map)serializer.Deserialize(file, typeof(Map));
+                    }
+                    Map1 m = new Map1(this, i, jsonMap);
+                    m.Initialize();
+                    mapList.Add(m);
+                }
+                mapsLoaded = true;
+            }
+            currentMap = mapList[map_index];
+            currentMap.Initialize();
             controllerList = new ArrayList();
-            controllerList.Add(new KeyboardController(this, map.player1, map.player2));
+            controllerList.Add(new KeyboardController(this, currentMap.player1, currentMap.player2));
             controllerList.Add(new MouseController(this));
-            //controllerList.Add(new MouseController(this));
         }
 
         protected override void LoadContent()
@@ -76,7 +98,6 @@ namespace CSE3902_CSE3902_Project
             EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
             DecorationTextureStorage.Instance.LoadAllResources(Content);
-
         }
 
         protected override void UnloadContent()
@@ -161,7 +182,7 @@ namespace CSE3902_CSE3902_Project
             {
                 controller.Update();
             }
-            map.Update();
+            currentMap.Update();
 
             base.Update(gameTime);
         }
@@ -171,7 +192,7 @@ namespace CSE3902_CSE3902_Project
             spriteBatch.Begin();
             this.IsMouseVisible = true;  
 
-            map.Draw();
+            currentMap.Draw(spriteBatch);
             spriteBatch.End();
                 
             base.Draw(gameTime);

@@ -21,11 +21,27 @@ namespace CSE3902_Project.Objects.Decorations
 
         private static Texture2D tree1Texture;
         private static Texture2D tree2Texture;
-        private static Texture2D destructibleBlockTexture;
-        private static Texture2D indestructibleBlockTexture;
-        private static Texture2D background1;
-        private static Texture2D background2;
+
+        private static Texture2D crateDBlock;
+        private static Texture2D crateIBlock;
+        private static Texture2D grassBackground;
+
+        private static Texture2D iceBackground;
+        private static Texture2D iceDBlock;
+        private static Texture2D iceIBlock;
+
+        private static Texture2D dirtBackground;
+        private static Texture2D chestBlock;
+        private static Texture2D mineralBlock;
+
+        private static Texture2D waterBackground;
+        private static Texture2D kelpBlock;
+        private static Texture2D waterBlock;
+
         private static Texture2D mashroom1Texture;
+
+        private static Texture2D portalTexture;
+
 
         private DecorationTextureStorage()
         {
@@ -35,14 +51,28 @@ namespace CSE3902_Project.Objects.Decorations
         {
             tree1Texture = content.Load<Texture2D>("tree1");
             tree2Texture = content.Load<Texture2D>("tree2");
-            destructibleBlockTexture = content.Load<Texture2D>("DestructableCrate");
-            indestructibleBlockTexture = content.Load<Texture2D>("Concrete_Block_2x2");
-            background1 = content.Load<Texture2D>("background2");
-            background2 = content.Load<Texture2D>("grass_template2");
+
+            crateDBlock = content.Load<Texture2D>("DestructableCrate");
+            crateIBlock = content.Load<Texture2D>("Concrete_Block_2x2");
+            grassBackground = content.Load<Texture2D>("grass_template2");
+
+            iceBackground = content.Load<Texture2D>("iceBackground");
+            iceDBlock = content.Load<Texture2D>("IceBlockD");
+            iceIBlock = content.Load<Texture2D>("IceBlockI");
+
+            dirtBackground = content.Load<Texture2D>("dirtBackground");
+            chestBlock = content.Load<Texture2D>("treasureBlock");
+            mineralBlock = content.Load<Texture2D>("blueMineral");
+
+            waterBackground = content.Load<Texture2D>("waterBackground");
+            kelpBlock = content.Load<Texture2D>("kelpSprite");
+            waterBlock = content.Load<Texture2D>("waterBlock");
+
             mashroom1Texture = content.Load<Texture2D>("mashroom1");
+            portalTexture = content.Load<Texture2D>("portalSpritesheet");
         }
 
-    public Texture2D getTree1Sprite()
+        public Texture2D getTree1Sprite()
         {
             return tree1Texture;
         }
@@ -50,25 +80,61 @@ namespace CSE3902_Project.Objects.Decorations
         {
             return tree2Texture;
         }
-        public Texture2D getDestructibleBlockSprite()
+        public Texture2D getCrateDBlock()
         {
-            return destructibleBlockTexture;
+            return crateDBlock;
         }
-        public Texture2D getIndestructibleBlockSprite()
+        public Texture2D getCrateIBlock()
         {
-            return indestructibleBlockTexture;
+            return crateIBlock;
         }
-        public Texture2D getBackground1Sprite()
+        public Texture2D getIceDBlock()
         {
-            return background1;
+            return iceDBlock;
         }
-        public Texture2D getBackground2Sprite()
+        public Texture2D getIceIBlock()
         {
-            return background2;
+            return iceIBlock;
+        }
+        public Texture2D getChestBlock()
+        {
+            return chestBlock;
+        }
+        public Texture2D getMineralBlock()
+        {
+            return mineralBlock;
+        }
+        public Texture2D getKelpBlock()
+        {
+            return kelpBlock;
+        }
+        public Texture2D getWaterBlock()
+        {
+            return waterBlock;
+        }
+        public Texture2D getGrassBackgroundSprite()
+        {
+            return grassBackground;
+        }
+        public Texture2D getIceBackGroundSprite()
+        {
+            return iceBackground;
+        }
+        public Texture2D getDirtBackgroundSprite()
+        {
+            return dirtBackground;
+        }
+        public Texture2D getWaterBackgrounSprite()
+        {
+            return waterBackground;
         }
         public Texture2D getMashroom1Sprite()
         {
             return mashroom1Texture;
+        }
+        public Texture2D getPortalSprite()
+        {
+            return portalTexture;
         }
     }
 }

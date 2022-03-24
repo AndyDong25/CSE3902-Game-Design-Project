@@ -9,7 +9,7 @@
         }
         public void Execute()
         {
-            game.map.currItemIndex++;
+            //game.currentMap.currItemIndex++;
         }
     }
 }

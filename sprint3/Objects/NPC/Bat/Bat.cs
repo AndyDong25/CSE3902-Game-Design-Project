@@ -99,10 +99,5 @@ namespace CSE3902_Project.Objects.NPC.Bat
             previousXPos = xPos;
             previousYPos = yPos;
         }
-
-        public void Draw(SpriteBatch spriteBatch, Vector2 destination)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

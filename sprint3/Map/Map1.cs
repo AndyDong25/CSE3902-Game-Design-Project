@@ -18,6 +18,10 @@ using Newtonsoft.Json;
 using sprint3.Objects.Bomb;
 using sprint3.Map;
 using sprint3.Sprites.Decorations;
+using System.Diagnostics;
+using CSE3902_Project.Objects.NPC.Yeti;
+using CSE3902_Project.Objects.NPC;
+using sprint3.Objects.Decorations;
 
 namespace CSE3902_Project.Map
 {
@@ -25,6 +29,8 @@ namespace CSE3902_Project.Map
     {
         
         private Game1 game;
+        private Map m2;
+        public int mapIndex;
         public CollisionDetection collisionDetection;
         public TileMap tileMap;
         public int Timeplayed;
@@ -34,7 +40,6 @@ namespace CSE3902_Project.Map
 
         private Background1 background;
         public GraphicsDeviceManager graphics;
-        public SpriteBatch spriteBatch;
 
         public Player player1;
         public Player player2;
@@ -77,11 +82,9 @@ namespace CSE3902_Project.Map
         //private Vector2 screenSize;
 
         public List<BasicItem> currentItemList;
-        public int currItemIndex = 0;
         public List<BasicItem> finishedItems;
 
         public List<ISprite> currentObstacleList;
-        public int currObstacleIndex = 0;
 
         public List<DestructableBlockSprite> destructibleBlockList;
         public List<IndestructableBlockSprite> indestructibleBlockList;
@@ -90,16 +93,22 @@ namespace CSE3902_Project.Map
         public List<Bat> batList;
         public List<NinjaStar> ninjaStarList;
         public List<ISprite> currentEnemyList;
-        public int currEnemyIndex = 0;
+
         static Random rnd = new Random();
 
         public List<ISprite> allObjects;
         public List<ISprite> finishedObjects;
-        public ISprite testBat;
-        public Map1(Game1 game)
+
+        public Portal portalA;
+        public Portal portalB;
+
+        public List<Portal> portalList;
+
+        public Map1(Game1 game, int mapIndex, Map m2)
         {
             this.game = game;
-            spriteBatch = game.spriteBatch;
+            this.m2 = m2;
+            this.mapIndex = mapIndex;
             graphics = game.graphics;
         }
         public class Map
@@ -109,48 +118,56 @@ namespace CSE3902_Project.Map
             public Dictionary<String,List<int>> destructableBlocks;
             public Dictionary<String, List<int>> indestructableBlocks;
             public Dictionary<String, List<int>> snakes;
+            public Dictionary<String, List<int>> bats;
+            public Dictionary<String, List<int>> aliens;
+            public Dictionary<String, List<int>> yetis;
+            public Dictionary<String, List<int>> portals;
+            public Dictionary<String, List<int>> mushrooms;
+            public Dictionary<String, List<int>> tree1;
+            public Dictionary<String, List<int>> tree2;
         }
         public void Initialize()
         {
             //TODO change in the future
             //currentGameState = GameState.GamePlay;*/
-            Map m2;
+/*            Map m2;
             string map_name =  "content\\initial_map" + game.map_index.ToString() + ".json";
             using (StreamReader file = File.OpenText(map_name))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 m2 = (Map)serializer.Deserialize(file, typeof(Map));
-            }
+            }*/
             
             collisionDetection = new CollisionDetection(this);
             tileMap = new TileMap(game);
 
-            background = new Background1(new Vector2(0, 0));
-            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
-            player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
+            background = new Background1(new Vector2(0, 0), mapIndex);
+/*            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
+            player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);*/
 
             staticBombList = new List<StaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
             ninjaStarList = new List<NinjaStar>();
             destructibleBlockList = new List<DestructableBlockSprite>();
             indestructibleBlockList = new List<IndestructableBlockSprite>();
+            portalList = new List<Portal>();
 
-            verticalBat = new Bat(new Vector2(400, 140), game);
+/*            verticalBat = new Bat(new Vector2(400, 140), game);
             horizontalBat = new Bat(new Vector2(400, 380), game);
-            horizontalBat.currState = new BatFacingEastState(horizontalBat);        
+            horizontalBat.currState = new BatFacingEastState(horizontalBat);     */   
          
-            tree1 = new Tree1(new Vector2(330, 250));
-            tree2 = new Tree2(new Vector2(370, 250));
+            // tree1 = new Tree1(new Vector2(330, 250));
+            // tree2 = new Tree2(new Vector2(370, 250));
             mashroom1 = new Mashroom1(new Vector2(300, 300));
 
             // spawn all items initially for testing purposes
-            bombItem = new BombItem(new Vector2(150, 100), game);
-            ghostItem = new GhostItem(new Vector2(185, 100), game);
-            goblinItem = new GoblinItem(new Vector2(220, 100), game);
-            knightItem = new KnightItem(new Vector2(255, 100), game);
-            ninjasStarItem = new NinjaStarItem(new Vector2(290, 100), game);
-            potionItem = new PotionItem(new Vector2(325, 100), game);
-            shoeItem = new ShoeItem(new Vector2(360, 100), game);
+            bombItem = new BombItem(new Vector2(150, 400), game);
+            ghostItem = new GhostItem(new Vector2(185, 400), game);
+            goblinItem = new GoblinItem(new Vector2(220, 400), game);
+            knightItem = new KnightItem(new Vector2(255, 400), game);
+            ninjasStarItem = new NinjaStarItem(new Vector2(290, 400), game);
+            potionItem = new PotionItem(new Vector2(325, 400), game);
+            shoeItem = new ShoeItem(new Vector2(360, 400), game);
 
             currentItemList = new List<BasicItem>();
             currentItemList.Add(bombItem);
@@ -163,39 +180,75 @@ namespace CSE3902_Project.Map
 
             currentObstacleList = new List<ISprite>();
             
-            currentObstacleList.Add(tree1);
-            currentObstacleList.Add(tree2);
+            //currentObstacleList.Add(tree1);
+            //currentObstacleList.Add(tree2);
             currentObstacleList.Add(mashroom1);
 
             snakeList = new List<Snake>();
             
             batList = new List<Bat>();
-            batList.Add(horizontalBat);
-            batList.Add(verticalBat);
+/*            batList.Add(horizontalBat);
+            batList.Add(verticalBat);*/
 
             currentEnemyList = new List<ISprite>();
-            currentEnemyList.Add(verticalBat);
-            currentEnemyList.Add(horizontalBat);
-            
+/*            currentEnemyList.Add(verticalBat);
+            currentEnemyList.Add(horizontalBat);*/
 
-            foreach (List<int> pos in m2.destructableBlocks.Values){
-                dBlock = (new DestructableBlockSprite(game, new Vector2(pos[0], pos[1])));
-                destructibleBlockList.Add(dBlock);
-                currentObstacleList.Add(dBlock);
+            /*            portalA = new Portal(new Vector2(0, 240), game);
+                        portalB = new Portal(new Vector2(770, 240), game);*/
+
+            /*            foreach (List<int> pos in m2.tree1.Values)
+                        {
+                            tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
+                            currentObstacleList.Add(tree1);
+                        }
+                        foreach (List<int> pos in m2.tree2.Values)
+                        {
+                            tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
+                            currentObstacleList.Add(tree2);
+                        }
+
+                        foreach (List<int> pos in m2.destructableBlocks.Values){
+                            dBlock = (new DestructableBlockSprite(game, mapIndex, new Vector2(pos[0], pos[1])));
+                            destructibleBlockList.Add(dBlock);
+                            currentObstacleList.Add(dBlock);
+                        }
+                        foreach (List<int> pos in m2.indestructableBlocks.Values)
+                        {
+                            iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]), mapIndex);
+                            currentObstacleList.Add(iBlock);
+                            indestructibleBlockList.Add(iBlock);
+                        }
+                        foreach (List<int> pos in m2.snakes.Values)
+                        {
+                            snake = new Snake(new Vector2(pos[0], pos[1]), game);
+                            snakeList.Add(snake);
+                            currentEnemyList.Add(snake);
+                        }
+                        foreach (List<int> pos in m2.portals.Values)
+                        {
+                            portalA = new Portal(new Vector2(pos[0], pos[1]), game);
+                            portalList.Add(portalA);
+                        }*/
+            LoadFromJson();
+            // change some bats to move horizontally
+            for (int i = 0; i < batList.Count; i++)
+            {
+                if (i % 2 == 1)
+                {
+                    batList[i].currState = new BatFacingEastState(batList[i]);
+                }
+            }
+            // set "other" portal references
+            if (portalList.Count != 0)
+            {
+                portalList[0].SetOtherPortal(portalList[1]);
+                portalList[1].SetOtherPortal(portalList[0]);
             }
 
-            foreach (List<int> pos in m2.indestructableBlocks.Values)
-            {
-                iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]));
-                currentObstacleList.Add(iBlock);
-                indestructibleBlockList.Add(iBlock);
-            }
-            foreach (List<int> pos in m2.snakes.Values)
-            {
-                snake = new Snake(new Vector2(pos[0], pos[1]), game);
-                snakeList.Add(snake);
-                currentEnemyList.Add(snake);
-            }
+            Yeti yeti = new Yeti(new Vector2(700, 400), game);
+            currentEnemyList.Add(yeti);
+
             GetAllExplosions();
 
             allObjects = new List<ISprite>();
@@ -207,6 +260,8 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(currentObstacleList);
             allObjects.AddRange(explosionCrossList);
             allObjects.AddRange(currentItemList);
+            allObjects.AddRange(portalList);
+
         }
 
         public void Update()
@@ -224,61 +279,182 @@ namespace CSE3902_Project.Map
                 ISprite s = allObjects[i];
                 s.Update();
             }
-            /*            background.Update();
-                        player1.Update();
-                        player2.Update();
-                        foreach (ISprite s in allObjects)
-                        {
-                            s.Update();
-                        }
-                        finishedItems = new List<BasicItem>();
-                        itemsToSpawn = new List<BasicItem>();
-                        foreach (BasicItem i in currentItemList)
-                        {
-                            i.Update();
-                        }
-                        finishedObstacles = new List<ISprite>();
-                        foreach (ISprite s in currentObstacleList)
-                        {
-                            s.Update();
-                        }
-
-                        foreach (IEnemyState e in currentEnemyList)
-                        {
-                            e.Update();
-                        }
-
-                        finishedBombs = new List<StaticBomb>();
-                        foreach (StaticBomb s in staticBombList)
-                        {
-                            s.Update();
-                        }
-
-                        finishedExplosionCross = new List<ExplosionCross>();
-
-                        foreach (ExplosionCross e in explosionCrossList)
-                        {
-                            e.Update();
-                        }
-
-                        finishedNinjaStar = new List<NinjaStar>();
-
-                        foreach (NinjaStar n in ninjaStarList)
-                        {
-                            n.Update();
-                            if (!n.exist)
-                            {
-                                finishedNinjaStar.Add(n);
-                            }
-                        }
-
-                        collisionDetection.Update();
-            *//*            foreach (Explosion e in finishedExplosions)
-                        {
-                            explosionList.Remove(e);
-                        }*//* */
             collisionDetection.Update();
 
+            RemoveFinishedItems();
+            SpawnItems();
+
+            // players kept getting stuck - update previous position after collision checks
+            GetAllExplosions();
+            player1.UpdatePreviousPosition();
+            player2.UpdatePreviousPosition();
+            foreach (IEnemyState e in currentEnemyList)
+            {
+                e.UpdatePreviousPosition();
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (ISprite s in allObjects)
+            {
+                s.Draw(spriteBatch);
+            }
+        }
+
+        private void LoadFromJson()
+        {
+            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
+            player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
+            foreach (List<int> pos in m2.tree1.Values)
+            {
+                tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
+                currentObstacleList.Add(tree1);
+            }
+            foreach (List<int> pos in m2.tree2.Values)
+            {
+                tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
+                currentObstacleList.Add(tree2);
+            }
+
+            foreach (List<int> pos in m2.destructableBlocks.Values)
+            {
+                dBlock = (new DestructableBlockSprite(game, mapIndex, new Vector2(pos[0], pos[1])));
+                destructibleBlockList.Add(dBlock);
+                currentObstacleList.Add(dBlock);
+            }
+            foreach (List<int> pos in m2.indestructableBlocks.Values)
+            {
+                iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]), mapIndex);
+                currentObstacleList.Add(iBlock);
+                indestructibleBlockList.Add(iBlock);
+            }
+            foreach (List<int> pos in m2.snakes.Values)
+            {
+                snake = new Snake(new Vector2(pos[0], pos[1]), game);
+                snakeList.Add(snake);
+                currentEnemyList.Add(snake);
+            }
+            foreach (List<int> pos in m2.portals.Values)
+            {
+                portalA = new Portal(new Vector2(pos[0], pos[1]), game);
+                portalList.Add(portalA);
+            }
+            foreach (List<int> pos in m2.bats.Values)
+            {
+                verticalBat = new Bat(new Vector2(pos[0], pos[1]), game);
+                batList.Add(verticalBat);
+                currentEnemyList.Add(verticalBat);
+            }
+        }
+
+        public void AddBomb(Player player, Vector2 pos)
+        {
+            if (staticBombList.Count < 10)
+            {
+                StaticBomb newBomb = new StaticBomb(game, player, pos);
+                staticBombList.Add(newBomb);
+                allObjects.Add(newBomb);
+            }
+        }
+
+        public void AddExplosions(Vector2 pos, int potionCount, int direction)
+        {
+            ExplosionCross eCross = new ExplosionCross(game);
+
+            int xOffset = 0;
+            int yOffset = 0;
+            int x = (int)pos.X;
+            int y = (int)pos.Y;
+            if (direction == 0) eCross.originExplosion.Add(new Explosion(game, new Vector2(x + xOffset, y + yOffset)));
+            // radius in each direction
+            for (int i = 1; i < potionCount; i++)
+            {
+                if (direction != 4) eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y)));
+                if (direction != 2) eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y)));
+                if (direction != 3) eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y)));
+                if (direction != 1) eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i))));
+            }
+            eCross.SetAllEplosions();
+            explosionCrossList.Add(eCross);
+            allObjects.Add(eCross);
+        }
+        public void AddNinjaStar(Player p)
+        {
+            NinjaStar newStar = new NinjaStar(p);
+            ninjaStarList.Add(newStar);
+            allObjects.Add(newStar);
+        }
+
+        public void AddItem(Vector2 pos)
+        {
+            BasicItem newItem = null;
+            int rand = rnd.Next(1, 15);
+            // normal items (3x as frequent spawn)
+            if (rand < 10)
+            {
+                switch (rand % 3)
+                {
+                    case 0:
+                        newItem = new BombItem(pos, game);
+                        break;
+                    case 1:
+                        newItem = new PotionItem(pos, game);
+                        break;
+                    case 2:
+                        newItem = new ShoeItem(pos, game);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            // special items (changes character sprite)
+            else
+            {
+                switch (rand)
+                {
+                    case 10:
+                        newItem = new GoblinItem(pos, game);
+                        break;
+                    case 11:
+                        newItem = new KnightItem(pos, game);
+                        break;
+                    case 12:
+                        newItem = new GhostItem(pos, game);
+                        break;
+                    case 13:
+                        newItem = new NinjaStarItem(pos, game);
+                        break;
+                        // nothing spawns
+                    case 14:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (newItem != null) itemsToSpawn.Add(newItem);
+        }
+
+        public void SpawnItems()
+        {
+            foreach (BasicItem i in itemsToSpawn)
+            {
+                currentItemList.Add(i);
+                allObjects.Add(i);
+            }
+        }
+
+        public void GetAllExplosions()
+        {
+            allExplosionsList = new List<Explosion>();
+            foreach (ExplosionCross e in explosionCrossList)
+            {
+                allExplosionsList.AddRange(e.allExplosions);
+            }
+        }
+
+        public void RemoveFinishedItems()
+        {
             foreach (ExplosionCross e in finishedExplosionCross)
             {
                 explosionCrossList.Remove(e);
@@ -312,160 +488,6 @@ namespace CSE3902_Project.Map
             foreach (ISprite s in finishedObjects)
             {
                 allObjects.Remove(s);
-            }
-
-            SpawnItems();
-
-            // players kept getting stuck - update previous position after collision checks
-            GetAllExplosions();
-            player1.UpdatePreviousPosition();
-            player2.UpdatePreviousPosition();
-            (currentEnemyList[0] as Bat).UpdatePreviousPosition();
-            (currentEnemyList[1] as Bat).UpdatePreviousPosition();
-            (currentEnemyList[2] as Snake).UpdatePreviousPosition();
-        }
-
-        public void Draw()
-        {
-            /*            background.Draw(spriteBatch);
-                        player1.Draw(spriteBatch);
-                        player2.Draw(spriteBatch);
-                        foreach (ISprite s in allObjects)
-                        {
-                            s.Draw(spriteBatch);
-                        }
-                        foreach (BasicItem i in currentItemList)
-                        {
-                            i.Draw(spriteBatch);
-                        }
-
-                        foreach (ISprite s in currentObstacleList)
-                        {
-                            s.Draw(spriteBatch);
-                        }
-
-                        foreach (IEnemyState e in currentEnemyList)
-                        {
-                            e.Draw(spriteBatch);
-                        }
-
-                        foreach (StaticBomb s in staticBombList)
-                        {
-                            s.Draw(spriteBatch);
-                        }
-
-                        foreach (ExplosionCross e in explosionCrossList)
-                        {
-                            e.Draw(spriteBatch);
-                        }
-                        foreach (NinjaStar n in ninjaStarList)
-                        {
-                            n.DrawSprite(spriteBatch);
-                        }*/
-            foreach (ISprite s in allObjects)
-            {
-                s.Draw(spriteBatch);
-            }
-        }
-
-        public void AddBomb(Player player, Vector2 pos)
-        {
-            if (staticBombList.Count < 10)
-            {
-                StaticBomb newBomb = new StaticBomb(game, player, pos);
-                staticBombList.Add(newBomb);
-                allObjects.Add(newBomb);
-            }
-        }
-
-        public void AddExplosions(Vector2 pos, int potionCount)
-        {
-            ExplosionCross eCross = new ExplosionCross(game);
-
-            int xOffset = 0;
-            int yOffset = 0;
-            int x = (int)pos.X;
-            int y = (int)pos.Y;
-            eCross.originExplosion = new Explosion(game, new Vector2(x + xOffset, y + yOffset));
-            // radius in each direction
-            for (int i = 1; i < potionCount; i++)
-            {
-                eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y)));
-                eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y)));
-                eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y)));
-                eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i))));
-            }
-            eCross.SetAllEplosions();
-            explosionCrossList.Add(eCross);
-            allObjects.Add(eCross);
-        }
-        public void AddNinjaStar(Player p)
-        {
-            NinjaStar newStar = new NinjaStar(p);
-            ninjaStarList.Add(newStar);
-            allObjects.Add(newStar);
-        }
-
-        public void AddItem(Vector2 pos)
-        {
-            BasicItem newItem;
-            int rand = rnd.Next(1, 13);
-            // normal items (twice as frequent spawn)
-            if (rand < 10)
-            {
-                switch (rand % 3)
-                {
-                    case 0:
-                        newItem = new BombItem(pos, game);
-                        break;
-                    case 1:
-                        newItem = new PotionItem(pos, game);
-                        break;
-                    case 2:
-                        newItem = new ShoeItem(pos, game);
-                        break;
-                    default:
-                        newItem = new BombItem(pos, game);
-                        break;
-                }
-            }
-            // special items (changes character sprite)
-            else
-            {
-                switch (rand)
-                {
-                    case 10:
-                        newItem = new GoblinItem(pos, game);
-                        break;
-                    case 11:
-                        newItem = new KnightItem(pos, game);
-                        break;
-                    case 12:
-                        newItem = new GhostItem(pos, game);
-                        break;
-                    default:
-                        newItem = new BombItem(pos, game);
-                        break;
-                }
-            }
-            itemsToSpawn.Add(newItem);
-        }
-
-        public void SpawnItems()
-        {
-            foreach (BasicItem i in itemsToSpawn)
-            {
-                currentItemList.Add(i);
-                allObjects.Add(i);
-            }
-        }
-
-        public void GetAllExplosions()
-        {
-            allExplosionsList = new List<Explosion>();
-            foreach (ExplosionCross e in explosionCrossList)
-            {
-                allExplosionsList.AddRange(e.allExplosions);
             }
         }
     }

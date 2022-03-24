@@ -4,7 +4,6 @@ namespace CSE3902_Project.Objects.NPC
 {
     public interface IEnemyState
     {
-
         void Draw(SpriteBatch spriteBatch);
         void TakeDamage();
         void Update();
@@ -12,5 +11,6 @@ namespace CSE3902_Project.Objects.NPC
         void MoveDown();
         void MoveLeft();
         void MoveRight();
+        void UpdatePreviousPosition();
     }
 }

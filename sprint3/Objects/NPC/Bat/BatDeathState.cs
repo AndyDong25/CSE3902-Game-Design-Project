@@ -44,8 +44,9 @@ namespace CSE3902_Project.Objects.NPC.Bat
 
         public void TakeDamage()
         {
-
-
+        }
+        public void UpdatePreviousPosition()
+        {
         }
     }
 }

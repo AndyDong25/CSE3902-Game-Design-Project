@@ -21,6 +21,9 @@ namespace CSE3902_CSE3902_Project.Items
         {
             base.Activate(currentPlayer);
             boostedPlayer = currentPlayer;
+            currentPlayer.boosted = true;
+            currentPlayer.boostedTimer = 1200;
+            currentPlayer.boostFadeAmount = 1.0f;
             currentPlayer.spriteIndex = 2;
             currentPlayer.ApplyAbilities();
         }

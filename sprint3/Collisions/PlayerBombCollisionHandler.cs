@@ -13,7 +13,7 @@ namespace CSE3902_Project.Collisions
         public void HandleCollision(object o)
         {
             Player p = (Player)o;
-            if (!bomb.passable)
+            if (!bomb.PlayerPassable(p))
             {
                 p.xPos = p.previousXPos;
                 p.yPos = p.previousYPos;
