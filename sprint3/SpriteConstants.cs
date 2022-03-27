@@ -171,22 +171,22 @@ namespace CSE3902_CSE3902_Project
 
         public static List<Rectangle> ALIEN_EAST = new List<Rectangle>
         {
-            new Rectangle(0, 124, 62, 63), new Rectangle (62, 124, 92, 63), new Rectangle(124, 124, 92, 63)
+            new Rectangle(0, 0, 250, 200), new Rectangle (0, 0, 250, 200), new Rectangle(500, 200, 250, 200)
         };
 
         public static List<Rectangle> ALIEN_WEST = new List<Rectangle>
         {
-            new Rectangle(0, 62, 9, 63), new Rectangle (62, 62, 69, 63), new Rectangle(124, 62, 62, 63)
+            new Rectangle(0, 0, 250, 200), new Rectangle (0, 0, 250, 200), new Rectangle(500, 200, 250, 200)
         };
 
         public static List<Rectangle> ALIEN_SOUTH = new List<Rectangle>
         {
-            new Rectangle(0, 0, 30, 30), new Rectangle (0, 0, 30, 30), new Rectangle(0, 0, 30, 30)
+            new Rectangle(0, 0, 250, 200), new Rectangle (0, 0, 250, 200), new Rectangle(500, 200, 250, 200)
         };
 
         public static List<Rectangle> ALIEN_NORTH = new List<Rectangle>
         {
-            new Rectangle(0, 189, 62, 63), new Rectangle (62, 189, 62, 63), new Rectangle(124, 189, 62, 63)
+            new Rectangle(0, 200, 250, 200), new Rectangle (0, 0, 250, 200), new Rectangle(500, 200, 250, 200)
         };
         /*
                 public static List<Rectangle> YETI_EAST = new List<Rectangle>

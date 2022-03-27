@@ -60,7 +60,11 @@ namespace CSE3902_Project.Objects.NPC.Alien
 
             // Eventually we would like to maybe make this AI have smarter behavior by implementing a behavior tree
             actionProba = actionSelect.Next(0, 10);
-            if (actionProba > 8)
+            if (actionProba <= 2)
+            {
+                alien.currState = new AlienFacingNorthState(alien);
+            }
+            else if (actionProba > 2 && actionProba < 4)
             {
                 alien.currState = new AlienFacingWestState(alien);
             }
