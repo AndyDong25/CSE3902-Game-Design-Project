@@ -216,6 +216,7 @@ namespace CSE3902_CSE3902_Project
 
 
         public static Rectangle NINJA_STAR = new Rectangle(0, 0, 459, 459);
+        public static Rectangle TORPEDO = new Rectangle(0, 0, 512, 512);
         //public static Rectangle EXPLOSION = new Rectangle(555, 124, 87, 87);
         public static Rectangle EXPLOSION = new Rectangle(561, 129, 75, 75);
         public static Rectangle TOMBSTONE = new Rectangle(0, 0, 233, 233);

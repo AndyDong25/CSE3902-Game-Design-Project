@@ -60,13 +60,17 @@ namespace CSE3902_CSE3902_Project.Controller
 
             this.addCommand(Keys.D1, new UseItemCommand(player1));
             this.addCommand(Keys.D0, new UseItemCommand(player2));
+
+            // For torpedo
+            this.addCommand(Keys.D2, new UseTorpedoItemCommand(player1));
+            this.addCommand(Keys.D9, new UseTorpedoItemCommand(player2));
         }
 
         public void addCommand(Keys key, ICommand command)
         {
             mappings.Add(key, command);
             //acceptedStates.Add(key);
-            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.T || key == Keys.O ||key == Keys.D0 || key == Keys.D1)
+            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.T || key == Keys.O ||key == Keys.D0 || key == Keys.D1 || key == Keys.D2 || key == Keys.D9)
             {
                 oncePerActionStates.Add(key);
             }

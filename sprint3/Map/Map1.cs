@@ -24,6 +24,7 @@ using System.Diagnostics;
 using CSE3902_Project.Objects.NPC.Yeti;
 using CSE3902_Project.Objects.NPC;
 using sprint3.Objects.Decorations;
+using CSE3902_Project.Objects.Torpedo;
 
 namespace CSE3902_Project.Map
 {
@@ -58,6 +59,7 @@ namespace CSE3902_Project.Map
         public Tree1 tree1;
         public Tree2 tree2;
         public Mashroom1 mashroom1;
+        public Torpedo torpedo;
 
         public BasicItem bombItem;
         public BasicItem ghostItem;
@@ -66,6 +68,7 @@ namespace CSE3902_Project.Map
         public BasicItem ninjasStarItem;
         public BasicItem potionItem;
         public BasicItem shoeItem;
+        public BasicItem torpedoItem;
 
         public List<ExplosionCross> explosionCrossList;
         public List<ExplosionCross> finishedExplosionCross;
@@ -98,6 +101,7 @@ namespace CSE3902_Project.Map
         public List<Snake> snakeList;
         public List<Bat> batList;
         public List<NinjaStar> ninjaStarList;
+        public List<Torpedo> torpedoList;
         public List<ISprite> currentEnemyList;
 
         static Random rnd = new Random();
@@ -155,6 +159,7 @@ namespace CSE3902_Project.Map
             staticBombList = new List<StaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
             ninjaStarList = new List<NinjaStar>();
+            torpedoList = new List<Torpedo>();
             destructibleBlockList = new List<DestructableBlockSprite>();
             indestructibleBlockList = new List<IndestructableBlockSprite>();
             portalList = new List<Portal>();
@@ -175,6 +180,7 @@ namespace CSE3902_Project.Map
             ninjasStarItem = new NinjaStarItem(new Vector2(290, 400), game);
             potionItem = new PotionItem(new Vector2(325, 400), game);
             shoeItem = new ShoeItem(new Vector2(360, 400), game);
+            torpedoItem = new TorpedoItem(new Vector2(405, 400), game);
 
             currentItemList = new List<BasicItem>();
             currentItemList.Add(bombItem);
@@ -184,6 +190,7 @@ namespace CSE3902_Project.Map
             currentItemList.Add(ninjasStarItem);
             currentItemList.Add(potionItem);
             currentItemList.Add(shoeItem);
+            currentItemList.Add(torpedoItem);
 
             currentObstacleList = new List<ISprite>();
             
@@ -396,6 +403,13 @@ namespace CSE3902_Project.Map
             NinjaStar newStar = new NinjaStar(p);
             ninjaStarList.Add(newStar);
             allObjects.Add(newStar);
+        }
+
+        public void AddTorpedo(Player p)
+        {
+            Torpedo newTorpedo = new Torpedo(p);
+            torpedoList.Add(newTorpedo);
+            allObjects.Add(newTorpedo);
         }
 
         public void AddItem(Vector2 pos)

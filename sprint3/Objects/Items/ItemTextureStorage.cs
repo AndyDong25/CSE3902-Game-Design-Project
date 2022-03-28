@@ -28,6 +28,7 @@ namespace CSE3902_CSE3902_Project.Objects.Items
         private static Texture2D shoeItemTexture = null;
         private static Texture2D bombObjectTexture = null;
         private static Texture2D cointItemTexture = null;
+        private static Texture2D torpedoItemTexture = null;
 
         // add other items
 
@@ -48,6 +49,7 @@ namespace CSE3902_CSE3902_Project.Objects.Items
             explosionTexture = content.Load<Texture2D>("ExplosionSpriteSheet");
             bombObjectTexture = content.Load<Texture2D>("bomb2");
             cointItemTexture = content.Load<Texture2D>("coin");
+            torpedoItemTexture = content.Load<Texture2D>("torpedo");
 
             // load other item sprite sheets
         }
@@ -91,6 +93,10 @@ namespace CSE3902_CSE3902_Project.Objects.Items
         public Texture2D getCoinItemSprite()
         {
             return cointItemTexture;
+        }
+        public Texture2D getTorpedoItemSprite()
+        {
+            return torpedoItemTexture;
         }
     }
 }

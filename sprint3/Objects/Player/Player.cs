@@ -106,6 +106,15 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             }
         }
 
+        public void UseTorpedo()
+        {
+            if (inventory["torpedo"] > 0)
+            {
+                Game.currentMap.AddTorpedo(this);
+                inventory["torpedo"]--;
+            }
+        }
+
         public void ChangeCharacter()
         {
             spriteIndex = (++spriteIndex % 4);
@@ -195,6 +204,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             inventory.Add("bomb", 3);
             inventory.Add("potion", 2);
             inventory.Add("shoe", 6);
+            inventory.Add("torpedo", 1);
         }
 
         public void UpdateBoostEffects()
