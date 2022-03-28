@@ -27,7 +27,7 @@ namespace CSE3902_CSE3902_Project.Objects.Items
         private static Texture2D potionItemTexture = null;
         private static Texture2D shoeItemTexture = null;
         private static Texture2D bombObjectTexture = null;
-
+        private static Texture2D cointItemTexture = null;
 
         // add other items
 
@@ -47,6 +47,7 @@ namespace CSE3902_CSE3902_Project.Objects.Items
             shoeItemTexture = content.Load<Texture2D>("shoeSprite");
             explosionTexture = content.Load<Texture2D>("ExplosionSpriteSheet");
             bombObjectTexture = content.Load<Texture2D>("bomb2");
+            cointItemTexture = content.Load<Texture2D>("coin");
 
             // load other item sprite sheets
         }
@@ -86,6 +87,10 @@ namespace CSE3902_CSE3902_Project.Objects.Items
         public Texture2D getBombObjectSprite()
         {
             return bombObjectTexture;
+        }
+        public Texture2D getCoinItemSprite()
+        {
+            return cointItemTexture;
         }
     }
 }
