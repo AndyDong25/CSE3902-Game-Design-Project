@@ -73,6 +73,12 @@
 /processorParam:TextureFormat=Color
 /build:blueMineral.png
 
+#begin bomb.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:bomb.mp3
+
 #begin bomb2.png
 /importer:TextureImporter
 /processor:TextureProcessor

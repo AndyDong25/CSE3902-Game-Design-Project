@@ -5,6 +5,7 @@ using CSE3902_CSE3902_Project.Sprites;
 using CSE3902_CSE3902_Project.Sprites.BlockSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using CSE3902_Project.Audio;
 using CSE3902_Project.Collisions;
 using CSE3902_Project.Objects.Bomb;
 using CSE3902_Project.Objects.NPC.Bat;
@@ -368,7 +369,7 @@ namespace CSE3902_Project.Map
         public void AddExplosions(Vector2 pos, int potionCount, int direction)
         {
             ExplosionCross eCross = new ExplosionCross(game);
-
+            AudioManager.Instance.PlayBombExplosion();
             int xOffset = 0;
             int yOffset = 0;
             int x = (int)pos.X;

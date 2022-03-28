@@ -8,6 +8,7 @@ using CSE3902_Project.Objects.NPC;
 using Microsoft.Xna.Framework.Content;
 using CSE3902_Project.Objects.Decorations;
 using CSE3902_Project.Map;
+using CSE3902_Project.Audio;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -98,6 +99,7 @@ namespace CSE3902_CSE3902_Project
             EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
             DecorationTextureStorage.Instance.LoadAllResources(Content);
+            AudioManager.Instance.LoadAllResources(Content);
         }
 
         protected override void UnloadContent()
