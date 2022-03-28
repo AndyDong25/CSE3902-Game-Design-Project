@@ -42,6 +42,8 @@ namespace CSE3902_Project.Objects.Decorations
 
         private static Texture2D portalTexture;
 
+        private static Texture2D hudBackgroundTexture;
+
 
         private DecorationTextureStorage()
         {
@@ -70,6 +72,8 @@ namespace CSE3902_Project.Objects.Decorations
 
             mashroom1Texture = content.Load<Texture2D>("mashroom1");
             portalTexture = content.Load<Texture2D>("portalSpritesheet");
+
+            hudBackgroundTexture = content.Load<Texture2D>("hudBackground");
         }
 
         public Texture2D getTree1Sprite()
@@ -135,6 +139,10 @@ namespace CSE3902_Project.Objects.Decorations
         public Texture2D getPortalSprite()
         {
             return portalTexture;
+        }
+        public Texture2D getHudBackgroundSprite()
+        {
+            return hudBackgroundTexture;
         }
     }
 }

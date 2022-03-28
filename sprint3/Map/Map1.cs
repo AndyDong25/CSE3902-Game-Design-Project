@@ -40,6 +40,7 @@ namespace CSE3902_Project.Map
         //Boolean isPaused = false;
 
         private Background1 background;
+        public Hud1 hud;
         public GraphicsDeviceManager graphics;
 
         public Player player1;
@@ -146,6 +147,7 @@ namespace CSE3902_Project.Map
             tileMap = new TileMap(game);
 
             background = new Background1(new Vector2(0, 0), mapIndex);
+            hud = new Hud1(new Vector2(0, 480));
 /*            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
             player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);*/
 
@@ -286,6 +288,7 @@ namespace CSE3902_Project.Map
                 ISprite s = allObjects[i];
                 s.Update();
             }
+            hud.Update();
             collisionDetection.Update();
 
             RemoveFinishedItems();
@@ -307,6 +310,7 @@ namespace CSE3902_Project.Map
             {
                 s.Draw(spriteBatch);
             }
+            hud.Draw(spriteBatch);
         }
 
         private void LoadFromJson()
