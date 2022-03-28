@@ -47,24 +47,27 @@ namespace CSE3902_CSE3902_Project
         public Game1()
         {         
             graphics = new GraphicsDeviceManager(this);
-            screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";      
         }
 
         protected override void Initialize()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-/*            Viewport viewport = graphics.GraphicsDevice.Viewport;
-            safeBounds = new Rectangle(
-                (int)(viewport.Width * safeAreaPortion),
-                (int)(viewport.Height * safeAreaPortion),
-                (int)(viewport.Width * (1 - 2 * safeAreaPortion)),
-                (int)(viewport.Height * (1 - 2 * safeAreaPortion)));*/
+            /*            Viewport viewport = graphics.GraphicsDevice.Viewport;
+                        safeBounds = new Rectangle(
+                            (int)(viewport.Width * safeAreaPortion),
+                            (int)(viewport.Height * safeAreaPortion),
+                            (int)(viewport.Width * (1 - 2 * safeAreaPortion)),
+                            (int)(viewport.Height * (1 - 2 * safeAreaPortion)));*/
             //TODO change in the future
             //currentGameState = GameState.GamePlay;
 
             // mapDir = new Dictionary<Vector2, ISprite> { };
-
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
+            screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            graphics.ApplyChanges();
             base.Initialize();
             if (!mapsLoaded)
             {
