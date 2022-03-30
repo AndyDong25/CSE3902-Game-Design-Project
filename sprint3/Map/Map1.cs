@@ -261,9 +261,12 @@ namespace CSE3902_Project.Map
             }
 
             Yeti yeti = new Yeti(new Vector2(700, 400), game);
+            Yeti yeti2 = new Yeti(new Vector2(0, 200), game);
+            yeti2.currState = new YetiFacingEastState(yeti2);
             //alien testing, can adjust later
             alien = new Alien(new Vector2(1100, 400), game);
             currentEnemyList.Add(yeti);
+            currentEnemyList.Add(yeti2);
             currentEnemyList.Add(alien);
 
             GetAllExplosions();

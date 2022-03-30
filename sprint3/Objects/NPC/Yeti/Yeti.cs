@@ -11,8 +11,8 @@ namespace CSE3902_Project.Objects.NPC.Yeti
     {
         public IEnemyState currState;
         public float xPos, yPos, previousXPos, previousYPos;
-        public float speed = 0.0f;
-        public float framePerStep = 30;
+        public float speed = 3.0f;
+        public float framePerStep = 15;
         public int timeCounter = 300;
         public float acceleration;
         public Boolean isDead = false;
@@ -29,7 +29,7 @@ namespace CSE3902_Project.Objects.NPC.Yeti
             yPos = position.Y;
             this.Game = game;
             acceleration = 0.05f;
-            collider2D = new Rectangle((int)xPos + 5, (int)yPos + 3, 30, 34);
+            collider2D = new Rectangle((int)xPos + 7, (int)yPos + 5, 37, 40);
         }
 
         public void positionLimit()
@@ -84,7 +84,7 @@ namespace CSE3902_Project.Objects.NPC.Yeti
 
         public void DrawSprite(SpriteBatch spriteBatch, Texture2D texture, Rectangle source, int XOffset = 0, int YOffset = 0)
         {
-            Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset, 40, 40);
+            Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset, 60, 60);
             spriteBatch.Draw(texture, destination, source, Color.White);
         }
 

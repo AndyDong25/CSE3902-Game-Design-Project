@@ -204,8 +204,8 @@ namespace CSE3902_CSE3902_Project
 
         public static List<Rectangle> YETI_EAST = new List<Rectangle>
         {
-                    new Rectangle(641, 83, 81, 81), new Rectangle(560, 83, 81, 81), new Rectangle(479, 83, 81, 81), new Rectangle(398, 83, 81, 81), new Rectangle(317, 83, 81, 81),
-                     new Rectangle(236, 83, 81, 81), new Rectangle(155, 83, 81, 81), new Rectangle(74, 83, 81, 81), new Rectangle(0, 83, 81, 81),
+                    new Rectangle(648, 83, 81, 81), new Rectangle(567, 83, 81, 81), new Rectangle(486, 83, 81, 81), new Rectangle(405, 83, 81, 81), new Rectangle(324, 83, 81, 81),
+                     new Rectangle(243, 83, 81, 81), new Rectangle(162, 83, 81, 81), new Rectangle(81, 83, 81, 81), new Rectangle(7, 83, 81, 81),
         };
 
         public static List<Rectangle> YETI_WEST = new List<Rectangle>
