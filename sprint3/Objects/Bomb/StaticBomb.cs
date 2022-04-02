@@ -125,6 +125,10 @@ namespace CSE3902_Project.Objects.Bomb
                 return p2Passable;
             }
         }
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
     }
 }
 

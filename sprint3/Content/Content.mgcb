@@ -13,18 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin fire1_64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:fire1_64.png
-
 #begin alien.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -211,6 +199,25 @@
 /processorParam:TextureFormat=Color
 /build:ExplosionSpriteSheet.png
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont
+
+#begin fire1_64.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:fire1_64.png
+
 #begin ghostItemSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -294,6 +301,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:hudBackground.webp
+
+#begin hudFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:hudFont.spritefont
 
 #begin iceBackground.jpg
 /importer:TextureImporter
@@ -438,13 +452,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:redBoy.png
-
-#begin Score.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Score.spritefont
 
 #begin shoeSprite.png
 /importer:TextureImporter

@@ -77,6 +77,10 @@ namespace sprint3.Objects.Decorations
         public void UpdateCollider()
         {
         }
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
 
     }
 }

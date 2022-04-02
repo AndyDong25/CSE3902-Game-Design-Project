@@ -71,5 +71,9 @@ namespace CSE3902_Project.Objects.NPC.Bat
         {
             bat.UpdatePreviousPosition();
         }
+        public bool IsDead()
+        {
+            return bat.isDead;
+        }
     }
 }

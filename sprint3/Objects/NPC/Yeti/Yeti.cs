@@ -98,5 +98,10 @@ namespace CSE3902_Project.Objects.NPC.Yeti
             previousXPos = xPos;
             previousYPos = yPos;
         }
+
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
     }
 }

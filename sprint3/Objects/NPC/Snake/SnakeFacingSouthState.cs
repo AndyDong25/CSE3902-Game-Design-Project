@@ -71,5 +71,9 @@ namespace CSE3902_Project.Objects.NPC.Snake
         {
             snake.UpdatePreviousPosition();
         }
+        public bool IsDead()
+        {
+            return snake.isDead;
+        }
     }
 }

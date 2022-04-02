@@ -226,5 +226,9 @@ namespace CSE3902_CSE3902_Project.Objects.Player
                 }
             }
         }
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
     }
 }

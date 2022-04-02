@@ -49,5 +49,9 @@ namespace CSE3902_Project.Objects.NPC.Alien
         public void UpdatePreviousPosition()
         {
         }
+        public bool IsDead()
+        {
+            return alien.isDead;
+        }
     }
 }

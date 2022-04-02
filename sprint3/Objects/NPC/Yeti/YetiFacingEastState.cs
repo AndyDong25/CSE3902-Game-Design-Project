@@ -88,5 +88,9 @@ namespace CSE3902_Project.Objects.NPC.Yeti
         {
             yeti.UpdatePreviousPosition();
         }
+        public bool IsDead()
+        {
+            return yeti.isDead;
+        }
     }
 }

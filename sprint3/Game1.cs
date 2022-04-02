@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using static CSE3902_Project.Map.Map1;
+using CSE3902_Project.Fonts;
 
 namespace CSE3902_CSE3902_Project
 {
@@ -102,6 +103,7 @@ namespace CSE3902_CSE3902_Project
             EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
             DecorationTextureStorage.Instance.LoadAllResources(Content);
+            SpriteFontStorage.Instance.LoadAllResources(Content);
             AudioManager.Instance.LoadAllResources(Content);
         }
 

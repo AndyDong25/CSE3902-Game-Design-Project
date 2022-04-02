@@ -40,5 +40,9 @@ namespace CSE3902_Project.Sprites.Decorations
         public void UpdateCollider()
         {
         }
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
     }
 }

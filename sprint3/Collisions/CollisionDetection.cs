@@ -236,7 +236,19 @@ namespace CSE3902_Project.Collisions
                 //foreach (Alien a in map.alienList)
             }
 
-            foreach(Bat b in map.batList)
+            foreach (ICollideable e in map.currentEnemyList)
+            {
+                if (p1.collider2D.Intersects(e.GetCollider2D())) {
+                    p1.collisionHandler = new PlayerEnemyCollisionHandler((IEnemyState)e);
+                    p1.collisionHandler.HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(e.GetCollider2D()))
+                {
+                    p2.collisionHandler = new PlayerEnemyCollisionHandler((IEnemyState)e);
+                    p2.collisionHandler.HandleCollision(p2);
+                }
+            }
+/*            foreach(Bat b in map.batList)
             {
                 if (p1.collider2D.Intersects(b.collider2D))
                 {
@@ -282,14 +294,20 @@ namespace CSE3902_Project.Collisions
             {
                 if (p1.collider2D.Intersects(y.collider2D))
                 {
-                    p1.currState = new PlayerDeathState(p1);
+                    if (!y.isDead)
+                    {
+                        p1.currState = new PlayerDeathState(p1);
+                    }
                 }
 
                 if (p2.collider2D.Intersects(y.collider2D))
                 {
-                    p2.currState = new PlayerDeathState(p2);
+                    if (!y.isDead)
+                    {
+                        p2.currState = new PlayerDeathState(p1);
+                    }
                 }
-            }
+            }*/
 
 
             foreach (DestructableBlockSprite b in destructibleBlockList)

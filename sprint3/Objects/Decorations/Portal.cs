@@ -73,5 +73,9 @@ namespace sprint3.Objects.Decorations
         {
             otherPortal = p;
         }
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
     }
 }

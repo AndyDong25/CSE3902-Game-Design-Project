@@ -143,5 +143,9 @@ namespace CSE3902_CSE3902_Project
         {
             // items will be stationary, so nothing needs to be done here
         }
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
     }
 }

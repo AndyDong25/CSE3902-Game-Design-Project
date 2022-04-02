@@ -12,5 +12,6 @@ namespace CSE3902_Project.Objects.NPC
         void MoveLeft();
         void MoveRight();
         void UpdatePreviousPosition();
+        bool IsDead();
     }
 }

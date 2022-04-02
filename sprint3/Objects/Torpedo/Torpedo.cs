@@ -72,5 +72,9 @@ namespace CSE3902_Project.Objects.Torpedo
             collider2D.X = (int)position.X + 3;
             collider2D.Y = (int)position.Y + 3;
         }
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
     }
 }

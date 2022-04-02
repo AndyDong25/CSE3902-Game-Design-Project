@@ -74,5 +74,9 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
                     break;
             }
         }
+        public Rectangle GetCollider2D()
+        {
+            return collider2D;
+        }
     }
 }
