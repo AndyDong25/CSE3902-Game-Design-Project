@@ -259,7 +259,7 @@ namespace CSE3902_Project.Map
                 portalList[0].SetOtherPortal(portalList[1]);
                 portalList[1].SetOtherPortal(portalList[0]);
             }
-
+            Fire fire = new Fire(new Vector2(10, 10), game);
             Yeti yeti = new Yeti(new Vector2(700, 400), game);
             Yeti yeti2 = new Yeti(new Vector2(0, 200), game);
             yeti2.currState = new YetiFacingEastState(yeti2);
@@ -281,7 +281,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(explosionCrossList);
             allObjects.AddRange(currentItemList);
             allObjects.AddRange(portalList);
-
+            allObjects.Add(fire);
         }
 
         public void Update()
