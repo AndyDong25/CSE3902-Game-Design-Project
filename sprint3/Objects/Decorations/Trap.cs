@@ -10,7 +10,7 @@ using System.Text;
 
 namespace sprint3.Objects.Decorations
 {
-    public class Fire : ICollideable, ISprite
+    public class Trap : ICollideable, ISprite
     {
         private Game1 game;
         public Portal otherPortal;
@@ -28,7 +28,7 @@ namespace sprint3.Objects.Decorations
         public ICollisionHandler collisionHandler;
         public Vector2 switchTimer;
         public bool cooldown;
-        public Fire(Vector2 position, Game1 game)
+        public Trap(Vector2 position, Game1 game)
         {
             this.game = game;
             this.position = position;
