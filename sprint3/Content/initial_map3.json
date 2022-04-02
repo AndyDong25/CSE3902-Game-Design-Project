@@ -3,6 +3,7 @@
     "player2": [ 700, 220 ],
     "snakes": { "Snake1": [ 60, 430 ] },
     "bats": {},
+    "yetis": {},
     "portals": {
         "PortalA": [ 0, 220 ],
         "PortalB": [ 770, 220 ]

@@ -50,6 +50,7 @@ namespace CSE3902_Project.Map
         public Bat horizontalBat;
         public Bat verticalBat;
         public Snake snake;
+        public Yeti yeti;
         public Alien alien;
 
 
@@ -100,6 +101,8 @@ namespace CSE3902_Project.Map
 
         public List<Snake> snakeList;
         public List<Bat> batList;
+        public List<Yeti> yetiList;
+
         public List<NinjaStar> ninjaStarList;
         public List<Torpedo> torpedoList;
         public List<ISprite> currentEnemyList;
@@ -201,8 +204,9 @@ namespace CSE3902_Project.Map
             snakeList = new List<Snake>();
             
             batList = new List<Bat>();
-/*            batList.Add(horizontalBat);
-            batList.Add(verticalBat);*/
+
+            yetiList = new List<Yeti>();
+
 
             currentEnemyList = new List<ISprite>();
 /*            currentEnemyList.Add(verticalBat);
@@ -260,13 +264,13 @@ namespace CSE3902_Project.Map
                 portalList[1].SetOtherPortal(portalList[0]);
             }
             Trap trap = new Trap(new Vector2(10, 10), game);
-            Yeti yeti = new Yeti(new Vector2(700, 400), game);
+/*            Yeti yeti = new Yeti(new Vector2(700, 400), game);
             Yeti yeti2 = new Yeti(new Vector2(0, 200), game);
-            yeti2.currState = new YetiFacingEastState(yeti2);
+            yeti2.currState = new YetiFacingEastState(yeti2);*/
             //alien testing, can adjust later
             alien = new Alien(new Vector2(1100, 400), game);
-            currentEnemyList.Add(yeti);
-            currentEnemyList.Add(yeti2);
+/*            currentEnemyList.Add(yeti);
+            currentEnemyList.Add(yeti2);*/
             currentEnemyList.Add(alien);
 
             GetAllExplosions();
@@ -367,6 +371,12 @@ namespace CSE3902_Project.Map
                 verticalBat = new Bat(new Vector2(pos[0], pos[1]), game);
                 batList.Add(verticalBat);
                 currentEnemyList.Add(verticalBat);
+            }
+            foreach (List<int> pos in m2.yetis.Values)
+            {
+                yeti = new Yeti(new Vector2(pos[0], pos[1]), game);
+                yetiList.Add(yeti);
+                currentEnemyList.Add(yeti);
             }
         }
 

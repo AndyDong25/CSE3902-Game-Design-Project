@@ -29,7 +29,7 @@ namespace CSE3902_Project.Objects.NPC.Yeti
             yPos = position.Y;
             this.Game = game;
             acceleration = 0.05f;
-            collider2D = new Rectangle((int)xPos + 7, (int)yPos + 5, 37, 40);
+            UpdateCollider();
         }
 
         public void positionLimit()
@@ -90,8 +90,7 @@ namespace CSE3902_Project.Objects.NPC.Yeti
 
         public void UpdateCollider()
         {
-            collider2D.X = (int)xPos + 8;
-            collider2D.Y = (int)yPos + 5;
+            collider2D = new Rectangle((int)xPos + 7, (int)yPos + 5, 37, 40);
         }
 
         public void UpdatePreviousPosition()

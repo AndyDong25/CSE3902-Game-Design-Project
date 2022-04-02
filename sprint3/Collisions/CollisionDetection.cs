@@ -14,6 +14,7 @@ using CSE3902_Project.Objects.NPC.Alien;
 using sprint3.Collisions;
 using sprint3.Objects.Bomb;
 using sprint3.Objects.Decorations;
+using CSE3902_Project.Objects.NPC.Yeti;
 
 namespace CSE3902_Project.Collisions
 {
@@ -81,6 +82,15 @@ namespace CSE3902_Project.Collisions
                     {
                         s.collisionHandler = new SnakeCollisionHandler();
                         s.collisionHandler.HandleCollision(s);
+                    }
+                }
+                foreach (Yeti y in map.yetiList)
+                {
+                    if (b.collider2D.Intersects(y.collider2D))
+                    {
+                        y.xPos = y.previousXPos;
+                        y.yPos = y.previousYPos;
+                        y.UpdateCollider();
                     }
                 }
             }
@@ -213,6 +223,15 @@ namespace CSE3902_Project.Collisions
                         sn.collisionHandler.HandleCollision(sn);
                     }
                 }
+                foreach (Yeti y in map.yetiList)
+                {
+                    if (s.collider2D.Intersects(y.collider2D))
+                    {
+                        y.xPos = y.previousXPos;
+                        y.yPos = y.previousYPos;
+                        y.UpdateCollider();
+                    }
+                }
                 //I'm delaying putting in the aliens here because I think we can encapsulate all of our sprites into 1 collision handler
                 //foreach (Alien a in map.alienList)
             }
@@ -255,6 +274,20 @@ namespace CSE3902_Project.Collisions
                     s.collisionHandler = new SnakeCollisionHandler();
                     s.collisionHandler.HandleCollision(s);
                     p2.speed = p2.speed - 0.01f;
+                }
+            }
+
+            // can create separate collisionHandler class but it might be easier to have one for all enemies later
+            foreach (Yeti y in map.yetiList)
+            {
+                if (p1.collider2D.Intersects(y.collider2D))
+                {
+                    p1.currState = new PlayerDeathState(p1);
+                }
+
+                if (p2.collider2D.Intersects(y.collider2D))
+                {
+                    p2.currState = new PlayerDeathState(p2);
                 }
             }
 
@@ -381,6 +414,14 @@ namespace CSE3902_Project.Collisions
                     {
                         s.collisionHandler = new SnakeExplosionCollisionHandler();
                         s.collisionHandler.HandleCollision(s);
+                    }
+                }
+                foreach (Yeti y in map.yetiList)
+                {
+                    if (e.collider2D.Intersects(y.collider2D))
+                    {
+                        y.currState = new YetiDeathState(y);
+                        y.isDead = true;
                     }
                 }
                 foreach (BasicItem item in currentItemList)
