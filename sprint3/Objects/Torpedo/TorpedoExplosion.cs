@@ -40,7 +40,19 @@ namespace CSE3902_Project.Objects.Torpedo
         {
             if (currentFrame <= totalFrames)
             {
-                currentFrame++;
+                Random rd = new Random();
+
+                if (count % 60 != 0)
+                {
+                    randomNum = rd.Next(1, 6);
+                }
+
+                if (randomNum == 1)
+                {
+                    currentFrame++;
+                    count++;
+                }
+                //currentFrame++;
                 //if (currentFrame == totalFrames)
                 //    currentFrame = 0;
             }
