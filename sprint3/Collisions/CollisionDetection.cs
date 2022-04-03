@@ -90,6 +90,23 @@ namespace CSE3902_Project.Collisions
                 }
             }
 
+            foreach (Minecart m in map.minecartList)
+            {
+                if (!m.playOn)
+                {
+                    if (p1.collider2D.Intersects(m.collider2D))
+                    {
+                        p1.collisionHandler = new PlayerMinecartCollisionHandler();
+                        p1.collisionHandler.HandleCollision(p1);
+                    }
+                    if (p2.collider2D.Intersects(m.collider2D))
+                    {
+                        p2.collisionHandler = new PlayerMinecartCollisionHandler();
+                        p2.collisionHandler.HandleCollision(p1);
+                    }
+                }
+                
+            }
             foreach (StaticBomb b in staticBombList)
             {
                 if (p1.collider2D.Intersects(b.collider2D))

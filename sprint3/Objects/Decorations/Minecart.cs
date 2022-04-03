@@ -18,12 +18,9 @@ namespace sprint3.Objects.Decorations
         private Rectangle sourceRec;
         private Rectangle destinationRec;
         private Texture2D texture;
-        private int sourceIndex;
-        private int frameRate;
         public Rectangle collider2D;
         public ICollisionHandler collisionHandler;
-        public int cooldownTimer;
-        public bool cooldown;
+        public bool playOn;
         public Minecart(Vector2 position, Game1 game)
         {
             this.game = game;
@@ -32,6 +29,7 @@ namespace sprint3.Objects.Decorations
             destinationRec = new Rectangle((int)position.X, (int)position.Y, 40, 32);
             texture = DecorationTextureStorage.Instance.getMinecartSprite();
             collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 40, 30);
+            playOn = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
