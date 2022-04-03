@@ -460,7 +460,7 @@ namespace CSE3902_Project.Map
         public void AddItem(Vector2 pos)
         {
             BasicItem newItem = null;
-            int rand = rnd.Next(1, 15);
+            int rand = rnd.Next(1, 16);
             // normal items (3x as frequent spawn)
             if (rand < 10)
             {
@@ -496,8 +496,11 @@ namespace CSE3902_Project.Map
                     case 13:
                         newItem = new NinjaStarItem(pos, game);
                         break;
-                        // nothing spawns
                     case 14:
+                        newItem = new TorpedoItem(pos, game);
+                        break;
+                        // nothing spawns
+                    case 15:
                         break;
                     default:
                         break;
