@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using CSE3902_Project.Audio;
 
 namespace CSE3902_CSE3902_Project.Objects.Player
 {
@@ -8,11 +9,16 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         private Player player;
         private static Rectangle sourceRec;
         private Texture2D texture;
-
         public PlayerDeathState(Player player)
         {
+            
             this.player = player;
             player.maxBombs = 0;
+            if (!player.IsDead())
+            {
+                AudioManager.Instance.PlayPlayerEliminated();
+                player.isDead = true;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

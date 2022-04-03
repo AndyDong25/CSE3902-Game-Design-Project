@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
+
 using CSE3902_Project;
 
 namespace CSE3902_Project.Audio
@@ -29,21 +31,77 @@ namespace CSE3902_Project.Audio
 
         public bool mute = false;
 
+        List<SoundEffect> allAudio;
+
+        List<SoundEffectInstance> currentlyPlayingFiles;
+
         List<Song> background_music;
 
-        Song bombExplosion;
+
+        SoundEffect bombExplosion;
+
+        SoundEffect bombThrown;
+
+        SoundEffect playerEliminated;
+
         
+        //we may need to add an update function
         public void LoadAllResources(ContentManager content)
         {
-            bombExplosion = content.Load<Song>("bomb");
+            currentlyPlayingFiles = new List<SoundEffectInstance>();
+
+            allAudio = new List<SoundEffect>();
+            
+            bombExplosion = content.Load<SoundEffect>("bomb");
+
+            bombThrown = content.Load<SoundEffect>("BombThrown");
+            
+            playerEliminated = content.Load<SoundEffect>("EliminatedSound");
+
+            background_music = new List<Song>();
+            Song MainThemeOne = content.Load<Song>("CSE3902BattleArena");
+            background_music.Add(MainThemeOne);
+
             MediaPlayer.Volume = defaultVolume;
+            
         }
 
         public void PlayBombExplosion()
         {
-           
-            MediaPlayer.Play(bombExplosion);
+            SoundEffectInstance bombExplosionInstance = bombExplosion.CreateInstance();
+            bombExplosionInstance.Play();
+            currentlyPlayingFiles.Add(bombExplosionInstance);
+            
         }
+
+
+        public void PlayBombThrown()
+        {
+            SoundEffectInstance bombThrownInstance = bombThrown.CreateInstance();
+            bombThrownInstance.Volume = .5f;
+            bombThrownInstance.Play();
+            currentlyPlayingFiles.Add(bombThrownInstance);
+
+        }
+
+
+        public void PlayPlayerEliminated()
+        {
+
+            SoundEffectInstance playerEliminatedInstance = playerEliminated.CreateInstance();
+            playerEliminatedInstance.Volume = .3f;
+            playerEliminatedInstance.Play();
+            currentlyPlayingFiles.Add(playerEliminatedInstance);
+        }
+
+        public void PlayMainMusic()
+        {
+
+            Random musicIdx = new Random();
+            int choosenSong = musicIdx.Next(0, background_music.Count);
+            MediaPlayer.Play(background_music[choosenSong]);
+        }
+
 
         public void Mute(bool sMute)
         {

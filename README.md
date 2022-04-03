@@ -59,15 +59,27 @@ Player 2:
 
   Change Character: P
 
-Gameplay:
+How to Play:
 
-  Try to eliminate other player by hitting them with bomb explosion, while avoiding enemies and explosions. Destroy crates and collect items to increase stats or obtain special abilities.
-
+  See Bubble Arena and other similar games for Reference: (Andy Youtube link). The goal of the game is to eliminate all other players and AI by dropping bombs on them, all while avoiding enemies and explosions.  
+  Destroy crates and collect items to increase stats or obtain special abilities, but watch out for enemy bombs and AI, who can kill you if they touch you! Last player alive wins the game!
+  
+	
   Special Items: 
+	Bomb Item: Allows you to drop more bombs at a time
+	Shoe Item: Gives you a slight speed boost
+	Potion Item: Gives a larger explosion radius to bomb 
 	Goblin: Transform to Goblin Character - bomb explosion has radius of 10
 	Knight: Transform to Knight Character - super speed
 	Ghost: Transform to Ghost Character - reversed movement and better stats
 	Ninja Star: Usable item stored in inventory - triggers bomb explosion on contact
+	
+
+
+	Bugs:
+	-Most everything should work accordingly
+	-Occasional collision issues
+	
 
 Other:
     
