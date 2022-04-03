@@ -118,9 +118,9 @@ namespace CSE3902_Project.Map
 
         public Portal portalA;
         public Portal portalB;
-
+        public Minecart minecart;
         public List<Portal> portalList;
-
+        public List<Minecart> minecartList;
         public Map1(Game1 game, int mapIndex, Map m2)
         {
             this.game = game;
@@ -143,6 +143,7 @@ namespace CSE3902_Project.Map
             public Dictionary<String, List<int>> tree1;
             public Dictionary<String, List<int>> tree2;
             public Dictionary<String, List<int>> traps;
+            public Dictionary<String, List<int>> minecarts;
         }
         public void Initialize()
         {
@@ -172,7 +173,7 @@ namespace CSE3902_Project.Map
             destructibleBlockList = new List<DestructableBlockSprite>();
             indestructibleBlockList = new List<IndestructableBlockSprite>();
             portalList = new List<Portal>();
-
+            minecartList = new List<Minecart>();
 /*            verticalBat = new Bat(new Vector2(400, 140), game);
             horizontalBat = new Bat(new Vector2(400, 380), game);
             horizontalBat.currState = new BatFacingEastState(horizontalBat);     */   
@@ -292,6 +293,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(currentItemList);
             allObjects.AddRange(portalList);
             allObjects.AddRange(trapList);
+            allObjects.AddRange(minecartList);
         }
 
         public void Update()
@@ -391,7 +393,11 @@ namespace CSE3902_Project.Map
                 trap = new Trap(new Vector2(pos[0], pos[1]), game);
                 trapList.Add(trap);
              }
-
+            foreach (List<int> pos in m2.minecarts.Values)
+            {
+                minecart = new Minecart(new Vector2(pos[0], pos[1]), game);
+                minecartList.Add(minecart);
+            }
         }
 
         public void AddBomb(Player player, Vector2 pos)

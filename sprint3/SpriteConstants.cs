@@ -256,5 +256,7 @@ namespace CSE3902_CSE3902_Project
         {
             new Rectangle(0, 0, 64, 64)
         };
+        public static Rectangle MINECART = new Rectangle(272, 48, 16, 16);
+
     }
 }

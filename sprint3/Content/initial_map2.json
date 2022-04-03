@@ -6,7 +6,8 @@
         "Bat1": [ 400, 140 ],
         "Bat2": [ 400, 380 ]
     },
-    "traps": { "Trap1": [ 40, 40 ] },
+    "minecarts": { "0": [ 40, 40 ] },
+    "traps": { "Trap1": [ 140, 40 ] },
     "yetis": {},
     "portals": {},
     "indestructableBlocks": {

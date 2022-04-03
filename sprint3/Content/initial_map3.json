@@ -4,11 +4,12 @@
     "snakes": { "Snake1": [ 60, 430 ] },
     "bats": {},
     "yetis": {},
-    "traps": { "0": [ 40, 40 ] },
+    "traps": { "0": [ 140, 40 ] },
     "portals": {
         "PortalA": [ 0, 220 ],
         "PortalB": [ 770, 220 ]
     },
+    "minecarts": { "0": [ 40, 40 ] },
     "destructableBlocks": {
         "0": [ 0, 40 ],
         "1": [ 80, 40 ],
