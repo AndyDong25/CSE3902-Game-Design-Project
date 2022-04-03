@@ -35,10 +35,10 @@ namespace sprint3.Objects.Decorations
                 this.game = game;
                 this.position = position;
                 sources = SpriteConstants.COIN;
-                destinationRec = new Rectangle((int)position.X, (int)position.Y, 16, 16);
-                texture = DecorationTextureStorage.Instance.getFireSprite();
+                destinationRec = new Rectangle((int)position.X, (int)position.Y, 24, 24);
+                texture = DecorationTextureStorage.Instance.getCoinSprite();
                 sourceIndex = 0;
-                collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 15, 15);
+                collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 20, 20);
             }
 
             public void Draw(SpriteBatch spriteBatch)
@@ -49,7 +49,7 @@ namespace sprint3.Objects.Decorations
             public void Update()
             {
                 sourceIndex = (sourceIndex + 1) % 12;
-                //sourceRec = new Rectangle(16 * colomn, 0 , 16, 16);
+                sourceRec = new Rectangle(16 * sourceIndex, 0 , 16, 16);
                 
             }
 

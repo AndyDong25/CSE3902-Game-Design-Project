@@ -251,7 +251,7 @@ namespace CSE3902_CSE3902_Project
         {
             new Rectangle(0, 38, 50, 120), new Rectangle(50, 38, 50, 120), new Rectangle(100, 38, 50, 120), new Rectangle(150, 38, 50, 120)
         };
-        public static Rectangle COIN = new Rectangle(0, 0, 96, 96);
+        public static Rectangle COIN = new Rectangle(0, 0, 16, 16);
         public static Rectangle FIRE = new Rectangle(0, 0, 64, 64);
 
         public static Rectangle MINECART = new Rectangle(272, 48, 16, 16);
