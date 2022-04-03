@@ -15,7 +15,7 @@ namespace sprint3.Objects.Decorations
         private Game1 game;
         public Portal otherPortal;
         public Vector2 position;
-        private List<Rectangle> sources;
+        private Rectangle sources;
         private Rectangle sourceRec;
         private int row;
         private int colomn;
@@ -36,7 +36,6 @@ namespace sprint3.Objects.Decorations
             destinationRec = new Rectangle((int)position.X, (int)position.Y, 64, 64);
             texture = DecorationTextureStorage.Instance.getFireSprite();
             sourceIndex = 0;
-            sourceRec = sources[sourceIndex];
             collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 60, 60);
             switchTimer = new Vector2(300, 100);
             timer = switchTimer;

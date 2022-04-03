@@ -206,7 +206,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             inventory.Add("shoe", 6);
             inventory.Add("torpedo", 1);
         }
-
+       
         public void UpdateBoostEffects()
         {
             if (boosted)

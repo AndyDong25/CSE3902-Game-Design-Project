@@ -25,7 +25,6 @@ using CSE3902_Project.Objects.NPC.Yeti;
 using CSE3902_Project.Objects.NPC;
 using sprint3.Objects.Decorations;
 using CSE3902_Project.Objects.Torpedo;
-
 namespace CSE3902_Project.Map
 {
     public class Map1
@@ -119,8 +118,10 @@ namespace CSE3902_Project.Map
         public Portal portalA;
         public Portal portalB;
         public Minecart minecart;
+        public Coin coin;
         public List<Portal> portalList;
         public List<Minecart> minecartList;
+        public List<Coin> coinList;
         public Map1(Game1 game, int mapIndex, Map m2)
         {
             this.game = game;
@@ -144,6 +145,7 @@ namespace CSE3902_Project.Map
             public Dictionary<String, List<int>> tree2;
             public Dictionary<String, List<int>> traps;
             public Dictionary<String, List<int>> minecarts;
+            public Dictionary<String, List<int>> coins;
         }
         public void Initialize()
         {
@@ -174,10 +176,11 @@ namespace CSE3902_Project.Map
             indestructibleBlockList = new List<IndestructableBlockSprite>();
             portalList = new List<Portal>();
             minecartList = new List<Minecart>();
-/*            verticalBat = new Bat(new Vector2(400, 140), game);
-            horizontalBat = new Bat(new Vector2(400, 380), game);
-            horizontalBat.currState = new BatFacingEastState(horizontalBat);     */   
-         
+            coinList = new List<Coin>();
+            /*            verticalBat = new Bat(new Vector2(400, 140), game);
+                        horizontalBat = new Bat(new Vector2(400, 380), game);
+                        horizontalBat.currState = new BatFacingEastState(horizontalBat);     */
+
             // tree1 = new Tree1(new Vector2(330, 250));
             // tree2 = new Tree2(new Vector2(370, 250));
             mashroom1 = new Mashroom1(new Vector2(300, 300));
@@ -294,6 +297,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(portalList);
             allObjects.AddRange(trapList);
             allObjects.AddRange(minecartList);
+            allObjects.AddRange(coinList);
         }
 
         public void Update()
@@ -397,6 +401,11 @@ namespace CSE3902_Project.Map
             {
                 minecart = new Minecart(new Vector2(pos[0], pos[1]), game);
                 minecartList.Add(minecart);
+            }
+            foreach (List<int> pos in m2.coins.Values)
+            {
+                coin = new Coin(new Vector2(pos[0], pos[1]), game);
+                coinList.Add(coin);
             }
         }
 
