@@ -36,7 +36,8 @@ namespace CSE3902_Project.Map
         public CollisionDetection collisionDetection;
         public TileMap tileMap;
         public int Timeplayed;
-        public int score;              
+        public int score;
+        public CoinsController coinsController;
         //int TimeofGame = 0;
         //Boolean isPaused = false;
 
@@ -51,7 +52,6 @@ namespace CSE3902_Project.Map
         public Snake snake;
         public Yeti yeti;
         public Alien alien;
-
 
         public NinjaStar ninjastar;
         public DestructableBlockSprite dBlock;
@@ -109,7 +109,7 @@ namespace CSE3902_Project.Map
         public List<NinjaStar> ninjaStarList;
         public List<Torpedo> torpedoList;
         public List<ISprite> currentEnemyList;
-
+       
         static Random rnd = new Random();
 
         public List<ISprite> allObjects;
@@ -121,6 +121,7 @@ namespace CSE3902_Project.Map
         public Coin coin;
         public List<Portal> portalList;
         public List<Minecart> minecartList;
+        public List<Vector2> coinPosList;
         public List<Coin> coinList;
         public Map1(Game1 game, int mapIndex, Map m2)
         {
@@ -162,7 +163,7 @@ namespace CSE3902_Project.Map
 
             collisionDetection = new CollisionDetection(this);
             tileMap = new TileMap(game);
-
+            coinsController = new CoinsController(game,this);
             background = new Background1(new Vector2(0, 0), mapIndex);
             hud = new Hud1(new Vector2(0, 480), this);
 /*            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
@@ -177,6 +178,7 @@ namespace CSE3902_Project.Map
             portalList = new List<Portal>();
             minecartList = new List<Minecart>();
             coinList = new List<Coin>();
+            coinPosList = new List<Vector2>();
             /*            verticalBat = new Bat(new Vector2(400, 140), game);
                         horizontalBat = new Bat(new Vector2(400, 380), game);
                         horizontalBat.currState = new BatFacingEastState(horizontalBat);     */
@@ -310,7 +312,7 @@ namespace CSE3902_Project.Map
             finishedObstacles = new List<ISprite>();
             itemsToSpawn = new List<BasicItem>();
             finishedTorpedo = new List<Torpedo>();
-
+            coinsController.Update();
             for (int i = allObjects.Count - 1; i > -1; i--)
             {
                 ISprite s = allObjects[i];
@@ -406,6 +408,7 @@ namespace CSE3902_Project.Map
             {
                 coin = new Coin(new Vector2(pos[0], pos[1]), game);
                 coinList.Add(coin);
+                coinPosList.Add(new Vector2(pos[0], pos[1]));
             }
         }
 
@@ -520,7 +523,7 @@ namespace CSE3902_Project.Map
                 allExplosionsList.AddRange(e.allExplosions);
             }
         }
-
+  
         public void RemoveFinishedItems()
         {
             foreach (Torpedo t in finishedTorpedo)

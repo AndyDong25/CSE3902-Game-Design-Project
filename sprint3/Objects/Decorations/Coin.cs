@@ -30,6 +30,7 @@ namespace sprint3.Objects.Decorations
             public ICollisionHandler collisionHandler;
             public Vector2 switchTimer;
             public bool cooldown;
+            private int speed;
             public Coin(Vector2 position, Game1 game)
             {
                 this.game = game;
@@ -39,6 +40,7 @@ namespace sprint3.Objects.Decorations
                 texture = DecorationTextureStorage.Instance.getCoinSprite();
                 sourceIndex = 0;
                 collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 20, 20);
+                speed = 3;
             }
 
             public void Draw(SpriteBatch spriteBatch)
@@ -48,8 +50,8 @@ namespace sprint3.Objects.Decorations
 
             public void Update()
             {
-                sourceIndex = (sourceIndex + 1) % 12;
-                sourceRec = new Rectangle(16 * sourceIndex, 0 , 16, 16);
+                sourceIndex = (sourceIndex + 1)% (12*speed);
+                sourceRec = new Rectangle(16 * (int)(sourceIndex/speed), 0 , 16, 16);
                 
             }
 
