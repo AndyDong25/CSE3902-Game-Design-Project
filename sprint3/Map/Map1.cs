@@ -61,6 +61,8 @@ namespace CSE3902_Project.Map
         public Tree2 tree2;
         public Mashroom1 mashroom1;
         public Torpedo torpedo;
+        public TorpedoExplosion torpedoExplosion;
+
 
         public BasicItem bombItem;
         public BasicItem ghostItem;
@@ -78,6 +80,8 @@ namespace CSE3902_Project.Map
         public List<StaticBomb> finishedBombs;
         public List<NinjaStar> finishedNinjaStar;
         public List<ISprite> finishedObstacles;
+        public List<Torpedo> finishedTorpedo;
+
 
         public List<BasicItem> itemsToSpawn;
         /*        GameState currentGameState;
@@ -141,16 +145,17 @@ namespace CSE3902_Project.Map
         }
         public void Initialize()
         {
+            torpedoExplosion = new TorpedoExplosion(game, new Vector2(100, 100));
             //TODO change in the future
             //currentGameState = GameState.GamePlay;*/
-/*            Map m2;
-            string map_name =  "content\\initial_map" + game.map_index.ToString() + ".json";
-            using (StreamReader file = File.OpenText(map_name))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                m2 = (Map)serializer.Deserialize(file, typeof(Map));
-            }*/
-            
+            /*            Map m2;
+                        string map_name =  "content\\initial_map" + game.map_index.ToString() + ".json";
+                        using (StreamReader file = File.OpenText(map_name))
+                        {
+                            JsonSerializer serializer = new JsonSerializer();
+                            m2 = (Map)serializer.Deserialize(file, typeof(Map));
+                        }*/
+
             collisionDetection = new CollisionDetection(this);
             tileMap = new TileMap(game);
 
@@ -279,6 +284,7 @@ namespace CSE3902_Project.Map
             allObjects.Add(background);
             allObjects.Add(player1);
             allObjects.Add(player2);
+            allObjects.AddRange(torpedoList);
             allObjects.AddRange(staticBombList);
             allObjects.AddRange(currentEnemyList);
             allObjects.AddRange(currentObstacleList);
@@ -297,6 +303,7 @@ namespace CSE3902_Project.Map
             finishedNinjaStar = new List<NinjaStar>();
             finishedObstacles = new List<ISprite>();
             itemsToSpawn = new List<BasicItem>();
+            finishedTorpedo = new List<Torpedo>();
 
             for (int i = allObjects.Count - 1; i > -1; i--)
             {
@@ -495,6 +502,11 @@ namespace CSE3902_Project.Map
 
         public void RemoveFinishedItems()
         {
+            foreach (Torpedo t in finishedTorpedo)
+            {
+                torpedoList.Remove(t);
+                finishedObjects.Add(t);
+            }
             foreach (ExplosionCross e in finishedExplosionCross)
             {
                 explosionCrossList.Remove(e);

@@ -11,9 +11,9 @@ namespace CSE3902_Project.Objects.Torpedo
 {
     public class Torpedo : ICollideable, ISprite
     {
-        private Player player;
+        public Player player;
         public Boolean hit = false;
-        private Vector2 position;
+        public Vector2 position;
         private float rotation;
         public float speed = 10.0f;
         public float direction;

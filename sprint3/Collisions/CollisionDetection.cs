@@ -15,6 +15,8 @@ using sprint3.Collisions;
 using sprint3.Objects.Bomb;
 using sprint3.Objects.Decorations;
 using CSE3902_Project.Objects.NPC.Yeti;
+using CSE3902_Project.Objects.Torpedo;
+using Microsoft.Xna.Framework;
 
 namespace CSE3902_Project.Collisions
 {
@@ -44,14 +46,36 @@ namespace CSE3902_Project.Collisions
             List<ISprite> currentObstacleList = map.currentObstacleList;
             List<BasicItem> currentItemList = map.currentItemList;
             List<NinjaStar> currentNinjaStar = map.ninjaStarList;
-            
-/*            if (p1.collider2D.Intersects(p2.collider2D))
+
+            /*            if (p1.collider2D.Intersects(p2.collider2D))
+                        {
+                            p1.collisionHandler = new PlayerBlockCollisionHandler();
+                            p1.collisionHandler.HandleCollision(p1);
+                            p2.collisionHandler = new PlayerBlockCollisionHandler();
+                            p2.collisionHandler.HandleCollision(p2);
+                        }*/
+
+            foreach (Torpedo t in map.torpedoList)
             {
-                p1.collisionHandler = new PlayerBlockCollisionHandler();
-                p1.collisionHandler.HandleCollision(p1);
-                p2.collisionHandler = new PlayerBlockCollisionHandler();
-                p2.collisionHandler.HandleCollision(p2);
-            }*/
+                if (p1.collider2D.Intersects(t.collider2D) && p1 != t.player)
+                {
+                    p1.collisionHandler = new PlayerTorpedoCollisionHandler();
+                    p1.collisionHandler.HandleCollision(t);
+                    p1.collisionHandler = new PlayerTorpedoExplosionCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    map.torpedoExplosion.pos = new Vector2(p1.xPos - 30, p1.yPos - 30);
+                    map.allObjects.Add(map.torpedoExplosion);
+                }
+                if (p2.collider2D.Intersects(t.collider2D) && p2 != t.player)
+                {
+                    p2.collisionHandler = new PlayerTorpedoCollisionHandler();
+                    p2.collisionHandler.HandleCollision(t);
+                    p2.collisionHandler = new PlayerTorpedoExplosionCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    map.torpedoExplosion.pos = new Vector2(p2.xPos - 30, p2.yPos - 30);
+                    map.allObjects.Add(map.torpedoExplosion);
+                }
+            }
 
             foreach (StaticBomb b in staticBombList)
             {
