@@ -6,6 +6,7 @@
         "Bat1": [ 400, 140 ],
         "Bat2": [ 400, 380 ]
     },
+    "traps": { "Trap1": [ 40, 40 ] },
     "yetis": {},
     "portals": {},
     "indestructableBlocks": {

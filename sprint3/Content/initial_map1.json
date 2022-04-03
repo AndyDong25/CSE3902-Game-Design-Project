@@ -5,6 +5,7 @@
     "player2": [ 700, 30 ],
     "snakes": { "Snake1": [ 60, 430 ] },
     "yetis": { "Yeti1": [ 700, 400 ] },
+    "traps": { "0": [ 40, 40 ] },
     "bats": {},
     "portals": {},
     "destructableBlocks": {

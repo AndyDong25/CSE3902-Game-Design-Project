@@ -46,7 +46,7 @@ namespace CSE3902_Project.Collisions
             List<ISprite> currentObstacleList = map.currentObstacleList;
             List<BasicItem> currentItemList = map.currentItemList;
             List<NinjaStar> currentNinjaStar = map.ninjaStarList;
-
+     
             /*            if (p1.collider2D.Intersects(p2.collider2D))
                         {
                             p1.collisionHandler = new PlayerBlockCollisionHandler();
@@ -74,6 +74,19 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler.HandleCollision(p2);
                     map.torpedoExplosion.pos = new Vector2(p2.xPos - 30, p2.yPos - 30);
                     map.allObjects.Add(map.torpedoExplosion);
+                }
+            }
+            foreach (Trap t in map.trapList)
+            {
+                if (p1.collider2D.Intersects(t.collider2D))
+                {
+                    p1.collisionHandler = new PlayerTrapCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(t.collider2D))
+                {
+                    p2.collisionHandler = new PlayerTrapCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p1);
                 }
             }
 

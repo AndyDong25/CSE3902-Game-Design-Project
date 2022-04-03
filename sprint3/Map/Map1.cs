@@ -62,7 +62,7 @@ namespace CSE3902_Project.Map
         public Mashroom1 mashroom1;
         public Torpedo torpedo;
         public TorpedoExplosion torpedoExplosion;
-
+        public Trap trap;
 
         public BasicItem bombItem;
         public BasicItem ghostItem;
@@ -106,7 +106,7 @@ namespace CSE3902_Project.Map
         public List<Snake> snakeList;
         public List<Bat> batList;
         public List<Yeti> yetiList;
-
+        public List<Trap> trapList;
         public List<NinjaStar> ninjaStarList;
         public List<Torpedo> torpedoList;
         public List<ISprite> currentEnemyList;
@@ -142,6 +142,7 @@ namespace CSE3902_Project.Map
             public Dictionary<String, List<int>> mushrooms;
             public Dictionary<String, List<int>> tree1;
             public Dictionary<String, List<int>> tree2;
+            public Dictionary<String, List<int>> traps;
         }
         public void Initialize()
         {
@@ -189,7 +190,7 @@ namespace CSE3902_Project.Map
             potionItem = new PotionItem(new Vector2(325, 400), game);
             shoeItem = new ShoeItem(new Vector2(360, 400), game);
             torpedoItem = new TorpedoItem(new Vector2(405, 400), game);
-
+            trap = new Trap(new Vector2(10, 10), game);
             currentItemList = new List<BasicItem>();
             currentItemList.Add(bombItem);
             currentItemList.Add(ghostItem);
@@ -211,8 +212,7 @@ namespace CSE3902_Project.Map
             batList = new List<Bat>();
 
             yetiList = new List<Yeti>();
-
-
+            trapList = new List<Trap>();
             currentEnemyList = new List<ISprite>();
 /*            currentEnemyList.Add(verticalBat);
             currentEnemyList.Add(horizontalBat);*/
@@ -268,7 +268,7 @@ namespace CSE3902_Project.Map
                 portalList[0].SetOtherPortal(portalList[1]);
                 portalList[1].SetOtherPortal(portalList[0]);
             }
-            Trap trap = new Trap(new Vector2(10, 10), game);
+            
 /*            Yeti yeti = new Yeti(new Vector2(700, 400), game);
             Yeti yeti2 = new Yeti(new Vector2(0, 200), game);
             yeti2.currState = new YetiFacingEastState(yeti2);*/
@@ -291,7 +291,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(explosionCrossList);
             allObjects.AddRange(currentItemList);
             allObjects.AddRange(portalList);
-            allObjects.Add(trap);
+            allObjects.AddRange(trapList);
         }
 
         public void Update()
@@ -386,6 +386,12 @@ namespace CSE3902_Project.Map
                 yetiList.Add(yeti);
                 currentEnemyList.Add(yeti);
             }
+            foreach (List<int> pos in m2.traps.Values)
+            {
+                trap = new Trap(new Vector2(pos[0], pos[1]), game);
+                trapList.Add(trap);
+             }
+
         }
 
         public void AddBomb(Player player, Vector2 pos)

@@ -4,6 +4,7 @@
     "snakes": { "Snake1": [ 60, 430 ] },
     "bats": {},
     "yetis": {},
+    "traps": { "0": [ 40, 40 ] },
     "portals": {
         "PortalA": [ 0, 220 ],
         "PortalB": [ 770, 220 ]
