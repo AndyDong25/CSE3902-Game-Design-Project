@@ -50,6 +50,8 @@ namespace CSE3902_Project.Objects.Bomb
             tintAmount = 10;
             bombColor = Color.White;
             CheckInitialBombColliderState();
+
+            
         }
 
 

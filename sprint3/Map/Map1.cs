@@ -300,6 +300,8 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(trapList);
             allObjects.AddRange(minecartList);
             allObjects.AddRange(coinList);
+
+            AudioManager.Instance.PlayMainMusic();
         }
 
         public void Update()
@@ -414,8 +416,10 @@ namespace CSE3902_Project.Map
 
         public void AddBomb(Player player, Vector2 pos)
         {
+
             if (staticBombList.Count < 10)
             {
+                AudioManager.Instance.PlayBombThrown();
                 StaticBomb newBomb = new StaticBomb(game, player, pos);
                 staticBombList.Add(newBomb);
                 allObjects.Add(newBomb);
