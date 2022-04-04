@@ -46,7 +46,7 @@ namespace CSE3902_Project.Collisions
             List<ISprite> currentObstacleList = map.currentObstacleList;
             List<BasicItem> currentItemList = map.currentItemList;
             List<NinjaStar> currentNinjaStar = map.ninjaStarList;
-     
+
             /*            if (p1.collider2D.Intersects(p2.collider2D))
                         {
                             p1.collisionHandler = new PlayerBlockCollisionHandler();
@@ -54,6 +54,28 @@ namespace CSE3902_Project.Collisions
                             p2.collisionHandler = new PlayerBlockCollisionHandler();
                             p2.collisionHandler.HandleCollision(p2);
                         }*/
+
+            foreach (Landmine l in map.landmineList)
+            {
+                if (p1.collider2D.Intersects(l.collider2D) && p1 != l.player)
+                {
+                    p1.collisionHandler = new PlayerLandmineCollisionHandler();
+                    p1.collisionHandler.HandleCollision(l);
+                    p1.collisionHandler = new PlayerLandmineExplosionCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    map.landmineExplosion.pos = new Vector2(p1.xPos - 30, p1.yPos - 30);
+                    map.allObjects.Add(map.landmineExplosion);
+                }
+                if (p2.collider2D.Intersects(l.collider2D) && p2 != l.player)
+                {
+                    p2.collisionHandler = new PlayerLandmineCollisionHandler();
+                    p2.collisionHandler.HandleCollision(l);
+                    p2.collisionHandler = new PlayerLandmineExplosionCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    map.landmineExplosion.pos = new Vector2(p2.xPos - 30, p2.yPos - 30);
+                    map.allObjects.Add(map.landmineExplosion);
+                }
+            }
 
             foreach (Torpedo t in map.torpedoList)
             {

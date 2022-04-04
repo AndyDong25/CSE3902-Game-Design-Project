@@ -62,6 +62,8 @@ namespace CSE3902_Project.Map
         public Torpedo torpedo;
         public TorpedoExplosion torpedoExplosion;
         public Trap trap;
+        public Landmine landmine;
+        public LandmineExplosion landmineExplosion;
 
         public BasicItem bombItem;
         public BasicItem ghostItem;
@@ -71,6 +73,7 @@ namespace CSE3902_Project.Map
         public BasicItem potionItem;
         public BasicItem shoeItem;
         public BasicItem torpedoItem;
+        public BasicItem landmineItem;
 
         public List<ExplosionCross> explosionCrossList;
         public List<ExplosionCross> finishedExplosionCross;
@@ -80,6 +83,7 @@ namespace CSE3902_Project.Map
         public List<NinjaStar> finishedNinjaStar;
         public List<ISprite> finishedObstacles;
         public List<Torpedo> finishedTorpedo;
+        public List<Landmine> finishedLandmine;
 
 
         public List<BasicItem> itemsToSpawn;
@@ -109,6 +113,7 @@ namespace CSE3902_Project.Map
         public List<NinjaStar> ninjaStarList;
         public List<Torpedo> torpedoList;
         public List<ISprite> currentEnemyList;
+        public List<Landmine> landmineList;
        
         static Random rnd = new Random();
 
@@ -150,6 +155,7 @@ namespace CSE3902_Project.Map
         }
         public void Initialize()
         {
+            landmineExplosion = new LandmineExplosion(game, new Vector2(150, 150));
             torpedoExplosion = new TorpedoExplosion(game, new Vector2(100, 100));
             //TODO change in the future
             //currentGameState = GameState.GamePlay;*/
@@ -173,6 +179,7 @@ namespace CSE3902_Project.Map
             explosionCrossList = new List<ExplosionCross>();
             ninjaStarList = new List<NinjaStar>();
             torpedoList = new List<Torpedo>();
+            landmineList = new List<Landmine>();
             destructibleBlockList = new List<DestructableBlockSprite>();
             indestructibleBlockList = new List<IndestructableBlockSprite>();
             portalList = new List<Portal>();
@@ -196,6 +203,7 @@ namespace CSE3902_Project.Map
             potionItem = new PotionItem(new Vector2(325, 400), game);
             shoeItem = new ShoeItem(new Vector2(360, 400), game);
             torpedoItem = new TorpedoItem(new Vector2(405, 400), game);
+            landmineItem = new LandmineItem(new Vector2(435, 400), game);
             trap = new Trap(new Vector2(10, 10), game);
             currentItemList = new List<BasicItem>();
             currentItemList.Add(bombItem);
@@ -206,6 +214,7 @@ namespace CSE3902_Project.Map
             currentItemList.Add(potionItem);
             currentItemList.Add(shoeItem);
             currentItemList.Add(torpedoItem);
+            currentItemList.Add(landmineItem);
 
             currentObstacleList = new List<ISprite>();
             
@@ -290,6 +299,7 @@ namespace CSE3902_Project.Map
             allObjects.Add(background);
             allObjects.Add(player1);
             allObjects.Add(player2);
+            allObjects.AddRange(landmineList);
             allObjects.AddRange(torpedoList);
             allObjects.AddRange(staticBombList);
             allObjects.AddRange(currentEnemyList);
@@ -314,6 +324,7 @@ namespace CSE3902_Project.Map
             finishedObstacles = new List<ISprite>();
             itemsToSpawn = new List<BasicItem>();
             finishedTorpedo = new List<Torpedo>();
+            finishedLandmine = new List<Landmine>();
             coinsController.Update();
             for (int i = allObjects.Count - 1; i > -1; i--)
             {
@@ -461,6 +472,13 @@ namespace CSE3902_Project.Map
             allObjects.Add(newTorpedo);
         }
 
+        public void AddLandmine(Player p)
+        {
+            Landmine newLandmine = new Landmine(p);
+            landmineList.Add(newLandmine);
+            allObjects.Add(newLandmine);
+        }
+
         public void AddItem(Vector2 pos)
         {
             BasicItem newItem = null;
@@ -530,9 +548,14 @@ namespace CSE3902_Project.Map
                 allExplosionsList.AddRange(e.allExplosions);
             }
         }
-  
+
         public void RemoveFinishedItems()
         {
+            foreach (Landmine l in finishedLandmine)
+            {
+                landmineList.Remove(l);
+                finishedObjects.Add(l);
+            }
             foreach (Torpedo t in finishedTorpedo)
             {
                 torpedoList.Remove(t);
