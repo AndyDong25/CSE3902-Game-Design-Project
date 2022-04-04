@@ -37,9 +37,9 @@ Player 1:
 
   Auto Death: G
 
-  Use Item: D1
-
-  Change Character: E
+  Use Item1: D1
+  
+  Use Item2: D2
 
 Player 2:
 
@@ -55,13 +55,19 @@ Player 2:
 
   Auto Death: L
 
-  Use Item: D0
+  Use Item1: D0
+  
+  Use Item2: D9
+  
+Testing Controls:
 
-  Change Character: P
+  Change Character1: E
+  
+  Change Character2: P
 
 How to Play:
 
-  See Bubble Arena and other similar games for Reference: (Andy Youtube link). The goal of the game is to eliminate all other players and AI by dropping bombs on them, all while avoiding enemies and explosions.  
+  See Bubble Arena and other similar games for Reference: (https://www.youtube.com/watch?v=O2RPyNrL9Xg&ab_channel=HyperXshadow). The goal of the game is to eliminate all other players and AI by dropping bombs on them, all while avoiding enemies and explosions.  
   Destroy crates and collect items to increase stats or obtain special abilities, but watch out for enemy bombs and AI, who can kill you if they touch you! Last player alive wins the game!
   
 	
@@ -73,12 +79,13 @@ How to Play:
 	Knight: Transform to Knight Character - super speed
 	Ghost: Transform to Ghost Character - reversed movement and better stats
 	Ninja Star: Usable item stored in inventory - triggers bomb explosion on contact
-	
+	Torpedo: Usable item stored in inventory - kills player upon contact
 
 
 	Bugs:
 	-Most everything should work accordingly
 	-Occasional collision issues
+	-Some functionality not fully implemented for sprint4 yet - coin collection, mine cart, traps, game state.
 	
 
 Other:
