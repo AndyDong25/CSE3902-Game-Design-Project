@@ -36,10 +36,13 @@ namespace CSE3902_Project.Objects.Torpedo
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Texture2D torpedoSprite = ItemTextureStorage.Instance.getTorpedoItemSprite();
-            Rectangle destination = new Rectangle((int)position.X + 30, (int)position.Y + 25, 45, 45);
-            spriteBatch.Draw(torpedoSprite, destination, sourceRec, Color.White, rotation, new Vector2(torpedoSprite.Width / 2, torpedoSprite.Height / 2), SpriteEffects.None, 0f);
-            UpdateCollider();
+            if(exist == true)
+            {
+                Texture2D torpedoSprite = ItemTextureStorage.Instance.getTorpedoItemSprite();
+                Rectangle destination = new Rectangle((int)position.X + 30, (int)position.Y + 25, 45, 45);
+                spriteBatch.Draw(torpedoSprite, destination, sourceRec, Color.White, rotation, new Vector2(torpedoSprite.Width / 2, torpedoSprite.Height / 2), SpriteEffects.None, 0f);
+                UpdateCollider();
+            }
         }
         public void Update()
         {
