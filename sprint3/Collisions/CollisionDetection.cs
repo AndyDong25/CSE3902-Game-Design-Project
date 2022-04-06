@@ -22,7 +22,6 @@ namespace CSE3902_Project.Collisions
 {
     public class CollisionDetection
     {
-
         public Map1 map;
         public CollisionDetection(Map1 map)
         {
@@ -33,143 +32,357 @@ namespace CSE3902_Project.Collisions
 
         public void Update()
         {
-            Player p1 = map.player1;
-            Player p2 = map.player2;
+            //Player p1 = map.player1;
+            //Player p2 = map.player2;
             //List<Explosion> exList = map.explosionList;
-            List<ExplosionCross> eCrossList = map.explosionCrossList;
+            //List<ExplosionCross> eCrossList = map.explosionCrossList;
             map.GetAllExplosions();
-            List<Explosion> explosionList;
+            //List<Explosion> explosionList;
             List<ISprite> enemyList = map.currentEnemyList;
-            List<StaticBomb> staticBombList = map.staticBombList;
-            List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
-            List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
-            List<ISprite> currentObstacleList = map.currentObstacleList;
-            List<BasicItem> currentItemList = map.currentItemList;
-            List<NinjaStar> currentNinjaStar = map.ninjaStarList;
+            //List<StaticBomb> staticBombList = map.staticBombList;
+            //List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
+            //List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
+            //List<ISprite> currentObstacleList = map.currentObstacleList;
+            //List<BasicItem> currentItemList = map.currentItemList;
+            //List<NinjaStar> currentNinjaStar = map.ninjaStarList;
 
-            /*            if (p1.collider2D.Intersects(p2.collider2D))
+            CheckLandmineCollision();
+
+            CheckTorpedoCollision();
+
+            CheckTrapCollision();
+
+            CheckMinecartCollision();
+
+            CheckBombCollision();
+
+            CheckExplosionCrossCollision();
+            
+            //explosionList = map.allExplosionsList;
+
+            CheckCurrentObstacleCollision();
+
+            CheckEnemyCollision();
+
+            /*            foreach(Bat b in map.batList)
                         {
-                            p1.collisionHandler = new PlayerBlockCollisionHandler();
-                            p1.collisionHandler.HandleCollision(p1);
-                            p2.collisionHandler = new PlayerBlockCollisionHandler();
-                            p2.collisionHandler.HandleCollision(p2);
+                            if (p1.collider2D.Intersects(b.collider2D))
+                            {
+                                p1.collisionHandler = new PlayerBlockCollisionHandler();
+                                p1.collisionHandler.HandleCollision(p1);
+                                b.collisionHandler = new BatCollisionHandler();
+                                b.collisionHandler.HandleCollision(b);                        
+
+                            }
+
+                            if (p2.collider2D.Intersects(b.collider2D))
+                            {
+                                p2.collisionHandler = new PlayerBlockCollisionHandler();
+                                p2.collisionHandler.HandleCollision(p2);
+                                b.collisionHandler = new BatCollisionHandler();
+                                b.collisionHandler.HandleCollision(b);
+                            }
+                        }
+
+                        foreach (Snake s in map.snakeList)
+                        {
+                            if (p1.collider2D.Intersects(s.collider2D))
+                            {
+                                p1.collisionHandler = new PlayerBlockCollisionHandler();
+                                p1.collisionHandler.HandleCollision(p1);
+                                s.collisionHandler = new SnakeCollisionHandler();
+                                s.collisionHandler.HandleCollision(s);
+                                p1.speed = p1.speed - 0.01f;
+                            }
+
+                            if (p2.collider2D.Intersects(s.collider2D))
+                            {
+                                p2.collisionHandler = new PlayerBlockCollisionHandler();
+                                p2.collisionHandler.HandleCollision(p2);
+                                s.collisionHandler = new SnakeCollisionHandler();
+                                s.collisionHandler.HandleCollision(s);
+                                p2.speed = p2.speed - 0.01f;
+                            }
+                        }
+
+                        // can create separate collisionHandler class but it might be easier to have one for all enemies later
+                        foreach (Yeti y in map.yetiList)
+                        {
+                            if (p1.collider2D.Intersects(y.collider2D))
+                            {
+                                if (!y.isDead)
+                                {
+                                    p1.currState = new PlayerDeathState(p1);
+                                }
+                            }
+
+                            if (p2.collider2D.Intersects(y.collider2D))
+                            {
+                                if (!y.isDead)
+                                {
+                                    p2.currState = new PlayerDeathState(p1);
+                                }
+                            }
                         }*/
 
-            foreach (Landmine l in map.landmineList)
-            {
-                if (p1.collider2D.Intersects(l.collider2D) && p1 != l.player)
-                {
-                    p1.collisionHandler = new PlayerLandmineCollisionHandler();
-                    p1.collisionHandler.HandleCollision(l);
-                    p1.collisionHandler = new PlayerLandmineExplosionCollisionHandler();
-                    p1.collisionHandler.HandleCollision(p1);
-                    map.landmineExplosion.pos = new Vector2(p1.xPos - 30, p1.yPos - 30);
-                    map.allObjects.Add(map.landmineExplosion);
-                }
-                if (p2.collider2D.Intersects(l.collider2D) && p2 != l.player)
-                {
-                    p2.collisionHandler = new PlayerLandmineCollisionHandler();
-                    p2.collisionHandler.HandleCollision(l);
-                    p2.collisionHandler = new PlayerLandmineExplosionCollisionHandler();
-                    p2.collisionHandler.HandleCollision(p2);
-                    map.landmineExplosion.pos = new Vector2(p2.xPos - 30, p2.yPos - 30);
-                    map.allObjects.Add(map.landmineExplosion);
-                }
-            }
+            CheckDestructableBlockCollision();
+            
+            CheckIndestructableBlockCollision();
+            
+            CheckBasicItemCollision();
 
-            foreach (Torpedo t in map.torpedoList)
+            // will need to separate obstacles into different list so we can properly cast the CollisionHandler
+            foreach (ISprite s in map.currentObstacleList)
             {
-                if (p1.collider2D.Intersects(t.collider2D) && p1 != t.player)
+                // no responses for blocks needed
+/*                if (p1.collider2D.Intersects(s.collider2D))
                 {
-                    p1.collisionHandler = new PlayerTorpedoCollisionHandler();
-                    p1.collisionHandler.HandleCollision(t);
-                    p1.collisionHandler = new PlayerTorpedoExplosionCollisionHandler();
-                    p1.collisionHandler.HandleCollision(p1);
-                    map.torpedoExplosion.pos = new Vector2(p1.xPos - 30, p1.yPos - 30);
-                    map.allObjects.Add(map.torpedoExplosion);
+                    (p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
                 }
-                if (p2.collider2D.Intersects(t.collider2D) && p2 != t.player)
+                if (p2.collider2D.Intersects(s.collider2D))
                 {
-                    p2.collisionHandler = new PlayerTorpedoCollisionHandler();
-                    p2.collisionHandler.HandleCollision(t);
-                    p2.collisionHandler = new PlayerTorpedoExplosionCollisionHandler();
-                    p2.collisionHandler.HandleCollision(p2);
-                    map.torpedoExplosion.pos = new Vector2(p2.xPos - 30, p2.yPos - 30);
-                    map.allObjects.Add(map.torpedoExplosion);
+                    (p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
                 }
-            }
-            foreach (Trap t in map.trapList)
-            {
-                if (p1.collider2D.Intersects(t.collider2D))
-                {
-                    p1.collisionHandler = new PlayerTrapCollisionHandler();
-                    p1.collisionHandler.HandleCollision(p1);
-                }
-                if (p2.collider2D.Intersects(t.collider2D))
-                {
-                    p2.collisionHandler = new PlayerTrapCollisionHandler();
-                    p2.collisionHandler.HandleCollision(p1);
-                }
-            }
 
-            foreach (Minecart m in map.minecartList)
-            {
-                if (!m.playOn)
+                foreach (Explosion e in exList)
                 {
-                    if (p1.collider2D.Intersects(m.collider2D))
+                    if (e.collider2D.Intersects(s.collider2D))
                     {
-                        p1.collisionHandler = new PlayerMinecartCollisionHandler();
-                        p1.collisionHandler.HandleCollision(p1);
+                        // doesn't really matter which explosion collision handler we choose: will have same functionality
+                        (e.collisionHandler as ExplosionDBlockCollisionHandler).HandleCollision(e);
+
+                        // add destructible block collision response
                     }
-                    if (p2.collider2D.Intersects(m.collider2D))
-                    {
-                        p2.collisionHandler = new PlayerMinecartCollisionHandler();
-                        p2.collisionHandler.HandleCollision(p1);
-                    }
+                }*/
+
+                foreach (IEnemyState e in enemyList)
+                {
+                    // need to adjust IEnemyState...
                 }
-                
             }
-            foreach (StaticBomb b in staticBombList)
+
+            CheckExpolsionCollision();
+
+            CheckNinjaStarCollision();
+
+            CheckPlayerPortalCollision();
+        }
+
+        private void CheckExpolsionCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            List<BasicItem> currentItemList = map.currentItemList;
+            List<Explosion> explosionList = map.allExplosionsList;
+            List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
+            foreach (Explosion e in explosionList)
             {
-                if (p1.collider2D.Intersects(b.collider2D))
+                if (p1.collider2D.Intersects(e.collider2D))
                 {
-                    p1.collisionHandler = new PlayerBombCollisionHandler(b);
+                    p1.collisionHandler = new PlayerExplosionCollisionHandler();
                     p1.collisionHandler.HandleCollision(p1);
+                    //(p1.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p1);
                 }
-
-                if (p2.collider2D.Intersects(b.collider2D))
+                if (p2.collider2D.Intersects(e.collider2D))
                 {
-                    p2.collisionHandler = new PlayerBombCollisionHandler(b);
+                    p2.collisionHandler = new PlayerExplosionCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
+                    //(p2.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p2);
                 }
-
-                foreach (Bat bt in map.batList)
+                // bomb-explosion interactions below
+                // enemy-explosion interactions below
+                /*                foreach (StaticBomb b in staticBombList)
+                                {
+                                    if (e.collider2D.Intersects(b.collider2D))
+                                    {
+                                        e.collisionHandler = new ExplosionBombCollisionHandler();
+                                        e.collisionHandler.HandleCollision(e);
+                                        //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
+                                        b.collisionHandler = new BombExplosionCollisionHandler();
+                                        b.collisionHandler.HandleCollision(b);
+                                        //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
+                                    }
+                                }*/
+                foreach (Bat b in map.batList)
                 {
-                    if (b.collider2D.Intersects(bt.collider2D))
+                    if (e.collider2D.Intersects(b.collider2D))
                     {
-                        bt.collisionHandler = new BatCollisionHandler();
-                        bt.collisionHandler.HandleCollision(bt);
+                        b.collisionHandler = new BatExplosionCollisionHandler();
+                        b.collisionHandler.HandleCollision(b);
                     }
                 }
-
                 foreach (Snake s in map.snakeList)
                 {
-                    if (b.collider2D.Intersects(s.collider2D))
+                    if (e.collider2D.Intersects(s.collider2D))
                     {
-                        s.collisionHandler = new SnakeCollisionHandler();
+                        s.collisionHandler = new SnakeExplosionCollisionHandler();
                         s.collisionHandler.HandleCollision(s);
                     }
                 }
                 foreach (Yeti y in map.yetiList)
                 {
-                    if (b.collider2D.Intersects(y.collider2D))
+                    if (e.collider2D.Intersects(y.collider2D))
+                    {
+                        y.currState = new YetiDeathState(y);
+                        y.isDead = true;
+                    }
+                }
+                foreach (BasicItem item in currentItemList)
+                {
+                    if (e.collider2D.Intersects(item.collider2D))
+                    {
+                        e.collisionHandler = new ItemExplosionCollisionHandler();
+                        e.collisionHandler.HandleCollision(item);
+                    }
+                }
+                foreach (DestructableBlockSprite b in destructibleBlockList)
+                {
+                    if (e.collider2D.Intersects(b.collider2D))
+                    {
+                        // stop explosion range
+                        b.collisionHandler = new DBlockExplosionCollisionHandler();
+                        b.collisionHandler.HandleCollision(b);
+                    }
+                }
+            }
+        }
+
+        private void CheckBasicItemCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            List<BasicItem> currentItemList = map.currentItemList;
+            foreach (BasicItem item in currentItemList)
+            {
+                if (p1.collider2D.Intersects(item.collider2D))
+                {
+                    p1.collisionHandler = new PlayerItemCollisionHandler();
+                    p1.collisionHandler.HandleCollision(item);
+                    item.collisionHandler = new ItemPlayerCollisionHandler(p1);
+                    item.collisionHandler.HandleCollision(item);
+                }
+                if (p2.collider2D.Intersects(item.collider2D))
+                {
+                    p2.collisionHandler = new PlayerItemCollisionHandler();
+                    p2.collisionHandler.HandleCollision(item);
+                    item.collisionHandler = new ItemPlayerCollisionHandler(p2);
+                    item.collisionHandler.HandleCollision(item);
+                }
+            }
+        }
+
+        private void CheckIndestructableBlockCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
+            foreach (IndestructableBlockSprite b in indestructibleBlockList)
+            {
+                if (p1.collider2D.Intersects(b.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(b.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                    //(p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
+                }
+            }
+        }
+
+        private void CheckDestructableBlockCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
+            foreach (DestructableBlockSprite b in destructibleBlockList)
+            {
+                if (p1.collider2D.Intersects(b.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(b.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                }
+            }
+        }
+
+        private void CheckEnemyCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            foreach (ICollideable e in map.currentEnemyList)
+            {
+                if (p1.collider2D.Intersects(e.GetCollider2D()))
+                {
+                    p1.collisionHandler = new PlayerEnemyCollisionHandler((IEnemyState)e);
+                    p1.collisionHandler.HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(e.GetCollider2D()))
+                {
+                    p2.collisionHandler = new PlayerEnemyCollisionHandler((IEnemyState)e);
+                    p2.collisionHandler.HandleCollision(p2);
+                }
+            }
+        }
+
+        private void CheckCurrentObstacleCollision()
+        {
+            List<ISprite> currentObstacleList = map.currentObstacleList;
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            foreach (ISprite s in currentObstacleList)
+            {
+                if (p1.collider2D.Intersects(s.collider2D))
+                {
+                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                }
+                if (p2.collider2D.Intersects(s.collider2D))
+                {
+                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p2);
+                }
+                foreach (Bat b in map.batList)
+                {
+                    if (b.collider2D.Intersects(s.collider2D))
+                    {
+                        b.collisionHandler = new BatCollisionHandler();
+                        b.collisionHandler.HandleCollision(b);
+                    }
+                }
+                foreach (Snake sn in map.snakeList)
+                {
+                    if (sn.collider2D.Intersects(s.collider2D))
+                    {
+                        sn.collisionHandler = new SnakeCollisionHandler();
+                        sn.collisionHandler.HandleCollision(sn);
+                    }
+                }
+                foreach (Yeti y in map.yetiList)
+                {
+                    if (s.collider2D.Intersects(y.collider2D))
                     {
                         y.xPos = y.previousXPos;
                         y.yPos = y.previousYPos;
                         y.UpdateCollider();
                     }
                 }
+                //I'm delaying putting in the aliens here because I think we can encapsulate all of our sprites into 1 collision handler
+                //foreach (Alien a in map.alienList)
             }
+        }
+
+        private void CheckExplosionCrossCollision() 
+        {
+            List<StaticBomb> staticBombList = map.staticBombList;
+            List<ISprite> currentObstacleList = map.currentObstacleList;
             foreach (ExplosionCross eCross in map.explosionCrossList)
             {
                 foreach (ISprite o in currentObstacleList)
@@ -270,274 +483,149 @@ namespace CSE3902_Project.Collisions
                 eCross.SetAllEplosions();
             }
             map.GetAllExplosions();
-            explosionList = map.allExplosionsList;
-            foreach (ISprite s in currentObstacleList)
+        }
+
+        private void CheckBombCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            List<StaticBomb> staticBombList = map.staticBombList;
+            foreach (StaticBomb b in staticBombList)
             {
-                if (p1.collider2D.Intersects(s.collider2D))
+                if (p1.collider2D.Intersects(b.collider2D))
                 {
-                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler = new PlayerBombCollisionHandler(b);
                     p1.collisionHandler.HandleCollision(p1);
                 }
-                if (p2.collider2D.Intersects(s.collider2D))
+
+                if (p2.collider2D.Intersects(b.collider2D))
                 {
-                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler = new PlayerBombCollisionHandler(b);
                     p2.collisionHandler.HandleCollision(p2);
                 }
-                foreach (Bat b in map.batList)
+
+                foreach (Bat bt in map.batList)
+                {
+                    if (b.collider2D.Intersects(bt.collider2D))
+                    {
+                        bt.collisionHandler = new BatCollisionHandler();
+                        bt.collisionHandler.HandleCollision(bt);
+                    }
+                }
+
+                foreach (Snake s in map.snakeList)
                 {
                     if (b.collider2D.Intersects(s.collider2D))
                     {
-                        b.collisionHandler = new BatCollisionHandler();
-                        b.collisionHandler.HandleCollision(b);
-                    }
-                }
-                foreach (Snake sn in map.snakeList)
-                {
-                    if (sn.collider2D.Intersects(s.collider2D))
-                    {
-                        sn.collisionHandler = new SnakeCollisionHandler();
-                        sn.collisionHandler.HandleCollision(sn);
+                        s.collisionHandler = new SnakeCollisionHandler();
+                        s.collisionHandler.HandleCollision(s);
                     }
                 }
                 foreach (Yeti y in map.yetiList)
                 {
-                    if (s.collider2D.Intersects(y.collider2D))
+                    if (b.collider2D.Intersects(y.collider2D))
                     {
                         y.xPos = y.previousXPos;
                         y.yPos = y.previousYPos;
                         y.UpdateCollider();
                     }
                 }
-                //I'm delaying putting in the aliens here because I think we can encapsulate all of our sprites into 1 collision handler
-                //foreach (Alien a in map.alienList)
             }
+        }
 
-            foreach (ICollideable e in map.currentEnemyList)
+        private void CheckMinecartCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            foreach (Minecart m in map.minecartList)
             {
-                if (p1.collider2D.Intersects(e.GetCollider2D())) {
-                    p1.collisionHandler = new PlayerEnemyCollisionHandler((IEnemyState)e);
+                if (!m.playOn)
+                {
+                    if (p1.collider2D.Intersects(m.collider2D))
+                    {
+                        p1.collisionHandler = new PlayerMinecartCollisionHandler();
+                        p1.collisionHandler.HandleCollision(p1);
+                    }
+                    if (p2.collider2D.Intersects(m.collider2D))
+                    {
+                        p2.collisionHandler = new PlayerMinecartCollisionHandler();
+                        p2.collisionHandler.HandleCollision(p1);
+                    }
+                }
+            }
+        }
+
+        private void CheckTrapCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            foreach (Trap t in map.trapList)
+            {
+                if (p1.collider2D.Intersects(t.collider2D))
+                {
+                    p1.collisionHandler = new PlayerTrapCollisionHandler();
                     p1.collisionHandler.HandleCollision(p1);
                 }
-                if (p2.collider2D.Intersects(e.GetCollider2D()))
+                if (p2.collider2D.Intersects(t.collider2D))
                 {
-                    p2.collisionHandler = new PlayerEnemyCollisionHandler((IEnemyState)e);
-                    p2.collisionHandler.HandleCollision(p2);
+                    p2.collisionHandler = new PlayerTrapCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p1);
                 }
             }
-/*            foreach(Bat b in map.batList)
+        }
+
+        private void CheckTorpedoCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            foreach (Torpedo t in map.torpedoList)
             {
-                if (p1.collider2D.Intersects(b.collider2D))
+                if (p1.collider2D.Intersects(t.collider2D) && p1 != t.player)
                 {
-                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler = new PlayerTorpedoCollisionHandler();
+                    p1.collisionHandler.HandleCollision(t);
+                    p1.collisionHandler = new PlayerTorpedoExplosionCollisionHandler();
                     p1.collisionHandler.HandleCollision(p1);
-                    b.collisionHandler = new BatCollisionHandler();
-                    b.collisionHandler.HandleCollision(b);                        
-                   
+                    map.torpedoExplosion.pos = new Vector2(p1.xPos - 30, p1.yPos - 30);
+                    map.allObjects.Add(map.torpedoExplosion);
                 }
-
-                if (p2.collider2D.Intersects(b.collider2D))
+                if (p2.collider2D.Intersects(t.collider2D) && p2 != t.player)
                 {
-                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler = new PlayerTorpedoCollisionHandler();
+                    p2.collisionHandler.HandleCollision(t);
+                    p2.collisionHandler = new PlayerTorpedoExplosionCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
-                    b.collisionHandler = new BatCollisionHandler();
-                    b.collisionHandler.HandleCollision(b);
+                    map.torpedoExplosion.pos = new Vector2(p2.xPos - 30, p2.yPos - 30);
+                    map.allObjects.Add(map.torpedoExplosion);
                 }
             }
+        }
 
-            foreach (Snake s in map.snakeList)
+        private void CheckLandmineCollision()
+        {
+            foreach (Landmine l in map.landmineList)
             {
-                if (p1.collider2D.Intersects(s.collider2D))
+                Player p1 = map.player1;
+                Player p2 = map.player2;
+                if (p1.collider2D.Intersects(l.collider2D) && p1 != l.player)
                 {
-                    p1.collisionHandler = new PlayerBlockCollisionHandler();
+                    p1.collisionHandler = new PlayerLandmineCollisionHandler();
+                    p1.collisionHandler.HandleCollision(l);
+                    p1.collisionHandler = new PlayerLandmineExplosionCollisionHandler();
                     p1.collisionHandler.HandleCollision(p1);
-                    s.collisionHandler = new SnakeCollisionHandler();
-                    s.collisionHandler.HandleCollision(s);
-                    p1.speed = p1.speed - 0.01f;
+                    map.landmineExplosion.pos = new Vector2(p1.xPos - 30, p1.yPos - 30);
+                    map.allObjects.Add(map.landmineExplosion);
                 }
-
-                if (p2.collider2D.Intersects(s.collider2D))
+                if (p2.collider2D.Intersects(l.collider2D) && p2 != l.player)
                 {
-                    p2.collisionHandler = new PlayerBlockCollisionHandler();
+                    p2.collisionHandler = new PlayerLandmineCollisionHandler();
+                    p2.collisionHandler.HandleCollision(l);
+                    p2.collisionHandler = new PlayerLandmineExplosionCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
-                    s.collisionHandler = new SnakeCollisionHandler();
-                    s.collisionHandler.HandleCollision(s);
-                    p2.speed = p2.speed - 0.01f;
+                    map.landmineExplosion.pos = new Vector2(p2.xPos - 30, p2.yPos - 30);
+                    map.allObjects.Add(map.landmineExplosion);
                 }
             }
-
-            // can create separate collisionHandler class but it might be easier to have one for all enemies later
-            foreach (Yeti y in map.yetiList)
-            {
-                if (p1.collider2D.Intersects(y.collider2D))
-                {
-                    if (!y.isDead)
-                    {
-                        p1.currState = new PlayerDeathState(p1);
-                    }
-                }
-
-                if (p2.collider2D.Intersects(y.collider2D))
-                {
-                    if (!y.isDead)
-                    {
-                        p2.currState = new PlayerDeathState(p1);
-                    }
-                }
-            }*/
-
-
-            foreach (DestructableBlockSprite b in destructibleBlockList)
-            {
-                if (p1.collider2D.Intersects(b.collider2D))
-                {
-                    p1.collisionHandler = new PlayerBlockCollisionHandler();
-                    p1.collisionHandler.HandleCollision(p1);
-                    //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
-                }
-                if (p2.collider2D.Intersects(b.collider2D))
-                {
-                    p2.collisionHandler = new PlayerBlockCollisionHandler();
-                    p2.collisionHandler.HandleCollision(p2);
-                    //(p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
-                }
-            }
-            foreach (IndestructableBlockSprite b in indestructibleBlockList)
-            {
-                if (p1.collider2D.Intersects(b.collider2D))
-                {
-                    p1.collisionHandler = new PlayerBlockCollisionHandler();
-                    p1.collisionHandler.HandleCollision(p1);
-                    //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
-                }
-                if (p2.collider2D.Intersects(b.collider2D))
-                {
-                    p2.collisionHandler = new PlayerBlockCollisionHandler();
-                    p2.collisionHandler.HandleCollision(p2);
-                    //(p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
-                }
-            }
-            
-            foreach (BasicItem item in currentItemList)
-            {
-                if (p1.collider2D.Intersects(item.collider2D))
-                {
-                    p1.collisionHandler = new PlayerItemCollisionHandler();
-                    p1.collisionHandler.HandleCollision(item);
-                    item.collisionHandler = new ItemPlayerCollisionHandler(p1);
-                    item.collisionHandler.HandleCollision(item);
-                }
-                if (p2.collider2D.Intersects(item.collider2D))
-                {
-                    p2.collisionHandler = new PlayerItemCollisionHandler();
-                    p2.collisionHandler.HandleCollision(item);
-                    item.collisionHandler = new ItemPlayerCollisionHandler(p2);
-                    item.collisionHandler.HandleCollision(item);
-                }
-            }
-
-
-            // will need to separate obstacles into different list so we can properly cast the CollisionHandler
-            foreach (ISprite s in map.currentObstacleList)
-            {
-                // no responses for blocks needed
-/*                if (p1.collider2D.Intersects(s.collider2D))
-                {
-                    (p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
-                }
-                if (p2.collider2D.Intersects(s.collider2D))
-                {
-                    (p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
-                }
-
-                foreach (Explosion e in exList)
-                {
-                    if (e.collider2D.Intersects(s.collider2D))
-                    {
-                        // doesn't really matter which explosion collision handler we choose: will have same functionality
-                        (e.collisionHandler as ExplosionDBlockCollisionHandler).HandleCollision(e);
-
-                        // add destructible block collision response
-                    }
-                }*/
-
-                foreach (IEnemyState e in enemyList)
-                {
-                    // need to adjust IEnemyState...
-                }
-            }
-
-            foreach (Explosion e in explosionList)
-            {
-                if (p1.collider2D.Intersects(e.collider2D))
-                {
-                    p1.collisionHandler = new PlayerExplosionCollisionHandler();
-                    p1.collisionHandler.HandleCollision(p1);
-                    //(p1.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p1);
-                }
-                if (p2.collider2D.Intersects(e.collider2D))
-                {
-                    p2.collisionHandler = new PlayerExplosionCollisionHandler();
-                    p2.collisionHandler.HandleCollision(p2);
-                    //(p2.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p2);
-                }
-                // bomb-explosion interactions below
-                // enemy-explosion interactions below
-/*                foreach (StaticBomb b in staticBombList)
-                {
-                    if (e.collider2D.Intersects(b.collider2D))
-                    {
-                        e.collisionHandler = new ExplosionBombCollisionHandler();
-                        e.collisionHandler.HandleCollision(e);
-                        //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
-                        b.collisionHandler = new BombExplosionCollisionHandler();
-                        b.collisionHandler.HandleCollision(b);
-                        //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
-                    }
-                }*/
-                foreach (Bat b in map.batList)
-                {
-                    if (e.collider2D.Intersects(b.collider2D))
-                    {
-                        b.collisionHandler = new BatExplosionCollisionHandler();
-                        b.collisionHandler.HandleCollision(b);
-                    }
-                }
-                foreach (Snake s in map.snakeList)
-                {
-                    if (e.collider2D.Intersects(s.collider2D))
-                    {
-                        s.collisionHandler = new SnakeExplosionCollisionHandler();
-                        s.collisionHandler.HandleCollision(s);
-                    }
-                }
-                foreach (Yeti y in map.yetiList)
-                {
-                    if (e.collider2D.Intersects(y.collider2D))
-                    {
-                        y.currState = new YetiDeathState(y);
-                        y.isDead = true;
-                    }
-                }
-                foreach (BasicItem item in currentItemList)
-                {
-                    if (e.collider2D.Intersects(item.collider2D))
-                    {
-                        e.collisionHandler = new ItemExplosionCollisionHandler();
-                        e.collisionHandler.HandleCollision(item);
-                    }
-                }
-                foreach (DestructableBlockSprite b in destructibleBlockList)
-                {
-                    if (e.collider2D.Intersects(b.collider2D))
-                    {
-                        // stop explosion range
-                        b.collisionHandler = new DBlockExplosionCollisionHandler();
-                        b.collisionHandler.HandleCollision(b);
-                    }
-                }
-            }
-            CheckNinjaStarCollision();
-            CheckPlayerPortalCollision();
         }
 
         private void CheckNinjaStarCollision()
