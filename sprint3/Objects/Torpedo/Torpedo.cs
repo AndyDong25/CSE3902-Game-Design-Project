@@ -12,7 +12,6 @@ namespace CSE3902_Project.Objects.Torpedo
     public class Torpedo : ICollideable, ISprite
     {
         public Player player;
-        public Boolean hit = false;
         public Vector2 position;
         private float rotation;
         public float speed = 10.0f;
@@ -31,7 +30,6 @@ namespace CSE3902_Project.Objects.Torpedo
              * TODO: find the actual hitbox
              **/
             collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 30, 30);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

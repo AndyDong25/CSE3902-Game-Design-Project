@@ -1,15 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Text;
-
-//namespace sprint3.Objects.Landmine
-//{
-//    class LandmineExplosion
-//    {
-//    }
-//}
-
-using CSE3902_CSE3902_Project;
+﻿using CSE3902_CSE3902_Project;
 using CSE3902_CSE3902_Project.Objects.Items;
 using CSE3902_CSE3902_Project.Sprites;
 using Microsoft.Xna.Framework;
@@ -26,9 +15,6 @@ namespace CSE3902_Project.Objects.Torpedo
         public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
         private Texture2D texture;
         public Vector2 pos;
-        //public Torpedo t;
-
-        //public Rectangle collider2D;
         public Rectangle collider2D { get; set; }
         public ICollisionHandler collisionHandler;
 
@@ -44,7 +30,6 @@ namespace CSE3902_Project.Objects.Torpedo
             this.game = game;
             this.pos = pos;
             texture = ItemTextureStorage.Instance.getLandmineExplosionItemSprite();
-            //collider2D = new Rectangle((int)pos.X + 2, (int)pos.Y + 2, 36, 36);
         }
 
         public void Update()
@@ -52,20 +37,15 @@ namespace CSE3902_Project.Objects.Torpedo
             if (currentFrame <= totalFrames)
             {
                 Random rd = new Random();
-
                 if (count % 50 != 0)
                 {
                     randomNum = rd.Next(1, 6);
                 }
-
                 if (randomNum == 1)
                 {
                     currentFrame++;
                     count++;
                 }
-                //currentFrame++;
-                //if (currentFrame == totalFrames)
-                //    currentFrame = 0;
             }
         }
 
@@ -78,16 +58,8 @@ namespace CSE3902_Project.Objects.Torpedo
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)pos.X, (int)pos.Y, width, height);
-
-            //spriteBatch.Begin();
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            //spriteBatch.End();
         }
-
-        //void ICollideable.UpdateCollider()
-        //{
-
-        //}
     }
 }
 
