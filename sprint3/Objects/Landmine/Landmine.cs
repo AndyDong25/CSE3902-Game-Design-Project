@@ -28,7 +28,7 @@ namespace CSE3902_Project.Objects.Torpedo
             /**
              * TODO: find the actual hitbox
              **/
-            collider2D = new Rectangle((int)position.X + 20, (int)position.Y + 20, 20, 20);
+            collider2D = new Rectangle((int)position.X + 30, (int)position.Y + 40, 5, 5);
         }
 
         public void Draw(SpriteBatch spriteBatch)
