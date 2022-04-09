@@ -5,10 +5,11 @@ using CSE3902_Project.Collisions;
 using System.Collections.Generic;
 using CSE3902_CSE3902_Project.Sprites;
 using System.Diagnostics;
+using sprint3.Objects;
 
 namespace CSE3902_CSE3902_Project.Objects.Player
 {
-    public class Player : ICollideable, ISprite
+    public class Player : ICollideable, ISprite, IDynamicObject
     {
         public IPlayerState currState;
         public int spriteIndex = 0;
@@ -239,6 +240,13 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public Rectangle GetCollider2D()
         {
             return collider2D;
+        }
+
+        public void GoBackToPrevPosition()
+        {
+            xPos = previousXPos;
+            yPos = previousYPos;
+            UpdateCollider();
         }
     }
 }

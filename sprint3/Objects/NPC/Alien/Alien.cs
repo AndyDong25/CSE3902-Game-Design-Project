@@ -4,10 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
 using System;
 using CSE3902_CSE3902_Project.Sprites;
+using sprint3.Objects;
 
 namespace CSE3902_Project.Objects.NPC.Alien
 {
-    public class Alien : IEnemyState, ICollideable, ISprite
+    public class Alien : IEnemyState, ICollideable, ISprite, IDynamicObject
     {
         public IEnemyState currState;
         public float xPos, yPos, previousXPos, previousYPos;
@@ -103,6 +104,12 @@ namespace CSE3902_Project.Objects.NPC.Alien
         public Rectangle GetCollider2D()
         {
             return collider2D;
+        }
+        public void GoBackToPrevPosition()
+        {
+            xPos = previousXPos;
+            yPos = previousYPos;
+            UpdateCollider();
         }
     }
 }

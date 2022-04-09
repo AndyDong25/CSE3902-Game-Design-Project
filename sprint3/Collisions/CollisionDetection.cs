@@ -17,6 +17,7 @@ using sprint3.Objects.Decorations;
 using CSE3902_Project.Objects.NPC.Yeti;
 using CSE3902_Project.Objects.Torpedo;
 using Microsoft.Xna.Framework;
+using sprint3.Objects;
 
 namespace CSE3902_Project.Collisions
 {
@@ -32,19 +33,8 @@ namespace CSE3902_Project.Collisions
 
         public void Update()
         {
-            //Player p1 = map.player1;
-            //Player p2 = map.player2;
-            //List<Explosion> exList = map.explosionList;
-            //List<ExplosionCross> eCrossList = map.explosionCrossList;
+
             map.GetAllExplosions();
-            //List<Explosion> explosionList;
-            List<ISprite> enemyList = map.currentEnemyList;
-            //List<StaticBomb> staticBombList = map.staticBombList;
-            //List<DestructableBlockSprite> destructibleBlockList = map.destructibleBlockList;
-            //List<IndestructableBlockSprite> indestructibleBlockList = map.indestructibleBlockList;
-            //List<ISprite> currentObstacleList = map.currentObstacleList;
-            //List<BasicItem> currentItemList = map.currentItemList;
-            //List<NinjaStar> currentNinjaStar = map.ninjaStarList;
 
             CheckLandmineCollision();
 
@@ -58,72 +48,9 @@ namespace CSE3902_Project.Collisions
 
             CheckExplosionCrossCollision();
             
-            //explosionList = map.allExplosionsList;
-
             CheckCurrentObstacleCollision();
          
             CheckEnemyCollision();
-
-            /*            foreach(Bat b in map.batList)
-                        {
-                            if (p1.collider2D.Intersects(b.collider2D))
-                            {
-                                p1.collisionHandler = new PlayerBlockCollisionHandler();
-                                p1.collisionHandler.HandleCollision(p1);
-                                b.collisionHandler = new BatCollisionHandler();
-                                b.collisionHandler.HandleCollision(b);                        
-
-                            }
-
-                            if (p2.collider2D.Intersects(b.collider2D))
-                            {
-                                p2.collisionHandler = new PlayerBlockCollisionHandler();
-                                p2.collisionHandler.HandleCollision(p2);
-                                b.collisionHandler = new BatCollisionHandler();
-                                b.collisionHandler.HandleCollision(b);
-                            }
-                        }
-
-                        foreach (Snake s in map.snakeList)
-                        {
-                            if (p1.collider2D.Intersects(s.collider2D))
-                            {
-                                p1.collisionHandler = new PlayerBlockCollisionHandler();
-                                p1.collisionHandler.HandleCollision(p1);
-                                s.collisionHandler = new SnakeCollisionHandler();
-                                s.collisionHandler.HandleCollision(s);
-                                p1.speed = p1.speed - 0.01f;
-                            }
-
-                            if (p2.collider2D.Intersects(s.collider2D))
-                            {
-                                p2.collisionHandler = new PlayerBlockCollisionHandler();
-                                p2.collisionHandler.HandleCollision(p2);
-                                s.collisionHandler = new SnakeCollisionHandler();
-                                s.collisionHandler.HandleCollision(s);
-                                p2.speed = p2.speed - 0.01f;
-                            }
-                        }
-
-                        // can create separate collisionHandler class but it might be easier to have one for all enemies later
-                        foreach (Yeti y in map.yetiList)
-                        {
-                            if (p1.collider2D.Intersects(y.collider2D))
-                            {
-                                if (!y.isDead)
-                                {
-                                    p1.currState = new PlayerDeathState(p1);
-                                }
-                            }
-
-                            if (p2.collider2D.Intersects(y.collider2D))
-                            {
-                                if (!y.isDead)
-                                {
-                                    p2.currState = new PlayerDeathState(p1);
-                                }
-                            }
-                        }*/
 
             CheckDestructableBlockCollision();
             
@@ -131,44 +58,14 @@ namespace CSE3902_Project.Collisions
             
             CheckBasicItemCollision();
 
-            // will need to separate obstacles into different list so we can properly cast the CollisionHandler
-            foreach (ISprite s in map.currentObstacleList)
-            {
-                // no responses for blocks needed
-/*                if (p1.collider2D.Intersects(s.collider2D))
-                {
-                    (p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
-                }
-                if (p2.collider2D.Intersects(s.collider2D))
-                {
-                    (p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
-                }
-
-                foreach (Explosion e in exList)
-                {
-                    if (e.collider2D.Intersects(s.collider2D))
-                    {
-                        // doesn't really matter which explosion collision handler we choose: will have same functionality
-                        (e.collisionHandler as ExplosionDBlockCollisionHandler).HandleCollision(e);
-
-                        // add destructible block collision response
-                    }
-                }*/
-
-                foreach (IEnemyState e in enemyList)
-                {
-                    // need to adjust IEnemyState...
-                }
-            }
-
-            CheckExpolsionCollision();
+            CheckExplosionCollision();
 
             CheckNinjaStarCollision();
 
             CheckPlayerPortalCollision();
         }
 
-        private void CheckExpolsionCollision()
+        private void CheckExplosionCollision()
         {
             Player p1 = map.player1;
             Player p2 = map.player2;
@@ -181,28 +78,12 @@ namespace CSE3902_Project.Collisions
                 {
                     p1.collisionHandler = new PlayerExplosionCollisionHandler();
                     p1.collisionHandler.HandleCollision(p1);
-                    //(p1.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p1);
                 }
                 if (p2.collider2D.Intersects(e.collider2D))
                 {
                     p2.collisionHandler = new PlayerExplosionCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
-                    //(p2.collisionHandler as PlayerExplosionCollisionHandler).HandleCollision(p2);
                 }
-                // bomb-explosion interactions below
-                // enemy-explosion interactions below
-                /*                foreach (StaticBomb b in staticBombList)
-                                {
-                                    if (e.collider2D.Intersects(b.collider2D))
-                                    {
-                                        e.collisionHandler = new ExplosionBombCollisionHandler();
-                                        e.collisionHandler.HandleCollision(e);
-                                        //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
-                                        b.collisionHandler = new BombExplosionCollisionHandler();
-                                        b.collisionHandler.HandleCollision(b);
-                                        //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
-                                    }
-                                }*/
                 foreach (Bat b in map.batList)
                 {
                     if (e.collider2D.Intersects(b.collider2D))
@@ -282,13 +163,11 @@ namespace CSE3902_Project.Collisions
                 {
                     p1.collisionHandler = new PlayerBlockCollisionHandler();
                     p1.collisionHandler.HandleCollision(p1);
-                    //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
                 }
                 if (p2.collider2D.Intersects(b.collider2D))
                 {
                     p2.collisionHandler = new PlayerBlockCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
-                    //(p2.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p2);
                 }
             }
         }
@@ -349,6 +228,14 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler = new PlayerBlockCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
                 }
+/*                foreach (ICollideable c in map.currentEnemyList)
+                {
+                    if (s.collider2D.Intersects(c.collider2D))
+                    {
+                        c.collisionHandler = new ObstacleCollisionHandler();
+                        c.collisionHandler.HandleCollision(c);
+                    }
+                }*/
                 foreach (Bat b in map.batList)
                 {
                     if (b.collider2D.Intersects(s.collider2D))
@@ -652,11 +539,6 @@ namespace CSE3902_Project.Collisions
                     {
                         ICollisionHandler = new NinjaStarBombCollisionHandler();
                         ICollisionHandler.HandleCollision2(n, b);
-
-                        //(e.collisionHandler as ExplosionBombCollisionHandler).HandleCollision(e);
-
-
-                        //(b.collisionHandler as BombExplosionCollisionHandler).HandleCollision(b);
                     }
                 }
                 foreach (ISprite bl in map.currentObstacleList)
@@ -665,7 +547,6 @@ namespace CSE3902_Project.Collisions
                     {
                         n.collisionHandler = new NinjaStarBlockCollisionHandler();
                         n.collisionHandler.HandleCollision(n);
-                        //(p1.collisionHandler as PlayerBlockCollisionHandler).HandleCollision(p1);
                     }
                 }
             }

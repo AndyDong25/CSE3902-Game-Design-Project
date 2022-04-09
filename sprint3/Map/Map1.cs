@@ -157,23 +157,11 @@ namespace CSE3902_Project.Map
         {
             landmineExplosion = new LandmineExplosion(game, new Vector2(150, 150));
             torpedoExplosion = new TorpedoExplosion(game, new Vector2(100, 100));
-            //TODO change in the future
-            //currentGameState = GameState.GamePlay;*/
-            /*            Map m2;
-                        string map_name =  "content\\initial_map" + game.map_index.ToString() + ".json";
-                        using (StreamReader file = File.OpenText(map_name))
-                        {
-                            JsonSerializer serializer = new JsonSerializer();
-                            m2 = (Map)serializer.Deserialize(file, typeof(Map));
-                        }*/
-
             collisionDetection = new CollisionDetection(this);
             tileMap = new TileMap(game);
             coinsController = new CoinsController(game,this);
             background = new Background1(new Vector2(0, 0), mapIndex);
             hud = new Hud1(new Vector2(0, 480), this);
-/*            player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
-            player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);*/
 
             staticBombList = new List<StaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
@@ -186,13 +174,6 @@ namespace CSE3902_Project.Map
             minecartList = new List<Minecart>();
             coinList = new List<Coin>();
             coinPosList = new List<Vector2>();
-            /*            verticalBat = new Bat(new Vector2(400, 140), game);
-                        horizontalBat = new Bat(new Vector2(400, 380), game);
-                        horizontalBat.currState = new BatFacingEastState(horizontalBat);     */
-
-            // tree1 = new Tree1(new Vector2(330, 250));
-            // tree2 = new Tree2(new Vector2(370, 250));
-            //mashroom1 = new Mashroom1(new Vector2(300, 300));
 
             // spawn all items initially for testing purposes
             bombItem = new BombItem(new Vector2(150, 400), game);
@@ -229,45 +210,7 @@ namespace CSE3902_Project.Map
             yetiList = new List<Yeti>();
             trapList = new List<Trap>();
             currentEnemyList = new List<ISprite>();
-/*            currentEnemyList.Add(verticalBat);
-            currentEnemyList.Add(horizontalBat);*/
 
-            /*            portalA = new Portal(new Vector2(0, 240), game);
-                        portalB = new Portal(new Vector2(770, 240), game);*/
-
-            /*            foreach (List<int> pos in m2.tree1.Values)
-                        {
-                            tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
-                            currentObstacleList.Add(tree1);
-                        }
-                        foreach (List<int> pos in m2.tree2.Values)
-                        {
-                            tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
-                            currentObstacleList.Add(tree2);
-                        }
-
-                        foreach (List<int> pos in m2.destructableBlocks.Values){
-                            dBlock = (new DestructableBlockSprite(game, mapIndex, new Vector2(pos[0], pos[1])));
-                            destructibleBlockList.Add(dBlock);
-                            currentObstacleList.Add(dBlock);
-                        }
-                        foreach (List<int> pos in m2.indestructableBlocks.Values)
-                        {
-                            iBlock = new IndestructableBlockSprite(new Vector2(pos[0], pos[1]), mapIndex);
-                            currentObstacleList.Add(iBlock);
-                            indestructibleBlockList.Add(iBlock);
-                        }
-                        foreach (List<int> pos in m2.snakes.Values)
-                        {
-                            snake = new Snake(new Vector2(pos[0], pos[1]), game);
-                            snakeList.Add(snake);
-                            currentEnemyList.Add(snake);
-                        }
-                        foreach (List<int> pos in m2.portals.Values)
-                        {
-                            portalA = new Portal(new Vector2(pos[0], pos[1]), game);
-                            portalList.Add(portalA);
-                        }*/
             LoadFromJson();
             // change some bats to move horizontally
             for (int i = 0; i < batList.Count; i++)
@@ -284,13 +227,8 @@ namespace CSE3902_Project.Map
                 portalList[1].SetOtherPortal(portalList[0]);
             }
             
-/*            Yeti yeti = new Yeti(new Vector2(700, 400), game);
-            Yeti yeti2 = new Yeti(new Vector2(0, 200), game);
-            yeti2.currState = new YetiFacingEastState(yeti2);*/
             //alien testing, can adjust later
             alien = new Alien(new Vector2(1100, 400), game);
-/*            currentEnemyList.Add(yeti);
-            currentEnemyList.Add(yeti2);*/
             currentEnemyList.Add(alien);
 
             GetAllExplosions();
@@ -354,7 +292,6 @@ namespace CSE3902_Project.Map
             {
                 s.Draw(spriteBatch);
             }
-            Debug.WriteLine(player1.inventory["bomb"]);
             hud.Draw(spriteBatch);
         }
 

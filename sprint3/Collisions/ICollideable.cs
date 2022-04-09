@@ -24,6 +24,7 @@ namespace CSE3902_Project.Collisions
         }
 
         void UpdateCollider();
+
         Rectangle GetCollider2D();
     }
 }

@@ -4,10 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
 using System;
 using CSE3902_CSE3902_Project.Sprites;
+using sprint3.Objects;
 
 namespace CSE3902_Project.Objects.NPC.Snake
 {
-    public class Snake : IEnemyState, ICollideable, ISprite
+    public class Snake : IEnemyState, ICollideable, ISprite, IDynamicObject
     {
         public Game1 game;
         public IEnemyState currState;
@@ -100,6 +101,12 @@ namespace CSE3902_Project.Objects.NPC.Snake
         public Rectangle GetCollider2D()
         {
             return collider2D;
+        }
+        public void GoBackToPrevPosition()
+        {
+            xPos = previousXPos;
+            yPos = previousYPos;
+            UpdateCollider();
         }
     }
 }

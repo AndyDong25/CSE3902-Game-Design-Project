@@ -53,5 +53,6 @@ namespace CSE3902_Project.Objects.Bomb
         {
             return collider2D;
         }
+
     }
 }
