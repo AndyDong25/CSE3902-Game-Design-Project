@@ -5,6 +5,7 @@ using System.Text;
 namespace sprint3.Objects.Decorations
 {
     using CSE3902_CSE3902_Project;
+    using CSE3902_CSE3902_Project.Objects.Player;
     using CSE3902_CSE3902_Project.Sprites;
     using CSE3902_Project.Collisions;
     using CSE3902_Project.Objects.Decorations;
@@ -62,7 +63,22 @@ namespace sprint3.Objects.Decorations
             {
                 return collider2D;
             }
-
+            public void Collected()
+        {
+            List<Coin> newCoinList = new List<Coin>();
+            List<Vector2> newCoinPos = new List<Vector2>();
+            foreach (Coin c in game.currentMap.coinList)
+            {
+                if (c.position != position)
+                {
+                    newCoinList.Add(c);
+                    newCoinPos.Add(c.position);
+                }
+                
+            }
+            game.currentMap.coinPosList = newCoinPos;
+            game.currentMap.coinList = newCoinList;
+        }
         }
     
 

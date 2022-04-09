@@ -23,7 +23,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public int maxPotions { get; set; } = 7;
         public int maxShoes { get; set; } = 14;
 
-
+        public int collect_coins = 0;
         public float xPos, yPos, previousXPos, previousYPos;
 
         public float framePerStep = 6;

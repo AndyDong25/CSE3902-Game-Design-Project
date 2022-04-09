@@ -61,7 +61,7 @@ namespace CSE3902_Project.Collisions
             //explosionList = map.allExplosionsList;
 
             CheckCurrentObstacleCollision();
-
+         
             CheckEnemyCollision();
 
             /*            foreach(Bat b in map.batList)
@@ -270,7 +270,7 @@ namespace CSE3902_Project.Collisions
                 }
             }
         }
-
+      
         private void CheckIndestructableBlockCollision()
         {
             Player p1 = map.player1;
@@ -372,6 +372,20 @@ namespace CSE3902_Project.Collisions
                         y.xPos = y.previousXPos;
                         y.yPos = y.previousYPos;
                         y.UpdateCollider();
+                    }
+                }
+                foreach (Coin c in map.coinList)
+                {
+                    if (p1.collider2D.Intersects(c.collider2D))
+                    {
+                        p1.collisionHandler = new PlayerCoinCollisionHandler();
+                        p1.collisionHandler.HandleCollision(p1);
+                        c.collisionHandler = new CoinPlayerCollisionHandler();
+                        c.collisionHandler.HandleCollision(c);
+                        p2.collisionHandler = new PlayerCoinCollisionHandler();
+                        p2.collisionHandler.HandleCollision(p2);
+                        c.collisionHandler = new CoinPlayerCollisionHandler();
+                        c.collisionHandler.HandleCollision(c);
                     }
                 }
                 //I'm delaying putting in the aliens here because I think we can encapsulate all of our sprites into 1 collision handler

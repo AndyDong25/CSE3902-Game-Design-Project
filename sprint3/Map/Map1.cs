@@ -116,7 +116,7 @@ namespace CSE3902_Project.Map
         public List<Landmine> landmineList;
        
         static Random rnd = new Random();
-
+        public List<Coin> finishedCoin;
         public List<ISprite> allObjects;
         public List<ISprite> finishedObjects;
 
@@ -316,6 +316,7 @@ namespace CSE3902_Project.Map
 
         public void Update()
         {
+            finishedCoin = new List<Coin>();
             finishedObjects = new List<ISprite>();
             finishedBombs = new List<StaticBomb>();
             finishedExplosionCross = new List<ExplosionCross>();
@@ -598,6 +599,7 @@ namespace CSE3902_Project.Map
             {
                 allObjects.Remove(s);
             }
+            
         }
     }
 }
