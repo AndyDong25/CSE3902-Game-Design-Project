@@ -44,6 +44,10 @@ namespace CSE3902_Project.Audio
 
         SoundEffect playerEliminated;
 
+        SoundEffect gameOver;
+
+        
+
         
         //we may need to add an update function
         public void LoadAllResources(ContentManager content)
@@ -57,6 +61,8 @@ namespace CSE3902_Project.Audio
             bombThrown = content.Load<SoundEffect>("BombThrown");
             
             playerEliminated = content.Load<SoundEffect>("EliminatedSound");
+
+            gameOver = content.Load<SoundEffect>("GameOver");
 
             background_music = new List<Song>();
             Song MainThemeOne = content.Load<Song>("CSE3902BattleArena");
@@ -102,7 +108,14 @@ namespace CSE3902_Project.Audio
             MediaPlayer.Play(background_music[choosenSong]);
         }
 
+        public void PlayGameOver()
+        {
+            SoundEffectInstance gameOverInstance = gameOver.CreateInstance();
+            gameOverInstance.Volume = .3f;
+            gameOverInstance.Play();
+            currentlyPlayingFiles.Add(gameOverInstance);
 
+        }
         public void Mute(bool sMute)
         {
             mute = sMute;

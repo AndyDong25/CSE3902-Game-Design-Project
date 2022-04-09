@@ -248,6 +248,12 @@
 /processorParam:TextureFormat=Color
 /build:fullsheet.png
 
+#begin GameOver.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:GameOver.mp3
+
 #begin ghostItemSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor

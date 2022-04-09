@@ -601,5 +601,10 @@ namespace CSE3902_Project.Map
             }
             
         }
+        public void GameOver()
+        {
+            AudioManager.Instance.PlayGameOver();
+
+        }
     }
 }
