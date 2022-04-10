@@ -7,7 +7,6 @@ namespace CSE3902_Project.Collisions
         public void HandleCollision(object o)
         {
             Coin c = (Coin)o;
-            c.Collected();
         }
     }
 }

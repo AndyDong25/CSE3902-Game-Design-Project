@@ -36,8 +36,10 @@ namespace sprint3.Map
                 if (!coinPos.Contains(pos))
                 {
                     map.coinPosList.Add(pos);
-                    map.coinList.Add(new Coin(pos, game));
-                    map.allObjects.Add(new Coin(pos, game));
+                    Coin c = new Coin(pos, game);
+                    map.coinList.Add(c);
+                    map.allObjects.Add(c);
+
                 }
 
             }

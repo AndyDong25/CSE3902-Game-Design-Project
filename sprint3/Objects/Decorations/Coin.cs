@@ -40,7 +40,7 @@ namespace sprint3.Objects.Decorations
                 destinationRec = new Rectangle((int)position.X, (int)position.Y, 24, 24);
                 texture = DecorationTextureStorage.Instance.getCoinSprite();
                 sourceIndex = 0;
-                collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 20, 20);
+                collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 24, 24);
                 speed = 3;
             }
 
@@ -63,22 +63,7 @@ namespace sprint3.Objects.Decorations
             {
                 return collider2D;
             }
-            public void Collected()
-        {
-            List<Coin> newCoinList = new List<Coin>();
-            List<Vector2> newCoinPos = new List<Vector2>();
-            foreach (Coin c in game.currentMap.coinList)
-            {
-                if (c.position != position)
-                {
-                    newCoinList.Add(c);
-                    newCoinPos.Add(c.position);
-                }
-                
-            }
-            game.currentMap.coinPosList = newCoinPos;
-            game.currentMap.coinList = newCoinList;
-        }
+       
         }
     
 
