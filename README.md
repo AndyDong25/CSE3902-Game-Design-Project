@@ -85,6 +85,7 @@ Special Items:
 	Ghost: Transform to Ghost Character - reversed movement and better stats
 	Ninja Star: Usable item stored in inventory - triggers bomb explosion on contact
 	Torpedo: Usable item stored in inventory - kills player upon contact
+	Land Mine: Usable item stored in inventory - triggers explosion when opposing player makes contact
 
 
 Bugs/Notes:
