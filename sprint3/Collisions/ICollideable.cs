@@ -10,6 +10,10 @@ namespace CSE3902_Project.Collisions
             {
                 return collider2D;
             }
+            set
+            {
+                collider2D = value;
+            }
         }
         public ICollisionHandler collisionHandler
         {

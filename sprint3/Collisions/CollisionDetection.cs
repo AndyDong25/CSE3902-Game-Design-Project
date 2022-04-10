@@ -29,6 +29,7 @@ namespace CSE3902_Project.Collisions
             this.map = map;
         }
 
+        private ICollisionHandler collisionHandler;
         internal NinjaStarBombCollisionHandler ICollisionHandler { get; private set; }
 
         public void Update()
@@ -228,15 +229,15 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler = new PlayerBlockCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
                 }
-/*                foreach (ICollideable c in map.currentEnemyList)
+                foreach (ICollideable c in map.currentEnemyList)
                 {
-                    if (s.collider2D.Intersects(c.collider2D))
+                    if (s.collider2D.Intersects(c.GetCollider2D()))
                     {
-                        c.collisionHandler = new ObstacleCollisionHandler();
-                        c.collisionHandler.HandleCollision(c);
+                        collisionHandler = new ObstacleCollisionHandler();
+                        collisionHandler.HandleCollision(c);
                     }
-                }*/
-                foreach (Bat b in map.batList)
+                }
+/*                foreach (Bat b in map.batList)
                 {
                     if (b.collider2D.Intersects(s.collider2D))
                     {
@@ -260,7 +261,7 @@ namespace CSE3902_Project.Collisions
                         y.yPos = y.previousYPos;
                         y.UpdateCollider();
                     }
-                }
+                }*/
                 foreach (Coin c in map.coinList)
                 {
                     if (p1.collider2D.Intersects(c.collider2D))
@@ -405,7 +406,7 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler.HandleCollision(p2);
                 }
 
-                foreach (Bat bt in map.batList)
+/*                foreach (Bat bt in map.batList)
                 {
                     if (b.collider2D.Intersects(bt.collider2D))
                     {
@@ -429,6 +430,14 @@ namespace CSE3902_Project.Collisions
                         y.xPos = y.previousXPos;
                         y.yPos = y.previousYPos;
                         y.UpdateCollider();
+                    }
+                }*/
+                foreach (ICollideable c in map.currentEnemyList)
+                {
+                    if (b.collider2D.Intersects(c.GetCollider2D()))
+                    {
+                        collisionHandler = new ObstacleCollisionHandler();
+                        collisionHandler.HandleCollision(c);
                     }
                 }
             }

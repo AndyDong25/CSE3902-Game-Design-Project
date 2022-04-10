@@ -7,5 +7,7 @@ namespace sprint3.Objects
     interface IDynamicObject
     {
         void GoBackToPrevPosition();
+
+        //void Die();
     }
 }
