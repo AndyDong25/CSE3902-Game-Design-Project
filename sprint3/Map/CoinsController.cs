@@ -27,7 +27,14 @@ namespace sprint3.Map
         public void RenewCoins(Map1 map)
         {
             coinPos = map.coinPosList;
-            remainCoins = 20-map.coinList.Count();
+            if (map.mapIndex != 4)
+            {
+                remainCoins = 0;
+            }
+            else
+            {
+                remainCoins = 20 - map.coinList.Count();
+            }
             for (int i = 0; i < remainCoins/2; i++)
             {
                 row = rnd.Next(0, 20);
