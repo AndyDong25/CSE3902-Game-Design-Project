@@ -52,8 +52,8 @@ namespace CSE3902_CSE3902_Project.Controller
             this.addCommand(Keys.Space, new DropBombCommand(player1));
             this.addCommand(Keys.Enter, new DropBombCommand(player2));
 
-            this.addCommand(Keys.E, new ChangeCharacterCommand(player1));
-            this.addCommand(Keys.P, new ChangeCharacterCommand(player2));
+            this.addCommand(Keys.E, new ChangeCharacterCommand(player1, myGame));
+            this.addCommand(Keys.P, new ChangeCharacterCommand(player2, myGame));
 
             this.addCommand(Keys.G, new PlayerDeathCommand(player1));
             this.addCommand(Keys.L, new PlayerDeathCommand(player2));

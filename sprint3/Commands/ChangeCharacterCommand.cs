@@ -7,9 +7,10 @@ namespace CSE3902_CSE3902_Project.Commands
         private Player myPlayer;
         private Game1 game;
 
-        public ChangeCharacterCommand(Player player)
+        public ChangeCharacterCommand(Player player, Game1 game)
         {
             myPlayer = player;
+            this.game = game;
         }
 
         public ChangeCharacterCommand(Game1 game)
