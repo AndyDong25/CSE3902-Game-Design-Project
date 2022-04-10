@@ -85,28 +85,12 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler = new PlayerExplosionCollisionHandler();
                     p2.collisionHandler.HandleCollision(p2);
                 }
-                foreach (Bat b in map.batList)
+                foreach (ICollideable c in map.currentEnemyList)
                 {
-                    if (e.collider2D.Intersects(b.collider2D))
+                    if (e.collider2D.Intersects(c.GetCollider2D()))
                     {
-                        b.collisionHandler = new BatExplosionCollisionHandler();
-                        b.collisionHandler.HandleCollision(b);
-                    }
-                }
-                foreach (Snake s in map.snakeList)
-                {
-                    if (e.collider2D.Intersects(s.collider2D))
-                    {
-                        s.collisionHandler = new SnakeExplosionCollisionHandler();
-                        s.collisionHandler.HandleCollision(s);
-                    }
-                }
-                foreach (Yeti y in map.yetiList)
-                {
-                    if (e.collider2D.Intersects(y.collider2D))
-                    {
-                        y.currState = new YetiDeathState(y);
-                        y.isDead = true;
+                        collisionHandler = new DynamicObjExplosionCollisionHandler();
+                        collisionHandler.HandleCollision(c);
                     }
                 }
                 foreach (BasicItem item in currentItemList)
@@ -237,37 +221,10 @@ namespace CSE3902_Project.Collisions
                         collisionHandler.HandleCollision(c);
                     }
                 }
-/*                foreach (Bat b in map.batList)
-                {
-                    if (b.collider2D.Intersects(s.collider2D))
-                    {
-                        b.collisionHandler = new BatCollisionHandler();
-                        b.collisionHandler.HandleCollision(b);
-                    }
-                }
-                foreach (Snake sn in map.snakeList)
-                {
-                    if (sn.collider2D.Intersects(s.collider2D))
-                    {
-                        sn.collisionHandler = new SnakeCollisionHandler();
-                        sn.collisionHandler.HandleCollision(sn);
-                    }
-                }
-                foreach (Yeti y in map.yetiList)
-                {
-                    if (s.collider2D.Intersects(y.collider2D))
-                    {
-                        y.xPos = y.previousXPos;
-                        y.yPos = y.previousYPos;
-                        y.UpdateCollider();
-                    }
-                }*/
-                
-                //I'm delaying putting in the aliens here because I think we can encapsulate all of our sprites into 1 collision handler
-                //foreach (Alien a in map.alienList)
             }
         }
 
+        // explosion - bomb/obstacle interaction is complexed
         private void CheckExplosionCrossCollision() 
         {
             List<StaticBomb> staticBombList = map.staticBombList;
@@ -392,33 +349,6 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler = new PlayerBombCollisionHandler(b);
                     p2.collisionHandler.HandleCollision(p2);
                 }
-
-/*                foreach (Bat bt in map.batList)
-                {
-                    if (b.collider2D.Intersects(bt.collider2D))
-                    {
-                        bt.collisionHandler = new BatCollisionHandler();
-                        bt.collisionHandler.HandleCollision(bt);
-                    }
-                }
-
-                foreach (Snake s in map.snakeList)
-                {
-                    if (b.collider2D.Intersects(s.collider2D))
-                    {
-                        s.collisionHandler = new SnakeCollisionHandler();
-                        s.collisionHandler.HandleCollision(s);
-                    }
-                }
-                foreach (Yeti y in map.yetiList)
-                {
-                    if (b.collider2D.Intersects(y.collider2D))
-                    {
-                        y.xPos = y.previousXPos;
-                        y.yPos = y.previousYPos;
-                        y.UpdateCollider();
-                    }
-                }*/
                 foreach (ICollideable c in map.currentEnemyList)
                 {
                     if (b.collider2D.Intersects(c.GetCollider2D()))

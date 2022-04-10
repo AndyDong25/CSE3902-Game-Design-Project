@@ -111,5 +111,10 @@ namespace CSE3902_Project.Objects.NPC.Alien
             yPos = previousYPos;
             UpdateCollider();
         }
+        public void Die()
+        {
+            currState = new AlienDeathState(this);
+            isDead = true;
+        }
     }
 }

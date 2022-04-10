@@ -8,6 +8,6 @@ namespace sprint3.Objects
     {
         void GoBackToPrevPosition();
 
-        //void Die();
+        void Die();
     }
 }

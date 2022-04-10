@@ -110,5 +110,10 @@ namespace CSE3902_Project.Objects.NPC.Bat
             yPos = previousYPos;
             UpdateCollider();
         }
+        public void Die()
+        {
+            currState = new BatDeathState(this);
+            isDead = true;
+        }
     }
 }

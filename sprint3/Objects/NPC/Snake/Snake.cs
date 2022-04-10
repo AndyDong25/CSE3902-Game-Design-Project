@@ -108,5 +108,10 @@ namespace CSE3902_Project.Objects.NPC.Snake
             yPos = previousYPos;
             UpdateCollider();
         }
+        public void Die()
+        {
+            currState = new SnakeDeathState(this);
+            isDead = true;
+        }
     }
 }

@@ -248,5 +248,11 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             yPos = previousYPos;
             UpdateCollider();
         }
+
+        public void Die()
+        {
+            currState = new PlayerDeathState(this);
+            isDead = true;
+        }
     }
 }
