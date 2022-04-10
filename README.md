@@ -40,6 +40,8 @@ Player 1:
   Use Item1: D1
   
   Use Item2: D2
+  
+  Use Item3: D3
 
 Player 2:
 
@@ -59,10 +61,13 @@ Player 2:
   
   Use Item2: D9
   
-Testing Controls:
-
-  Change Character1: E
+  Use Item3: D8
   
+Testing Controls:
+  
+  // unused - key bound to GameOver sound effect currently
+  Change Character1: E
+  // unused - key bound to GameOver sound effect currently
   Change Character2: P
 
 How to Play:
@@ -71,7 +76,7 @@ How to Play:
   Destroy crates and collect items to increase stats or obtain special abilities, but watch out for enemy bombs and AI, who can kill you if they touch you! Last player alive wins the game!
   
 	
-  Special Items: 
+Special Items: 
 	Bomb Item: Allows you to drop more bombs at a time
 	Shoe Item: Gives you a slight speed boost
 	Potion Item: Gives a larger explosion radius to bomb 
@@ -82,14 +87,17 @@ How to Play:
 	Torpedo: Usable item stored in inventory - kills player upon contact
 
 
-	Bugs:
+Bugs/Notes:
 	-Most everything should work accordingly
 	-Occasional collision issues
 	-Some functionality not fully implemented for sprint4 yet - coin collection, mine cart, traps, game state.
+	-Map4 is used for testing purposes (coin spawner, all items available, etc,.)
 	
 
 Other:
     
+  Sprint Reflection is in the CodeReview folder of the project.
+  
   Team responsibility spreadsheet: https://docs.google.com/spreadsheets/d/1C56Z-13CeJ7uicKJGbocY6O8JArwAjoMr41DtI3Xig4/edit#gid=0
   
   
