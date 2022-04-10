@@ -42,7 +42,9 @@ namespace CSE3902_Project.Collisions
             CheckTorpedoCollision();
 
             CheckTrapCollision();
+
             CheckCoinCollision();
+
             CheckMinecartCollision();
 
             CheckBombCollision();

@@ -146,7 +146,6 @@ namespace CSE3902_Project.Map
             public Dictionary<String, List<int>> aliens;
             public Dictionary<String, List<int>> yetis;
             public Dictionary<String, List<int>> portals;
-            public Dictionary<String, List<int>> mushrooms;
             public Dictionary<String, List<int>> tree1;
             public Dictionary<String, List<int>> tree2;
             public Dictionary<String, List<int>> traps;
@@ -198,15 +197,11 @@ namespace CSE3902_Project.Map
             currentItemList.Add(landmineItem);
 
             currentObstacleList = new List<ISprite>();
-            
-            //currentObstacleList.Add(tree1);
-            //currentObstacleList.Add(tree2);
-            //currentObstacleList.Add(mashroom1);
 
             snakeList = new List<Snake>();
             
             batList = new List<Bat>();
-
+            
             yetiList = new List<Yeti>();
             trapList = new List<Trap>();
             currentEnemyList = new List<ISprite>();
@@ -228,8 +223,8 @@ namespace CSE3902_Project.Map
             }
             
             //alien testing, can adjust later
-            alien = new Alien(new Vector2(1100, 400), game);
-            currentEnemyList.Add(alien);
+            //alien = new Alien(new Vector2(1100, 400), game);
+            //currentEnemyList.Add(alien);
 
             GetAllExplosions();
 
@@ -345,6 +340,11 @@ namespace CSE3902_Project.Map
                 yeti = new Yeti(new Vector2(pos[0], pos[1]), game);
                 yetiList.Add(yeti);
                 currentEnemyList.Add(yeti);
+            }
+            foreach (List<int> pos in m2.aliens.Values)
+            {
+                alien = new Alien(new Vector2(pos[0], pos[1]), game);
+                currentEnemyList.Add(alien);
             }
             foreach (List<int> pos in m2.traps.Values)
             {

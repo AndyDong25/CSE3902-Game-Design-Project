@@ -1,16 +1,17 @@
 {
     "player1": [ 30, 30 ],
     "player2": [ 700, 30 ],
-    "snakes": { "Snake1": [ 60, 430 ] },
+    "aliens": {},
+    "snakes": {
+        "Snake1": [ 200, 240 ],
+        "Snake2": [ 560, 240 ]
+    },
     "bats": {},
     "yetis": {},
     "traps": { "0": [ 140, 40 ] },
     "minecarts": {},
     "coins": { "0": [ 40, 40 ] },
-    "portals": {
-        "0": [ 150, 40 ],
-        "1": [ 45, 410 ]
-    },
+    "portals": {},
     "destructableBlocks": {
         "0": [ 80, 0 ],
         "1": [ 280, 0 ],
