@@ -390,16 +390,20 @@ namespace CSE3902_Project.Collisions
             Player p2 = map.player2;
             foreach (Trap t in map.trapList)
             {
-                if (p1.collider2D.Intersects(t.collider2D))
+                if (!t.cooldown)
                 {
-                    p1.collisionHandler = new PlayerTrapCollisionHandler();
-                    p1.collisionHandler.HandleCollision(p1);
+                    if (p1.collider2D.Intersects(t.collider2D))
+                    {
+                        p1.collisionHandler = new PlayerTrapCollisionHandler();
+                        p1.collisionHandler.HandleCollision(p1);
+                    }
+                    if (p2.collider2D.Intersects(t.collider2D))
+                    {
+                        p2.collisionHandler = new PlayerTrapCollisionHandler();
+                        p2.collisionHandler.HandleCollision(p1);
+                    }
                 }
-                if (p2.collider2D.Intersects(t.collider2D))
-                {
-                    p2.collisionHandler = new PlayerTrapCollisionHandler();
-                    p2.collisionHandler.HandleCollision(p1);
-                }
+                
             }
         }
 
