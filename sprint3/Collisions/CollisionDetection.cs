@@ -37,7 +37,7 @@ namespace CSE3902_Project.Collisions
             map.GetAllExplosions();
 
             CheckLandmineCollision();
-
+            CheckCoinCollision();
             CheckTorpedoCollision();
 
             CheckTrapCollision();
@@ -261,20 +261,7 @@ namespace CSE3902_Project.Collisions
                         y.UpdateCollider();
                     }
                 }
-                foreach (Coin c in map.coinList)
-                {
-                    if (p1.collider2D.Intersects(c.collider2D))
-                    {
-                        p1.collisionHandler = new PlayerCoinCollisionHandler();
-                        p1.collisionHandler.HandleCollision(p1);
-                        c.collisionHandler = new CoinPlayerCollisionHandler();
-                        c.collisionHandler.HandleCollision(c);
-                        p2.collisionHandler = new PlayerCoinCollisionHandler();
-                        p2.collisionHandler.HandleCollision(p2);
-                        c.collisionHandler = new CoinPlayerCollisionHandler();
-                        c.collisionHandler.HandleCollision(c);
-                    }
-                }
+                
                 //I'm delaying putting in the aliens here because I think we can encapsulate all of our sprites into 1 collision handler
                 //foreach (Alien a in map.alienList)
             }
@@ -498,6 +485,28 @@ namespace CSE3902_Project.Collisions
                     p2.collisionHandler.HandleCollision(p2);
                     map.torpedoExplosion.pos = new Vector2(p2.xPos - 30, p2.yPos - 30);
                     map.allObjects.Add(map.torpedoExplosion);
+                }
+            }
+        }
+        private void CheckCoinCollision()
+        {
+            Player p1 = map.player1;
+            Player p2 = map.player2;
+            foreach (Coin c in map.coinList)
+            {
+                if (p1.collider2D.Intersects(c.collider2D))
+                {
+                    p1.collisionHandler = new PlayerCoinCollisionHandler();
+                    p1.collisionHandler.HandleCollision(p1);
+                    map.finishedCoin.Add(c);
+
+
+                }
+                if (p2.collider2D.Intersects(c.collider2D))
+                {
+                    p2.collisionHandler = new PlayerCoinCollisionHandler();
+                    p2.collisionHandler.HandleCollision(p1);
+                    map.finishedCoin.Add(c);
                 }
             }
         }

@@ -264,6 +264,7 @@ namespace CSE3902_Project.Map
             itemsToSpawn = new List<BasicItem>();
             finishedTorpedo = new List<Torpedo>();
             finishedLandmine = new List<Landmine>();
+            coinPosList = new List<Vector2>();
             coinsController.Update();
             for (int i = allObjects.Count - 1; i > -1; i--)
             {
@@ -532,11 +533,17 @@ namespace CSE3902_Project.Map
             {
                 e.SetAllEplosions();
             }
+            foreach (Coin c in finishedCoin)
+            {
+                finishedObjects.Add(c);
+                coinPosList.Remove(c.position);
+                coinList.Remove(c);
+            }
             foreach (ISprite s in finishedObjects)
             {
                 allObjects.Remove(s);
             }
-            
+           
         }
         public void GameOver()
         {
