@@ -45,7 +45,7 @@ namespace CSE3902_Project.Collisions
 
             CheckCoinCollision();
 
-            CheckMinecartCollision();
+            //CheckMinecartCollision();
 
             CheckBombCollision();
 
