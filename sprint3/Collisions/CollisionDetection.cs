@@ -362,13 +362,14 @@ namespace CSE3902_Project.Collisions
             }
         }
 
+        /* Minecart functionality will be added later
         private void CheckMinecartCollision()
         {
             Player p1 = map.player1;
             Player p2 = map.player2;
             foreach (Minecart m in map.minecartList)
             {
-                if (!m.playOn)
+                if (!m.playerOn)
                 {
                     if (p1.collider2D.Intersects(m.collider2D))
                     {
@@ -381,9 +382,13 @@ namespace CSE3902_Project.Collisions
                         p2.collisionHandler.HandleCollision(p1);
                     }
                 }
+                else
+                {
+
+                }
             }
         }
-
+        */
         private void CheckTrapCollision()
         {
             Player p1 = map.player1;

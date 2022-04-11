@@ -1,4 +1,5 @@
 ﻿using CSE3902_CSE3902_Project;
+using CSE3902_CSE3902_Project.Objects.Player;
 using CSE3902_CSE3902_Project.Sprites;
 using CSE3902_Project.Collisions;
 using CSE3902_Project.Objects.Decorations;
@@ -20,7 +21,7 @@ namespace sprint3.Objects.Decorations
         private Texture2D texture;
         public Rectangle collider2D;
         public ICollisionHandler collisionHandler;
-        public bool playOn;
+        public bool playerOn;
         public Minecart(Vector2 position, Game1 game)
         {
             this.game = game;
@@ -29,7 +30,7 @@ namespace sprint3.Objects.Decorations
             destinationRec = new Rectangle((int)position.X, (int)position.Y, 40, 32);
             texture = DecorationTextureStorage.Instance.getMinecartSprite();
             collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 40, 30);
-            playOn = false;
+            playerOn = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -48,6 +49,11 @@ namespace sprint3.Objects.Decorations
         public Rectangle GetCollider2D()
         {
             return collider2D;
+        }
+        public void MoveWithPlayer(Player p)
+        {
+            p.xPos = position.X;
+            p.yPos = position.Y;
         }
     }
 }
