@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CSE3902_CSE3902_Project;
+using CSE3902_CSE3902_Project.Objects.Player;
+using CSE3902_CSE3902_Project.Sprites;
+using CSE3902_Project.Collisions;
+using CSE3902_Project.Objects.Decorations;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint3.Objects.Decorations
 {
-    using CSE3902_CSE3902_Project;
-    using CSE3902_CSE3902_Project.Objects.Player;
-    using CSE3902_CSE3902_Project.Sprites;
-    using CSE3902_Project.Collisions;
-    using CSE3902_Project.Objects.Decorations;
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    //using CSE3902_CSE3902_Project;
+    //using CSE3902_CSE3902_Project.Objects.Player;
+    //using CSE3902_CSE3902_Project.Sprites;
+    //using CSE3902_Project.Collisions;
+    //using CSE3902_Project.Objects.Decorations;
+    //using Microsoft.Xna.Framework;
+    //using Microsoft.Xna.Framework.Graphics;
         public class Coin : ICollideable, ISprite
         {
             private Game1 game;
@@ -21,12 +25,12 @@ namespace sprint3.Objects.Decorations
             public Vector2 position;
             private Rectangle sources;
             private Rectangle sourceRec;
-            private int row;
-            private int colomn;
+            //private int row;
+            //private int colomn;
             private Rectangle destinationRec;
             private Texture2D texture;
             private int sourceIndex;
-            private Vector2 timer;
+            //private Vector2 timer;
             public Rectangle collider2D;
             public ICollisionHandler collisionHandler;
             public Vector2 switchTimer;
@@ -52,8 +56,7 @@ namespace sprint3.Objects.Decorations
             public void Update()
             {
                 sourceIndex = (sourceIndex + 1)% (12*speed);
-                sourceRec = new Rectangle(16 * (int)(sourceIndex/speed), 0 , 16, 16);
-                
+                sourceRec = new Rectangle(16 * (int)(sourceIndex/speed), 0 , 16, 16);               
             }
 
             public void UpdateCollider()
@@ -63,8 +66,5 @@ namespace sprint3.Objects.Decorations
             {
                 return collider2D;
             }
-       
         }
-    
-
 }

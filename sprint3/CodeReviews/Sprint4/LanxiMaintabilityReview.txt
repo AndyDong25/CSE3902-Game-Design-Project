@@ -1,9 +1,10 @@
 ﻿Reviewer - Lanxi Li
-Date - 2/18/22
+Date - 4/11/22
 CSE3902_Project
-File - NinjaStarItem.cs
-File Author - Devan Mallory
+File - Trap.cs
+File Author - Tianle Chen
 Time to Complete - 10 minutes
 
 Comments
-	- Good
+	- Good maintainability
+	- frameRate is unused variable
