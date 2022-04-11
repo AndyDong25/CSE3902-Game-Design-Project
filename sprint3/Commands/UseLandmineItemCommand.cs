@@ -11,7 +11,7 @@ namespace CSE3902_CSE3902_Project.Commands
         }
         public void Execute()
         {
-            myPlayer.UseLandmine();
+            if (!myPlayer.isDead) myPlayer.UseLandmine();
         }
     }
 
