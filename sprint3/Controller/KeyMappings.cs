@@ -2,6 +2,7 @@
 using CSE3902_CSE3902_Project.Objects.Player;
 using Microsoft.Xna.Framework.Input;
 using CSE3902_Project.Commands;
+using CSE3902_Project.Audio;
 using System.Collections.Generic;
 
 namespace CSE3902_CSE3902_Project.Controller
@@ -68,6 +69,8 @@ namespace CSE3902_CSE3902_Project.Controller
             //For landmine
             this.addCommand(Keys.D3, new UseLandmineItemCommand(player1));
             this.addCommand(Keys.D8, new UseLandmineItemCommand(player2));
+
+            this.addCommand(Keys.M, new MuteAudioCommand(AudioManager.Instance));
         }
 
         public void addCommand(Keys key, ICommand command)
@@ -75,7 +78,7 @@ namespace CSE3902_CSE3902_Project.Controller
             mappings.Add(key, command);
             //acceptedStates.Add(key);
             if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.T || key == Keys.O ||key == Keys.D0 || key == Keys.D1 || key == Keys.D2 || key == Keys.D9
-                || key == Keys.D3 || key == Keys.D8)
+                || key == Keys.D3 || key == Keys.D8 || key == Keys.M)
             {
                 oncePerActionStates.Add(key);
             }
