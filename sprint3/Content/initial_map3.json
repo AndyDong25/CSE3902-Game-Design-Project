@@ -14,7 +14,7 @@
         "PortalB": [ 770, 220 ]
     },
     "minecarts": {},
-    "coins": { "0": [ 100, 40 ] },
+    "coins": { },
     "destructableBlocks": {
         "0": [ 0, 40 ],
         "0.5": [ 40, 40 ],

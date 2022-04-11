@@ -22,7 +22,7 @@ namespace sprint3.Map
         {
             this.game = game;
             this.map = map;
-            timer = 100;
+            timer = 200;
         }
         public void RenewCoins(Map1 map)
         {
@@ -35,7 +35,7 @@ namespace sprint3.Map
             {
                 remainCoins = 20 - map.coinList.Count();
             }
-            for (int i = 0; i < remainCoins/2; i++)
+            for (int i = 0; i < remainCoins/3; i++)
             {
                 row = rnd.Next(0, 20);
                 col = rnd.Next(0, 12);
@@ -54,7 +54,7 @@ namespace sprint3.Map
         }
         public void Update()
         {
-            timer = (timer+1) % 100;
+            timer = (timer+1) % 250;
             if (timer== 0)
             {
                 RenewCoins(map);
