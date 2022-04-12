@@ -1,12 +1,23 @@
 ﻿Reviewer - Devan Mallory
-Date - 2/20/22
+Date - 4/11/22
 CSE3902_Project
-File - KeyboardController.cs
+File - Portal.cs
 File Author - Andy Dong
 Time to Complete - 20 minutes
 
-File looks good and clean, and implements all methods of the interface as expected.
 
 
 Comments:
+
+File looks good, for the most part maintanability is done well. In terms of maintanability, this file
+is well integrated into the codebase and should be very easy to maintain. The only comment I will make is that
+I think a lot of class memebers could be grouped together using the interfaces that were designed to group those
+classes together. For example, I think that the Texture2D and Retangles could be grouped into Isprites, but I'm not
+entirely sure. Other than that, this file is nicely done.
+
+
+
+
+
+
 	
