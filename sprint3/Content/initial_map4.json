@@ -8,7 +8,7 @@
     "traps": {},
     "minecarts": {},
     "portals": {},
-    "coins": { "0": [ 100, 40 ] },
+    "coins": {},
     "destructableBlocks": {
         "0": [ 0, 0 ],
         "1": [ 40, 0 ],

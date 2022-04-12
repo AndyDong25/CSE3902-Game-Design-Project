@@ -11,7 +11,7 @@
     },
     "traps": {},
     "minecarts": {},
-    "coins": { "0": [ 100, 40 ] },
+    "coins": { },
     "bats": {},
     "portals": {},
     "destructableBlocks": {

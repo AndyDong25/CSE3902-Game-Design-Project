@@ -13,7 +13,7 @@
         "1": [ 700, 220]
     },
     "minecarts": {},
-    "coins": { "0": [ 40, 40 ] },
+    "coins": { },
     "portals": {},
     "destructableBlocks": {
         "0": [ 80, 0 ],

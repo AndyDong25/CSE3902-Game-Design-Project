@@ -22,7 +22,7 @@ namespace sprint3.Objects.Decorations
         private Rectangle destinationRec;
         private Texture2D texture;
         private int sourceIndex;
-        private int frameRate;
+        //private int frameRate;
         private Vector2 timer;
         public Rectangle collider2D;
         public ICollisionHandler collisionHandler;
@@ -49,7 +49,6 @@ namespace sprint3.Objects.Decorations
 
         public void Update()
         {
-            
             if (cooldown)
             {
                 if (--timer.Y == 0)
@@ -80,6 +79,5 @@ namespace sprint3.Objects.Decorations
         {
             return collider2D;
         }
-
     }
 }
