@@ -405,7 +405,7 @@ namespace CSE3902_Project.Collisions
                     if (p2.collider2D.Intersects(t.collider2D))
                     {
                         p2.collisionHandler = new PlayerTrapCollisionHandler();
-                        p2.collisionHandler.HandleCollision(p1);
+                        p2.collisionHandler.HandleCollision(p2);
                     }
                 }
                 

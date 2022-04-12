@@ -54,7 +54,7 @@ namespace CSE3902_CSE3902_Project
             Content.RootDirectory = "Content";
         }
 
-        protected  void Initialize()
+        protected  override void Initialize()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             isPaused = false;
@@ -65,7 +65,8 @@ namespace CSE3902_CSE3902_Project
             graphics.PreferredBackBufferWidth = 800;
             screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             graphics.ApplyChanges();
-           
+            base.Initialize();
+
             if (!mapsLoaded)
             {
                 mapList = new List<Map1>();
@@ -94,7 +95,6 @@ namespace CSE3902_CSE3902_Project
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, currentMap.player1, currentMap.player2));
             controllerList.Add(new MouseController(this));
-            base.Initialize();
         }
 
         protected override void LoadContent()
