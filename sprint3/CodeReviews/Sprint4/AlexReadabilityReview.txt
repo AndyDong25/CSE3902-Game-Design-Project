@@ -1,13 +1,14 @@
 ﻿Reviewer - Jiachen zhang (Alex)
-Date - 2/21/22
+Date - 4/11/22
 CSE3902_Project
-File - Map.cs
-File Author - Jiachen zhang, Andy Dong
-Time to Complete - 15 minutes
+File - Hud.cs
+File Author - Andy Dong
+Time to Complete - 6hrs
 
 
 Comments
-	-Medium_high readable
-	-We commented out too much things that makes the code slightly difficult to read
-	-But most of the commented out code are useful in the future, like: Time, Ispusle, GameState, 
-	-If we'll have more code in here, we will create a void method to add these things. But so far not really affecting the readability.
+	-High readable
+	-A lot of unused using, can deleated
+	-Undeleated comment out code
+	-Rest of the code are necessary and well formatted
+	-It is a great work overall.Implemented by using easiest and most readable way.

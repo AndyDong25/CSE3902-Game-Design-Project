@@ -1,15 +1,10 @@
 ﻿Reviewer - Jiachen zhang (Alex)
 Date - 2/21/22
 CSE3902_Project
-File - Enemy.cs
-File Author - Lanxi Li
-Time to Complete - 35 minutes
-
+File - CoinsController.cs
+File Author - Tianle Chen
+Time to Complete - 3hrs
 
 Comments
-	- There is a unnecessary getter for variable Game
-	- It has a very solid quality of maintability on drawing 
-	- in the DrawExplosions, there is no needed comment out code existes, it is implementing same thing, but maybe left there for testing purpose.
-	- There is TakeDamage waiting for implement in the future
-	- Overall, Except the unneeded commeted out code, the maintability is very high
-	- We can easily add variables, change the stucture, modify the whole class with very little change.
+- The file is really short but efficient enough.
+- This file has only one purpose so it is very easy to maintain.
