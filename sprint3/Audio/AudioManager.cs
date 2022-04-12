@@ -84,7 +84,7 @@ namespace CSE3902_Project.Audio
         public void PlayBombThrown()
         {
             SoundEffectInstance bombThrownInstance = bombThrown.CreateInstance();
-            bombThrownInstance.Volume = .3f;
+            bombThrownInstance.Volume = .5f;
             bombThrownInstance.Play();
             currentlyPlayingFiles.Add(bombThrownInstance);
 
