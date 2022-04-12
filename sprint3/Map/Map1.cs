@@ -25,6 +25,8 @@ using CSE3902_Project.Objects.NPC.Yeti;
 using CSE3902_Project.Objects.NPC;
 using sprint3.Objects.Decorations;
 using CSE3902_Project.Objects.Torpedo;
+using Microsoft.Xna.Framework.Content;
+
 namespace CSE3902_Project.Map
 {
     public class Map1
@@ -35,14 +37,14 @@ namespace CSE3902_Project.Map
         public int mapIndex;
         public CollisionDetection collisionDetection;
         public TileMap tileMap;
-        public int Timeplayed;
+       
         public int score;
         public CoinsController coinsController;
-        //int TimeofGame = 0;
-        //Boolean isPaused = false;
+        public SpriteFont timefont;
 
         private Background1 background;
         public Hud1 hud;
+        public Time myTime;
         public GraphicsDeviceManager graphics;
 
         public Player player1;
@@ -87,16 +89,6 @@ namespace CSE3902_Project.Map
 
 
         public List<BasicItem> itemsToSpawn;
-        /*        GameState currentGameState;
-                enum GameState
-                {
-                    GameMenu = 0,
-                    GamePlay = 1,
-                    GameOver = 2,
-                    GamePause = 3,
-                }*/
-
-        //private Vector2 screenSize;
 
         public List<BasicItem> currentItemList;
         public List<BasicItem> finishedItems;
@@ -127,7 +119,15 @@ namespace CSE3902_Project.Map
         public List<Portal> portalList;
         public List<Minecart> minecartList;
         public List<Vector2> coinPosList;
+
+
         public List<Coin> coinList;
+       //============================================================
+       
+        public int time;
+
+        public AudioManager audioManager = new AudioManager();
+        //=============================================================
         public Map1(Game1 game, int mapIndex, Map m2)
         {
             this.game = game;
@@ -161,7 +161,8 @@ namespace CSE3902_Project.Map
             coinsController = new CoinsController(game,this);
             background = new Background1(new Vector2(0, 0), mapIndex);
             hud = new Hud1(new Vector2(0, 480), this);
-
+            time = 500;
+            myTime = new Time(new Vector2(0, 10), this, time);
             staticBombList = new List<StaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
             ninjaStarList = new List<NinjaStar>();
@@ -175,6 +176,7 @@ namespace CSE3902_Project.Map
             coinList = new List<Coin>();
             coinPosList = new List<Vector2>();
 
+         
             // spawn all items initially for testing purposes
             bombItem = new BombItem(new Vector2(150, 400), game);
             ghostItem = new GhostItem(new Vector2(185, 400), game);
@@ -244,11 +246,14 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(trapList);
             allObjects.AddRange(minecartList);
             allObjects.AddRange(coinList);
-
             AudioManager.Instance.PlayMainMusic();
-        }
 
-        public void Update()
+        }
+        public void InitializeAudioManager(ContentManager content)
+        {
+            audioManager.LoadAllResources(content);
+        }
+        public void Update(GameTime gameTime)
         {
             finishedCoin = new List<Coin>();
             finishedObjects = new List<ISprite>();
@@ -262,17 +267,22 @@ namespace CSE3902_Project.Map
             finishedLandmine = new List<Landmine>();
             coinPosList = new List<Vector2>();
             coinsController.Update();
+            
+            
+
             for (int i = allObjects.Count - 1; i > -1; i--)
             {
                 ISprite s = allObjects[i];
                 s.Update();
             }
-            hud.Update();
-            collisionDetection.Update();
 
+            hud.Update();
+            myTime.Update(gameTime);
+            collisionDetection.Update();
+            
             RemoveFinishedItems();
             SpawnItems();
-
+            
             // players kept getting stuck - update previous position after collision checks
             GetAllExplosions();
             player1.UpdatePreviousPosition();
@@ -281,6 +291,7 @@ namespace CSE3902_Project.Map
             {
                 e.UpdatePreviousPosition();
             }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -289,7 +300,9 @@ namespace CSE3902_Project.Map
             {
                 s.Draw(spriteBatch);
             }
+            
             hud.Draw(spriteBatch);
+            myTime.Draw(spriteBatch);
         }
 
         private void LoadFromJson()
@@ -370,7 +383,8 @@ namespace CSE3902_Project.Map
 
             if (staticBombList.Count < 10)
             {
-                AudioManager.Instance.PlayBombThrown();
+                audioManager.PlayBombThrown();
+                
                 StaticBomb newBomb = new StaticBomb(game, player, pos);
                 staticBombList.Add(newBomb);
                 allObjects.Add(newBomb);
@@ -380,7 +394,7 @@ namespace CSE3902_Project.Map
         public void AddExplosions(Vector2 pos, int potionCount, int direction)
         {
             ExplosionCross eCross = new ExplosionCross(game);
-            AudioManager.Instance.PlayBombExplosion();
+            audioManager.PlayBombExplosion();
             int xOffset = 0;
             int yOffset = 0;
             int x = (int)pos.X;
@@ -548,7 +562,17 @@ namespace CSE3902_Project.Map
         }
         public void GameOver()
         {
-            AudioManager.Instance.PlayGameOver();
+            audioManager.PlayGameOver();
+
+        }
+        public void PauseMusic()
+        {
+            audioManager.setPause(true);
+
+        }
+        public void ResumeMusic()
+        {
+            audioManager.setPause(false);
 
         }
     }

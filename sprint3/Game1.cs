@@ -14,30 +14,30 @@ using System.IO;
 using Newtonsoft.Json;
 using static CSE3902_Project.Map.Map1;
 using CSE3902_Project.Fonts;
+using System;
+using Microsoft.Xna.Framework.Input;
 
 namespace CSE3902_CSE3902_Project
 {
 
     public class Game1 : Game
     {
-/*        pqpublic int Timeplayed;
-        public int score;
-        Rectangle safeBounds;
-        const float safeAreaPortion = 0.001f;*/
 
         public GraphicsDeviceManager graphics;
         public static ContentManager contentManager;
         public SpriteBatch spriteBatch;
         public ArrayList controllerList;
-        //private GameState currentGameState;
-/*       enum GameState
+        private GameState currentGameState;
+        private Color backColor;
+        Boolean isPaused;
+        enum GameState
         {
             GameMenu = 0,
             GamePlay = 1,
             GameOver = 2,
             GamePause = 3,
-        }*/
-        
+        }
+
         public Map1 currentMap;
         public int totalMaps;
         public List<Map1> mapList;
@@ -45,31 +45,27 @@ namespace CSE3902_CSE3902_Project
         public int map_index = 0;
         public bool changedMap = false;
         private bool mapsLoaded = false;
+
+
         public Game1()
-        {         
+        {
             graphics = new GraphicsDeviceManager(this);
             //graphics.IsFullScreen = true;
-            Content.RootDirectory = "Content";      
+            Content.RootDirectory = "Content";
         }
 
-        protected override void Initialize()
+        protected  void Initialize()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            /*            Viewport viewport = graphics.GraphicsDevice.Viewport;
-                        safeBounds = new Rectangle(
-                            (int)(viewport.Width * safeAreaPortion),
-                            (int)(viewport.Height * safeAreaPortion),
-                            (int)(viewport.Width * (1 - 2 * safeAreaPortion)),
-                            (int)(viewport.Height * (1 - 2 * safeAreaPortion)));*/
-            //TODO change in the future
-            //currentGameState = GameState.GamePlay;
-
+            isPaused = false;
+            currentGameState = GameState.GameMenu;
+            
             // mapDir = new Dictionary<Vector2, ISprite> { };
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 800;
             screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             graphics.ApplyChanges();
-            base.Initialize();
+           
             if (!mapsLoaded)
             {
                 mapList = new List<Map1>();
@@ -91,20 +87,26 @@ namespace CSE3902_CSE3902_Project
                 mapsLoaded = true;
             }
             currentMap = mapList[map_index];
+            currentMap.InitializeAudioManager(Content);
             currentMap.Initialize();
+            
+
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, currentMap.player1, currentMap.player2));
             controllerList.Add(new MouseController(this));
+            base.Initialize();
         }
 
         protected override void LoadContent()
         {
+
             PlayerTextureStorage.Instance.LoadAllResources(Content);
             EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
             DecorationTextureStorage.Instance.LoadAllResources(Content);
             SpriteFontStorage.Instance.LoadAllResources(Content);
             AudioManager.Instance.LoadAllResources(Content);
+
         }
 
         protected override void UnloadContent()
@@ -113,15 +115,18 @@ namespace CSE3902_CSE3902_Project
 
         protected override void Update(GameTime gameTime)
         {
-            // GameState functionality not implemented yet
-
-/*            KeyboardState keyboard = Keyboard.GetState();
+            KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
-            
+
             switch (currentGameState)
             {
                 case GameState.GameMenu:
 
+                    /*
+                    *  For the gameMenu state, I think we need to have a picture instruction instead of the current map.
+                    *  this area is the place to put the code.
+                    */
+                    Reset();
                     if (gamePad.Buttons.Back == ButtonState.Pressed ||
                         keyboard.IsKeyDown(Keys.Escape))
                     {
@@ -130,17 +135,38 @@ namespace CSE3902_CSE3902_Project
                     if (gamePad.Buttons.Start == ButtonState.Pressed ||
                         keyboard.IsKeyDown(Keys.Enter))
                     {
-
-                        // Set the game state to play
                         currentGameState = GameState.GamePlay;
 
+                        //May have score later.
                         // Reset score
-                        score = 0;
+                        //score = 0;
+                    }
+                    break;
+                
+                case GameState.GamePause:
+                    if (keyboard.IsKeyDown(Keys.P))
+                    {
+                        isPaused = !isPaused;
+                       
+                    }
+                    if (isPaused)
+                    {
+                        currentMap.PauseMusic();
+
+
+                    }
+                    else
+                    {
+                        currentMap.ResumeMusic();
+                        currentGameState = GameState.GamePlay;
                     }
                     break;
 
                 case GameState.GameOver:
                     // If game is over, the game allows return to main menu if key A is pressed 
+                    // The gameOver state we will need a sound and a picture to tell the player that the game is over.
+                    //This is the place to put the code
+                    currentMap.GameOver();
                     if (gamePad.Buttons.A == ButtonState.Pressed ||
                         keyboard.IsKeyDown(Keys.Enter))
                     {
@@ -149,61 +175,72 @@ namespace CSE3902_CSE3902_Project
                     break;
 
                 case GameState.GamePlay:
-*//*                    if (keyboard.IsKeyDown(Keys.P))
+
+                    if (keyboard.IsKeyDown(Keys.P))
                     {
                         isPaused = !isPaused;
                     }
                     if (!isPaused)
-                    {   
-                        TimeofGame += gameTime.ElapsedGameTime.Milliseconds;
+                    {
                        
-                        //code when the game isn't paused.
+                        foreach (IController controller in controllerList)
+                        {
+                            controller.Update();
+
+                        }
+
+                        currentMap.Update(gameTime);
+                        
+                        
+                        if (currentMap.myTime.getTime() == 0)
+                        {
+                            Reset();
+                        }
+
                     }
                     else
                     {
-                        //code when the game is paused.
+
                         currentGameState = GameState.GamePause;
-                    }*//*
+
+                    }
                     // Press X or I during game play to return to main menu
-*//*                    if (gamePad.Buttons.X == ButtonState.Pressed ||
-                        keyboard.IsKeyDown(Keys.I))
+                    if (gamePad.Buttons.X == ButtonState.Pressed ||
+                         keyboard.IsKeyDown(Keys.I))
                     {
                         currentGameState = GameState.GameMenu;
-                    }*//*
+                    }
+                    if (gamePad.Buttons.X == ButtonState.Pressed ||
+                        keyboard.IsKeyDown(Keys.B))
+                    {
+                        currentGameState = GameState.GameOver;
+                    }
                     // Press ESC to quit game during game play
-*//*                    if (gamePad.Buttons.Back == ButtonState.Pressed ||
-                keyboard.IsKeyDown(Keys.Escape))
+                    if (gamePad.Buttons.Back == ButtonState.Pressed ||
+                         keyboard.IsKeyDown(Keys.Escape))
                     {
                         this.Exit();
-                    }*//*
-                    foreach (IController controller in controllerList)
-                    {
-                        controller.Update();
                     }
-                    map.Update();
-                    
                     break;
-            }*/
-                        
-            foreach (IController controller in controllerList)
-            {
-                controller.Update();
+
             }
-            currentMap.Update();
 
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            
             spriteBatch.Begin();
-            this.IsMouseVisible = true;  
+            this.IsMouseVisible = true;
 
             currentMap.Draw(spriteBatch);
+
             spriteBatch.End();
-                
+
             base.Draw(gameTime);
-        } 
+        }
 
         public void Reset()
         {

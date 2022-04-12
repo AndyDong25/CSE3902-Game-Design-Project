@@ -10,7 +10,7 @@ using CSE3902_Project;
 
 namespace CSE3902_Project.Audio
 {
-    class AudioManager
+    public class AudioManager
     {
 
         private static AudioManager instance = null;
@@ -30,7 +30,7 @@ namespace CSE3902_Project.Audio
         public float defaultVolume = .6f;
 
         public bool mute = false;
-
+        public bool pause = false;
         List<SoundEffect> allAudio;
 
         List<SoundEffectInstance> currentlyPlayingFiles;
@@ -104,8 +104,9 @@ namespace CSE3902_Project.Audio
         {
 
             Random musicIdx = new Random();
-            int choosenSong = musicIdx.Next(0, background_music.Count);
+             int choosenSong = musicIdx.Next(0, background_music.Count);
             MediaPlayer.Play(background_music[choosenSong]);
+            
         }
 
         public void PlayGameOver()
@@ -118,6 +119,7 @@ namespace CSE3902_Project.Audio
         }
         public void Mute(bool sMute)
         {
+            //I think it should be setMute method.
             mute = sMute;
             if (mute)
             {
@@ -128,7 +130,18 @@ namespace CSE3902_Project.Audio
                 MediaPlayer.Volume = defaultVolume;
             }
         }
-
+        public void setPause(bool Pause)
+        {
+             this.pause = Pause;
+            if (this.pause)
+            {
+                MediaPlayer.Pause();
+            }
+            if (this.pause == false)
+            {
+                MediaPlayer.Resume();
+            }
+        }
 
     }
 }

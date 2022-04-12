@@ -46,6 +46,8 @@ namespace CSE3902_Project.Objects.Decorations
         private static Texture2D fireTexture;
         private static Texture2D minecartTexture;
         private static Texture2D coinTexture;
+
+      
         private DecorationTextureStorage()
         {
         }
@@ -77,6 +79,8 @@ namespace CSE3902_Project.Objects.Decorations
             hudBackgroundTexture = content.Load<Texture2D>("hudBackground");
             minecartTexture = content.Load<Texture2D>("fullsheet");
             coinTexture = content.Load<Texture2D>("coin");
+
+            
         }
 
         public Texture2D getTree1Sprite()
@@ -159,5 +163,6 @@ namespace CSE3902_Project.Objects.Decorations
         {
             return coinTexture;
         }
+ 
     }
 }

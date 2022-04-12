@@ -537,6 +537,13 @@
 /processorParam:TextureFormat=Color
 /build:snakeSpriteSheet.png
 
+#begin TimeFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:TimeFont.spritefont
+
 #begin TombstoneSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -20,6 +20,7 @@ namespace CSE3902_Project.Fonts
         }
 
         private static SpriteFont hudFont;
+        private SpriteFont timeFont;
 
         private SpriteFontStorage()
         {
@@ -28,11 +29,16 @@ namespace CSE3902_Project.Fonts
         public void LoadAllResources(ContentManager content)
         {
             hudFont = content.Load<SpriteFont>("hudFont");
+            timeFont = content.Load<SpriteFont>("TimeFont");
         }
 
         public SpriteFont getHudFont()
         {
             return hudFont;
+        }
+        public SpriteFont getTimeFont()
+        {
+            return timeFont;
         }
     }
 }
