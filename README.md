@@ -100,8 +100,8 @@ Special Items:
 
 Bugs/Notes:
 	-Most everything should work accordingly
-	-Occasional collision issues
-	-Some functionality not fully implemented for sprint4 yet - coin collection, mine cart, traps, game state.
+	-Occasional collision/muting/pausing issues
+	-Some functionality not fully implemented yet for future developement - coins, minecart, UI
 	-Map4 is used for testing purposes (coin spawner, all items available, etc,.)
 	
 
