@@ -69,6 +69,16 @@ Testing Controls:
   Change Character1: E
   // unused - key bound to GameOver sound effect currently
   Change Character2: P
+  
+  Enter - hit to start game upon launch
+  
+  P - pause/resume game during gameplay
+  
+  I - "return" to menu state (hit enter to start game)
+  
+  B - game over state (needs further implementation)
+  
+  M - mute/unmute music
 
 How to Play:
 
