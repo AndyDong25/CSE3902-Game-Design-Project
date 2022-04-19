@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using CSE3902_Project.Commands;
 using CSE3902_Project.Audio;
 using System.Collections.Generic;
+using sprint3.Commands;
 
 namespace CSE3902_CSE3902_Project.Controller
 {
@@ -54,7 +55,7 @@ namespace CSE3902_CSE3902_Project.Controller
             this.AddCommand(Keys.Enter, new DropBombCommand(player2), true);
 
             this.AddCommand(Keys.E, new ChangeCharacterCommand(player1, myGame), true);
-            this.AddCommand(Keys.P, new ChangeCharacterCommand(player2, myGame), true);
+            //this.AddCommand(Keys.P, new ChangeCharacterCommand(player2, myGame), true);
 
             this.AddCommand(Keys.G, new PlayerDeathCommand(player1), true);
             this.AddCommand(Keys.L, new PlayerDeathCommand(player2), true);
@@ -72,6 +73,7 @@ namespace CSE3902_CSE3902_Project.Controller
             this.AddCommand(Keys.D8, new UseLandmineItemCommand(player2), true);
 
             this.AddCommand(Keys.M, new MuteAudioCommand(AudioManager.Instance), true);
+            this.AddCommand(Keys.P, new PauseGameCommand(myGame), true);
         }
 
         public void AddCommand(Keys key, ICommand command, bool once)

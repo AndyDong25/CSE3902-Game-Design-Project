@@ -27,7 +27,7 @@ namespace CSE3902_Project.Audio
         }
 
 
-        public float defaultVolume = .6f;
+        public float defaultVolume = .4f;
 
         public bool mute = false;
         public bool pause = false;

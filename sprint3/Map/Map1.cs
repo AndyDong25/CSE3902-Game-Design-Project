@@ -161,8 +161,8 @@ namespace CSE3902_Project.Map
             coinsController = new CoinsController(game,this);
             background = new Background1(new Vector2(0, 0), mapIndex);
             hud = new Hud1(new Vector2(0, 480), this);
-            time = 500;
-            myTime = new Time(new Vector2(0, 10), this, time);
+            time = 250;
+            myTime = new Time(new Vector2(360, 500), this, time);
             staticBombList = new List<StaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
             ninjaStarList = new List<NinjaStar>();

@@ -34,7 +34,7 @@ namespace sprint3.Sprites.Decorations
 
         public  void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, "time is " + time.ToString("0"), pos, Color.Black);
+            spriteBatch.DrawString(font, "TIME: " + time.ToString("0"), pos, Color.White);
         }
 
         public void Update(GameTime gameTime)
