@@ -1,0 +1,15 @@
+﻿Reviewer - Tianle Chen
+Date - 4/11/22
+CSE3902_Project
+File - AudioManager.cs
+File Author - Devan Mallory
+Time to Complete - 20 minutes
+
+Comments
+	- I think this class has a very clean structure and also a good the maintainability overall.
+	- Just like the review for the readability of this class, adding a helper function for the audio processing step may also help this class has better maintainability.
+	As every we want to add a new audio, we only need to call the helper function instead of re-code the several steps.
+	- If in the future we have much more soundeffects, one way to make this class more maintainable I can think of is to use the similar as what we did for the spritesheets.
+	We can build another class that store and load the audios, and the manager just take charge with the audio processing. But for now I think this class is really nice!
+	
+	

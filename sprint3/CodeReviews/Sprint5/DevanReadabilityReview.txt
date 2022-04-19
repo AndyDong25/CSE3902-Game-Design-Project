@@ -1,0 +1,15 @@
+﻿Reveiwer - Devan Mallory
+Date: 4/11/22
+CSE3902_Project
+File - Landmine.cs 
+File Authors: Lanxi Li
+Time to Complete - 20 minutes
+
+
+
+Comments:
+
+As there are not many lines of code, there is not much I can comment on. The variables are named apropriately
+with respect to their functionality and follow the proper conventions, so in terms of readability I think it is
+well done. As in the previous file, I think some variables could be refactored by grouping them into their respective
+classes (Isprite), which would help improve cohesion and coupling, and therefore readablility, of the code.

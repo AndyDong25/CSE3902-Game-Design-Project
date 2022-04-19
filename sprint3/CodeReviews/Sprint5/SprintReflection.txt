@@ -1,0 +1,7 @@
+﻿Sprint 4 Reflection
+
+The main feature of sprint4 was to implement audio, a hud, and game states. The team was able to finish creating basic models for the audio, hud and game states.
+These models allow us to add aditional features to the functions, such as more music, additional information displayed on the hud, and UI states, but it works to create a functional game at the moment. 
+In addition, the team was also able to implement additional feature to the game such as a coin system, traps, a mine cart item, more projectiles, and more NPCs. The CollisionDetection.cs class
+was also significantly refactored to heavily reduce the cyclomatic complexity. The team also polished up the game map by making each map feature its own distinct environment and obstacles imported directly from
+a .json file. The team hopes to create/improve the game's user interface in following sprint (Menu page, game over screen, etc.,) and add more game functionality to further develop our game.
