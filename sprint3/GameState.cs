@@ -126,7 +126,8 @@ namespace sprint3
         {
             // do nothing - game is paused
             SpriteFont font = SpriteFontStorage.Instance.getHudFont();
-            spriteBatch.DrawString(font, "CLICK MOUSE TO RESUME", new Vector2(290, 250), Color.White);
+            spriteBatch.DrawString(font, "LEFT CLICK TO RESUME", new Vector2(290, 250), Color.White);
+            spriteBatch.DrawString(font, "RIGHT CLICK TO GO TO MAIN MENU", new Vector2(250, 280), Color.White);
         }
 
         private void GameOverDraw(SpriteBatch spriteBatch)
