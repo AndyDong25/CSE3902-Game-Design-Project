@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace sprint3
@@ -15,6 +16,7 @@ namespace sprint3
         private MainMenu menuScreen;
         private Game1 game;
         private State currGameState;
+        private float timer;
 
         enum State
         {
@@ -28,6 +30,7 @@ namespace sprint3
         {
             //currGameState = State.GameMenu;
             this.game = game;
+            timer = 4;
             menuScreen = new MainMenu(game);
         }
 
@@ -98,7 +101,20 @@ namespace sprint3
 
         private void GameOverUpdate(GameTime gameTime)
         {
-            
+            timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (timer <= 0.0f)
+            {
+                timer = 4;
+                if (game.currentMap.player1.isDead)
+                {
+                    game.p2Wins++;
+                }
+                else if (game.currentMap.player2.isDead)
+                {
+                    game.p1Wins++;
+                }
+                game.Reset();
+            }
         }
 
         private void GamePlayUpdate(GameTime gameTime)
@@ -110,10 +126,11 @@ namespace sprint3
 
             game.currentMap.Update(gameTime);
 
-            if (game.currentMap.myTime.getTime() == 0)
+            if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.isDead || game.currentMap.player2.isDead)
             {
                 // try to implement something else instead of reseting map later
-                game.Reset();
+                GameOverUpdate(gameTime);
+                // game.Reset();
             }
         }
 
@@ -132,12 +149,19 @@ namespace sprint3
 
         private void GameOverDraw(SpriteBatch spriteBatch)
         {
-            // TODO
+            SpriteFont font = SpriteFontStorage.Instance.getHudFont();
+            spriteBatch.DrawString(font, "RESETTING MAP...", new Vector2(300, 250), Color.White);
         }
 
         private void GamePlayDraw(SpriteBatch spriteBatch)
         {
             game.currentMap.Draw(spriteBatch);
+            if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.isDead || game.currentMap.player2.isDead)
+            {
+                // try to implement something else instead of reseting map later
+                GameOverDraw(spriteBatch);
+                // game.Reset();
+            }
         }
 
         public void ChangeToGameMenu()

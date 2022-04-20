@@ -525,6 +525,13 @@
 /processorParam:TextureFormat=Color
 /build:redBoy.png
 
+#begin scoreFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:scoreFont.spritefont
+
 #begin shoeSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor

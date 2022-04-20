@@ -49,7 +49,7 @@ namespace CSE3902_CSE3902_Project
         public int map_index = 0;
         public bool changedMap = false;
         private bool mapsLoaded = false;
-
+        public int p1Wins, p2Wins;
 
         public Game1()
         {
@@ -63,6 +63,8 @@ namespace CSE3902_CSE3902_Project
             base.Initialize();
             spriteBatch = new SpriteBatch(GraphicsDevice);
             isPaused = false;
+            p1Wins = 0; 
+            p2Wins = 0;
 
             //currentGameState = GameState.GameMenu;
 /*            gameState = new GameState(this);

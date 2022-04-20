@@ -160,7 +160,7 @@ namespace CSE3902_Project.Map
             tileMap = new TileMap(game);
             coinsController = new CoinsController(game,this);
             background = new Background1(new Vector2(0, 0), mapIndex);
-            hud = new Hud1(new Vector2(0, 480), this);
+            hud = new Hud1(new Vector2(0, 480), game, this);
             time = 250;
             myTime = new Time(new Vector2(360, 500), this, time);
             staticBombList = new List<StaticBomb>();
