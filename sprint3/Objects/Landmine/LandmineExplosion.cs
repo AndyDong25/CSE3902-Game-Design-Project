@@ -37,7 +37,7 @@ namespace CSE3902_Project.Objects.Torpedo
             if (currentFrame <= totalFrames)
             {
                 Random rd = new Random();
-                if (count % 50 != 0)
+                if (count % 30 != 0)
                 {
                     randomNum = rd.Next(1, 6);
                 }
