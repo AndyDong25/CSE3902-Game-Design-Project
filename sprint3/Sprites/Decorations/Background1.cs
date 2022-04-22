@@ -41,7 +41,7 @@ namespace CSE3902_Project.Sprites.Decorations
                     texture = DecorationTextureStorage.Instance.getDirtBackgroundSprite();
                     break;
                 case 3:
-                    texture = DecorationTextureStorage.Instance.getWaterBackgrounSprite();
+                    texture = DecorationTextureStorage.Instance.getWaterBackgroundSprite();
                     break;
                 default:
                     texture = DecorationTextureStorage.Instance.getGrassBackgroundSprite();

@@ -16,6 +16,7 @@ using static CSE3902_Project.Map.Map1;
 using CSE3902_Project.Fonts;
 using System;
 using Microsoft.Xna.Framework.Input;
+using sprint3;
 
 namespace CSE3902_CSE3902_Project
 {
@@ -27,16 +28,19 @@ namespace CSE3902_CSE3902_Project
         public static ContentManager contentManager;
         public SpriteBatch spriteBatch;
         public ArrayList controllerList;
-        private GameState currentGameState;
+        //private GameState currentGameState;
         private Color backColor;
+
+        public GameState gameState;
+
         Boolean isPaused;
-        enum GameState
+/*        enum GameState
         {
             GameMenu = 0,
             GamePlay = 1,
             GameOver = 2,
             GamePause = 3,
-        }
+        }*/
 
         public Map1 currentMap;
         public int totalMaps;
@@ -45,7 +49,7 @@ namespace CSE3902_CSE3902_Project
         public int map_index = 0;
         public bool changedMap = false;
         private bool mapsLoaded = false;
-
+        public int p1Wins, p2Wins;
 
         public Game1()
         {
@@ -56,17 +60,26 @@ namespace CSE3902_CSE3902_Project
 
         protected  override void Initialize()
         {
+            base.Initialize();
             spriteBatch = new SpriteBatch(GraphicsDevice);
             isPaused = false;
-            currentGameState = GameState.GameMenu;
-            
+            p1Wins = 0; 
+            p2Wins = 0;
+
+            //currentGameState = GameState.GameMenu;
+/*            gameState = new GameState(this);
+            gameState.ChangeToGameMenu();*/
+
             // mapDir = new Dictionary<Vector2, ISprite> { };
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 800;
             screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             graphics.ApplyChanges();
-            base.Initialize();
 
+            //base.Initialize();
+
+            gameState = new GameState(this);
+            gameState.ChangeToGameMenu();
             if (!mapsLoaded)
             {
                 mapList = new List<Map1>();
@@ -87,14 +100,8 @@ namespace CSE3902_CSE3902_Project
                 }
                 mapsLoaded = true;
             }
-            currentMap = mapList[map_index];
-            currentMap.InitializeAudioManager(Content);
-            currentMap.Initialize();
-            
-
-            controllerList = new ArrayList();
-            controllerList.Add(new KeyboardController(this, currentMap.player1, currentMap.player2));
-            controllerList.Add(new MouseController(this));
+            //currentMap = mapList[map_index];
+            //SetUpCurrentMap();
         }
 
         protected override void LoadContent()
@@ -115,17 +122,19 @@ namespace CSE3902_CSE3902_Project
 
         protected override void Update(GameTime gameTime)
         {
+            //base.Update(gameTime);
+
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
-
-            switch (currentGameState)
+            gameState.Update(gameTime);
+/*            switch (currentGameState)
             {
                 case GameState.GameMenu:
 
-                    /*
+                    *//*
                     *  For the gameMenu state, I think we need to have a picture instruction instead of the current map.
                     *  this area is the place to put the code.
-                    */
+                    *//*
                     Reset();
                     if (gamePad.Buttons.Back == ButtonState.Pressed ||
                         keyboard.IsKeyDown(Keys.Escape))
@@ -223,7 +232,7 @@ namespace CSE3902_CSE3902_Project
                     }
                     break;
 
-            }
+            }*/
 
             base.Update(gameTime);
 
@@ -235,8 +244,8 @@ namespace CSE3902_CSE3902_Project
             spriteBatch.Begin();
             this.IsMouseVisible = true;
 
-            currentMap.Draw(spriteBatch);
-
+            //currentMap.Draw(spriteBatch);
+            gameState.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -244,7 +253,18 @@ namespace CSE3902_CSE3902_Project
 
         public void Reset()
         {
-            Initialize();
+            currentMap.Initialize();
+            SetUpCurrentMap();
+        }
+
+        public void SetUpCurrentMap()
+        {
+            currentMap.InitializeAudioManager(Content);
+            currentMap.Initialize();
+
+            controllerList = new ArrayList();
+            controllerList.Add(new KeyboardController(this, currentMap.player1, currentMap.player2));
+            controllerList.Add(new MouseController(this));
         }
     }
 }

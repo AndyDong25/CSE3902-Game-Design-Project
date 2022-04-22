@@ -1,0 +1,10 @@
+﻿Reviewer - Jiachen zhang (Alex)
+Date - 2/21/22
+CSE3902_Project
+File - CoinsController.cs
+File Author - Tianle Chen
+Time to Complete - 3hrs
+
+Comments
+- The file is really short but efficient enough.
+- This file has only one purpose so it is very easy to maintain.

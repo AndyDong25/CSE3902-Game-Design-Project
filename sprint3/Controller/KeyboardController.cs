@@ -19,7 +19,7 @@ namespace CSE3902_CSE3902_Project.Controller
         public void Update()
         {
             currentState = new List<Keys>(Keyboard.GetState().GetPressedKeys());
-            keyMap.callCommands(currentState, previousState);
+            keyMap.CallCommands(currentState, previousState);
             previousState = currentState;
         }
     }

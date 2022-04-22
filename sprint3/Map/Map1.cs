@@ -37,7 +37,7 @@ namespace CSE3902_Project.Map
         public int mapIndex;
         public CollisionDetection collisionDetection;
         public TileMap tileMap;
-       
+        public bool coinMode;
         public int score;
         public CoinsController coinsController;
         public SpriteFont timefont;
@@ -162,9 +162,9 @@ namespace CSE3902_Project.Map
             tileMap = new TileMap(game);
             coinsController = new CoinsController(game,this);
             background = new Background1(new Vector2(0, 0), mapIndex);
-            hud = new Hud1(new Vector2(0, 480), this);
-            time = 500;
-            myTime = new Time(new Vector2(0, 10), this, time);
+            hud = new Hud1(new Vector2(0, 480), game, this);
+            time = 250;
+            myTime = new Time(new Vector2(360, 500), this, time);
             staticBombList = new List<StaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
             ninjaStarList = new List<NinjaStar>();
@@ -174,7 +174,7 @@ namespace CSE3902_Project.Map
             indestructibleBlockList = new List<IndestructableBlockSprite>();
             portalList = new List<Portal>();
             minecartList = new List<Minecart>();
-
+            coinMode = false;
             coinList = new List<Coin>();
             coinPosList = new List<Vector2>();
 

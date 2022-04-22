@@ -1,0 +1,16 @@
+﻿Reviewer - Tianle Chen
+Date - 4/11/22
+CSE3902_Project
+File - AudioManager.cs
+File Author - Devan Mallory
+Time to Complete - 20 minutes
+
+Comments
+	- I think this class is one of the cleanest and organized classes in our project. 
+	- It would be better if there's more comments on the code.
+	- Since the similar structure: audio.Volume = xx --> audio.Play --> currentPlayingFiles.add(audio) in many functions, a possible way is to package these processes.
+	Using a helper function such as audioProcessing to abstract these three steps (make a standard of the process) may able to help the code maintain better readability. 
+	A function for processing the audio, and several classes leveraging the functionality to process different audios might looks a bit more simple though the original 
+	design structure is already pretty nice!
+	
+	- Can add accessibility (private or public or protected) for some soundEffect and List variables initialized in this class.

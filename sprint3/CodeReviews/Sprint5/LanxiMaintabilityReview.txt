@@ -1,0 +1,10 @@
+﻿Reviewer - Lanxi Li
+Date - 4/11/22
+CSE3902_Project
+File - Trap.cs
+File Author - Tianle Chen
+Time to Complete - 10 minutes
+
+Comments
+	- Good maintainability
+	- frameRate is unused variable

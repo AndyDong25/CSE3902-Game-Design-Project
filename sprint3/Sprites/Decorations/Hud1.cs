@@ -33,16 +33,24 @@ namespace sprint3.Sprites.Decorations
         private Rectangle p2ShoeDestRec;
 
         private Map1 map;
+        private Game1 game;
 
         private SpriteFont font;
+        private SpriteFont scoreFont;
+
+        private Vector2 p1ScorePos;
+        private Vector2 p2ScorePos;
 
         public Vector2 pos;
-        public Hud1(Vector2 pos, Map1 map)
+        public Hud1(Vector2 pos, Game1 game, Map1 map)
         {
             this.map = map;
+            this.game = game;
             this.pos = pos;
 
             font = SpriteFontStorage.Instance.getHudFont();
+            scoreFont = SpriteFontStorage.Instance.getScoreFont();
+
             hudBackgroundTexture = DecorationTextureStorage.Instance.getHudBackgroundSprite();
             bombIconTexture = ItemTextureStorage.Instance.getBombItemSprite();
             potionIconTexture = ItemTextureStorage.Instance.getPotionItemSprite();
@@ -57,6 +65,8 @@ namespace sprint3.Sprites.Decorations
             p2PotionDestRec = new Rectangle(650, 530, 20, 20);
             p2ShoeDestRec = new Rectangle(650, 560, 20, 20);
 
+            p1ScorePos = new Vector2(370, 530);
+            p2ScorePos = new Vector2(410, 530);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -74,6 +84,11 @@ namespace sprint3.Sprites.Decorations
             spriteBatch.DrawString(font, "X" + map.player2.inventory["potion"], new Vector2(p2PotionDestRec.X + 20, p2PotionDestRec.Y), Color.White);
             spriteBatch.Draw(shoeIconTexture, p2ShoeDestRec, SpriteConstants.SHOE_ITEM, Color.White);
             spriteBatch.DrawString(font, "X" + map.player2.inventory["shoe"], new Vector2(p2ShoeDestRec.X + 20, p2ShoeDestRec.Y), Color.White);
+
+            // hard coded to 0-0 score at the moment
+            spriteBatch.DrawString(scoreFont, game.p1Wins.ToString(), p1ScorePos, Color.White);
+            spriteBatch.DrawString(scoreFont, "-", new Vector2(393, 527), Color.White);
+            spriteBatch.DrawString(scoreFont, game.p2Wins.ToString(), p2ScorePos, Color.White);
         }
 
         public void Update()

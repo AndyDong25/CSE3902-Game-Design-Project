@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using CSE3902_Project.Commands;
 using CSE3902_Project.Audio;
 using System.Collections.Generic;
+using sprint3.Commands;
 
 namespace CSE3902_CSE3902_Project.Controller
 {
@@ -26,59 +27,59 @@ namespace CSE3902_CSE3902_Project.Controller
             basicStates = new List<Keys>();
             oncePerActionStates = new List<Keys>();
 
-            setDefaults();
+            SetDefaults();
         }
 
-        private void setDefaults()
+        private void SetDefaults()
         {
 
             //Game Commands
-            this.addCommand(Keys.Q, new QuitCommand(myGame));
-            this.addCommand(Keys.R, new ResetCommand(myGame));
+            this.AddCommand(Keys.Q, new QuitCommand(myGame), true);
+            this.AddCommand(Keys.R, new ResetCommand(myGame), true);
 
             //Player Commands
-            this.addCommand(Keys.W, new MoveUpCommand(player1));
-            this.addCommand(Keys.S, new MoveDownCommand(player1));
-            this.addCommand(Keys.D, new MoveRightCommand(player1));
-            this.addCommand(Keys.A, new MoveLeftCommand(player1));
+            this.AddCommand(Keys.W, new MoveUpCommand(player1), false);
+            this.AddCommand(Keys.S, new MoveDownCommand(player1), false);
+            this.AddCommand(Keys.D, new MoveRightCommand(player1), false);
+            this.AddCommand(Keys.A, new MoveLeftCommand(player1), false);
 
-            this.addCommand(Keys.Up, new MoveUpCommand(player2));
-            this.addCommand(Keys.Down, new MoveDownCommand(player2));
-            this.addCommand(Keys.Right, new MoveRightCommand(player2));
-            this.addCommand(Keys.Left, new MoveLeftCommand(player2));
+            this.AddCommand(Keys.Up, new MoveUpCommand(player2), false);
+            this.AddCommand(Keys.Down, new MoveDownCommand(player2), false);
+            this.AddCommand(Keys.Right, new MoveRightCommand(player2), false);
+            this.AddCommand(Keys.Left, new MoveLeftCommand(player2), false);
 
-            this.addCommand(Keys.O, new SwitchNPCCommand(myGame));
-            this.addCommand(Keys.T, new SwitchDecorationCommand(myGame));
-            this.addCommand(Keys.I, new SwitchItemCommand(myGame));
-            this.addCommand(Keys.Space, new DropBombCommand(player1));
-            this.addCommand(Keys.Enter, new DropBombCommand(player2));
+            this.AddCommand(Keys.O, new SwitchNPCCommand(myGame), true);
+            this.AddCommand(Keys.T, new SwitchDecorationCommand(myGame), true);
+            this.AddCommand(Keys.I, new SwitchItemCommand(myGame), true);
+            this.AddCommand(Keys.Space, new DropBombCommand(player1), true);
+            this.AddCommand(Keys.Enter, new DropBombCommand(player2), true);
 
-            this.addCommand(Keys.E, new ChangeCharacterCommand(player1, myGame));
-            this.addCommand(Keys.P, new ChangeCharacterCommand(player2, myGame));
+            this.AddCommand(Keys.E, new ChangeCharacterCommand(player1, myGame), true);
+            //this.AddCommand(Keys.P, new ChangeCharacterCommand(player2, myGame), true);
 
-            this.addCommand(Keys.G, new PlayerDeathCommand(player1));
-            this.addCommand(Keys.L, new PlayerDeathCommand(player2));
+            this.AddCommand(Keys.G, new PlayerDeathCommand(player1), true);
+            this.AddCommand(Keys.L, new PlayerDeathCommand(player2), true);
 
-            this.addCommand(Keys.D1, new UseItemCommand(player1));
-            this.addCommand(Keys.D0, new UseItemCommand(player2));
+            // For ninja star
+            this.AddCommand(Keys.D1, new UseItemCommand(player1), true);
+            this.AddCommand(Keys.D0, new UseItemCommand(player2), true);
 
             // For torpedo
-            this.addCommand(Keys.D2, new UseTorpedoItemCommand(player1));
-            this.addCommand(Keys.D9, new UseTorpedoItemCommand(player2));
+            this.AddCommand(Keys.D2, new UseTorpedoItemCommand(player1), true);
+            this.AddCommand(Keys.D9, new UseTorpedoItemCommand(player2), true);
 
             //For landmine
-            this.addCommand(Keys.D3, new UseLandmineItemCommand(player1));
-            this.addCommand(Keys.D8, new UseLandmineItemCommand(player2));
+            this.AddCommand(Keys.D3, new UseLandmineItemCommand(player1), true);
+            this.AddCommand(Keys.D8, new UseLandmineItemCommand(player2), true);
 
-            this.addCommand(Keys.M, new MuteAudioCommand(AudioManager.Instance));
+            this.AddCommand(Keys.M, new MuteAudioCommand(AudioManager.Instance), true);
+            this.AddCommand(Keys.P, new PauseGameCommand(myGame), true);
         }
 
-        public void addCommand(Keys key, ICommand command)
+        public void AddCommand(Keys key, ICommand command, bool once)
         {
             mappings.Add(key, command);
-            //acceptedStates.Add(key);
-            if (key == Keys.E || key == Keys.P || key == Keys.Space || key == Keys.Enter || key == Keys.I || key == Keys.T || key == Keys.O ||key == Keys.D0 || key == Keys.D1 || key == Keys.D2 || key == Keys.D9
-                || key == Keys.D3 || key == Keys.D8 || key == Keys.M)
+            if (once)
             {
                 oncePerActionStates.Add(key);
             }
@@ -88,7 +89,7 @@ namespace CSE3902_CSE3902_Project.Controller
             }
         }
 
-        public void callCommands(List<Keys> pressedKeys, List<Keys> previousKeys)
+        public void CallCommands(List<Keys> pressedKeys, List<Keys> previousKeys)
         {
             foreach (Keys k in pressedKeys)
             {

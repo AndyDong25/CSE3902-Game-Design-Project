@@ -43,6 +43,9 @@ namespace CSE3902_Project.Objects.Decorations
         private static Texture2D portalTexture;
 
         private static Texture2D hudBackgroundTexture;
+
+        private static Texture2D menuBackgroundTexture;
+
         private static Texture2D fireTexture;
         private static Texture2D minecartTexture;
         private static Texture2D coinTexture;
@@ -80,7 +83,7 @@ namespace CSE3902_Project.Objects.Decorations
             minecartTexture = content.Load<Texture2D>("fullsheet");
             coinTexture = content.Load<Texture2D>("coin");
 
-            
+            menuBackgroundTexture = content.Load<Texture2D>("GameMenuBackground");
         }
 
         public Texture2D getTree1Sprite()
@@ -135,7 +138,7 @@ namespace CSE3902_Project.Objects.Decorations
         {
             return dirtBackground;
         }
-        public Texture2D getWaterBackgrounSprite()
+        public Texture2D getWaterBackgroundSprite()
         {
             return waterBackground;
         }
@@ -163,6 +166,9 @@ namespace CSE3902_Project.Objects.Decorations
         {
             return coinTexture;
         }
- 
+        public Texture2D getMenuBackgroundSprite()
+        {
+            return menuBackgroundTexture;
+        }
     }
 }

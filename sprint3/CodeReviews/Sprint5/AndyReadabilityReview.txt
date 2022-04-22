@@ -1,0 +1,13 @@
+﻿Reviewer - Andy Dong
+Date - 4/17/22
+CSE3902_Project
+File - CollisionDetection.cs
+File Author - Everyone
+Time to Complete - 20 minutes
+
+Comments
+	- Helper methods are nice to improve readability of Update() function
+	- Remove commented out code for better readability
+	- High cyclomatic complexity to loop and compare between two different object "types"
+		- Can decrease by further grouping similar objects into another interface like "StaticObject" or "DynamicObject"
+	- Some helper methods are still long

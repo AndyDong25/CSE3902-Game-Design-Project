@@ -1,0 +1,14 @@
+﻿Reviewer - Jiachen zhang (Alex)
+Date - 4/11/22
+CSE3902_Project
+File - Hud.cs
+File Author - Andy Dong
+Time to Complete - 6hrs
+
+
+Comments
+	-High readable
+	-A lot of unused using, can deleated
+	-Undeleated comment out code
+	-Rest of the code are necessary and well formatted
+	-It is a great work overall.Implemented by using easiest and most readable way.

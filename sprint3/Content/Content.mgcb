@@ -248,6 +248,18 @@
 /processorParam:TextureFormat=Color
 /build:fullsheet.png
 
+#begin GameMenuBackground.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GameMenuBackground.jpg
+
 #begin GameOver.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -512,6 +524,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:redBoy.png
+
+#begin scoreFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:scoreFont.spritefont
 
 #begin shoeSprite.png
 /importer:TextureImporter

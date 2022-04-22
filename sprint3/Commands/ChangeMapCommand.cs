@@ -10,7 +10,7 @@
 
         public void Execute()
         {
-            if (!game.changedMap)
+/*            if (!game.changedMap)
             {
                 game.map_index = ++game.map_index % 5;
                 game.Reset();
@@ -19,7 +19,7 @@
             else
             {
                 game.changedMap = !game.changedMap;
-            }
+            }*/
         }
     }
 }
