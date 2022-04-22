@@ -126,7 +126,7 @@ namespace sprint3
 
             game.currentMap.Update(gameTime);
 
-            if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.isDead || game.currentMap.player2.isDead)
+            if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.isDead || game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10 || game.currentMap.player2.collect_coins == 10)
             {
                 // try to implement something else instead of reseting map later
                 GameOverUpdate(gameTime);
@@ -156,7 +156,7 @@ namespace sprint3
         private void GamePlayDraw(SpriteBatch spriteBatch)
         {
             game.currentMap.Draw(spriteBatch);
-            if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.isDead || game.currentMap.player2.isDead)
+            if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.isDead || game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10 || game.currentMap.player2.collect_coins == 10)
             {
                 // try to implement something else instead of reseting map later
                 GameOverDraw(spriteBatch);

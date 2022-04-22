@@ -37,7 +37,7 @@ namespace CSE3902_Project.Map
         public int mapIndex;
         public CollisionDetection collisionDetection;
         public TileMap tileMap;
-       
+        public bool coinMode;
         public int score;
         public CoinsController coinsController;
         public SpriteFont timefont;
@@ -172,7 +172,7 @@ namespace CSE3902_Project.Map
             indestructibleBlockList = new List<IndestructableBlockSprite>();
             portalList = new List<Portal>();
             minecartList = new List<Minecart>();
-
+            coinMode = false;
             coinList = new List<Coin>();
             coinPosList = new List<Vector2>();
 

@@ -27,7 +27,7 @@ namespace sprint3.Map
         public void RenewCoins(Map1 map)
         {
             coinPos = map.coinPosList;
-            if (map.mapIndex != 4)
+            if (!map.coinMode)
             {
                 remainCoins = 0;
             }
