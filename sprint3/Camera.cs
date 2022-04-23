@@ -8,60 +8,45 @@ namespace sprint3
 {
     public class Camera
     {
-        private Matrix transform;
-
-        public Matrix Transform
+        public float Zoom = 1;
+        public Vector2 Position = new Vector2(0, 0);
+        public float Rotation = 0;
+        public Vector2 Origin = new Vector2(0,0);
+        private float zoom;
+        private float rotate;
+        private Vector2 pos;
+        private Vector2 ori;
+        public Camera()
         {
-            get { return transform; }
-            set { value = transform; }
+            zoom = Zoom;
+            rotate = Rotation;
+            ori = Origin;
+            pos = Position;
         }
 
-        public Viewport view;
-        public Vector2 center;
-        float zoom;
-        float rotation;
-        public float Zoom
+        
+
+        public void Move(Vector2 direction)
         {
-            get { return zoom; }
-            set { value = zoom; }
+            Position += direction;
+        }
+        public void Zoomin (int zoomin)
+        {
+            zoom += zoomin;
         }
 
-        public Camera(Viewport newView)
+
+
+        public Matrix GetTransform()
         {
-            view = newView;
-            zoom = 1;
-            rotation = 0;
+            var translationMatrix = Matrix.CreateTranslation(new Vector3(pos.X, pos.Y, 0));
+            var rotationMatrix = Matrix.CreateRotationZ(rotate);
+            var scaleMatrix = Matrix.CreateScale(new Vector3(zoom, zoom, 1));
+            var originMatrix = Matrix.CreateTranslation(new Vector3(ori.X, ori.Y, 0));
+
+            return translationMatrix * rotationMatrix * scaleMatrix * originMatrix;
         }
 
-   
-
-        public void Update(Vector2 position, int xOffset, int yOffset)
-        {
-
-            if (position.X < view.Width / 2)
-                center.X = view.Width / 2;
-            else if (position.X > xOffset - (view.Width / 2))
-                center.X = xOffset - (view.Width / 2);
-            else center.X = position.X;
-
-
-            if (position.Y < view.Height / 2)
-                center.Y = view.Height / 2;
-            else if (position.Y > yOffset - (view.Height / 2))
-                center.Y = yOffset - (view.Height / 2);
-            else center.Y = position.Y;
-
-
-
-
-            transform = Matrix.CreateScale(Zoom, Zoom, 1.0f)
-    * Matrix.CreateRotationZ(rotation)
-    * Matrix.CreateTranslation(-center.X + (view.Width / 2),
-                               -center.Y + (view.Height / 2),
-                               0);
-
-
-
-        }
     }
+    
 }

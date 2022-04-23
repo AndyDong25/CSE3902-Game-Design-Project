@@ -70,7 +70,7 @@ namespace CSE3902_CSE3902_Project
 
         protected  override void Initialize()
         {
-            camera = new Camera(new Viewport(new Rectangle(0,0,1000,200)));
+            camera = new Camera();
             base.Initialize();
             spriteBatch = new SpriteBatch(GraphicsDevice);
             isPaused = false;
@@ -139,7 +139,7 @@ namespace CSE3902_CSE3902_Project
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
             gameState.Update(gameTime);
             logger.Save(); 
-            //camera.Update(new Vector2(0,0), 1000, 1000);
+           
             /*            switch (currentGameState)
                         {
                             case GameState.GameMenu:
@@ -253,8 +253,12 @@ namespace CSE3902_CSE3902_Project
 
         protected override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin();
-            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
+            //spriteBatch.Begin();
+            var screenScale = new Vector3(1.0f, 1.0f, 1.0f);
+            var viewMatrix = camera.GetTransform();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+                                       null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
             this.IsMouseVisible = true;
 
             //currentMap.Draw(spriteBatch);
