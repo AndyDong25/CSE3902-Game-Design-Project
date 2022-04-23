@@ -50,18 +50,21 @@ namespace CSE3902_CSE3902_Project
         public bool changedMap = false;
         private bool mapsLoaded = false;
         public int p1Wins, p2Wins;
-        private SaveManager save;
-        private bool saved = false;
+        public SaveManager saver;
+        public SaveManager logger;
+        public bool saved = false;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             string str = Environment.CurrentDirectory;
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(str)));
             string saveFolder = @path; // put your save folder name here
-            string saveFile = "test.txt"; // put your save file name here
+            string saveFile = "save.sav"; // put your save file name here
+            string logFile = "log.txt";
             //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
-            save = new IsolatedStorageSaveManager(saveFolder, saveFile);
+            saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
+            logger = new IsolatedStorageSaveManager(saveFolder, logFile);
         }
 
         protected  override void Initialize()
@@ -133,6 +136,7 @@ namespace CSE3902_CSE3902_Project
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
             gameState.Update(gameTime);
+            logger.Save();
             /*            switch (currentGameState)
                         {
                             case GameState.GameMenu:
@@ -239,24 +243,7 @@ namespace CSE3902_CSE3902_Project
                                 break;
 
                         }*/
-            if (!saved)
-            {
-                saved = true;
 
-                // let's make up some save data
-                save.Data.testInt = 434;
-                save.Data.testBool = true;
-                save.Data.testString = "wow a test";
-
-                // save it
-                save.Save();
-                save.Data.testBool = false;
-                // erase data so we can check if loading works
-                save.Data = new SaveData();
-
-                // load it back
-                save.Load();
-            }
             base.Update(gameTime);
 
         }

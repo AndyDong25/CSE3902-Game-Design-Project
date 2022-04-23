@@ -74,7 +74,7 @@ namespace CSE3902_CSE3902_Project.Controller
 
             this.AddCommand(Keys.M, new MuteAudioCommand(AudioManager.Instance), true);
             this.AddCommand(Keys.P, new PauseGameCommand(myGame), true);
-            
+            this.AddCommand(Keys.F1, new SaveGameCommand(myGame), false);
             //CheateMode 
             this.AddCommand(Keys.F10, new CheateGameCommand(player1), true);
         }
