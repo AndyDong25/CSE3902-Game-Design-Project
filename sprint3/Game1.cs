@@ -50,12 +50,18 @@ namespace CSE3902_CSE3902_Project
         public bool changedMap = false;
         private bool mapsLoaded = false;
         public int p1Wins, p2Wins;
-
+        private SaveManager save;
+        private bool saved = false;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            string str = Environment.CurrentDirectory;
+            string path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(str)));
+            string saveFolder = @path; // put your save folder name here
+            string saveFile = "test.txt"; // put your save file name here
             //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
+            save = new IsolatedStorageSaveManager(saveFolder, saveFile);
         }
 
         protected  override void Initialize()
@@ -127,113 +133,130 @@ namespace CSE3902_CSE3902_Project
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
             gameState.Update(gameTime);
-/*            switch (currentGameState)
+            /*            switch (currentGameState)
+                        {
+                            case GameState.GameMenu:
+
+                                *//*
+                                *  For the gameMenu state, I think we need to have a picture instruction instead of the current map.
+                                *  this area is the place to put the code.
+                                *//*
+                                Reset();
+                                if (gamePad.Buttons.Back == ButtonState.Pressed ||
+                                    keyboard.IsKeyDown(Keys.Escape))
+                                {
+                                    this.Exit();
+                                }
+                                if (gamePad.Buttons.Start == ButtonState.Pressed ||
+                                    keyboard.IsKeyDown(Keys.Enter))
+                                {
+                                    currentGameState = GameState.GamePlay;
+
+                                    //May have score later.
+                                    // Reset score
+                                    //score = 0;
+                                }
+                                break;
+
+                            case GameState.GamePause:
+                                if (keyboard.IsKeyDown(Keys.P))
+                                {
+                                    isPaused = !isPaused;
+
+                                }
+                                if (isPaused)
+                                {
+                                    currentMap.PauseMusic();
+
+
+                                }
+                                else
+                                {
+                                    currentMap.ResumeMusic();
+                                    currentGameState = GameState.GamePlay;
+                                }
+                                break;
+
+                            case GameState.GameOver:
+                                // If game is over, the game allows return to main menu if key A is pressed 
+                                // The gameOver state we will need a sound and a picture to tell the player that the game is over.
+                                //This is the place to put the code
+                                currentMap.GameOver();
+                                if (gamePad.Buttons.A == ButtonState.Pressed ||
+                                    keyboard.IsKeyDown(Keys.Enter))
+                                {
+                                    currentGameState = GameState.GameMenu;
+                                }
+                                break;
+
+                            case GameState.GamePlay:
+
+                                if (keyboard.IsKeyDown(Keys.P))
+                                {
+                                    isPaused = !isPaused;
+                                }
+                                if (!isPaused)
+                                {
+
+                                    foreach (IController controller in controllerList)
+                                    {
+                                        controller.Update();
+
+                                    }
+
+                                    currentMap.Update(gameTime);
+
+
+                                    if (currentMap.myTime.getTime() == 0)
+                                    {
+                                        Reset();
+                                    }
+
+                                }
+                                else
+                                {
+
+                                    currentGameState = GameState.GamePause;
+
+                                }
+                                // Press X or I during game play to return to main menu
+                                if (gamePad.Buttons.X == ButtonState.Pressed ||
+                                     keyboard.IsKeyDown(Keys.I))
+                                {
+                                    currentGameState = GameState.GameMenu;
+                                }
+                                if (gamePad.Buttons.X == ButtonState.Pressed ||
+                                    keyboard.IsKeyDown(Keys.B))
+                                {
+                                    currentGameState = GameState.GameOver;
+                                }
+                                // Press ESC to quit game during game play
+                                if (gamePad.Buttons.Back == ButtonState.Pressed ||
+                                     keyboard.IsKeyDown(Keys.Escape))
+                                {
+                                    this.Exit();
+                                }
+                                break;
+
+                        }*/
+            if (!saved)
             {
-                case GameState.GameMenu:
+                saved = true;
 
-                    *//*
-                    *  For the gameMenu state, I think we need to have a picture instruction instead of the current map.
-                    *  this area is the place to put the code.
-                    *//*
-                    Reset();
-                    if (gamePad.Buttons.Back == ButtonState.Pressed ||
-                        keyboard.IsKeyDown(Keys.Escape))
-                    {
-                        this.Exit();
-                    }
-                    if (gamePad.Buttons.Start == ButtonState.Pressed ||
-                        keyboard.IsKeyDown(Keys.Enter))
-                    {
-                        currentGameState = GameState.GamePlay;
+                // let's make up some save data
+                save.Data.testInt = 434;
+                save.Data.testBool = true;
+                save.Data.testString = "wow a test";
 
-                        //May have score later.
-                        // Reset score
-                        //score = 0;
-                    }
-                    break;
-                
-                case GameState.GamePause:
-                    if (keyboard.IsKeyDown(Keys.P))
-                    {
-                        isPaused = !isPaused;
-                       
-                    }
-                    if (isPaused)
-                    {
-                        currentMap.PauseMusic();
+                // save it
+                save.Save();
+                save.Data.testBool = false;
+                // erase data so we can check if loading works
+                save.Data = new SaveData();
 
-
-                    }
-                    else
-                    {
-                        currentMap.ResumeMusic();
-                        currentGameState = GameState.GamePlay;
-                    }
-                    break;
-
-                case GameState.GameOver:
-                    // If game is over, the game allows return to main menu if key A is pressed 
-                    // The gameOver state we will need a sound and a picture to tell the player that the game is over.
-                    //This is the place to put the code
-                    currentMap.GameOver();
-                    if (gamePad.Buttons.A == ButtonState.Pressed ||
-                        keyboard.IsKeyDown(Keys.Enter))
-                    {
-                        currentGameState = GameState.GameMenu;
-                    }
-                    break;
-
-                case GameState.GamePlay:
-
-                    if (keyboard.IsKeyDown(Keys.P))
-                    {
-                        isPaused = !isPaused;
-                    }
-                    if (!isPaused)
-                    {
-                       
-                        foreach (IController controller in controllerList)
-                        {
-                            controller.Update();
-
-                        }
-
-                        currentMap.Update(gameTime);
-                        
-                        
-                        if (currentMap.myTime.getTime() == 0)
-                        {
-                            Reset();
-                        }
-
-                    }
-                    else
-                    {
-
-                        currentGameState = GameState.GamePause;
-
-                    }
-                    // Press X or I during game play to return to main menu
-                    if (gamePad.Buttons.X == ButtonState.Pressed ||
-                         keyboard.IsKeyDown(Keys.I))
-                    {
-                        currentGameState = GameState.GameMenu;
-                    }
-                    if (gamePad.Buttons.X == ButtonState.Pressed ||
-                        keyboard.IsKeyDown(Keys.B))
-                    {
-                        currentGameState = GameState.GameOver;
-                    }
-                    // Press ESC to quit game during game play
-                    if (gamePad.Buttons.Back == ButtonState.Pressed ||
-                         keyboard.IsKeyDown(Keys.Escape))
-                    {
-                        this.Exit();
-                    }
-                    break;
-
-            }*/
-
+                // load it back
+                save.Load();
+            }
             base.Update(gameTime);
 
         }
