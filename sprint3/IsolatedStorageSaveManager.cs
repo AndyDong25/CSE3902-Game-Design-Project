@@ -45,10 +45,17 @@ namespace CSE3902_CSE3902_Project
                     isf.CreateDirectory(folderName);
 
                 string filePath = Path.Combine(folderName, fileName);
-                using (IsolatedStorageFileStream stream = isf.CreateFile(filePath))
+                try
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-                    serializer.Serialize(stream, Data);
+                    using (IsolatedStorageFileStream stream = isf.CreateFile(filePath))
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+                        serializer.Serialize(stream, Data);
+                    }
+                }
+                catch (Exception e)
+                {
+                    
                 }
             }
         }

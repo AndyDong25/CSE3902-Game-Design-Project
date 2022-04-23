@@ -101,6 +101,17 @@ namespace sprint3
 
         private void GameOverUpdate(GameTime gameTime)
         {
+            float rate = 3.0f;
+            if (game.currentMap.player1.isDead || game.currentMap.player2.collect_coins == 10)
+                {
+                    game.camera.Zoomin(rate);
+                    game.camera.Move(new Vector2(((int)game.currentMap.player1.xPos), ((int)game.currentMap.player1.yPos)), rate);
+                }
+                if (game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10)
+                {
+                    game.camera.Zoomin(rate);
+                    game.camera.Move(new Vector2(((int)game.currentMap.player2.xPos), ((int)game.currentMap.player2.yPos)), rate);
+             }
             timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (timer <= 0.0f)
             {
@@ -139,6 +150,7 @@ namespace sprint3
                     game.camera.Zoomin(0.2f);
                     game.camera.Move(new Vector2(((int)game.currentMap.player2.xPos), ((int)game.currentMap.player2.yPos)));
                 }*/
+
                 // try to implement something else instead of reseting map later
                 GameOverUpdate(gameTime);
                 // game.Reset();

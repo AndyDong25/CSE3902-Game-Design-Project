@@ -54,6 +54,8 @@ namespace CSE3902_CSE3902_Project
         public SaveManager logger;
         public bool saved = false;
         public Camera camera;
+        public Vector3 screenScale;
+        public Matrix viewMatrix;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -254,8 +256,8 @@ namespace CSE3902_CSE3902_Project
         protected override void Draw(GameTime gameTime)
         {
             //spriteBatch.Begin();
-            var screenScale = new Vector3(1.0f, 1.0f, 1.0f);
-            var viewMatrix = camera.GetTransform();
+            screenScale = new Vector3(1.0f, 1.0f, 1.0f);
+            viewMatrix = camera.GetTransform();
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
                                        null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));

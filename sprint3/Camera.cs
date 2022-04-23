@@ -25,24 +25,31 @@ namespace sprint3
             pos = Position;
         }
 
-        public void Move(Vector2 direction)
+        public void Move(Vector2 direction, float zoom)
         {
-            if (Position != direction)
+            float xSide = 400 / zoom;
+            float ySize = 300 / zoom;
+            if (direction.X < xSide)
             {
-                //Position.X += ((direction.X - Position.X) / 10);
-                //Position.Y += ((direction.Y - Position.Y) / 10);
-                //Origin.X += ((direction.X - Origin.X) / 10);
-                //Origin.Y += ((direction.Y - Origin.Y) / 10);
-                
+                direction.X = xSide;
             }
-            
+            if (direction.X > (800-xSide))
+            {
+                direction.X = 800-xSide;
+            }
+            if (direction.Y < ySize)
+            {
+                direction.Y = ySize;
+            }
+            if (direction.Y > 600-ySize)
+            {
+                direction.Y = 600-ySize;
+            }
+            Position = new Vector2(-(direction.X - xSide), -(direction.Y - ySize));
         }
         public void Zoomin (float zoomin)
         {
-            if (Zoom < 2.5f)
-            {
-                Zoom += zoomin;
-            }
+            Zoom = zoomin;
            
             
         }
@@ -63,6 +70,7 @@ namespace sprint3
             var originMatrix = Matrix.CreateTranslation(new Vector3(ori.X, ori.Y, 0));
 
             return translationMatrix * rotationMatrix * scaleMatrix * originMatrix;
+            //return translationMatrix * rotationMatrix * scaleMatrix ;
         }
 
     }
