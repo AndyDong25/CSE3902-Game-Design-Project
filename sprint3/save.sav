@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <p1Wins>2</p1Wins>
-  <p2Wins>2</p2Wins>
+  <p1Wins>0</p1Wins>
+  <p2Wins>1</p2Wins>
 </SaveData>
