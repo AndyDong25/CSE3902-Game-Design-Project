@@ -5,6 +5,7 @@ using CSE3902_Project.Commands;
 using CSE3902_Project.Audio;
 using System.Collections.Generic;
 using sprint3.Commands;
+using System.Diagnostics;
 
 namespace CSE3902_CSE3902_Project.Controller
 {
@@ -16,7 +17,8 @@ namespace CSE3902_CSE3902_Project.Controller
         private Dictionary<Keys, ICommand> mappings;
         private List<Keys> basicStates;
         private List<Keys> oncePerActionStates;
-
+        private List<Keys> typein;
+        private List<Keys> cheadCode;
         public KeyMapping(Game1 game, Player player1, Player player2)
         {
             myGame = game;
@@ -26,7 +28,6 @@ namespace CSE3902_CSE3902_Project.Controller
             mappings = new Dictionary<Keys, ICommand>();
             basicStates = new List<Keys>();
             oncePerActionStates = new List<Keys>();
-
             SetDefaults();
         }
 
@@ -78,6 +79,8 @@ namespace CSE3902_CSE3902_Project.Controller
             this.AddCommand(Keys.F2, new LoadGameCommand(myGame), true);
             //CheateMode 
             this.AddCommand(Keys.F10, new CheateGameCommand(player1), true);
+            cheadCode = new List<Keys>() { Keys.C, Keys.LeftAlt, Keys.LeftControl };
+            typein = new List<Keys>() { Keys.None, Keys.None , Keys.None };
         }
 
         public void AddCommand(Keys key, ICommand command, bool once)
@@ -105,7 +108,22 @@ namespace CSE3902_CSE3902_Project.Controller
                 {
                     mappings[k].Execute();
                 }
+                else if (k != typein[typein.Count - 1] && !oncePerActionStates.Contains(k))
+                {
+                    typein.Add(k);
+                    if (typein.Count > 3)
+                    {
+                        typein.RemoveAt(0);
+                    }
+                    if (typein[0] == cheadCode[0] || typein[1] == cheadCode[1]|| typein[2] == cheadCode[2])
+                    {
+                        new CheateGameCommand(player1).Execute();
+                        Debug.WriteLine("suceess ");
+                    }
+                }
             }
+            
+           
         }
     }
 }
