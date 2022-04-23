@@ -53,6 +53,7 @@ namespace CSE3902_CSE3902_Project
         public SaveManager saver;
         public SaveManager logger;
         public bool saved = false;
+        public Camera camera;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -69,6 +70,7 @@ namespace CSE3902_CSE3902_Project
 
         protected  override void Initialize()
         {
+            camera = new Camera(new Viewport(new Rectangle(0,0,1000,200)));
             base.Initialize();
             spriteBatch = new SpriteBatch(GraphicsDevice);
             isPaused = false;
@@ -136,7 +138,8 @@ namespace CSE3902_CSE3902_Project
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
             gameState.Update(gameTime);
-            logger.Save();
+            logger.Save(); 
+            //camera.Update(new Vector2(0,0), 1000, 1000);
             /*            switch (currentGameState)
                         {
                             case GameState.GameMenu:
@@ -250,8 +253,8 @@ namespace CSE3902_CSE3902_Project
 
         protected override void Draw(GameTime gameTime)
         {
-            
             spriteBatch.Begin();
+            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
             this.IsMouseVisible = true;
 
             //currentMap.Draw(spriteBatch);
@@ -276,5 +279,6 @@ namespace CSE3902_CSE3902_Project
             controllerList.Add(new KeyboardController(this, currentMap.player1, currentMap.player2));
             controllerList.Add(new MouseController(this));
         }
+
     }
 }
