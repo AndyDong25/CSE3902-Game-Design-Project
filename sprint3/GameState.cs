@@ -129,6 +129,16 @@ namespace sprint3
             if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.isDead || game.currentMap.player2.isDead 
                 || game.currentMap.player1.collect_coins == 10 || game.currentMap.player2.collect_coins == 10)
             {
+                /*if (game.currentMap.player1.isDead || game.currentMap.player2.collect_coins == 10)
+                {
+                    game.camera.Zoomin(0.2f);
+                    game.camera.Move(new Vector2(((int)game.currentMap.player1.xPos), ((int)game.currentMap.player1.yPos)));
+                }
+                if (game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10)
+                {
+                    game.camera.Zoomin(0.2f);
+                    game.camera.Move(new Vector2(((int)game.currentMap.player2.xPos), ((int)game.currentMap.player2.yPos)));
+                }*/
                 // try to implement something else instead of reseting map later
                 GameOverUpdate(gameTime);
                 // game.Reset();
@@ -150,6 +160,7 @@ namespace sprint3
 
         private void GameOverDraw(SpriteBatch spriteBatch)
         {
+            
             SpriteFont font = SpriteFontStorage.Instance.getHudFont();
             spriteBatch.DrawString(font, "RESETTING MAP...", new Vector2(300, 250), Color.White);
         }
@@ -159,6 +170,7 @@ namespace sprint3
             game.currentMap.Draw(spriteBatch);
             if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.IsDead() || game.currentMap.player2.IsDead() || game.currentMap.player1.collect_coins == 10 || game.currentMap.player2.collect_coins == 10)
             {
+                
                 // try to implement something else instead of reseting map later
                 GameOverDraw(spriteBatch);
                 // game.Reset();

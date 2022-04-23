@@ -138,8 +138,8 @@ namespace CSE3902_CSE3902_Project
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
             gameState.Update(gameTime);
-            logger.Save(); 
-           
+            logger.Save();
+            camera.Update();
             /*            switch (currentGameState)
                         {
                             case GameState.GameMenu:
@@ -272,6 +272,9 @@ namespace CSE3902_CSE3902_Project
         {
             currentMap.Initialize();
             SetUpCurrentMap();
+            camera.Position = Vector2.Zero;
+            camera.Zoom = 1;
+            camera.Origin = Vector2.Zero;
         }
 
         public void SetUpCurrentMap()

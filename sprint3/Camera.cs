@@ -16,6 +16,7 @@ namespace sprint3
         private float rotate;
         private Vector2 pos;
         private Vector2 ori;
+
         public Camera()
         {
             zoom = Zoom;
@@ -24,17 +25,34 @@ namespace sprint3
             pos = Position;
         }
 
-        
-
         public void Move(Vector2 direction)
         {
-            Position += direction;
+            if (Position != direction)
+            {
+                //Position.X += ((direction.X - Position.X) / 10);
+                //Position.Y += ((direction.Y - Position.Y) / 10);
+                //Origin.X += ((direction.X - Origin.X) / 10);
+                //Origin.Y += ((direction.Y - Origin.Y) / 10);
+                
+            }
+            
         }
-        public void Zoomin (int zoomin)
+        public void Zoomin (float zoomin)
         {
-            zoom += zoomin;
+            if (Zoom < 2.5f)
+            {
+                Zoom += zoomin;
+            }
+           
+            
         }
-
+        public void Update()
+        {
+            zoom = Zoom;
+            rotate = Rotation;
+            ori = Origin;
+            pos = Position;
+        }
 
 
         public Matrix GetTransform()
