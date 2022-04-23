@@ -83,7 +83,7 @@ namespace CSE3902_CSE3902_Project
             if (!mapsLoaded)
             {
                 mapList = new List<Map1>();
-                totalMaps = 5;
+                totalMaps = 6;
 
                 for (int i = 0; i < totalMaps; i++)
                 {

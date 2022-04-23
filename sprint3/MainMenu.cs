@@ -20,11 +20,13 @@ namespace sprint3
         private Texture2D iceMapTexture;
         private Texture2D caveMapTexture;
         private Texture2D waterMapTexture;
+        private Texture2D skyMapTexture;
 
         private Rectangle grassMapDestRec;
         private Rectangle iceMapDestRec;
         private Rectangle caveMapDestRec;
         private Rectangle waterMapDestRec;
+        private Rectangle skyMapDestRec;
 
         private SpriteFont font;
         private Vector2 textPos;
@@ -38,11 +40,13 @@ namespace sprint3
             iceMapTexture = DecorationTextureStorage.Instance.getIceBackGroundSprite();
             caveMapTexture = DecorationTextureStorage.Instance.getDirtBackgroundSprite();
             waterMapTexture = DecorationTextureStorage.Instance.getWaterBackgroundSprite();
+            skyMapTexture = DecorationTextureStorage.Instance.getSkyBackgroundSprite();
 
             grassMapDestRec = new Rectangle(10, 30, 253, 220);
             iceMapDestRec = new Rectangle(273, 30, 253, 220);
             caveMapDestRec = new Rectangle(536, 30, 253, 220);
             waterMapDestRec = new Rectangle(130, 300, 253, 220);
+            skyMapDestRec = new Rectangle(450, 300, 253, 220);
 
             textPos = new Vector2(340, 265);
         }
@@ -54,6 +58,7 @@ namespace sprint3
             spriteBatch.Draw(iceMapTexture, iceMapDestRec, Color.White);
             spriteBatch.Draw(caveMapTexture, caveMapDestRec, Color.White);
             spriteBatch.Draw(waterMapTexture, waterMapDestRec, Color.White);
+            spriteBatch.Draw(skyMapTexture, skyMapDestRec, Color.White);
             spriteBatch.DrawString(font, "SELECT A MAP", textPos, Color.White);
         }
 
@@ -86,6 +91,12 @@ namespace sprint3
                 else if (waterMapDestRec.Contains(point))
                 {
                     game.currentMap = game.mapList[3];
+                    game.SetUpCurrentMap();
+                    game.gameState.ChangeToGamePlay();
+                }
+                else if (skyMapDestRec.Contains(point))
+                {
+                    game.currentMap = game.mapList[5];
                     game.SetUpCurrentMap();
                     game.gameState.ChangeToGamePlay();
                 }

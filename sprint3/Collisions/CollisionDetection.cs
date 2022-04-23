@@ -459,6 +459,8 @@ namespace CSE3902_Project.Collisions
         //                    l.exist = false;
         //                    map.landmineExplosion.pos = new Vector2(b.xPos - 15, b.yPos - 15);
         //                    map.allObjects.Add(map.landmineExplosion);
+        //                    //map.landmineExplosion2.pos = new Vector2(b.xPos + 15, b.yPos + 15);
+        //                    //map.allObjects.Add(map.landmineExplosion2);
         //                    count++;
         //                }
         //                else

@@ -68,6 +68,10 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
                     texture = DecorationTextureStorage.Instance.getKelpBlock();
                     sourceRec = SpriteConstants.KELP_BLOCK;
                     break;
+                case 5:
+                    texture = DecorationTextureStorage.Instance.getCloudBlock();
+                    sourceRec = SpriteConstants.COULD_BLOCK;
+                    break;
                 default:
                     texture = DecorationTextureStorage.Instance.getCrateDBlock();
                     sourceRec = SpriteConstants.CRATE_D_BLOCK;

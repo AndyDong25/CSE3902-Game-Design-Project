@@ -56,6 +56,10 @@ namespace CSE3902_CSE3902_Project.Sprites.BlockSprites
                     texture = DecorationTextureStorage.Instance.getWaterBlock();
                     sourceRec = SpriteConstants.WATER_BLOCK;
                     break;
+                case 5:
+                    texture = DecorationTextureStorage.Instance.getPlaneBlock();
+                    sourceRec = SpriteConstants.PLANE_BLOCK;
+                    break;
                 default:
                     texture = DecorationTextureStorage.Instance.getCrateIBlock();
                     sourceRec = SpriteConstants.CRATE_I_BLOCK;

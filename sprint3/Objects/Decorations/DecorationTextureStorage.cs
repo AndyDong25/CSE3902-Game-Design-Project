@@ -38,7 +38,11 @@ namespace CSE3902_Project.Objects.Decorations
         private static Texture2D kelpBlock;
         private static Texture2D waterBlock;
 
-        private static Texture2D mashroom1Texture;
+        private static Texture2D skyBackground;
+        private static Texture2D planeBlock;
+        private static Texture2D cloudBlock;
+
+        //private static Texture2D mashroom1Texture;
 
         private static Texture2D portalTexture;
 
@@ -76,7 +80,11 @@ namespace CSE3902_Project.Objects.Decorations
             kelpBlock = content.Load<Texture2D>("kelpSprite");
             waterBlock = content.Load<Texture2D>("waterBlock");
 
-            mashroom1Texture = content.Load<Texture2D>("mashroom1");
+            skyBackground = content.Load<Texture2D>("skyBackground");
+            planeBlock = content.Load<Texture2D>("plane");
+            cloudBlock = content.Load<Texture2D>("cloud");
+
+            //mashroom1Texture = content.Load<Texture2D>("mashroom1");
             portalTexture = content.Load<Texture2D>("portalSpritesheet");
             fireTexture = content.Load<Texture2D>("fire1_64");
             hudBackgroundTexture = content.Load<Texture2D>("hudBackground");
@@ -126,6 +134,14 @@ namespace CSE3902_Project.Objects.Decorations
         {
             return waterBlock;
         }
+        public Texture2D getPlaneBlock()
+        {
+            return planeBlock;
+        }
+        public Texture2D getCloudBlock()
+        {
+            return cloudBlock;
+        }
         public Texture2D getGrassBackgroundSprite()
         {
             return grassBackground;
@@ -142,10 +158,14 @@ namespace CSE3902_Project.Objects.Decorations
         {
             return waterBackground;
         }
-        public Texture2D getMashroom1Sprite()
+        public Texture2D getSkyBackgroundSprite()
         {
-            return mashroom1Texture;
+            return skyBackground;
         }
+        //public Texture2D getMashroom1Sprite()
+        //{
+        //    return mashroom1Texture;
+        //}
         public Texture2D getPortalSprite()
         {
             return portalTexture;

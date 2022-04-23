@@ -26,6 +26,7 @@ using CSE3902_Project.Objects.NPC;
 using sprint3.Objects.Decorations;
 using CSE3902_Project.Objects.Torpedo;
 using Microsoft.Xna.Framework.Content;
+using CSE3902_Project.Objects.NPC.AIPlayer;
 
 namespace CSE3902_Project.Map
 {
@@ -54,6 +55,7 @@ namespace CSE3902_Project.Map
         public Snake snake;
         public Yeti yeti;
         public Alien alien;
+        public AIPlayer aiplayer;
 
         public NinjaStar ninjastar;
         public DestructableBlockSprite dBlock;
@@ -107,6 +109,7 @@ namespace CSE3902_Project.Map
         public List<Torpedo> torpedoList;
         public List<ISprite> currentEnemyList;
         public List<Landmine> landmineList;
+        public List<AIPlayer> aiplayerList;
        
         static Random rnd = new Random();
         public List<Coin> finishedCoin;
@@ -152,6 +155,7 @@ namespace CSE3902_Project.Map
             public Dictionary<String, List<int>> traps;
             public Dictionary<String, List<int>> minecarts;
             public Dictionary<String, List<int>> coins;
+            public Dictionary<String, List<int>> aiplayers;
         }
         public void Initialize()
         {
@@ -177,6 +181,7 @@ namespace CSE3902_Project.Map
             coinMode = false;
             coinList = new List<Coin>();
             coinPosList = new List<Vector2>();
+            aiplayerList = new List<AIPlayer>();
 
          
             // spawn all items initially for testing purposes
@@ -248,6 +253,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(trapList);
             allObjects.AddRange(minecartList);
             allObjects.AddRange(coinList);
+            allObjects.AddRange(aiplayerList);
             AudioManager.Instance.PlayMainMusic();
 
         }
@@ -311,16 +317,18 @@ namespace CSE3902_Project.Map
         {
             player1 = new Player(new Vector2(m2.player1[0], m2.player1[1]), game);
             player2 = new Player(new Vector2(m2.player2[0], m2.player2[1]), game);
-            foreach (List<int> pos in m2.tree1.Values)
-            {
-                tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
-                currentObstacleList.Add(tree1);
-            }
-            foreach (List<int> pos in m2.tree2.Values)
-            {
-                tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
-                currentObstacleList.Add(tree2);
-            }
+
+                foreach (List<int> pos in m2.tree1.Values)
+                {
+                    tree1 = (new Tree1(new Vector2(pos[0], pos[1])));
+                    currentObstacleList.Add(tree1);
+                }
+
+                foreach (List<int> pos in m2.tree2.Values)
+                {
+                    tree2 = (new Tree2(new Vector2(pos[0], pos[1])));
+                    currentObstacleList.Add(tree2);
+                }
 
             foreach (List<int> pos in m2.destructableBlocks.Values)
             {
@@ -377,6 +385,12 @@ namespace CSE3902_Project.Map
                 coin = new Coin(new Vector2(pos[0], pos[1]), game);
                 coinList.Add(coin);
                 coinPosList.Add(new Vector2(pos[0], pos[1]));
+            }
+            foreach (List<int> pos in m2.aiplayers.Values)
+            {
+                aiplayer = new AIPlayer(new Vector2(pos[0], pos[1]), game);
+                aiplayerList.Add(aiplayer);
+                currentEnemyList.Add(aiplayer);
             }
         }
 

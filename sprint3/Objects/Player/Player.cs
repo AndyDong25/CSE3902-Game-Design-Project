@@ -215,7 +215,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             inventory.Add("potion", 2);
             inventory.Add("shoe", 6);
             inventory.Add("torpedo", 1);
-            inventory.Add("landmine", 1);
+            inventory.Add("landmine", 2);
         }
        
         public void UpdateBoostEffects()

@@ -246,6 +246,9 @@ namespace CSE3902_CSE3902_Project
         public static Rectangle KELP_BLOCK = new Rectangle(232, 39, 200, 291);
         public static Rectangle WATER_BLOCK = new Rectangle(0, 0, 96, 96);
 
+        public static Rectangle COULD_BLOCK = new Rectangle(0, 0, 756, 410);
+        public static Rectangle PLANE_BLOCK = new Rectangle(0, 0, 250, 129);
+
         public static List<Rectangle> PORTAL = new List<Rectangle>
         {
             new Rectangle(0, 38, 50, 120), new Rectangle(50, 38, 50, 120), new Rectangle(100, 38, 50, 120), new Rectangle(150, 38, 50, 120)

@@ -145,6 +145,18 @@
 /processorParam:TextureFormat=Color
 /build:brownBoy.png
 
+#begin cloud.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:cloud.png
+
 #begin coin.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -393,6 +405,8 @@
 /processorParam:TextureFormat=Color
 /build:IceBlockI.webp
 
+
+
 #begin kelpSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -489,6 +503,18 @@
 /processorParam:TextureFormat=Color
 /build:ninjaStarSprite.png
 
+#begin plane.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:plane.png
+
 #begin portalSpritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -543,6 +569,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:shoeSprite.png
+
+#begin skyBackground.webp
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:skyBackground.webp
 
 #begin snakeSpriteSheet.png
 /importer:TextureImporter
