@@ -13,7 +13,7 @@ namespace CSE3902_Project.Collisions
         public void HandleCollision(object o)
         {
             Player p = (Player)o;
-            if (!e.IsDead())
+            if (!e.IsDead() && p.CheateMode == false)
             {
                 p.currState = new PlayerDeathState(p);
             }

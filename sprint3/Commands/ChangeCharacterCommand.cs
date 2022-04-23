@@ -20,7 +20,7 @@ namespace CSE3902_CSE3902_Project.Commands
 
         public void Execute()
         {
-            game.currentMap.GameOver();     
+            //game.currentMap.GameOver();     
 
         }
     }

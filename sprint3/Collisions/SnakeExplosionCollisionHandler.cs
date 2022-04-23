@@ -8,7 +8,7 @@ namespace CSE3902_Project.Collisions
         {
             Snake s = (Snake)o;
             s.currState = new SnakeDeathState(s);
-            s.isDead = true;
+            s.Die();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace sprint3.Commands
 
         public PauseGameCommand(Game1 game)
         {
-            this.game = game; ;
+            this.game = game;
         }
 
         public void Execute()

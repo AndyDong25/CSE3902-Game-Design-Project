@@ -14,8 +14,9 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             
             this.player = player;
             player.maxBombs = 0;
-            if (!player.IsDead())
-            {
+            //if (!player.IsDead() && player.CheateMode==false)
+                if (!player.IsDead() && player.CheateMode == false)
+                {
                 AudioManager.Instance.PlayPlayerEliminated();
                 player.isDead = true;
             }

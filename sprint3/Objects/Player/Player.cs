@@ -19,7 +19,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public int potionCount = 2;
         public int bombCount = 3;
         public float speed = 3.0f;
-
+        public Boolean CheateMode = false;
         public int maxBombs { get; set; } = 10;
         public int maxPotions { get; set; } = 7;
         public int maxShoes { get; set; } = 14;
@@ -249,10 +249,18 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             UpdateCollider();
         }
 
-        public void Die()
+
+
+         public void Die()
         {
-            currState = new PlayerDeathState(this);
-            isDead = true;
-        }
+         currState = new PlayerDeathState(this);
+            if (CheateMode == false)
+            {
+                isDead = true;
+            }
+            
+                
+         }
+
     }
 }

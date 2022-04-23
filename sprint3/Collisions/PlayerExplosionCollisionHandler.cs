@@ -6,9 +6,14 @@ namespace CSE3902_Project.Collisions
     {
         public void HandleCollision(object o)
         {
+            
             Player currentPlayer = (Player)o;
-            currentPlayer.currState = new PlayerDeathState(currentPlayer);
-            currentPlayer.isDead = true;
+            if(currentPlayer.CheateMode == false)
+            {
+                currentPlayer.currState = new PlayerDeathState(currentPlayer);
+                currentPlayer.Die();
+            }
+            
         }
     }
 }

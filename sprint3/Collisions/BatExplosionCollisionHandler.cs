@@ -8,7 +8,7 @@ namespace CSE3902_Project.Collisions
         {
             Bat b = (Bat)o;
             b.currState = new BatDeathState(b);
-            b.isDead = true;
+            b.Die();
         }
     }
 }

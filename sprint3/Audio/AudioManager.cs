@@ -99,6 +99,10 @@ namespace CSE3902_Project.Audio
             playerEliminatedInstance.Play();
             currentlyPlayingFiles.Add(playerEliminatedInstance);
         }
+        public void PlayEliminated()
+        {
+
+        }
 
         public void PlayMainMusic()
         {
