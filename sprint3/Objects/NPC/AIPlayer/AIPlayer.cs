@@ -20,7 +20,7 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
 
         public bool hasNinjaStar = true;
         public float xPos, yPos, previousXPos, previousYPos;
-        public float speed = 1.5f;
+        public float speed = 3.0f;
         public int bombCount = 3;
         public float framePerStep = 6;
 
