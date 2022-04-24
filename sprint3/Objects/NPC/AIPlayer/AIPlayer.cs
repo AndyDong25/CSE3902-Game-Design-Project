@@ -33,7 +33,6 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         public Boolean isDead = false;
         public Game1 Game { get; set; }
         private ISprite bomb { get; set; }
-        //private NinjaStar ninjaStar { get; set; } = null;
 
         public AIPlayer(Vector2 position, Game1 game)
         {
@@ -60,16 +59,13 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
-            //if (ninjaStar != null) { ninjaStar.DrawSprite(spriteBatch); }
 
             // Generate NPC
             Random rd = new Random();
-
             if (count % 60 == 0)
             {
                 randomNum = rd.Next(1, 6);
             }
-
             if (randomNum == 1)
             {
                 this.MoveUp();
@@ -122,8 +118,6 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
             currState.Update();
             UpdateCollider();
             CheckMapBounds();
-            //previousXPos = xPos;
-            //previousYPos = yPos;
         }
         private void CheckMapBounds()
         {

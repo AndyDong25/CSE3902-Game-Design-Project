@@ -17,7 +17,6 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         {
             SpriteConstants.BOMBER_WEST,SpriteConstants.KNIGHT_WEST, SpriteConstants.GOBLIN_WEST,SpriteConstants.GHOST_WEST
         };
-
         private int mySourceIndex;
         private int myTextureIndex;
         private Texture2D texture;
@@ -52,6 +51,7 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
             Rectangle source = mySources[myTextureIndex][mySourceIndex];
             enemy.DrawSprite(spriteBatch, texture, source);
         }
+
         public void MoveDown()
         {
             enemy.currState = new AIPlayerFacingSouthState(enemy);

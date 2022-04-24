@@ -63,7 +63,7 @@ namespace CSE3902_CSE3902_Project
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(str)));
             string saveFolder = @path; // put your save folder name here
             string saveFile = "save.sav"; // put your save file name here
-            string logFile = "log.txt";
+            string logFile = "log.html";
             //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
             saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
