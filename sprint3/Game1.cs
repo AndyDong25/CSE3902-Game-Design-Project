@@ -23,7 +23,6 @@ namespace CSE3902_CSE3902_Project
 
     public class Game1 : Game
     {
-
         public GraphicsDeviceManager graphics;
         public static ContentManager contentManager;
         public SpriteBatch spriteBatch;
@@ -51,7 +50,7 @@ namespace CSE3902_CSE3902_Project
         private bool mapsLoaded = false;
         public int p1Wins, p2Wins;
         public SaveManager saver;
-        public SaveManager logger;
+        public LogManager logger;
         public bool saved = false;
         public Camera camera;
         public Vector3 screenScale;
@@ -62,12 +61,12 @@ namespace CSE3902_CSE3902_Project
             string str = Environment.CurrentDirectory;
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(str)));
             string saveFolder = @path; // put your save folder name here
-            string saveFile = "save.sav"; // put your save file name here
+            string saveFile = "savedLog.html"; // put your save file name here
             string logFile = "log.html";
             //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
             saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
-            logger = new IsolatedStorageSaveManager(saveFolder, logFile);
+            logger = new IsolatedStorageSaveLogManager(saveFolder, logFile);
         }
 
         protected  override void Initialize()
@@ -248,7 +247,6 @@ namespace CSE3902_CSE3902_Project
                                 break;
 
                         }*/
-
             base.Update(gameTime);
 
         }
@@ -288,6 +286,5 @@ namespace CSE3902_CSE3902_Project
             controllerList.Add(new KeyboardController(this, currentMap.player1, currentMap.player2));
             controllerList.Add(new MouseController(this));
         }
-
     }
 }

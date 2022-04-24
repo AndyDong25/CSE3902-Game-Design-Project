@@ -17,6 +17,5 @@ namespace CSE3902_CSE3902_Project
         public int p2Potion;
         public int p1Shoe;
         public int p2Shoe;
-        public List<String> log;
     }
 }
