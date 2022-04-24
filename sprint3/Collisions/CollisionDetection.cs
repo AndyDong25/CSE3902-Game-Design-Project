@@ -39,10 +39,6 @@ namespace CSE3902_Project.Collisions
 
             CheckLandmineCollision();
 
-            //CheckSnakeLandmineCollision();
-
-            //CheckBatLandmineCollision();
-
             CheckTorpedoCollision();
 
             CheckTrapCollision();
@@ -442,58 +438,7 @@ namespace CSE3902_Project.Collisions
                 }
             }
         }
-        // Update landmine function -------------------------------------
-        //private void CheckBatLandmineCollision()
-        //{
-        //    foreach (Landmine l in map.landmineList)
-        //    {
-        //        foreach (Bat b in map.batList)
-        //        {
-        //            int count = 1;
-        //            if (b.collider2D.Intersects(l.collider2D))
-        //            {
-        //                if (count == 1)
-        //                {
-        //                    b.collisionHandler = new BatExplosionCollisionHandler();
-        //                    b.collisionHandler.HandleCollision(b);
-        //                    l.exist = false;
-        //                    map.landmineExplosion.pos = new Vector2(b.xPos - 15, b.yPos - 15);
-        //                    map.allObjects.Add(map.landmineExplosion);
-        //                    //map.landmineExplosion2.pos = new Vector2(b.xPos + 15, b.yPos + 15);
-        //                    //map.allObjects.Add(map.landmineExplosion2);
-        //                    count++;
-        //                }
-        //                else
-        //                {
-        //                    b.collisionHandler = new BatExplosionCollisionHandler();
-        //                    b.collisionHandler.HandleCollision(b);
-        //                    l.exist = false;
-        //                    map.landmineExplosion2.pos = new Vector2(b.xPos - 15, b.yPos - 15);
-        //                    map.allObjects.Add(map.landmineExplosion2);
-        //                }
-        //                //map.landmineExplosion.pos = new Vector2(b.xPos - 15, b.yPos - 15);
-        //                //map.allObjects.Add(map.landmineExplosion);
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private void CheckSnakeLandmineCollision()
-        //{
-        //    Snake s = map.snake;
-        //    foreach (Landmine l in map.landmineList)
-        //    {
-        //        if (s != null && s.collider2D.Intersects(l.collider2D))
-        //        {
-        //            s.collisionHandler = new SnakeExplosionCollisionHandler();
-        //            s.collisionHandler.HandleCollision(s);
-        //            l.exist = false;
-        //            map.landmineExplosion.pos = new Vector2(s.xPos - 15, s.yPos - 15);
-        //            map.allObjects.Add(map.landmineExplosion);
-        //        }
-        //    }
-        //}
-
+        
         private void CheckLandmineCollision()
         {
             foreach (Landmine l in map.landmineList)
