@@ -68,7 +68,6 @@ namespace CSE3902_Project.Map
         public Trap trap;
         public Landmine landmine;
         public LandmineExplosion landmineExplosion;
-        public LandmineExplosion landmineExplosion2;
 
         public BasicItem bombItem;
         public BasicItem ghostItem;
@@ -160,7 +159,6 @@ namespace CSE3902_Project.Map
         public void Initialize()
         {
             landmineExplosion = new LandmineExplosion(game, new Vector2(150, 150));
-            landmineExplosion2 = new LandmineExplosion(game, new Vector2(200, 200));
             torpedoExplosion = new TorpedoExplosion(game, new Vector2(100, 100));
             collisionDetection = new CollisionDetection(this);
             tileMap = new TileMap(game);
