@@ -41,11 +41,12 @@ namespace sprint3.Objects.Decorations
                 this.game = game;
                 this.position = position;
                 sources = SpriteConstants.COIN;
+                speed = 3;
                 destinationRec = new Rectangle((int)position.X, (int)position.Y, 24, 24);
                 texture = DecorationTextureStorage.Instance.getCoinSprite();
                 sourceIndex = 0;
+                sourceRec = new Rectangle(16 * (int)(sourceIndex / speed), 0, 16, 16);
                 collider2D = new Rectangle((int)position.X + 3, (int)position.Y + 3, 24, 24);
-                speed = 3;
             }
 
             public void Draw(SpriteBatch spriteBatch)

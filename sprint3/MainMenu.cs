@@ -5,6 +5,7 @@ using CSE3902_Project.Objects.Decorations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using sprint3.Objects.Decorations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,6 +32,9 @@ namespace sprint3
         private SpriteFont font;
         private Vector2 textPos;
 
+        private bool coinMode;
+        private Coin coin;
+
         public MainMenu(Game1 game)
         {
             this.game = game;
@@ -49,6 +53,9 @@ namespace sprint3
             skyMapDestRec = new Rectangle(450, 300, 253, 220);
 
             textPos = new Vector2(340, 265);
+
+            coinMode = false;
+            coin = new Coin(new Vector2(440, 547), game);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -60,6 +67,8 @@ namespace sprint3
             spriteBatch.Draw(waterMapTexture, waterMapDestRec, Color.White);
             spriteBatch.Draw(skyMapTexture, skyMapDestRec, Color.White);
             spriteBatch.DrawString(font, "SELECT A MAP", textPos, Color.White);
+            spriteBatch.DrawString(font, "COIN MODE?", new Vector2(330, 550), Color.White);
+            coin.Draw(spriteBatch);
         }
 
         public void Update()
@@ -100,6 +109,15 @@ namespace sprint3
                     game.SetUpCurrentMap();
                     game.gameState.ChangeToGamePlay();
                 }
+                else if (coin.collider2D.Contains(point))
+                {
+                    game.coinMode = !game.coinMode;
+                    coinMode = !coinMode;
+                }
+            }
+            if (coinMode)
+            {
+                coin.Update();
             }
         }
     }

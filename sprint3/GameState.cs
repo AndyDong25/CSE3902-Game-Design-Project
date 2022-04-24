@@ -121,11 +121,11 @@ namespace sprint3
             if (timer <= 0.0f)
             {
                 timer = 4;
-                if (game.currentMap.player1.isDead)
+                if (game.currentMap.player1.isDead || game.currentMap.player2.collect_coins == 10)
                 {
                     game.p2Wins++;
                 }
-                else if (game.currentMap.player2.isDead)
+                else if (game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10)
                 {
                     game.p1Wins++;
                 }

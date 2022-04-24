@@ -55,6 +55,8 @@ namespace CSE3902_CSE3902_Project
         public Camera camera;
         public Vector3 screenScale;
         public Matrix viewMatrix;
+        public bool coinMode;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -67,6 +69,7 @@ namespace CSE3902_CSE3902_Project
             Content.RootDirectory = "Content";
             saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
             logger = new IsolatedStorageSaveLogManager(saveFolder, logFile);
+            coinMode = false;
         }
 
         protected  override void Initialize()
