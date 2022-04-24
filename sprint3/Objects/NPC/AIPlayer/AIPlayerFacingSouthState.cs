@@ -17,7 +17,6 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         {
             SpriteConstants.BOMBER_SOUTH,SpriteConstants.KNIGHT_SOUTH, SpriteConstants.GOBLIN_SOUTH,SpriteConstants.GHOST_SOUTH
         };
-
         private int mySourceIndex;
         private int myTextureIndex;
         private Texture2D texture;
@@ -30,6 +29,7 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
             myTextureIndex = enemy.SpriteIndex;
             enemy.direction = 2;
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (myTextureIndex == 0)

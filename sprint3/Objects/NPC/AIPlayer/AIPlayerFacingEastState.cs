@@ -17,7 +17,6 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         {
             SpriteConstants.BOMBER_EAST,SpriteConstants.KNIGHT_EAST, SpriteConstants.GOBLIN_EAST,SpriteConstants.GHOST_EAST
         };
-
         private int mySourceIndex;
         private int myTextureIndex;
         private Texture2D texture;
@@ -30,7 +29,6 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
             myTextureIndex = enemy.SpriteIndex;
             enemy.direction = 1;
         }
-
 
         public void Draw(SpriteBatch spriteBatch)
         {

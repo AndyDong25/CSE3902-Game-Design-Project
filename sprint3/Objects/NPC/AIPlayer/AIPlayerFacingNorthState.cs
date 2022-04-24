@@ -17,7 +17,6 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         {
             SpriteConstants.BOMBER_NORTH,SpriteConstants.KNIGHT_NORTH, SpriteConstants.GOBLIN_NORTH,SpriteConstants.GHOST_NORTH
         };
-
         private int mySourceIndex;
         private int myTextureIndex;
         private Texture2D texture;

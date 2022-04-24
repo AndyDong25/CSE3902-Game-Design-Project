@@ -9,10 +9,10 @@ using System.Xml.Serialization;
 namespace CSE3902_CSE3902_Project
 {
 
-    public class IsolatedStorageSaveManager : SaveManager
+    public class IsolatedStorageSaveLogManager : LogManager
     {
 
-        public IsolatedStorageSaveManager(string folderName, string fileName)
+        public IsolatedStorageSaveLogManager(string folderName, string fileName)
             : base(folderName, fileName)
         { }
 
@@ -30,8 +30,8 @@ namespace CSE3902_CSE3902_Project
 
                 using (IsolatedStorageFileStream stream = isf.OpenFile(filePath, FileMode.Open))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-                    Data = (SaveData)serializer.Deserialize(stream);
+                    XmlSerializer serializer = new XmlSerializer(typeof(SaveLog));
+                    Data = (SaveLog)serializer.Deserialize(stream);
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace CSE3902_CSE3902_Project
                 {
                     using (IsolatedStorageFileStream stream = isf.CreateFile(filePath))
                     {
-                        XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+                        XmlSerializer serializer = new XmlSerializer(typeof(SaveLog));
                         serializer.Serialize(stream, Data);
                     }
                 }

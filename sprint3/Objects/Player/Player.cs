@@ -211,11 +211,11 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             inventory = new Dictionary<String, int>();
             inventory.Add("ninjaStar", 1);
-            inventory.Add("bomb", 3);
+            inventory.Add("bomb", bombCount);
             inventory.Add("potion", 2);
             inventory.Add("shoe", 6);
             inventory.Add("torpedo", 1);
-            inventory.Add("landmine", 2);
+            inventory.Add("landmine", 1);
         }
        
         public void UpdateBoostEffects()
