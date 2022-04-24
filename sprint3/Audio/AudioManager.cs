@@ -46,7 +46,7 @@ namespace CSE3902_Project.Audio
 
         SoundEffect gameOver;
 
-        
+        SoundEffect playerWin;
 
         
         //we may need to add an update function
@@ -61,6 +61,8 @@ namespace CSE3902_Project.Audio
             bombThrown = content.Load<SoundEffect>("BombThrown");
             
             playerEliminated = content.Load<SoundEffect>("EliminatedSound");
+
+            playerWin = content.Load<SoundEffect>("win");
 
             gameOver = content.Load<SoundEffect>("GameOver");
 
@@ -90,6 +92,8 @@ namespace CSE3902_Project.Audio
 
         }
 
+        
+
 
         public void PlayPlayerEliminated()
         {
@@ -104,11 +108,19 @@ namespace CSE3902_Project.Audio
 
         }
 
+        public void PlayMapMusic(int mapIdx)
+        {
+            if (mapIdx < background_music.Count)
+            {
+                MediaPlayer.Play(background_music[mapIdx]);
+            }
+        }
+
         public void PlayMainMusic()
         {
 
             Random musicIdx = new Random();
-             int choosenSong = musicIdx.Next(0, background_music.Count);
+            int choosenSong = musicIdx.Next( background_music.Count);
             MediaPlayer.Play(background_music[choosenSong]);
             
         }
@@ -121,6 +133,26 @@ namespace CSE3902_Project.Audio
             currentlyPlayingFiles.Add(gameOverInstance);
 
         }
+
+
+        public void PlayRoundOver(bool didPlayerWin)
+        {
+            SoundEffectInstance roundOverInstance;
+            //create something in here that determines the sound effect for playing
+            if (didPlayerWin)
+            {
+                roundOverInstance = playerWin.CreateInstance();
+            }
+            else
+            {
+                roundOverInstance = playerWin.CreateInstance();
+            }
+            roundOverInstance.Volume = .3f;
+            roundOverInstance.Play();
+            currentlyPlayingFiles.Add(roundOverInstance);
+        }
+
+
         public void Mute(bool sMute)
         {
             //I think it should be setMute method.

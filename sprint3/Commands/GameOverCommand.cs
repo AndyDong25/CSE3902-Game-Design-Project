@@ -1,4 +1,7 @@
-﻿namespace CSE3902_CSE3902_Project.Commands
+﻿using CSE3902_Project.Audio;
+
+
+namespace CSE3902_CSE3902_Project.Commands
 {
     class GameOverCommand : ICommand
     {
@@ -10,7 +13,7 @@
 
         public void Execute()
         {
-            
+            AudioManager.Instance.PlayRoundOver(true);
         }
     }
 }

@@ -29,6 +29,7 @@ namespace CSE3902_Project.Fonts
         public void LoadAllResources(ContentManager content)
         {
             hudFont = content.Load<SpriteFont>("hudFont");
+            
 
             timeFont = content.Load<SpriteFont>("TimeFont");
 

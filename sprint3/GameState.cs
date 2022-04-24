@@ -17,7 +17,8 @@ namespace sprint3
         private Game1 game;
         private State currGameState;
         private float timer;
-
+        private string WinCondition;
+        
         enum State
         {
             GameMenu = 0,
@@ -32,6 +33,7 @@ namespace sprint3
             this.game = game;
             timer = 4;
             menuScreen = new MainMenu(game);
+            WinCondition = "";
         }
 
         public void Update(GameTime gameTime)
@@ -85,9 +87,9 @@ namespace sprint3
 
         private void GamePauseUpdate()
         {
-            // maybe resume game with mouse click?
+            
             MouseState mouseState = Mouse.GetState();
-            // detect left mouse clicks
+            
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 ChangeToGamePlay();
@@ -102,15 +104,18 @@ namespace sprint3
         private void GameOverUpdate(GameTime gameTime)
         {
             float rate = 3.0f;
+            
             if (game.currentMap.player1.isDead || game.currentMap.player2.collect_coins == 10)
                 {
                     game.camera.Zoomin(rate);
                     game.camera.Move(new Vector2(((int)game.currentMap.player1.xPos), ((int)game.currentMap.player1.yPos)), rate);
+                    WinCondition = "Player 2 has won the Round!";
                 }
                 if (game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10)
                 {
                     game.camera.Zoomin(rate);
                     game.camera.Move(new Vector2(((int)game.currentMap.player2.xPos), ((int)game.currentMap.player2.yPos)), rate);
+                    WinCondition = "Player 1 has won the Round!";
              }
             timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (timer <= 0.0f)
@@ -172,9 +177,23 @@ namespace sprint3
 
         private void GameOverDraw(SpriteBatch spriteBatch)
         {
+
+            Vector2 camPosition = game.camera.direction;
+
+            camPosition.X -= 100;
+
+            Vector2 topTextLocation = camPosition;
+
+            topTextLocation.Y += 25;
+
+            Vector2 bottomTextLocation = camPosition;
+            bottomTextLocation.Y += 50;
+            bottomTextLocation.X += 20;
+
+            SpriteFont font = SpriteFontStorage.Instance.getHudFont(); 
+            spriteBatch.DrawString(font, "RESETTING MAP...", bottomTextLocation, Color.White);
+            spriteBatch.DrawString(font, WinCondition, topTextLocation, Color.Blue);
             
-            SpriteFont font = SpriteFontStorage.Instance.getHudFont();
-            spriteBatch.DrawString(font, "RESETTING MAP...", new Vector2(300, 250), Color.White);
         }
 
         private void GamePlayDraw(SpriteBatch spriteBatch)

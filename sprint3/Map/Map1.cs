@@ -254,7 +254,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(minecartList);
             allObjects.AddRange(coinList);
             allObjects.AddRange(aiplayerList);
-            AudioManager.Instance.PlayMainMusic();
+            AudioManager.Instance.PlayMapMusic(mapIndex);
 
         }
         public void InitializeAudioManager(ContentManager content)

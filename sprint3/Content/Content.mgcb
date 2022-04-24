@@ -405,8 +405,6 @@
 /processorParam:TextureFormat=Color
 /build:IceBlockI.webp
 
-
-
 #begin kelpSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -708,6 +706,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:whiteGirl.png
+
+#begin win.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:win.mp3
 
 #begin yetiLeftSpritesheet.png
 /importer:TextureImporter

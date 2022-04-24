@@ -10,13 +10,14 @@ namespace sprint3
     {
         public float Zoom = 1;
         public Vector2 Position = new Vector2(0, 0);
+        public Vector2 direction;
         public float Rotation = 0;
         public Vector2 Origin = new Vector2(0,0);
         private float zoom;
         private float rotate;
         private Vector2 pos;
         private Vector2 ori;
-
+        
         public Camera()
         {
             zoom = Zoom;
@@ -27,6 +28,7 @@ namespace sprint3
 
         public void Move(Vector2 direction, float zoom)
         {
+            this.direction = direction;
             float xSide = 400 / zoom;
             float ySize = 300 / zoom;
             if (direction.X < xSide)
