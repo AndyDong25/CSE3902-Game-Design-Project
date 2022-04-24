@@ -24,7 +24,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public int maxPotions { get; set; } = 7;
         public int maxShoes { get; set; } = 14;
 
-        public int collect_coins = 0;
+        public int collect_coins;
         public float xPos, yPos, previousXPos, previousYPos;
 
         public float framePerStep = 6;
@@ -45,6 +45,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public Player(Vector2 position, Game1 game)
         {
             currState = new PlayerFacingSouthState(this);
+            collect_coins = 0;
             color = Color.White;
             xPos = position.X;
             yPos = position.Y;

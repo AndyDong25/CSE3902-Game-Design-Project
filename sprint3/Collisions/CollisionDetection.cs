@@ -531,7 +531,7 @@ namespace CSE3902_Project.Collisions
                     p1.collisionHandler = new PlayerCoinCollisionHandler();
                     p1.collisionHandler.HandleCollision(p1);
                     map.finishedCoin.Add(c);
-
+                    Debug.WriteLine(p1.collect_coins);
                 }
                 if (p2.collider2D.Intersects(c.collider2D))
                 {
@@ -540,6 +540,7 @@ namespace CSE3902_Project.Collisions
                     map.finishedCoin.Add(c);
                 }
             }
+            
         }
         private void CheckNinjaStarCollision()
         {

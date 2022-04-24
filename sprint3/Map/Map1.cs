@@ -178,7 +178,7 @@ namespace CSE3902_Project.Map
             indestructibleBlockList = new List<IndestructableBlockSprite>();
             portalList = new List<Portal>();
             minecartList = new List<Minecart>();
-            coinMode = false;
+            coinMode = true;
             coinList = new List<Coin>();
             coinPosList = new List<Vector2>();
             aiplayerList = new List<AIPlayer>();

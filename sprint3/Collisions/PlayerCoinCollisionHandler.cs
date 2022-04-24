@@ -9,7 +9,6 @@ namespace CSE3902_Project.Collisions
             Player p = (Player)o;
 
             p.collect_coins++;
-            p.collect_coins++;
         }
     }
 }
