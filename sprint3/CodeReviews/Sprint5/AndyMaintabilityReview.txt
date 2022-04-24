@@ -1,12 +1,12 @@
 ﻿Reviewer - Andy Dong
-Date - 4/7/22
+Date - 4/24/22
 CSE3902_Project
-File - Game.cs
-File Author - Everyone
-Time to Complete - 25 minutes
+File - AudioManager.cs
+File Author - Devan
+Time to Complete - 15 minutes
 
 Comments
-	- Can encapsulate GameState in another class and add a GameState field to Game (Decorator Design Pattern)
-	- Some fields can be made private and passed to other class constructors
-	- Initialize() can use helper method or class to encapsulate map loading
-	- Looks good in general though: small and concise methods, high cohesion and low coupling
+	- Good overall
+	- Maybe can move the loading of the audio files to another class like with the sprites/textures (Ex. AudioFileStorage)
+		- This way aduio controls and audio file loading are separated
+	- Nice short functions

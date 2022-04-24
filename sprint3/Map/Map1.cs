@@ -583,12 +583,12 @@ namespace CSE3902_Project.Map
         }
         public void PauseMusic()
         {
-            audioManager.setPause(true);
+            audioManager.SetPause(true);
 
         }
         public void ResumeMusic()
         {
-            audioManager.setPause(false);
+            audioManager.SetPause(false);
 
         }
     }

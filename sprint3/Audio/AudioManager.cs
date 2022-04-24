@@ -166,7 +166,7 @@ namespace CSE3902_Project.Audio
                 MediaPlayer.Volume = defaultVolume;
             }
         }
-        public void setPause(bool Pause)
+        public void SetPause(bool Pause)
         {
              this.pause = Pause;
             if (this.pause)
