@@ -185,7 +185,7 @@ namespace CSE3902_Project.Map
 
          
             // spawn all items initially for testing purposes
-            bombItem = new BombItem(new Vector2(150, 400), game);
+/*            bombItem = new BombItem(new Vector2(150, 400), game);
             ghostItem = new GhostItem(new Vector2(185, 400), game);
             goblinItem = new GoblinItem(new Vector2(220, 400), game);
             knightItem = new KnightItem(new Vector2(255, 400), game);
@@ -193,10 +193,10 @@ namespace CSE3902_Project.Map
             potionItem = new PotionItem(new Vector2(325, 400), game);
             shoeItem = new ShoeItem(new Vector2(360, 400), game);
             torpedoItem = new TorpedoItem(new Vector2(405, 400), game);
-            landmineItem = new LandmineItem(new Vector2(435, 400), game);
+            landmineItem = new LandmineItem(new Vector2(435, 400), game);*/
             trap = new Trap(new Vector2(10, 10), game);
             currentItemList = new List<BasicItem>();
-            currentItemList.Add(bombItem);
+/*            currentItemList.Add(bombItem);
             currentItemList.Add(ghostItem);
             currentItemList.Add(goblinItem);
             currentItemList.Add(knightItem);
@@ -204,7 +204,7 @@ namespace CSE3902_Project.Map
             currentItemList.Add(potionItem);
             currentItemList.Add(shoeItem);
             currentItemList.Add(torpedoItem);
-            currentItemList.Add(landmineItem);
+            currentItemList.Add(landmineItem);*/
 
             currentObstacleList = new List<ISprite>();
 
@@ -345,7 +345,7 @@ namespace CSE3902_Project.Map
             foreach (List<int> pos in m2.snakes.Values)
             {
                 snake = new Snake(new Vector2(pos[0], pos[1]), game);
-                snakeList.Add(snake);
+                //snakeList.Add(snake);
                 currentEnemyList.Add(snake);
             }
             foreach (List<int> pos in m2.portals.Values)
@@ -356,13 +356,13 @@ namespace CSE3902_Project.Map
             foreach (List<int> pos in m2.bats.Values)
             {
                 verticalBat = new Bat(new Vector2(pos[0], pos[1]), game);
-                batList.Add(verticalBat);
+                //batList.Add(verticalBat);
                 currentEnemyList.Add(verticalBat);
             }
             foreach (List<int> pos in m2.yetis.Values)
             {
                 yeti = new Yeti(new Vector2(pos[0], pos[1]), game);
-                yetiList.Add(yeti);
+                //yetiList.Add(yeti);
                 currentEnemyList.Add(yeti);
             }
             foreach (List<int> pos in m2.aliens.Values)
