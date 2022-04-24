@@ -1,10 +1,15 @@
 ﻿Reviewer - Lanxi Li
-Date - 4/11/22
+Date - 4/24/22
 CSE3902_Project
-File - Trap.cs
-File Author - Tianle Chen
-Time to Complete - 10 minutes
+File - Game1.cs
+File Author - Alex Zhang, Lanxi Li, Tianle Chen, Andy Dong, Devan Mallory
+Time to Complete - 20 minutes
 
 Comments
-	- Good maintainability
-	- frameRate is unused variable
+	- Inconsistent blank lines
+	- Unused variables (like backColor)
+	- A loop in initialize() for reading and load files. Maybe we can try to create a helper method for that part
+	- Lots of commented code
+	- Mediem coupling
+		- Directly manipulate data in other modules, resulting in high interdependence between modules 
+		- Most of the variables are public, which also means that high dependencies between different modules

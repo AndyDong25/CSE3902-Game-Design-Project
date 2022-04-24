@@ -250,18 +250,13 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             UpdateCollider();
         }
 
-
-
          public void Die()
         {
          currState = new PlayerDeathState(this);
             if (CheateMode == false)
             {
                 isDead = true;
-            }
-            
-                
+            }                
          }
-
     }
 }

@@ -1,12 +1,10 @@
 ﻿Reviewer - Lanxi Li
-Date - 4/11/22
+Date - 4/24/22
 CSE3902_Project
-File - Coin.cs
-File Author - Tianle Chen
-Time to Complete - 10 minutes
+File - Player.cs
+File Author - Alex Zhang, Lanxi Li, Tianle Chen, Andy Dong, Devan Mallory
+Time to Complete - 20 minutes
 
 Comments
 	- Unnecessary blank lines can be deleted
-	- Delete the commented statement
-	- We can move using statements to the top of this file
-	- row, column, and timer are unused variables
+	- Good readability

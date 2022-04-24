@@ -141,7 +141,6 @@ namespace CSE3902_CSE3902_Project
             logger.Save();
             camera.Update();
             base.Update(gameTime);
-
         }
 
         protected override void Draw(GameTime gameTime)
