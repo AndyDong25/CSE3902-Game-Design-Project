@@ -253,7 +253,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(trapList);
             allObjects.AddRange(minecartList);
             allObjects.AddRange(coinList);
-            allObjects.AddRange(aiplayerList);
+            //allObjects.AddRange(aiplayerList);
             AudioManager.Instance.PlayMapMusic(mapIndex);
 
         }
@@ -389,7 +389,7 @@ namespace CSE3902_Project.Map
             foreach (List<int> pos in m2.aiplayers.Values)
             {
                 aiplayer = new AIPlayer(new Vector2(pos[0], pos[1]), game);
-                aiplayerList.Add(aiplayer);
+                //aiplayerList.Add(aiplayer);
                 currentEnemyList.Add(aiplayer);
             }
         }
