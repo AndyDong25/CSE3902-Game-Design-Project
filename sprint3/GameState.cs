@@ -16,14 +16,16 @@ namespace sprint3
         private MainMenu menuScreen;
         private Game1 game;
         private State currGameState;
-        private float timer;
+
+        private float gameOverTimer;
+        private float displayWinTimer;
         private string WinCondition;
         
         enum State
         {
             GameMenu = 0,
             GamePlay = 1,
-            GameOver = 2,
+            PlayerWin = 2,
             GamePause = 3,
         }
 
@@ -31,7 +33,8 @@ namespace sprint3
         {
             //currGameState = State.GameMenu;
             this.game = game;
-            timer = 4;
+            gameOverTimer = 6;
+            displayWinTimer = 2;
             menuScreen = new MainMenu(game);
             WinCondition = "";
         }
@@ -48,8 +51,8 @@ namespace sprint3
                     GamePauseUpdate();
                     break;
 
-                case State.GameOver:
-                    GameOverUpdate(gameTime);
+                case State.PlayerWin:
+                    PlayerWinUpdate(gameTime);
                     break;
 
                 case State.GamePlay:
@@ -69,8 +72,8 @@ namespace sprint3
                     GamePauseDraw(spriteBatch);
                     break;
 
-                case State.GameOver:
-                    GameOverDraw(spriteBatch);
+                case State.PlayerWin:
+                    PlayerWinDraw(spriteBatch);
                     break;
 
                 case State.GamePlay:
@@ -101,26 +104,62 @@ namespace sprint3
             }
         }
 
-        private void GameOverUpdate(GameTime gameTime)
+        private void PlayerWinUpdate(GameTime gameTime)
         {
-            float rate = 3.0f;
             
-            if (game.currentMap.player1.isDead || game.currentMap.player2.collect_coins == 10)
-                {
-                    game.camera.Zoomin(rate);
-                    game.camera.Move(new Vector2(((int)game.currentMap.player1.xPos), ((int)game.currentMap.player1.yPos)), rate);
-                    WinCondition = "Player 2 has won the Round!";
-                }
-                if (game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10)
-                {
-                    game.camera.Zoomin(rate);
-                    game.camera.Move(new Vector2(((int)game.currentMap.player2.xPos), ((int)game.currentMap.player2.yPos)), rate);
-                    WinCondition = "Player 1 has won the Round!";
-             }
-            timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (timer <= 0.0f)
+            
+            gameOverTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            displayWinTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+            bool displayWin = displayWinTimer <= 0.0f;
+            bool reset = gameOverTimer <= 0.0f;
+
+
+            bool player1Win = game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10;
+
+            float rate = 3.0f;
+            Vector2 player1Pos = new Vector2(((int)game.currentMap.player1.xPos), ((int)game.currentMap.player1.yPos));
+            Vector2 player2Pos = new Vector2(((int)game.currentMap.player2.xPos), ((int)game.currentMap.player2.yPos));
+
+            if (player1Win)
             {
-                timer = 4;
+                 game.camera.Zoomin(rate);
+                 game.camera.Move(player2Pos);
+                 
+            }
+            else
+             {
+                    
+                 game.camera.Zoomin(rate);
+                 game.camera.Move(player1Pos);
+                 
+             }
+            
+
+            if (displayWin)
+            {
+                if (player1Win) {
+                    game.camera.DisplayLocation(player1Pos);
+                    WinCondition = "Player 1 has won the Round!";
+                }
+                else
+                {
+
+                    game.camera.DisplayLocation(player2Pos);
+                    WinCondition = "Player 2 has won the Round!";
+                    
+                }
+                
+
+
+            }
+
+
+
+            if (reset)
+            {
+                gameOverTimer = 4;
                 if (game.currentMap.player1.isDead || game.currentMap.player2.collect_coins == 10)
                 {
                     game.p2Wins++;
@@ -129,6 +168,7 @@ namespace sprint3
                 {
                     game.p1Wins++;
                 }
+                WinCondition = "";
                 game.Reset();
             }
         }
@@ -157,7 +197,7 @@ namespace sprint3
                 }*/
 
                 // try to implement something else instead of reseting map later
-                GameOverUpdate(gameTime);
+                PlayerWinUpdate(gameTime);
                 // game.Reset();
             }
         }
@@ -175,7 +215,7 @@ namespace sprint3
             spriteBatch.DrawString(font, "RIGHT CLICK TO GO TO MAIN MENU", new Vector2(250, 280), Color.White);
         }
 
-        private void GameOverDraw(SpriteBatch spriteBatch)
+        private void PlayerWinDraw(SpriteBatch spriteBatch)
         {
 
             Vector2 camPosition = game.camera.direction;
@@ -203,7 +243,7 @@ namespace sprint3
             {
                 
                 // try to implement something else instead of reseting map later
-                GameOverDraw(spriteBatch);
+                PlayerWinDraw(spriteBatch);
                 // game.Reset();
             }
         }
@@ -218,8 +258,11 @@ namespace sprint3
         }
         public void ChangeToGameOver()
         {
-            currGameState = State.GameOver;
+            currGameState = State.PlayerWin;
         }
+
+
+
         public void ChangeToGamePlay()
         {
             currGameState = State.GamePlay;

@@ -26,11 +26,11 @@ namespace sprint3
             pos = Position;
         }
 
-        public void Move(Vector2 direction, float zoom)
+        public void Move(Vector2 direction)
         {
             this.direction = direction;
-            float xSide = 400 / zoom;
-            float ySize = 300 / zoom;
+            float xSide = 400 / Zoom;
+            float ySize = 300 / Zoom;
             if (direction.X < xSide)
             {
                 direction.X = xSide;
@@ -63,6 +63,14 @@ namespace sprint3
             pos = Position;
         }
 
+
+
+        public void DisplayLocation(Vector2 position)
+        {
+            Zoomin(3.0f);
+            Move(position);
+
+        }
 
         public Matrix GetTransform()
         {
