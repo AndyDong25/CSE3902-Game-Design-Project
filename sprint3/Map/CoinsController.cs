@@ -22,7 +22,7 @@ namespace sprint3.Map
         {
             this.game = game;
             this.map = map;
-            timer = 200;
+            timer = 349; //200;
         }
         public void RenewCoins(Map1 map)
         {
@@ -54,7 +54,7 @@ namespace sprint3.Map
         }
         public void Update()
         {
-            timer = (timer+1) % 250;
+            timer = (timer+1) % 350; //250
             if (timer== 0)
             {
                 RenewCoins(map);

@@ -35,6 +35,8 @@ namespace sprint3
         private bool coinMode;
         private Coin coin;
 
+
+
         public MainMenu(Game1 game)
         {
             this.game = game;
@@ -54,7 +56,7 @@ namespace sprint3
 
             textPos = new Vector2(340, 265);
 
-            coinMode = false;
+            coinMode = game.coinMode;
             coin = new Coin(new Vector2(440, 547), game);
         }
 
