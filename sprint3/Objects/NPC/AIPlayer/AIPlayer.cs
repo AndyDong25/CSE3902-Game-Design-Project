@@ -69,44 +69,29 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
             if (randomNum == 1)
             {
                 this.MoveUp();
-                if (this.yPos < 0)
-                {
-                    this.yPos = 0;
-                }
                 count++;
             }
-            if (randomNum == 2)
+            else if (randomNum == 2)
             {
                 this.MoveDown();
-                if (this.yPos >= Game.graphics.PreferredBackBufferHeight)
-                {
-                    this.yPos = Game.graphics.PreferredBackBufferHeight;
-                }
                 count++;
             }
-            if (randomNum == 3)
+            else if (randomNum == 3)
             {
                 this.MoveLeft();
-                if (this.xPos < 0)
-                {
-                    this.xPos = 0;
-                }
                 count++;
             }
-            if (randomNum == 4)
+            else if (randomNum == 4)
             {
                 this.MoveRight();
-                if (this.xPos >= Game.graphics.PreferredBackBufferWidth)
-                {
-                    this.xPos = Game.graphics.PreferredBackBufferWidth;
-                }
                 count++;
             }
-            if (randomNum == 5)
+            else if (randomNum == 5)
             {
                 this.DropBomb();
                 count++;
             }
+            CheckMapBounds();
         }
 
         public void TakeDamage()
