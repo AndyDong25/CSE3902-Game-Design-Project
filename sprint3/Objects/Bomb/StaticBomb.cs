@@ -19,7 +19,7 @@ namespace CSE3902_Project.Objects.Bomb
 
         public ICollisionHandler collisionHandler;
         public Rectangle collider2D { get; set; }
-        public bool HelperMode  = true;
+        public bool HelperMode  = false;
         /* int field to keep track of direction if bomb was "chain exploded" from an explosion
          * 0 - no chain
          * 1 - up

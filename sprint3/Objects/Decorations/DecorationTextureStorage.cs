@@ -50,6 +50,8 @@ namespace CSE3902_Project.Objects.Decorations
 
         private static Texture2D menuBackgroundTexture;
 
+        private static Texture2D questionMarkTexture;
+
         private static Texture2D fireTexture;
         private static Texture2D minecartTexture;
         private static Texture2D coinTexture;
@@ -92,6 +94,8 @@ namespace CSE3902_Project.Objects.Decorations
             coinTexture = content.Load<Texture2D>("coin");
 
             menuBackgroundTexture = content.Load<Texture2D>("GameMenuBackground");
+
+            questionMarkTexture = content.Load<Texture2D>("questionMark");
         }
 
         public Texture2D getTree1Sprite()
@@ -189,6 +193,10 @@ namespace CSE3902_Project.Objects.Decorations
         public Texture2D getMenuBackgroundSprite()
         {
             return menuBackgroundTexture;
+        }
+        public Texture2D getQuestionMarkSprite()
+        {
+            return questionMarkTexture;
         }
     }
 }

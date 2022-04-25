@@ -51,7 +51,7 @@ namespace sprint3
             caveMapTexture = DecorationTextureStorage.Instance.getDirtBackgroundSprite();
             waterMapTexture = DecorationTextureStorage.Instance.getWaterBackgroundSprite();
             skyMapTexture = DecorationTextureStorage.Instance.getSkyBackgroundSprite();
-            randomMapTexture  = DecorationTextureStorage.Instance.getSkyBackgroundSprite();
+            randomMapTexture  = DecorationTextureStorage.Instance.getQuestionMarkSprite();
 
             grassMapDestRec = new Rectangle(10, 30, 253, 220);
             iceMapDestRec = new Rectangle(273, 30, 253, 220);

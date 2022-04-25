@@ -30,10 +30,12 @@ namespace CSE3902_CSE3902_Project
         }
         private Vector2 GeneratePosition()
         {
-            Vector2 pos = new Vector2(rnd.Next(0, 20) * 40 +20, rnd.Next(0, 12)*40+6);
+            //Vector2 pos = new Vector2(rnd.Next(0, 20) * 40 + 20, rnd.Next(0, 12) * 40 + 6);
+            Vector2 pos = new Vector2(rnd.Next(0, 20) * 40, rnd.Next(0, 12)*40);
             while (posList.Contains(pos))
             {
-                pos = new Vector2(rnd.Next(0, 20) * 40+20, rnd.Next(0, 12) * 40 +6);
+                //pos = new Vector2(rnd.Next(0, 20) * 40 + 20, rnd.Next(0, 12) * 40 + 6);
+                pos = new Vector2(rnd.Next(0, 20) * 40, rnd.Next(0, 12) * 40);
             }
             posList.Add(pos);
             return pos;
