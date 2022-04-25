@@ -87,7 +87,7 @@ namespace CSE3902_CSE3902_Project
             isPaused = false;
             p1Wins = 0; 
             p2Wins = 0;
-
+            HelperMode = false;
             //currentGameState = GameState.GameMenu;
             /*            gameState = new GameState(this);
                         gameState.ChangeToGameMenu();*/
@@ -203,7 +203,7 @@ namespace CSE3902_CSE3902_Project
         }
         public void setHelperMode()
         {
-            StaticBomb sb = new StaticBomb();
+            StaticBomb sb = new StaticBomb(this);
             sb.setHelperMode();
         }
     }

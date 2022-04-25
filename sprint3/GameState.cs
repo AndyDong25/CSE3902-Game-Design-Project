@@ -199,7 +199,6 @@ namespace sprint3
                     game.camera.Move(new Vector2(((int)game.currentMap.player2.xPos), ((int)game.currentMap.player2.yPos)));
                 }*/
 
-                // try to implement something else instead of reseting map later
                 PlayerWinUpdate(gameTime);
                 // game.Reset();
             }
@@ -243,9 +242,7 @@ namespace sprint3
         {
             game.currentMap.Draw(spriteBatch);
             if (game.currentMap.myTime.getTime() <= 0 || game.currentMap.player1.IsDead() || game.currentMap.player2.IsDead() || game.currentMap.player1.collect_coins == 10 || game.currentMap.player2.collect_coins == 10)
-            {
-                
-                // try to implement something else instead of reseting map later
+            {         
                 PlayerWinDraw(spriteBatch);
                 // game.Reset();
             }
@@ -259,13 +256,10 @@ namespace sprint3
         {
             currGameState = State.GamePause;
         }
-        public void ChangeToGameOver()
+        public void ChangeToPlayerWin()
         {
             currGameState = State.PlayerWin;
         }
-
-
-
         public void ChangeToGamePlay()
         {
             currGameState = State.GamePlay;

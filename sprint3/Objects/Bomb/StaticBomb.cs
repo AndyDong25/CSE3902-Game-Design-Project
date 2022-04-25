@@ -19,7 +19,7 @@ namespace CSE3902_Project.Objects.Bomb
 
         public ICollisionHandler collisionHandler;
         public Rectangle collider2D { get; set; }
-        public bool HelperMode  = false;
+        public bool HelperMode;
         /* int field to keep track of direction if bomb was "chain exploded" from an explosion
          * 0 - no chain
          * 1 - up
@@ -54,6 +54,7 @@ namespace CSE3902_Project.Objects.Bomb
             animationSpeed = 200;
             tintAmount = 10;
             bombColor = Color.White;
+            HelperMode = !game.HelperMode;
             CheckInitialBombColliderState();
 
             
@@ -63,8 +64,9 @@ namespace CSE3902_Project.Objects.Bomb
 
         }
 
-        public StaticBomb()
+        public StaticBomb(Game1 game)
         {
+            this.game = game;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -75,6 +77,7 @@ namespace CSE3902_Project.Objects.Bomb
 
         public void Update()
         {
+            HelperMode = game.HelperMode;
             CheckUpdatedBombColliderState();
             if (HelperMode == true) { 
             game.currentMap.AddExplosionsRange(pos, player.potionCount, directionChained);
@@ -149,8 +152,7 @@ namespace CSE3902_Project.Objects.Bomb
         }
         public void setHelperMode()
         {
-            HelperMode = !HelperMode;
-           
+            game.HelperMode = !game.HelperMode;
         }
     }
 }

@@ -31,7 +31,8 @@ namespace sprint3
         private Rectangle waterMapDestRec;
         private Rectangle skyMapDestRec;
         private Rectangle randomMapDestRec;
-        private Rectangle HelperMode;
+        private Vector2 explosionAssistancePos;
+        private Rectangle expAssistanceDestRec;
         private SpriteFont font;
         private Vector2 textPos;
 
@@ -60,11 +61,12 @@ namespace sprint3
             skyMapDestRec = new Rectangle(273, 300, 253, 220);
             randomMapDestRec = new Rectangle(536, 300, 253, 220);
            
-           // HelperMode = new Rectangle(10, 30, 253, 220);
+            explosionAssistancePos = new Vector2(310, 575);
+            expAssistanceDestRec = new Rectangle(310, 575, 180, 20);
             textPos = new Vector2(340, 265);
 
             coinMode = game.coinMode;
-            helperMode = false;
+            helperMode = game.HelperMode;
             coin = new Coin(new Vector2(440, 547), game);
         }
 
@@ -81,6 +83,15 @@ namespace sprint3
             spriteBatch.DrawString(font, "SELECT A MAP", textPos, Color.White);
             spriteBatch.DrawString(font, "COIN MODE?", new Vector2(330, 550), Color.White);
             coin.Draw(spriteBatch);
+
+            if (game.HelperMode)
+            {
+                spriteBatch.DrawString(font, "Explosion Indictor: ON", explosionAssistancePos, Color.White);
+            }
+            else
+            {
+                spriteBatch.DrawString(font, "Explosion Indictor: OFF", explosionAssistancePos, Color.White);
+            }
         }
 
         public void Update()
@@ -132,13 +143,10 @@ namespace sprint3
                     game.coinMode = !game.coinMode;
                     coinMode = !coinMode;
                 }
-               // Jiachen zhang
-               /* 
-               else if (HelperMode.Contains(point))
+                else if (expAssistanceDestRec.Contains(point))
                 {
                     game.setHelperMode();
                 }
-               */
             }
             if (coinMode)
             {
