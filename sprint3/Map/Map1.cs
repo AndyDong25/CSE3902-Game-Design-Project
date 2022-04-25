@@ -122,7 +122,7 @@ namespace CSE3902_Project.Map
         public List<Portal> portalList;
         public List<Minecart> minecartList;
         public List<Vector2> coinPosList;
-
+        public bool isMapRandom = false;
 
         public List<Coin> coinList;
        //============================================================
@@ -213,8 +213,17 @@ namespace CSE3902_Project.Map
             yetiList = new List<Yeti>();
             trapList = new List<Trap>();
             currentEnemyList = new List<ISprite>();
+            if (isMapRandom)
+            {
+                new RandomMapGenerator(game, this).GenerateMap();
+            }
+            else
+            {
+                LoadFromJson();
+            }
+            
 
-            LoadFromJson();
+            
             // change some bats to move horizontally
             for (int i = 0; i < batList.Count; i++)
             {

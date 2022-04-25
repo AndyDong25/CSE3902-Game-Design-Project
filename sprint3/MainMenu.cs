@@ -22,12 +22,14 @@ namespace sprint3
         private Texture2D caveMapTexture;
         private Texture2D waterMapTexture;
         private Texture2D skyMapTexture;
+        private Texture2D randomMapTexture;
 
         private Rectangle grassMapDestRec;
         private Rectangle iceMapDestRec;
         private Rectangle caveMapDestRec;
         private Rectangle waterMapDestRec;
         private Rectangle skyMapDestRec;
+        private Rectangle randomMapDestRec;
 
         private SpriteFont font;
         private Vector2 textPos;
@@ -47,12 +49,14 @@ namespace sprint3
             caveMapTexture = DecorationTextureStorage.Instance.getDirtBackgroundSprite();
             waterMapTexture = DecorationTextureStorage.Instance.getWaterBackgroundSprite();
             skyMapTexture = DecorationTextureStorage.Instance.getSkyBackgroundSprite();
+            randomMapTexture  = DecorationTextureStorage.Instance.getSkyBackgroundSprite();
 
             grassMapDestRec = new Rectangle(10, 30, 253, 220);
             iceMapDestRec = new Rectangle(273, 30, 253, 220);
             caveMapDestRec = new Rectangle(536, 30, 253, 220);
-            waterMapDestRec = new Rectangle(130, 300, 253, 220);
-            skyMapDestRec = new Rectangle(450, 300, 253, 220);
+            waterMapDestRec = new Rectangle(10, 300, 253, 220);
+            skyMapDestRec = new Rectangle(273, 300, 253, 220);
+            randomMapDestRec = new Rectangle(536, 300, 253, 220);
 
             textPos = new Vector2(340, 265);
 
@@ -68,6 +72,8 @@ namespace sprint3
             spriteBatch.Draw(caveMapTexture, caveMapDestRec, Color.White);
             spriteBatch.Draw(waterMapTexture, waterMapDestRec, Color.White);
             spriteBatch.Draw(skyMapTexture, skyMapDestRec, Color.White);
+            spriteBatch.Draw(randomMapTexture, randomMapDestRec, Color.White);
+
             spriteBatch.DrawString(font, "SELECT A MAP", textPos, Color.White);
             spriteBatch.DrawString(font, "COIN MODE?", new Vector2(330, 550), Color.White);
             coin.Draw(spriteBatch);
@@ -108,6 +114,12 @@ namespace sprint3
                 else if (skyMapDestRec.Contains(point))
                 {
                     game.currentMap = game.mapList[5];
+                    game.SetUpCurrentMap();
+                    game.gameState.ChangeToGamePlay();
+                }
+                else if (randomMapDestRec.Contains(point))
+                {
+                    game.currentMap = game.mapList[6];
                     game.SetUpCurrentMap();
                     game.gameState.ChangeToGamePlay();
                 }

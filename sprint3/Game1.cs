@@ -99,10 +99,9 @@ namespace CSE3902_CSE3902_Project
             {
                 mapList = new List<Map1>();
                 totalMaps = 6;
-
+                Map jsonMap = new Map();
                 for (int i = 0; i < totalMaps; i++)
                 {
-                    Map jsonMap = new Map();
                     string map_name = "content\\initial_map" + i + ".json";
                     using (StreamReader file = File.OpenText(map_name))
                     {
@@ -113,6 +112,11 @@ namespace CSE3902_CSE3902_Project
                     m.Initialize();
                     mapList.Add(m);
                 }
+   
+                Map1 mRandom = new Map1(this, 6, jsonMap);
+                mRandom.isMapRandom = true;
+                mRandom.Initialize();
+                mapList.Add(mRandom);
                 mapsLoaded = true;
             }
             //currentMap = mapList[map_index];
