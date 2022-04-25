@@ -32,7 +32,7 @@ namespace CSE3902_CSE3902_Project.Objects.Items
         private static Texture2D torpedoExplosionItemTexture = null;
         private static Texture2D landmineItemTexture = null;
         private static Texture2D landmineExplosionItemTexture = null;
-
+        private static Texture2D RangeTexture = null;
 
         // add other items
 
@@ -57,7 +57,7 @@ namespace CSE3902_CSE3902_Project.Objects.Items
             torpedoExplosionItemTexture = content.Load<Texture2D>("torpedoExplosion");
             landmineItemTexture = content.Load<Texture2D>("landmine");
             landmineExplosionItemTexture = content.Load<Texture2D>("landmineExplosion");
-
+            RangeTexture = content.Load<Texture2D>("ExplosionSpriteSheet");
 
             // load other item sprite sheets
         }
@@ -117,6 +117,10 @@ namespace CSE3902_CSE3902_Project.Objects.Items
         public Texture2D getLandmineExplosionItemSprite()
         {
             return landmineExplosionItemTexture;
+        }
+        public Texture2D getRangeTexture()
+        {
+            return RangeTexture;
         }
     }
 }

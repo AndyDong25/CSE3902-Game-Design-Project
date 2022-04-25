@@ -39,6 +39,7 @@ namespace CSE3902_Project.Map
         public CollisionDetection collisionDetection;
         public TileMap tileMap;
         public bool coinMode;
+        public bool HelperMode;
         public int score;
         public CoinsController coinsController;
         public SpriteFont timefont;
@@ -113,6 +114,7 @@ namespace CSE3902_Project.Map
         static Random rnd = new Random();
         public List<Coin> finishedCoin;
         public List<ISprite> allObjects;
+        public List<ISprite> OnlyRange;
         public List<ISprite> finishedObjects;
 
         public Portal portalA;
@@ -125,8 +127,11 @@ namespace CSE3902_Project.Map
         public bool isMapRandom = false;
 
         public List<Coin> coinList;
-       //============================================================
-       
+        
+        public List<ExplosionRange> explosionRangeList;
+        public List<ExplosionRange> finishedExplosionRange;
+        //============================================================
+
         public int time;
 
         public AudioManager audioManager = new AudioManager();
@@ -169,6 +174,7 @@ namespace CSE3902_Project.Map
             myTime = new Time(new Vector2(360, 500), this, time);
             staticBombList = new List<StaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
+            explosionRangeList = new List<ExplosionRange>();
             ninjaStarList = new List<NinjaStar>();
             torpedoList = new List<Torpedo>();
             landmineList = new List<Landmine>();
@@ -246,6 +252,7 @@ namespace CSE3902_Project.Map
             GetAllExplosions();
 
             allObjects = new List<ISprite>();
+            OnlyRange = new List<ISprite>();
             allObjects.Add(background);
             allObjects.Add(player1);
             allObjects.Add(player2);
@@ -255,6 +262,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(currentEnemyList);
             allObjects.AddRange(currentObstacleList);
             allObjects.AddRange(explosionCrossList);
+            allObjects.AddRange(explosionRangeList);
             allObjects.AddRange(currentItemList);
             allObjects.AddRange(portalList);
             allObjects.AddRange(trapList);
@@ -274,6 +282,7 @@ namespace CSE3902_Project.Map
             finishedObjects = new List<ISprite>();
             finishedBombs = new List<StaticBomb>();
             finishedExplosionCross = new List<ExplosionCross>();
+            finishedExplosionRange = new List<ExplosionRange>();
             finishedItems = new List<BasicItem>();
             finishedNinjaStar = new List<NinjaStar>();
             finishedObstacles = new List<ISprite>();
@@ -313,9 +322,14 @@ namespace CSE3902_Project.Map
         {
             foreach (ISprite s in allObjects)
             {
+               
                 s.Draw(spriteBatch);
             }
-            
+            //foreach (ExplosionRange s in OnlyRange)
+            //{
+              // s.Draw(spriteBatch);
+           // }
+
             hud.Draw(spriteBatch);
             myTime.Draw(spriteBatch);
         }
@@ -409,7 +423,11 @@ namespace CSE3902_Project.Map
                 audioManager.PlayBombThrown();
                 
                 StaticBomb newBomb = new StaticBomb(game, player, pos);
+                ExplosionRange er = new ExplosionRange(game);
                 staticBombList.Add(newBomb);
+                explosionRangeList.Add(er);
+               // OnlyRange.Add(er);
+                allObjects.Add(er);
                 allObjects.Add(newBomb);
             }
         }
@@ -435,6 +453,29 @@ namespace CSE3902_Project.Map
             explosionCrossList.Add(eCross);
             allObjects.Add(eCross);
         }
+
+        public void AddExplosionsRange(Vector2 pos, int potionCount, int direction)
+        {
+            ExplosionRange eCross = new ExplosionRange(game);
+            //audioManager.PlayBombExplosion();
+            int xOffset = 0;
+            int yOffset = 0;
+            int x = (int)pos.X;
+            int y = (int)pos.Y;
+            if (direction == 0) eCross.originExplosion.Add(new Explosion(game, new Vector2(x + xOffset, y + yOffset)));
+            // radius in each direction
+            for (int i = 1; i < potionCount; i++)
+            {
+                if (direction != 4) eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y)));
+                if (direction != 2) eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y)));
+                if (direction != 3) eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y)));
+                if (direction != 1) eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i))));
+            }
+            eCross.SetAllEplosions();
+            explosionRangeList.Add(eCross);
+            allObjects.Add(eCross);
+        }
+
         public void AddNinjaStar(Player p)
         {
             NinjaStar newStar = new NinjaStar(p);
@@ -546,6 +587,11 @@ namespace CSE3902_Project.Map
                 explosionCrossList.Remove(e);
                 finishedObjects.Add(e);
             }
+            foreach (ExplosionRange e in finishedExplosionRange)
+            {
+                explosionRangeList.Remove(e);
+                finishedObjects.Add(e);
+            }
             foreach (NinjaStar n in finishedNinjaStar)
             {
                 ninjaStarList.Remove(n);
@@ -577,6 +623,7 @@ namespace CSE3902_Project.Map
                 coinPosList.Remove(c.position);
                 coinList.Remove(c);
             }
+            
             foreach (ISprite s in finishedObjects)
             {
                 allObjects.Remove(s);

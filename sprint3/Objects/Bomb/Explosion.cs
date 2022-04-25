@@ -13,6 +13,7 @@ namespace CSE3902_Project.Objects.Bomb
         public Game1 game;
         public Dictionary<Vector2, int> staticExplosionList = new Dictionary<Vector2, int>();
         private Texture2D texture;
+        private Texture2D Rangetexture;
         public int timer;
         private Vector2 pos;
 
@@ -26,6 +27,7 @@ namespace CSE3902_Project.Objects.Bomb
             this.pos = pos;
             timer = 20;
             texture = ItemTextureStorage.Instance.getExplosionSprite();
+            Rangetexture = ItemTextureStorage.Instance.getRangeTexture(); 
             collider2D = new Rectangle((int)pos.X + 2, (int)pos.Y + 2, 36, 36);
         }
 
@@ -36,7 +38,13 @@ namespace CSE3902_Project.Objects.Bomb
             spriteBatch.Draw(texture, destinationRec, sourceRec, Color.White);
             
         }
+        public void DrawRange(SpriteBatch spriteBatch)
+        {
+            Rectangle destinationRec = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
+            Rectangle sourceRec = SpriteConstants.EXPLOSION;
+            spriteBatch.Draw(Rangetexture, destinationRec, sourceRec, Color.Gray, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, (float)0.0000000000000001);
 
+        }
         public void Update()
         {
 /*            timer--;

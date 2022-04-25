@@ -17,6 +17,9 @@ using CSE3902_Project.Fonts;
 using System;
 using Microsoft.Xna.Framework.Input;
 using sprint3;
+using sprint3.Objects.Bomb;
+using CSE3902_Project.Objects.Bomb;
+using System.Diagnostics;
 
 namespace CSE3902_CSE3902_Project
 {
@@ -29,6 +32,8 @@ namespace CSE3902_CSE3902_Project
         public ArrayList controllerList;
         //private GameState currentGameState;
         private Color backColor;
+
+       
 
         public GameState gameState;
 
@@ -56,6 +61,7 @@ namespace CSE3902_CSE3902_Project
         public Vector3 screenScale;
         public Matrix viewMatrix;
         public bool coinMode;
+        public bool HelperMode;
 
         public Game1()
         {
@@ -70,6 +76,7 @@ namespace CSE3902_CSE3902_Project
             saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
             logger = new IsolatedStorageSaveLogManager(saveFolder, logFile);
             coinMode = false;
+            
         }
 
         protected  override void Initialize()
@@ -82,8 +89,8 @@ namespace CSE3902_CSE3902_Project
             p2Wins = 0;
 
             //currentGameState = GameState.GameMenu;
-/*            gameState = new GameState(this);
-            gameState.ChangeToGameMenu();*/
+            /*            gameState = new GameState(this);
+                        gameState.ChangeToGameMenu();*/
 
             // mapDir = new Dictionary<Vector2, ISprite> { };
             graphics.PreferredBackBufferHeight = 600;
@@ -153,8 +160,19 @@ namespace CSE3902_CSE3902_Project
             screenScale = new Vector3(1.0f, 1.0f, 1.0f);
             viewMatrix = camera.GetTransform();
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
-                                       null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
+            
+             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+                                      null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
+            /*
+             * The mode above has ignored the depth, which makes the predict range unable to been covered by player, 
+             * if we want to fix it, we have to change to the mode below and give everything a depth 0-1 float
+             * Format:
+             * spriteBatch.Draw(Rangetexture, destinationRec, sourceRec, Color.Gray, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, (float)0.0000000000000001);
+             */
+            
+            //spriteBatch.Begin(SpriteSortMode.FrontToBack, null,null,
+            //                        DepthStencilState.DepthRead, null, null, viewMatrix * Matrix.CreateScale(screenScale));
+
             this.IsMouseVisible = true;
 
             //currentMap.Draw(spriteBatch);
@@ -182,6 +200,11 @@ namespace CSE3902_CSE3902_Project
             controllerList = new ArrayList();
             controllerList.Add(new KeyboardController(this, currentMap.player1, currentMap.player2));
             controllerList.Add(new MouseController(this));
+        }
+        public void setHelperMode()
+        {
+            StaticBomb sb = new StaticBomb();
+            sb.setHelperMode();
         }
     }
 }

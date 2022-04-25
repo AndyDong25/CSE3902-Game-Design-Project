@@ -149,7 +149,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         {
             
             Rectangle destination = new Rectangle((int)xPos + XOffset, (int)yPos + YOffset,60, 60);
-            spriteBatch.Draw(texture, destination, source, color * boostFadeAmount);
+            spriteBatch.Draw(texture, destination, source, color * boostFadeAmount, 0.0f, Vector2.Zero, SpriteEffects.None, (float)0.9);
         }
 
         public void ApplyAbilities()

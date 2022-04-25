@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace sprint3.Objects.Bomb
 {
-    public class ExplosionCross : ISprite
+    public class ExplosionRange : ISprite
     {
         public List<Explosion> originExplosion;
         public List<Explosion> upExplosions;
@@ -18,7 +18,7 @@ namespace sprint3.Objects.Bomb
         public int timer;
         private Game1 game;
 
-        public ExplosionCross(Game1 game)
+        public ExplosionRange(Game1 game)
         {
             timer = 20;
             this.game = game;
@@ -31,28 +31,24 @@ namespace sprint3.Objects.Bomb
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-                foreach (Explosion e in originExplosion)
-                {
 
-                    e.Draw(spriteBatch);
-                }
-                foreach (Explosion e in upExplosions)
-                {
-                    e.Draw(spriteBatch);
-                }
-                foreach (Explosion e in downExplosions)
-                {
-                    e.Draw(spriteBatch);
-                }
-                foreach (Explosion e in leftExplosions)
-                {
-                    e.Draw(spriteBatch);
-                }
-                foreach (Explosion e in rightExplosions)
-                {
-                    e.Draw(spriteBatch);
-                } 
-    
+            foreach (Explosion e in upExplosions)
+            {
+                e.DrawRange(spriteBatch);
+            }
+            foreach (Explosion e in downExplosions)
+            {
+                e.DrawRange(spriteBatch);
+            }
+            foreach (Explosion e in leftExplosions)
+            {
+                e.DrawRange(spriteBatch);
+            }
+            foreach (Explosion e in rightExplosions)
+            {
+                e.DrawRange(spriteBatch);
+            }
+
         }
 
         public void Update()
@@ -60,8 +56,8 @@ namespace sprint3.Objects.Bomb
             timer--;
             if (timer <= 0)
             {
-                game.currentMap.finishedExplosionCross.Add(this);
-                
+                game.currentMap.finishedExplosionRange.Add(this);
+
             }
         }
 

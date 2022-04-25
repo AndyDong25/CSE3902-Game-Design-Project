@@ -1,6 +1,7 @@
 ﻿using CSE3902_CSE3902_Project;
 using CSE3902_CSE3902_Project.Sprites;
 using CSE3902_Project.Fonts;
+using CSE3902_Project.Objects.Bomb;
 using CSE3902_Project.Objects.Decorations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,11 +31,12 @@ namespace sprint3
         private Rectangle waterMapDestRec;
         private Rectangle skyMapDestRec;
         private Rectangle randomMapDestRec;
-
+        private Rectangle HelperMode;
         private SpriteFont font;
         private Vector2 textPos;
 
         private bool coinMode;
+        private bool helperMode;
         private Coin coin;
 
 
@@ -57,10 +59,12 @@ namespace sprint3
             waterMapDestRec = new Rectangle(10, 300, 253, 220);
             skyMapDestRec = new Rectangle(273, 300, 253, 220);
             randomMapDestRec = new Rectangle(536, 300, 253, 220);
-
+           
+           // HelperMode = new Rectangle(10, 30, 253, 220);
             textPos = new Vector2(340, 265);
 
             coinMode = game.coinMode;
+            helperMode = false;
             coin = new Coin(new Vector2(440, 547), game);
         }
 
@@ -128,6 +132,13 @@ namespace sprint3
                     game.coinMode = !game.coinMode;
                     coinMode = !coinMode;
                 }
+               // Jiachen zhang
+               /* 
+               else if (HelperMode.Contains(point))
+                {
+                    game.setHelperMode();
+                }
+               */
             }
             if (coinMode)
             {

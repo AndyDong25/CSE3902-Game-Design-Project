@@ -50,7 +50,9 @@ namespace CSE3902_Project.Collisions
             CheckBombCollision();
 
             CheckExplosionCrossCollision();
-            
+            CheckExplosionRangeCollision();
+
+
             CheckCurrentObstacleCollision();
          
             CheckEnemyCollision();
@@ -333,6 +335,60 @@ namespace CSE3902_Project.Collisions
             map.GetAllExplosions();
         }
 
+        private void CheckExplosionRangeCollision()
+        {
+            List<StaticBomb> staticBombList = map.staticBombList;
+            List<ISprite> currentObstacleList = map.currentObstacleList;
+            foreach (ExplosionRange eCross in map.explosionRangeList)
+            {
+                foreach (ISprite o in currentObstacleList)
+                {
+                    for (int i = 0; i < eCross.upExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.upExplosions[i];
+                        if (e.collider2D.Intersects(o.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
+                            e.collisionHandler.HandleCollision(eCross.upExplosions);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < eCross.leftExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.leftExplosions[i];
+                        if (e.collider2D.Intersects(o.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
+                            e.collisionHandler.HandleCollision(eCross.leftExplosions);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < eCross.rightExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.rightExplosions[i];
+                        if (e.collider2D.Intersects(o.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
+                            e.collisionHandler.HandleCollision(eCross.rightExplosions);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < eCross.downExplosions.Count; i++)
+                    {
+                        Explosion e = eCross.downExplosions[i];
+                        if (e.collider2D.Intersects(o.collider2D))
+                        {
+                            e.collisionHandler = new ExplosionObstacleCollisionHandler(i + 1);
+                            e.collisionHandler.HandleCollision(eCross.downExplosions);
+                            break;
+                        }
+                    }
+                }
+                eCross.SetAllEplosions();
+
+            }
+            map.GetAllExplosions();
+        }
         private void CheckBombCollision()
         {
             Player p1 = map.player1;

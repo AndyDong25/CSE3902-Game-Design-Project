@@ -5,6 +5,7 @@ using CSE3902_CSE3902_Project.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CSE3902_Project.Collisions;
+using sprint3.Objects.Bomb;
 
 namespace CSE3902_Project.Objects.Bomb
 {
@@ -15,9 +16,10 @@ namespace CSE3902_Project.Objects.Bomb
         private Rectangle sourceRec;
         public Vector2 pos;
         public Texture2D texture { get; set; }
+
         public ICollisionHandler collisionHandler;
         public Rectangle collider2D { get; set; }
-
+        public bool HelperMode  = true;
         /* int field to keep track of direction if bomb was "chain exploded" from an explosion
          * 0 - no chain
          * 1 - up
@@ -36,11 +38,14 @@ namespace CSE3902_Project.Objects.Bomb
         private byte tintAmount;
         private Color bombColor;
 
+        public Texture2D RangeTexture { get; set; }
+        public ExplosionRange RangeExplosion;
         public StaticBomb(Game1 game, Player player, Vector2 pos)
         {
             this.player = player;
             this.game = game;
             texture = ItemTextureStorage.Instance.getBombObjectSprite();
+            RangeTexture = ItemTextureStorage.Instance.getExplosionSprite();
             sourceRec = SpriteConstants.STATIC_BOMB;
             this.pos = pos;
             timer = 200;
@@ -52,18 +57,28 @@ namespace CSE3902_Project.Objects.Bomb
             CheckInitialBombColliderState();
 
             
+
+            RangeExplosion = new ExplosionRange(game);
+            //RangeExplosion.SetAllEplosions();
+
         }
 
+        public StaticBomb()
+        {
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destinationrectangle = new Rectangle((int)pos.X, (int)pos.Y, 45, 45);
-            spriteBatch.Draw(texture, destinationrectangle, sourceRec, bombColor);
+           spriteBatch.Draw(texture, destinationrectangle, sourceRec, bombColor);
         }
 
         public void Update()
         {
             CheckUpdatedBombColliderState();
+            if (HelperMode == true) { 
+            game.currentMap.AddExplosionsRange(pos, player.potionCount, directionChained);
+            }
             if (--animationSpeed % 10 == 0)
             {
                 bombColor.B -= tintAmount;
@@ -77,6 +92,7 @@ namespace CSE3902_Project.Objects.Bomb
 /*                game.map.staticBombList.Remove(this);
                 game.map.allObjects.Remove(this);*/
                 game.currentMap.AddExplosions(pos, player.potionCount, directionChained);
+               
                 player.bombCount++;
             }
         }
@@ -130,6 +146,11 @@ namespace CSE3902_Project.Objects.Bomb
         public Rectangle GetCollider2D()
         {
             return collider2D;
+        }
+        public void setHelperMode()
+        {
+            HelperMode = !HelperMode;
+           
         }
     }
 }
