@@ -79,6 +79,10 @@ Testing Controls:
   B - game over state (needs further implementation)
   
   M - mute/unmute music
+  
+  F1 - save the current game parameters
+  
+  F2 - load the parameters saved last time
 
 How to Play:
 
