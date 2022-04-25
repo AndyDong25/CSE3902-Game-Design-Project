@@ -1,6 +1,7 @@
 ﻿using CSE3902_CSE3902_Project;
 using CSE3902_CSE3902_Project.Controller;
 using CSE3902_Project.Fonts;
+using CSE3902_Project.Audio;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -118,7 +119,7 @@ namespace sprint3
 
             bool player1Win = game.currentMap.player2.isDead || game.currentMap.player1.collect_coins == 10;
 
-            float rate = 3.0f;
+            float rate = 2.0f;
             Vector2 player1Pos = new Vector2(((int)game.currentMap.player1.xPos), ((int)game.currentMap.player1.yPos));
             Vector2 player2Pos = new Vector2(((int)game.currentMap.player2.xPos), ((int)game.currentMap.player2.yPos));
 
@@ -135,31 +136,32 @@ namespace sprint3
                  game.camera.Move(player1Pos);
                  
              }
-            
 
-            if (displayWin)
-            {
+
+            if (displayWin) { 
+                AudioManager.Instance.PlayRoundOver(true);
+                game.camera.Zoomin(1.5f);
                 if (player1Win) {
-                    game.camera.DisplayLocation(player1Pos);
+                    
+                    game.camera.Move(player1Pos);
                     WinCondition = "Player 1 has won the Round!";
                 }
                 else
                 {
 
-                    game.camera.DisplayLocation(player2Pos);
+                    game.camera.Move(player2Pos);
                     WinCondition = "Player 2 has won the Round!";
                     
                 }
                 
-
-
             }
 
 
 
             if (reset)
             {
-                gameOverTimer = 4;
+                gameOverTimer = 6;
+                displayWinTimer = 2;
                 if (game.currentMap.player1.isDead || game.currentMap.player2.collect_coins == 10)
                 {
                     game.p2Wins++;
@@ -169,6 +171,7 @@ namespace sprint3
                     game.p1Wins++;
                 }
                 WinCondition = "";
+                
                 game.Reset();
             }
         }

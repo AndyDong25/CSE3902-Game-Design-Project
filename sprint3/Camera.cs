@@ -65,10 +65,10 @@ namespace sprint3
 
 
 
-        public void DisplayLocation(Vector2 position)
+        public void DisplayDesiredLocation(Vector2 location)
         {
             Zoomin(3.0f);
-            Move(position);
+            Move(location);
 
         }
 

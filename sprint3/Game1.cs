@@ -171,6 +171,7 @@ namespace CSE3902_CSE3902_Project
             camera.Position = Vector2.Zero;
             camera.Zoom = 1;
             camera.Origin = Vector2.Zero;
+            AudioManager.Instance.Reset();
         }
 
         public void SetUpCurrentMap()
