@@ -18,17 +18,17 @@
                 "Player2 potions: " + game.currentMap.player2.potionCount + "\n" +
                 "Player1 shoes: " + game.currentMap.player1.inventory["shoe"] + "\n" +
                 "Player2 shoes: " + game.currentMap.player2.inventory["shoe"];
-
-            //game.saver.Data.p1Bomb = game.currentMap.player1.bombCount;
-            //game.saver.Data.p2Bomb = game.currentMap.player2.bombCount;
-            //game.saver.Data.p1Potion = game.currentMap.player1.potionCount;
-            //game.saver.Data.p2Potion = game.currentMap.player2.potionCount;
-            //game.saver.Data.p1Shoe = game.currentMap.player1.inventory["shoe"];
-            //game.saver.Data.p2Shoe = game.currentMap.player2.inventory["shoe"];
+            
+            game.saver.Data.p1Bomb = game.currentMap.player1.bombCount;
+            game.saver.Data.p2Bomb = game.currentMap.player2.bombCount;
+            game.saver.Data.p1Potion = game.currentMap.player1.potionCount;
+            game.saver.Data.p2Potion = game.currentMap.player2.potionCount;
+            game.saver.Data.p1Shoe = game.currentMap.player1.inventory["shoe"];
+            game.saver.Data.p2Shoe = game.currentMap.player2.inventory["shoe"];
             ////game.saver.Data.br = " ";
             ////game.saver.Data.p1WinsString = "Player1 wins: ";
-            //game.saver.Data.p1Wins = game.p1Wins;
-            //game.saver.Data.p2Wins = game.p2Wins;
+            game.saver.Data.p1Wins = game.p1Wins;
+            game.saver.Data.p2Wins = game.p2Wins;
             //game.saver.Data.br = " ";
             //game.saver.Data.p = "  ";
             //game.saver.Data.p1 = "  ";
