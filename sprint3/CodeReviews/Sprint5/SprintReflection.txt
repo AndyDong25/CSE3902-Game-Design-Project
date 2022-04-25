@@ -1,7 +1,7 @@
-﻿Sprint 4 Reflection
+﻿Sprint 5 Reflection
 
-The main feature of sprint4 was to implement audio, a hud, and game states. The team was able to finish creating basic models for the audio, hud and game states.
-These models allow us to add aditional features to the functions, such as more music, additional information displayed on the hud, and UI states, but it works to create a functional game at the moment. 
-In addition, the team was also able to implement additional feature to the game such as a coin system, traps, a mine cart item, more projectiles, and more NPCs. The CollisionDetection.cs class
-was also significantly refactored to heavily reduce the cyclomatic complexity. The team also polished up the game map by making each map feature its own distinct environment and obstacles imported directly from
-a .json file. The team hopes to create/improve the game's user interface in following sprint (Menu page, game over screen, etc.,) and add more game functionality to further develop our game.
+For sprint 5, the team members each picked out a feature to implement. All together, the team was able to implement a wide breadth of features including a main menu screen with different map and game mode selections,
+a coin spawning system that acts as another win condition (game mode), a cheat code (keyboard command) to make the plyaer invincible, a saving and loading of scores and inventory from and to the game, an event log that keeps track
+game events, a camera system to zoom into the map and follow the winning player around, a random map generator to create a chaotic, fun map, and an explosion rang indicator option to assist players with gameplay. In addition, the team
+improved/added on to previous features, such as displaying more information on the hud, refactoring and creating more game states for the game to be in, and created new maps, NPCs and music. Until the team's presentation, the team
+plans to focus more on refactoring and improving code quality, especially with integrating all the various new features that were implemented this sprint.
