@@ -1,15 +1,24 @@
 ﻿Reveiwer - Devan Mallory
-Date: 4/11/22
+Date: 4/24/22
 CSE3902_Project
-File - Landmine.cs 
-File Authors: Lanxi Li
+File - Camera.cs 
+File Authors: Tianle Chen
 Time to Complete - 20 minutes
 
 
 
 Comments:
 
-As there are not many lines of code, there is not much I can comment on. The variables are named apropriately
-with respect to their functionality and follow the proper conventions, so in terms of readability I think it is
-well done. As in the previous file, I think some variables could be refactored by grouping them into their respective
-classes (Isprite), which would help improve cohesion and coupling, and therefore readablility, of the code.
+The readability is good for the most part, but from personal experience, I think it suffers a bit from low cohesion. This
+is due to two factors, variable names, and functionality. While variable names are named apropriately and follow
+conventions, they are misleading in what they do. For example, the "Position" variable is named apropriately, but it does not
+actually give the position, and instead gives an inverted representation. While this is fine from a implementation standpoint,
+it hurts cohesion because the variable is marked public, meaning that it can be assessed by other classes, when it should not be as it does not represent position.
+I also think some of the functions could improve cohesion by becomming more high level in what they do. For example, Move and Zoom could be merged into a singular function, in addition to being seperate, since we are always
+calling zoom when we are calling move. That being said, I think the functions that exist right now are actually good
+and are ok in term's of readability, so I am just suggesting further improvements.
+
+
+
+
+

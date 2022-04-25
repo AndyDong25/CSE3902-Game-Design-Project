@@ -98,7 +98,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             }
         }
 
-        //  maybe pass in an index to determine which item to use when implemented later
+        
         public void UseItem()
         {
             if (inventory["ninjaStar"] > 0)

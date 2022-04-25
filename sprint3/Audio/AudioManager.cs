@@ -31,6 +31,9 @@ namespace CSE3902_Project.Audio
 
         public bool mute = false;
         public bool pause = false;
+
+        public bool roundOver = false;
+        
         List<SoundEffect> allAudio;
 
         List<SoundEffectInstance> currentlyPlayingFiles;
@@ -93,7 +96,7 @@ namespace CSE3902_Project.Audio
         }
 
         
-
+        
 
         public void PlayPlayerEliminated()
         {
@@ -102,6 +105,10 @@ namespace CSE3902_Project.Audio
             playerEliminatedInstance.Volume = .3f;
             playerEliminatedInstance.Play();
             currentlyPlayingFiles.Add(playerEliminatedInstance);
+            MediaPlayer.Stop();
+
+
+
         }
         public void PlayEliminated()
         {
@@ -137,20 +144,34 @@ namespace CSE3902_Project.Audio
 
         public void PlayRoundOver(bool didPlayerWin)
         {
-            SoundEffectInstance roundOverInstance;
-            //create something in here that determines the sound effect for playing
-            if (didPlayerWin)
+
+            if (!roundOver)
             {
-                roundOverInstance = playerWin.CreateInstance();
+                roundOver = true;
+                SoundEffectInstance roundOverInstance;
+                if (didPlayerWin)
+                {
+                    roundOverInstance = playerWin.CreateInstance();
+                }
+                else
+                {
+                    roundOverInstance = playerWin.CreateInstance();
+                }
+                roundOverInstance.Volume = .3f;
+                roundOverInstance.Play();
+                currentlyPlayingFiles.Add(roundOverInstance);
             }
-            else
-            {
-                roundOverInstance = playerWin.CreateInstance();
-            }
-            roundOverInstance.Volume = .3f;
-            roundOverInstance.Play();
-            currentlyPlayingFiles.Add(roundOverInstance);
+            
         }
+
+
+
+        public void Reset()
+        {
+            currentlyPlayingFiles.Clear();
+            roundOver = false;
+        }
+
 
 
         public void Mute(bool sMute)
