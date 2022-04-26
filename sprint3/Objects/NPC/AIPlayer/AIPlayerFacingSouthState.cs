@@ -15,7 +15,7 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         private int framesLeft;
         private static List<List<Rectangle>> mySources = new List<List<Rectangle>>
         {
-            SpriteConstants.BOMBER_SOUTH,SpriteConstants.KNIGHT_SOUTH, SpriteConstants.GOBLIN_SOUTH,SpriteConstants.GHOST_SOUTH
+            SpriteConstants.REDBOY_SOUTH,SpriteConstants.WHITEGIRL_SOUTH, SpriteConstants.GREENBOY_SOUTH,SpriteConstants.BROWNBOY_SOUTH
         };
         private int mySourceIndex;
         private int myTextureIndex;
@@ -34,19 +34,19 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         {
             if (myTextureIndex == 0)
             {
-                texture = PlayerTextureStorage.Instance.getBomberSpriteSheet();
+                texture = PlayerTextureStorage.Instance.getRedBoySpriteSheet();
             }
             else if (myTextureIndex == 1)
             {
-                texture = PlayerTextureStorage.Instance.getKnightSpriteSheet();
+                texture = PlayerTextureStorage.Instance.getWhiteGirlSpriteSheet();
             }
             else if (myTextureIndex == 2)
             {
-                texture = PlayerTextureStorage.Instance.getGoblinSpriteSheet();
+                texture = PlayerTextureStorage.Instance.getGreenBoySpriteSheet();
             }
             else if (myTextureIndex == 3)
             {
-                texture = PlayerTextureStorage.Instance.getGhostSpriteSheet();
+                texture = PlayerTextureStorage.Instance.getBrownBoySpriteSheet();
                 mySourceIndex = 0;
             }
             Rectangle source = mySources[myTextureIndex][mySourceIndex];
