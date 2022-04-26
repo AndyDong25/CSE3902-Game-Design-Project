@@ -72,7 +72,7 @@ namespace CSE3902_CSE3902_Project
             for (int i = 0; i < 1; i++)
             {
                 map.snake = new Snake(GeneratePosition(), game);
-                map.snakeList.Add(map.snake);
+                //map.snakeList.Add(map.snake);
                 map.currentEnemyList.Add(map.snake);
             }
             for (int i = 0; i < 2; i++)
@@ -83,13 +83,13 @@ namespace CSE3902_CSE3902_Project
             for (int i = 0; i < 1; i++)
             {
                 map.verticalBat = new Bat(GeneratePosition(), game);
-                map.batList.Add(map.verticalBat);
+                //map.batList.Add(map.verticalBat);
                 map.currentEnemyList.Add(map.verticalBat);
             }
             for (int i = 0; i < 2; i++)
             {
                 map.yeti = new Yeti(GeneratePosition(), game);
-                map.yetiList.Add(map.yeti);
+                //map.yetiList.Add(map.yeti);
                 map.currentEnemyList.Add(map.yeti);
             }
             for (int i = 0; i < 1; i++)

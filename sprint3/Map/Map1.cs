@@ -185,8 +185,6 @@ namespace CSE3902_Project.Map
             coinMode = true;
             coinList = new List<Coin>();
             coinPosList = new List<Vector2>();
-            aiplayerList = new List<AIPlayer>();
-
          
             // spawn all items initially for testing purposes
 /*            bombItem = new BombItem(new Vector2(150, 400), game);
@@ -212,11 +210,6 @@ namespace CSE3902_Project.Map
 
             currentObstacleList = new List<ISprite>();
 
-            snakeList = new List<Snake>();
-            
-            batList = new List<Bat>();
-            
-            yetiList = new List<Yeti>();
             trapList = new List<Trap>();
             currentEnemyList = new List<ISprite>();
             if (isMapRandom)
@@ -228,26 +221,12 @@ namespace CSE3902_Project.Map
                 LoadFromJson();
             }
             
-
-            
-            // change some bats to move horizontally
-            for (int i = 0; i < batList.Count; i++)
-            {
-                if (i % 2 == 1)
-                {
-                    batList[i].currState = new BatFacingEastState(batList[i]);
-                }
-            }
             // set "other" portal references
             if (portalList.Count != 0)
             {
                 portalList[0].SetOtherPortal(portalList[1]);
                 portalList[1].SetOtherPortal(portalList[0]);
             }
-            
-            //alien testing, can adjust later
-            //alien = new Alien(new Vector2(1100, 400), game);
-            //currentEnemyList.Add(alien);
 
             GetAllExplosions();
 
@@ -325,10 +304,6 @@ namespace CSE3902_Project.Map
                
                 s.Draw(spriteBatch);
             }
-            //foreach (ExplosionRange s in OnlyRange)
-            //{
-              // s.Draw(spriteBatch);
-           // }
 
             hud.Draw(spriteBatch);
             myTime.Draw(spriteBatch);
@@ -366,7 +341,6 @@ namespace CSE3902_Project.Map
             foreach (List<int> pos in m2.snakes.Values)
             {
                 snake = new Snake(new Vector2(pos[0], pos[1]), game);
-                //snakeList.Add(snake);
                 currentEnemyList.Add(snake);
             }
             foreach (List<int> pos in m2.portals.Values)
@@ -374,16 +348,25 @@ namespace CSE3902_Project.Map
                 portalA = new Portal(new Vector2(pos[0], pos[1]), game);
                 portalList.Add(portalA);
             }
+            int i = 0;
             foreach (List<int> pos in m2.bats.Values)
             {
-                verticalBat = new Bat(new Vector2(pos[0], pos[1]), game);
-                //batList.Add(verticalBat);
+                // half vertical bats, half horizontal
+                if (i == 0)
+                {
+                    verticalBat = new Bat(new Vector2(pos[0], pos[1]), game);
+                }
+                else
+                {
+                    verticalBat = new Bat(new Vector2(pos[0], pos[1]), game);
+                    verticalBat.currState = new BatFacingEastState(verticalBat);
+                }
+                i++;
                 currentEnemyList.Add(verticalBat);
             }
             foreach (List<int> pos in m2.yetis.Values)
             {
                 yeti = new Yeti(new Vector2(pos[0], pos[1]), game);
-                //yetiList.Add(yeti);
                 currentEnemyList.Add(yeti);
             }
             foreach (List<int> pos in m2.aliens.Values)
@@ -410,7 +393,6 @@ namespace CSE3902_Project.Map
             foreach (List<int> pos in m2.aiplayers.Values)
             {
                 aiplayer = new AIPlayer(new Vector2(pos[0], pos[1]), game);
-                //aiplayerList.Add(aiplayer);
                 currentEnemyList.Add(aiplayer);
             }
         }
