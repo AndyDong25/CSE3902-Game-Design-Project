@@ -3,7 +3,7 @@ Date: 4/24/22
 CSE3902_Project
 File - Camera.cs 
 File Authors: Tianle Chen
-Time to Complete - 20 minutes
+Time to Complete - 30 minutes
 
 
 

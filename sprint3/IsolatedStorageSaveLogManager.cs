@@ -40,7 +40,7 @@ namespace CSE3902_CSE3902_Project
         {
             using (IsolatedStorageFile isf = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null))
             {
-                // Create directory if it doesn't exist.
+                
                 if (!isf.DirectoryExists(folderName))
                     isf.CreateDirectory(folderName);
 

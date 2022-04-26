@@ -211,6 +211,12 @@
 /processorParam:TextureFormat=Color
 /build:dirtBackground.png
 
+#begin elevator.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:elevator.mp3
+
 #begin EliminatedSound.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor

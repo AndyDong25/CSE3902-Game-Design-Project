@@ -52,7 +52,7 @@ namespace CSE3902_Project.Audio
         SoundEffect playerWin;
 
         
-        //we may need to add an update function
+        
         public void LoadAllResources(ContentManager content)
         {
             currentlyPlayingFiles = new List<SoundEffectInstance>();
@@ -70,17 +70,19 @@ namespace CSE3902_Project.Audio
             gameOver = content.Load<SoundEffect>("GameOver");
 
             background_music = new List<Song>();
-            Song MainThemeOne = content.Load<Song>("CSE3902BattleArena");
+            
+            Song mainThemeOne = content.Load<Song>("CSE3902BattleArena");
+            Song mainThemeTwo = content.Load<Song>("grass");
+            Song mainThemeThree = content.Load<Song>("nonrock");
+            Song mainThemeFour = content.Load<Song>("sea");
+            Song mainThemeFive = content.Load<Song>("elevator");
 
-            Song MainThemeTwo = content.Load<Song>("grass");
-            Song MainThemeThree = content.Load<Song>("nonrock");
-            Song MainThemeFour = content.Load<Song>("sea");
 
-
-            background_music.Add(MainThemeOne);
-            background_music.Add(MainThemeTwo);
-            background_music.Add(MainThemeThree);
-            background_music.Add(MainThemeFour);
+            background_music.Add(mainThemeOne);
+            background_music.Add(mainThemeTwo);
+            background_music.Add(mainThemeThree);
+            background_music.Add(mainThemeFour);
+            background_music.Add(mainThemeFive);
 
 
             MediaPlayer.Volume = defaultVolume;

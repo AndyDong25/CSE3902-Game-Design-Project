@@ -3,7 +3,7 @@ Date - 4/11/22
 CSE3902_Project
 File - IsolatedStorageSaveManager
 File Author - Tianle Chen
-Time to Complete - 20 minutes
+Time to Complete - 10 minutes
 
 
 

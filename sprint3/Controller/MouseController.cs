@@ -17,14 +17,13 @@ namespace CSE3902_CSE3902_Project.Controller
         
         public void Update()
         {
-            int mouseX, mouseY;
+            
            
             MouseState mouseState = Mouse.GetState();
           
             Dictionary<ICommand, bool[]> commandDirct = new Dictionary<ICommand, bool[]>();
             ICommand changeMap = new ChangeMapCommand(game);
-            mouseX = mouseState.X;
-            mouseY = mouseState.Y;
+            
 
             if (mouseState.RightButton == ButtonState.Pressed)
             {
@@ -35,19 +34,13 @@ namespace CSE3902_CSE3902_Project.Controller
                 }
 
 
-                /*foreach (KeyValuePair<ICommand, bool[]> command in commandDirct)
-                {
-                    if (((mouseX > frameWidth / 2) == command.Value[0]) && ((mouseY > frameHeight / 2) == command.Value[1]))
-                    {
-                        command.Key.Execute();
-                    }
-                }*/
+                
             }
             else
             {
                 game.changedMap = false;
             }          
-            //else if (mouseState.RightButton == ButtonState.Pressed)     
+             
         }
     }
 }
