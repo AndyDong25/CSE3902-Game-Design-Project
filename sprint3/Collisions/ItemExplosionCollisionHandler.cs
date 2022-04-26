@@ -6,7 +6,6 @@ namespace CSE3902_Project.Collisions
     {
         public void HandleCollision(object o)
         {
-            //Debug.WriteLine("Item Explosion Collided");
             BasicItem item = (BasicItem)o;
             if (!item.invincible)
             {

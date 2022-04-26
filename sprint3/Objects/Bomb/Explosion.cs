@@ -42,7 +42,7 @@ namespace CSE3902_Project.Objects.Bomb
         {
             Rectangle destinationRec = new Rectangle((int)pos.X, (int)pos.Y, 40, 40);
             Rectangle sourceRec = SpriteConstants.EXPLOSION;
-            spriteBatch.Draw(Rangetexture, destinationRec, sourceRec, Color.Gray, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, (float)0.0000000000000001);
+            spriteBatch.Draw(Rangetexture, destinationRec, sourceRec, new Color(Color.Transparent,4), 0.0f, Vector2.Zero, SpriteEffects.None, (float)0.0000000000000001);
 
         }
         public void Update()
