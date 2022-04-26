@@ -71,7 +71,17 @@ namespace CSE3902_Project.Audio
 
             background_music = new List<Song>();
             Song MainThemeOne = content.Load<Song>("CSE3902BattleArena");
+
+            Song MainThemeTwo = content.Load<Song>("grass");
+            Song MainThemeThree = content.Load<Song>("nonrock");
+            Song MainThemeFour = content.Load<Song>("sea");
+
+
             background_music.Add(MainThemeOne);
+            background_music.Add(MainThemeTwo);
+            background_music.Add(MainThemeThree);
+            background_music.Add(MainThemeFour);
+
 
             MediaPlayer.Volume = defaultVolume;
             
@@ -110,10 +120,7 @@ namespace CSE3902_Project.Audio
 
 
         }
-        public void PlayEliminated()
-        {
-
-        }
+        
 
         public void PlayMapMusic(int mapIdx)
         {
