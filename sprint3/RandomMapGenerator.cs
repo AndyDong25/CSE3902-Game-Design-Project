@@ -30,10 +30,12 @@ namespace CSE3902_CSE3902_Project
         }
         private Vector2 GeneratePosition()
         {
-            Vector2 pos = new Vector2(rnd.Next(0, 20) * 40 +20, rnd.Next(0, 12)*40+6);
+            //Vector2 pos = new Vector2(rnd.Next(0, 20) * 40 + 20, rnd.Next(0, 12) * 40 + 6);
+            Vector2 pos = new Vector2(rnd.Next(0, 20) * 40, rnd.Next(0, 12)*40);
             while (posList.Contains(pos))
             {
-                pos = new Vector2(rnd.Next(0, 20) * 40+20, rnd.Next(0, 12) * 40 +6);
+                //pos = new Vector2(rnd.Next(0, 20) * 40 + 20, rnd.Next(0, 12) * 40 + 6);
+                pos = new Vector2(rnd.Next(0, 20) * 40, rnd.Next(0, 12) * 40);
             }
             posList.Add(pos);
             return pos;
@@ -70,7 +72,7 @@ namespace CSE3902_CSE3902_Project
             for (int i = 0; i < 1; i++)
             {
                 map.snake = new Snake(GeneratePosition(), game);
-                map.snakeList.Add(map.snake);
+                //map.snakeList.Add(map.snake);
                 map.currentEnemyList.Add(map.snake);
             }
             for (int i = 0; i < 2; i++)
@@ -81,13 +83,13 @@ namespace CSE3902_CSE3902_Project
             for (int i = 0; i < 1; i++)
             {
                 map.verticalBat = new Bat(GeneratePosition(), game);
-                map.batList.Add(map.verticalBat);
+                //map.batList.Add(map.verticalBat);
                 map.currentEnemyList.Add(map.verticalBat);
             }
             for (int i = 0; i < 2; i++)
             {
                 map.yeti = new Yeti(GeneratePosition(), game);
-                map.yetiList.Add(map.yeti);
+                //map.yetiList.Add(map.yeti);
                 map.currentEnemyList.Add(map.yeti);
             }
             for (int i = 0; i < 1; i++)

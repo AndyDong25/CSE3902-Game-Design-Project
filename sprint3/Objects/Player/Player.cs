@@ -14,7 +14,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
         public IPlayerState currState;
         public int spriteIndex = 0;
         public int textureIndex = 0;
-        public Color color;
+        private Color color;
 
         public int potionCount = 2;
         public int bombCount = 3;
@@ -98,7 +98,6 @@ namespace CSE3902_CSE3902_Project.Objects.Player
             }
         }
 
-        
         public void UseItem()
         {
             if (inventory["ninjaStar"] > 0)

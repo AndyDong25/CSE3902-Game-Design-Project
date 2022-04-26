@@ -1,14 +1,14 @@
 ﻿Reviewer - Jiachen zhang (Alex)
 Date - 4/11/22
 CSE3902_Project
-File - Hud.cs
+File - MainMenu.cs
 File Author - Andy Dong
-Time to Complete - 6hrs
+Time to Complete - 2hrs
 
 
 Comments
 	-High readable
-	-A lot of unused using, can deleated
-	-Undeleated comment out code
-	-Rest of the code are necessary and well formatted
-	-It is a great work overall.Implemented by using easiest and most readable way.
+	-Local variables are declared clearly and all in private mode.
+	-For the Geting instance and giving value part there could be more comment to let people know what are these doing.
+	-Draw methond is very clear about what are these doing, we can easily conclude each line's purpose
+	-And the last part update is formated as well.

@@ -211,6 +211,12 @@
 /processorParam:TextureFormat=Color
 /build:dirtBackground.png
 
+#begin elevator.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:elevator.mp3
+
 #begin EliminatedSound.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -325,6 +331,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:goblinSpriteSheet.png
+
+#begin grass.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:grass.mp3
 
 #begin grass_template2.jpg
 /importer:TextureImporter
@@ -501,6 +513,12 @@
 /processorParam:TextureFormat=Color
 /build:ninjaStarSprite.png
 
+#begin nonrock.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:nonrock.mp3
+
 #begin plane.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -537,6 +555,18 @@
 /processorParam:TextureFormat=Color
 /build:potionItemSprite.png
 
+#begin questionMark.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:questionMark.jpg
+
 #begin redBoy.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -555,6 +585,12 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:scoreFont.spritefont
+
+#begin sea.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sea.mp3
 
 #begin shoeSprite.png
 /importer:TextureImporter

@@ -1,15 +1,23 @@
-﻿Reviewer - Tianle Chen
-Date - 4/11/22
+﻿    Reviewer - Tianle Chen
+Date - 4/25/22
 CSE3902_Project
-File - AudioManager.cs
-File Author - Devan Mallory
-Time to Complete - 20 minutes
+File - Map1.cs
+File Author - Tianle Chen, Andy Dong 
+Time to Complete - 30 minutes
 
 Comments
-	- I think this class has a very clean structure and also a good the maintainability overall.
-	- Just like the review for the readability of this class, adding a helper function for the audio processing step may also help this class has better maintainability.
-	As every we want to add a new audio, we only need to call the helper function instead of re-code the several steps.
-	- If in the future we have much more soundeffects, one way to make this class more maintainable I can think of is to use the similar as what we did for the spritesheets.
-	We can build another class that store and load the audios, and the manager just take charge with the audio processing. But for now I think this class is really nice!
+	- This class is very long and has a very low cohesion and high coupling, I think its maintainability probably need to be improved.
+	- This class contain the functionalities that loading json map infos, creating different objects, storing all object information (such as positions), adding objects 
+	at the game time, and even handling some game state music stuffs..
+	- All the functionalities above can be distributed into different class, which can increase the cohesion and reduce coupling of each class:
+	For example, the three game state music functions could be move to a music state class, which only link the the gamestate class and audioManager to handle the music 
+	changes in different states.
+	The load json function can be move to a jsonLoading class, and Map only need to call the jsonLoading to generate the map, this Map1 class do not need to access to 
+	each sprite or items. This would be similar for the object adding functions, some objectAdder can be created by implmenting a objectAdder iterface, each Adder only
+	need to get access to the map and a single object (such as a sprite), and the Map1 class itself only need to call Add functions in a list of such objectAdders.
+	We can even create another map class to store the objects in the map, so that we don't need to contain the data structure details in this class
+	- There are many way we can do to reducing the coupling and increase the cohesions, this Map1 class can only take care of generating the map, and the details of how
+	to generate it (load, add or remove objects) can be encapsulated in other classes.
+	- Hopefully I can get time to refactor this class..
 	
 	

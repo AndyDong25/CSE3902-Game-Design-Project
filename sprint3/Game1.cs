@@ -30,21 +30,11 @@ namespace CSE3902_CSE3902_Project
         public static ContentManager contentManager;
         public SpriteBatch spriteBatch;
         public ArrayList controllerList;
-        //private GameState currentGameState;
         private Color backColor;
-
        
-
         public GameState gameState;
 
         Boolean isPaused;
-/*        enum GameState
-        {
-            GameMenu = 0,
-            GamePlay = 1,
-            GameOver = 2,
-            GamePause = 3,
-        }*/
 
         public Map1 currentMap;
         public int totalMaps;
@@ -71,12 +61,10 @@ namespace CSE3902_CSE3902_Project
             string saveFolder = @path; // put your save folder name here
             string saveFile = "savedLog.html"; // put your save file name here
             string logFile = "log.html";
-            //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
             saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
             logger = new IsolatedStorageSaveLogManager(saveFolder, logFile);
-            coinMode = false;
-            
+            coinMode = false;      
         }
 
         protected  override void Initialize()
@@ -87,21 +75,16 @@ namespace CSE3902_CSE3902_Project
             isPaused = false;
             p1Wins = 0; 
             p2Wins = 0;
+            HelperMode = false;
 
-            //currentGameState = GameState.GameMenu;
-            /*            gameState = new GameState(this);
-                        gameState.ChangeToGameMenu();*/
-
-            // mapDir = new Dictionary<Vector2, ISprite> { };
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 800;
             screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             graphics.ApplyChanges();
 
-            //base.Initialize();
-
             gameState = new GameState(this);
             gameState.ChangeToGameMenu();
+
             if (!mapsLoaded)
             {
                 mapList = new List<Map1>();
@@ -126,20 +109,16 @@ namespace CSE3902_CSE3902_Project
                 mapList.Add(mRandom);
                 mapsLoaded = true;
             }
-            //currentMap = mapList[map_index];
-            //SetUpCurrentMap();
         }
 
         protected override void LoadContent()
         {
-
             PlayerTextureStorage.Instance.LoadAllResources(Content);
             EnemyTextureStorage.Instance.LoadAllResources(Content);
             ItemTextureStorage.Instance.LoadAllResources(Content);
             DecorationTextureStorage.Instance.LoadAllResources(Content);
             SpriteFontStorage.Instance.LoadAllResources(Content);
             AudioManager.Instance.LoadAllResources(Content);
-
         }
 
         protected override void UnloadContent()
@@ -156,12 +135,10 @@ namespace CSE3902_CSE3902_Project
 
         protected override void Draw(GameTime gameTime)
         {
-            //spriteBatch.Begin();
             screenScale = new Vector3(1.0f, 1.0f, 1.0f);
             viewMatrix = camera.GetTransform();
-
             
-             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
                                       null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
             /*
              * The mode above has ignored the depth, which makes the predict range unable to been covered by player, 
@@ -175,7 +152,6 @@ namespace CSE3902_CSE3902_Project
 
             this.IsMouseVisible = true;
 
-            //currentMap.Draw(spriteBatch);
             gameState.Draw(spriteBatch);
             spriteBatch.End();
 
@@ -203,7 +179,7 @@ namespace CSE3902_CSE3902_Project
         }
         public void setHelperMode()
         {
-            StaticBomb sb = new StaticBomb();
+            StaticBomb sb = new StaticBomb(this);
             sb.setHelperMode();
         }
     }
