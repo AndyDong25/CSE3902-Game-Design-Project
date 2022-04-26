@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using sprint3.Objects.Decorations;
+using CSE3902_Project.Audio;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -65,9 +66,14 @@ namespace sprint3
             expAssistanceDestRec = new Rectangle(310, 575, 180, 20);
             textPos = new Vector2(340, 265);
 
+            AudioManager.Instance.PlayMapMusic(0);
+
             coinMode = game.coinMode;
             helperMode = game.HelperMode;
             coin = new Coin(new Vector2(440, 547), game);
+
+           
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

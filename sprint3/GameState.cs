@@ -251,6 +251,7 @@ namespace sprint3
         public void ChangeToGameMenu()
         {
             currGameState = State.GameMenu;
+            AudioManager.Instance.PlayMapMusic(5);
         }
         public void ChangeToGamePause()
         {

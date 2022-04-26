@@ -128,6 +128,7 @@ namespace CSE3902_CSE3902_Project
             }
             //currentMap = mapList[map_index];
             //SetUpCurrentMap();
+
         }
 
         protected override void LoadContent()

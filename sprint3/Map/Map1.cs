@@ -134,7 +134,7 @@ namespace CSE3902_Project.Map
 
         public int time;
 
-        public AudioManager audioManager = new AudioManager();
+        public AudioManager audioManager = AudioManager.Instance;
         //=============================================================
         public Map1(Game1 game, int mapIndex, Map m2)
         {
