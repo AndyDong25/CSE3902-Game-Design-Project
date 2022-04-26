@@ -1,16 +1,19 @@
 ﻿Reviewer - Tianle Chen
-Date - 4/11/22
+Date - 4/25/22
 CSE3902_Project
-File - AudioManager.cs
-File Author - Devan Mallory
+File - CollisionDetection.cs
+File Author - Andy Dong
 Time to Complete - 20 minutes
 
 Comments
-	- I think this class is one of the cleanest and organized classes in our project. 
-	- It would be better if there's more comments on the code.
-	- Since the similar structure: audio.Volume = xx --> audio.Play --> currentPlayingFiles.add(audio) in many functions, a possible way is to package these processes.
-	Using a helper function such as audioProcessing to abstract these three steps (make a standard of the process) may able to help the code maintain better readability. 
-	A function for processing the audio, and several classes leveraging the functionality to process different audios might looks a bit more simple though the original 
-	design structure is already pretty nice!
-	
-	- Can add accessibility (private or public or protected) for some soundEffect and List variables initialized in this class.
+	- The logic of this class is clear, but using too many foreach loops which makes the readability become worse
+	- Better to use some helper functions for some foreach loops or multi ifs parts, this could make the code more readable.
+	- We could consider creating an interface such as CollisionChecker, and some checker implements it do the collision checking job. In this way, we don't need to 
+	call a lot of CheckCollison functions in this class, we just need to create a list of the collision checker and call the check function in it. (Similar as how we
+	implement a Command design patter)
+	- Lack of comments and other documentation for this class
+	- We used many variable names like "p1, p2, b, o" in this class which is unclear sometime and hard to distinguish different variables. In real practice, I notice 
+	that we confused things like p1 and p2 for several times, so I think it would be better if we can make the variable name longer and more distinguishable such as
+	firstPlayer, secondPlayer.
+	- It would be much better if all the collisonHandler can have the same format, but this depends on how each collisionHandler be implemented so we can't do much thing
+	here in this class for this problem.
