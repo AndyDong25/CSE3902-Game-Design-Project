@@ -21,8 +21,6 @@ General:
   
   R: Reset the Game
 
-  Change Map: Right Mouse Click
-
 Player 1: 
 
   Move Up: W
@@ -65,18 +63,9 @@ Player 2:
   
 Testing Controls:
   
-  // unused - key bound to GameOver sound effect currently
-  Change Character1: E
-  // unused - key bound to GameOver sound effect currently
-  Change Character2: P
-  
-  Enter - hit to start game upon launch
-  
-  P - pause/resume game during gameplay
-  
-  I - "return" to menu state (hit enter to start game)
-  
-  B - game over state (needs further implementation)
+  P - pause game during gameplay
+  	Left Click - resume
+	Right Click- go to main menu
   
   M - mute/unmute music
   
@@ -84,6 +73,17 @@ Testing Controls:
   
   F2 - load the parameters saved last time
 
+Additional Features:
+
+  Cheat Code: C-LAlt-LCtrl makes Player1 invincible
+  Main Menu Toggles:
+  	Coin - turn on coin mode
+	Explosion Assistance - turn on explosion range indicator
+  Map Generator:
+  	Python script to convert excel file into a .json file to create maps easily
+  Event Log:
+  	There is a .txt file that keeps track of events during the game
+	
 How to Play:
 
   See Bubble Arena and other similar games for Reference: (https://www.youtube.com/watch?v=O2RPyNrL9Xg&ab_channel=HyperXshadow). The goal of the game is to eliminate all other players and AI by dropping bombs on them, all while avoiding enemies and explosions.  
@@ -104,10 +104,8 @@ Special Items:
 
 Bugs/Notes:
 	-Most everything should work accordingly
-	-Occasional collision/muting/pausing issues
-	-Some functionality not fully implemented yet for future developement - coins, minecart, UI
-	-Map4 is used for testing purposes (coin spawner, all items available, etc,.)
-	
+	- Explosions destroying items is a functionality
+	- Players being "in" the bomb is also a feature (or else a player will be unable to drop bombs at their location)
 
 Other:
     
