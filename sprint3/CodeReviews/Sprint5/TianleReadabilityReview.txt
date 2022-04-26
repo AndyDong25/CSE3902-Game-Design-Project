@@ -3,7 +3,7 @@ Date - 4/25/22
 CSE3902_Project
 File - CollisionDetection.cs
 File Author - Andy Dong
-Time to Complete - 20 minutes
+Time to Complete - 30 minutes
 
 Comments
 	- The logic of this class is clear, but using too many foreach loops which makes the readability become worse
