@@ -84,7 +84,9 @@ namespace CSE3902_Project.Map
         public List<ExplosionCross> finishedExplosionCross;
         public List<Explosion> allExplosionsList;
         public List<StaticBomb> staticBombList;
+        //public List<AIStaticBomb> staticAIBombList;
         public List<StaticBomb> finishedBombs;
+        //public List<AIStaticBomb> finishedAIBombs;
         public List<NinjaStar> finishedNinjaStar;
         public List<ISprite> finishedObstacles;
         public List<Torpedo> finishedTorpedo;
@@ -173,6 +175,7 @@ namespace CSE3902_Project.Map
             time = 250;
             myTime = new Time(new Vector2(360, 500), this, time);
             staticBombList = new List<StaticBomb>();
+            //staticAIBombList = new List<AIStaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
             explosionRangeList = new List<ExplosionRange>();
             ninjaStarList = new List<NinjaStar>();
@@ -238,6 +241,7 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(landmineList);
             allObjects.AddRange(torpedoList);
             allObjects.AddRange(staticBombList);
+            //allObjects.AddRange(staticAIBombList);
             allObjects.AddRange(currentEnemyList);
             allObjects.AddRange(currentObstacleList);
             allObjects.AddRange(explosionCrossList);
@@ -260,6 +264,7 @@ namespace CSE3902_Project.Map
             finishedCoin = new List<Coin>();
             finishedObjects = new List<ISprite>();
             finishedBombs = new List<StaticBomb>();
+            //finishedAIBombs = new List<AIStaticBomb>();
             finishedExplosionCross = new List<ExplosionCross>();
             finishedExplosionRange = new List<ExplosionRange>();
             finishedItems = new List<BasicItem>();
@@ -304,7 +309,6 @@ namespace CSE3902_Project.Map
                
                 s.Draw(spriteBatch);
             }
-
             hud.Draw(spriteBatch);
             myTime.Draw(spriteBatch);
         }
@@ -408,11 +412,28 @@ namespace CSE3902_Project.Map
                 ExplosionRange er = new ExplosionRange(game);
                 staticBombList.Add(newBomb);
                 explosionRangeList.Add(er);
-               // OnlyRange.Add(er);
+                // OnlyRange.Add(er);
                 allObjects.Add(er);
                 allObjects.Add(newBomb);
             }
         }
+
+        //public void AIAddBomb(AIPlayer player, Vector2 pos)
+        //{
+
+        //    if (staticAIBombList.Count < 10)
+        //    {
+        //        audioManager.PlayBombThrown();
+
+        //        AIStaticBomb newBomb = new AIStaticBomb(game, player, pos);
+        //        ExplosionRange er = new ExplosionRange(game);
+        //        staticAIBombList.Add(newBomb);
+        //        explosionRangeList.Add(er);
+        //        // OnlyRange.Add(er);
+        //        allObjects.Add(er);
+        //        allObjects.Add(newBomb);
+        //    }
+        //}
 
         public void AddExplosions(Vector2 pos, int potionCount, int direction)
         {
@@ -589,6 +610,11 @@ namespace CSE3902_Project.Map
                 staticBombList.Remove(s);
                 finishedObjects.Add(s);
             }
+            //foreach(AIStaticBomb s in finishedAIBombs)
+            //{
+            //    staticAIBombList.Remove(s);
+            //    finishedObjects.Add(s);
+            //}
             foreach (ISprite s in finishedObstacles)
             {
                 destructibleBlockList.Remove(s as DestructableBlockSprite);

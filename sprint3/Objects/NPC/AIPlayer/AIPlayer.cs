@@ -1,10 +1,13 @@
 ﻿using CSE3902_CSE3902_Project;
+using CSE3902_CSE3902_Project.Objects.Player;
 using CSE3902_CSE3902_Project.Sprites;
 using CSE3902_Project.Collisions;
+using CSE3902_Project.Objects.Bomb;
 using CSE3902_Project.Objects.NPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint3.Objects;
+using sprint3.Objects.Bomb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +26,7 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         public float speed = 3.0f;
         public int bombCount = 3;
         public float framePerStep = 6;
+        public int potionCount = 2;
 
         public int direction = 2;
         int randomNum = 1;
@@ -43,24 +47,38 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         }
         public void DropBomb()
         {
-            //if (!isDead && bombCount != 0)
-            //{
-            //    Vector2 tilePos = Game.currentMap.tileMap.RoundToNearestTile(new Vector2((int)xPos + 12, (int)yPos + 15));
-            //    bool success = Game.currentMap.tileMap.AddBombToTileMap(tilePos);
-            //    if (success)
-            //    {
-            //        Game.currentMap.AddBomb(this, tilePos);
-            //        bombCount--;
-            //    }
-            //}
-
+            if (!isDead && bombCount != 0)
+            {
+                Vector2 tilePos = Game.currentMap.tileMap.RoundToNearestTile(new Vector2((int)xPos + 12, (int)yPos + 15));
+                bool success = Game.currentMap.tileMap.AddBombToTileMap(tilePos);
+                if (success)
+                {
+                    Game.currentMap.AddBomb(Game.currentMap.player1, new Vector2((int)xPos, (int)yPos - 20));
+                    bombCount--;
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
+            CheckMapBounds();
+        }
 
-            // Generate NPC
+        public void TakeDamage()
+        {
+        }
+
+        public void Update()
+        {
+            GenerateRandomBehavior();
+            currState.Update();
+            UpdateCollider();
+            CheckMapBounds();
+        }
+
+        private void GenerateRandomBehavior()
+        {
             Random rd = new Random();
             if (count % 60 == 0)
             {
@@ -91,19 +109,8 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
                 this.DropBomb();
                 count++;
             }
-            CheckMapBounds();
         }
 
-        public void TakeDamage()
-        {
-        }
-
-        public void Update()
-        {
-            currState.Update();
-            UpdateCollider();
-            CheckMapBounds();
-        }
         private void CheckMapBounds()
         {
             if (xPos < -15) xPos = -15;

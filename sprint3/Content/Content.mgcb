@@ -567,6 +567,18 @@
 /processorParam:TextureFormat=Color
 /build:questionMark.jpg
 
+#begin RedBomb.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:RedBomb.png
+
 #begin redBoy.png
 /importer:TextureImporter
 /processor:TextureProcessor
