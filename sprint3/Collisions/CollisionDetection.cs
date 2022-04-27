@@ -18,23 +18,34 @@ using CSE3902_Project.Objects.NPC.Yeti;
 using CSE3902_Project.Objects.Torpedo;
 using Microsoft.Xna.Framework;
 using sprint3.Objects;
+using CSE3902_CSE3902_Project.Commands;
 
 namespace CSE3902_Project.Collisions
 {
+
     public class CollisionDetection
     {
+        private Game1 game;
+        private List<ICollisionChecker> checkerList;
         public Map1 map;
         public CollisionDetection(Map1 map)
         {
             this.map = map;
+            checkerList = new List<ICollisionChecker>();
         }
 
         private ICollisionHandler collisionHandler;
         internal NinjaStarBombCollisionHandler ICollisionHandler { get; private set; }
-
+        
         public void Update()
         {
 
+            checkerList.Add(new EnemyCollisionChecker(map));
+            checkerList.Add(new ExplosionCollisionChecker(map));
+            foreach (ICollisionChecker checker in checkerList)
+            {
+                checker.CheckCollision();
+            }
             map.GetAllExplosions();
 
             CheckLandmineCollision();
@@ -45,17 +56,15 @@ namespace CSE3902_Project.Collisions
 
             CheckCoinCollision();
 
-            //CheckMinecartCollision();
-
             CheckBombCollision();
 
             CheckExplosionCrossCollision();
-            CheckExplosionRangeCollision();
 
+            CheckExplosionRangeCollision();
 
             CheckCurrentObstacleCollision();
          
-            CheckEnemyCollision();
+            //CheckEnemyCollision();
 
             CheckDestructableBlockCollision();
             
@@ -63,7 +72,7 @@ namespace CSE3902_Project.Collisions
             
             CheckBasicItemCollision();
 
-            CheckExplosionCollision();
+            //CheckExplosionCollision();
 
             CheckNinjaStarCollision();
 
