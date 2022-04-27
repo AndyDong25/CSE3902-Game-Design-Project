@@ -1,16 +1,16 @@
 ﻿namespace CSE3902_CSE3902_Project.Commands
 {
-    class SaveGameCommand : ICommand
+    class SaveGameCommand3 : ICommand
     {
         private Game1 game;
-        public SaveGameCommand(Game1 game)
+        public SaveGameCommand3(Game1 game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-            game.saver1.Data.PRE = "Player1 won: " + game.p1Wins + "\n" +
+            game.saver3.Data.PRE = "Player1 won: " + game.p1Wins + "\n" +
                 "Player2 won: " + game.p2Wins + "\n" +
                 "Player1 bombs: " + game.currentMap.player1.bombCount + "\n" +
                 "Player2 bombs: " + game.currentMap.player2.bombCount + "\n" +
@@ -19,16 +19,16 @@
                 "Player1 shoes: " + game.currentMap.player1.inventory["shoe"] + "\n" +
                 "Player2 shoes: " + game.currentMap.player2.inventory["shoe"];
             
-            game.saver1.Data.p1Bomb = game.currentMap.player1.bombCount;
-            game.saver1.Data.p2Bomb = game.currentMap.player2.bombCount;
-            game.saver1.Data.p1Potion = game.currentMap.player1.potionCount;
-            game.saver1.Data.p2Potion = game.currentMap.player2.potionCount;
-            game.saver1.Data.p1Shoe = game.currentMap.player1.inventory["shoe"];
-            game.saver1.Data.p2Shoe = game.currentMap.player2.inventory["shoe"];
+            game.saver3.Data.p1Bomb = game.currentMap.player1.bombCount;
+            game.saver3.Data.p2Bomb = game.currentMap.player2.bombCount;
+            game.saver3.Data.p1Potion = game.currentMap.player1.potionCount;
+            game.saver3.Data.p2Potion = game.currentMap.player2.potionCount;
+            game.saver3.Data.p1Shoe = game.currentMap.player1.inventory["shoe"];
+            game.saver3.Data.p2Shoe = game.currentMap.player2.inventory["shoe"];
             ////game.saver.Data.br = " ";
             ////game.saver.Data.p1WinsString = "Player1 wins: ";
-            game.saver1.Data.p1Wins = game.p1Wins;
-            game.saver1.Data.p2Wins = game.p2Wins;
+            game.saver3.Data.p1Wins = game.p1Wins;
+            game.saver3.Data.p2Wins = game.p2Wins;
             //game.saver.Data.br = " ";
             //game.saver.Data.p = "  ";
             //game.saver.Data.p1 = "  ";
@@ -44,7 +44,7 @@
             //game.saver.Data.p2PotionString = "Player2 potions: ";
             //game.saver.Data.p1ShoeString = "Player1 shoes: ";
             //game.saver.Data.p2ShoeString = "Player2 shoes: ";
-            game.saver1.Save();
+            game.saver3.Save();
         }
     }
 }

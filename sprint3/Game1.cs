@@ -44,7 +44,9 @@ namespace CSE3902_CSE3902_Project
         public bool changedMap = false;
         private bool mapsLoaded = false;
         public int p1Wins, p2Wins;
-        public SaveManager saver;
+        public SaveManager saver1;
+        public SaveManager saver2;
+        public SaveManager saver3;
         public LogManager logger;
         public bool saved = false;
         public Camera camera;
@@ -59,10 +61,17 @@ namespace CSE3902_CSE3902_Project
             string str = Environment.CurrentDirectory;
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(str)));
             string saveFolder = @path; // put your save folder name here
-            string saveFile = "savedLog.html"; // put your save file name here
+            string saveFile1 = "savedLog1.html"; // put your save file name here
+            string saveFile2 = "savedLog2.html";
+            string saveFile3 = "savedLog3.html";
             string logFile = "log.html";
             Content.RootDirectory = "Content";
-            saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
+
+            saver1 = new IsolatedStorageSaveManager(saveFolder, saveFile1);
+            saver2 = new IsolatedStorageSaveManager(saveFolder, saveFile2);
+            saver3 = new IsolatedStorageSaveManager(saveFolder, saveFile3);
+
+            //saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
             logger = new IsolatedStorageSaveLogManager(saveFolder, logFile);
             coinMode = false;      
         }

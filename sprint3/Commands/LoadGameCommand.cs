@@ -10,15 +10,15 @@
 
         public void Execute()
         {
-            game.saver.Load();
-            game.p1Wins = game.saver.Data.p1Wins;
-            game.p2Wins = game.saver.Data.p2Wins;
-            game.currentMap.player1.inventory["bomb"] = game.saver.Data.p1Bomb;
-            game.currentMap.player2.inventory["bomb"] = game.saver.Data.p2Bomb;
-            game.currentMap.player1.inventory["potion"] = game.saver.Data.p1Potion;
-            game.currentMap.player2.inventory["potion"] = game.saver.Data.p2Potion;
-            game.currentMap.player1.inventory["shoe"] = game.saver.Data.p1Shoe;
-            game.currentMap.player2.inventory["shoe"] = game.saver.Data.p2Shoe;
+            game.saver1.Load();
+            game.p1Wins = game.saver1.Data.p1Wins;
+            game.p2Wins = game.saver1.Data.p2Wins;
+            game.currentMap.player1.inventory["bomb"] = game.saver1.Data.p1Bomb;
+            game.currentMap.player2.inventory["bomb"] = game.saver1.Data.p2Bomb;
+            game.currentMap.player1.inventory["potion"] = game.saver1.Data.p1Potion;
+            game.currentMap.player2.inventory["potion"] = game.saver1.Data.p2Potion;
+            game.currentMap.player1.inventory["shoe"] = game.saver1.Data.p1Shoe;
+            game.currentMap.player2.inventory["shoe"] = game.saver1.Data.p2Shoe;
         }
     }
 }

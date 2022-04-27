@@ -63,7 +63,6 @@ namespace CSE3902_Project.Map
         public IndestructableBlockSprite iBlock;
         public Tree1 tree1;
         public Tree2 tree2;
-        //public Mashroom1 mashroom1;
         public Torpedo torpedo;
         public TorpedoExplosion torpedoExplosion;
         public Trap trap;
@@ -84,9 +83,7 @@ namespace CSE3902_Project.Map
         public List<ExplosionCross> finishedExplosionCross;
         public List<Explosion> allExplosionsList;
         public List<StaticBomb> staticBombList;
-        //public List<AIStaticBomb> staticAIBombList;
         public List<StaticBomb> finishedBombs;
-        //public List<AIStaticBomb> finishedAIBombs;
         public List<NinjaStar> finishedNinjaStar;
         public List<ISprite> finishedObstacles;
         public List<Torpedo> finishedTorpedo;
@@ -175,7 +172,6 @@ namespace CSE3902_Project.Map
             time = 250;
             myTime = new Time(new Vector2(360, 500), this, time);
             staticBombList = new List<StaticBomb>();
-            //staticAIBombList = new List<AIStaticBomb>();
             explosionCrossList = new List<ExplosionCross>();
             explosionRangeList = new List<ExplosionRange>();
             ninjaStarList = new List<NinjaStar>();
@@ -241,7 +237,6 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(landmineList);
             allObjects.AddRange(torpedoList);
             allObjects.AddRange(staticBombList);
-            //allObjects.AddRange(staticAIBombList);
             allObjects.AddRange(currentEnemyList);
             allObjects.AddRange(currentObstacleList);
             allObjects.AddRange(explosionCrossList);
@@ -251,7 +246,6 @@ namespace CSE3902_Project.Map
             allObjects.AddRange(trapList);
             allObjects.AddRange(minecartList);
             allObjects.AddRange(coinList);
-            //allObjects.AddRange(aiplayerList);
             AudioManager.Instance.PlayMapMusic(mapIndex);
 
         }
@@ -264,7 +258,6 @@ namespace CSE3902_Project.Map
             finishedCoin = new List<Coin>();
             finishedObjects = new List<ISprite>();
             finishedBombs = new List<StaticBomb>();
-            //finishedAIBombs = new List<AIStaticBomb>();
             finishedExplosionCross = new List<ExplosionCross>();
             finishedExplosionRange = new List<ExplosionRange>();
             finishedItems = new List<BasicItem>();
@@ -276,8 +269,6 @@ namespace CSE3902_Project.Map
             coinPosList = new List<Vector2>();
             coinsController.Update();
             
-            
-
             for (int i = allObjects.Count - 1; i > -1; i--)
             {
                 ISprite s = allObjects[i];
@@ -401,7 +392,7 @@ namespace CSE3902_Project.Map
             }
         }
 
-        public void AddBomb(Player player, Vector2 pos)
+        public void AddBomb(Player player, Vector2 pos, bool canHurtAI)
         {
 
             if (staticBombList.Count < 10)
@@ -409,6 +400,7 @@ namespace CSE3902_Project.Map
                 audioManager.PlayBombThrown();
                 
                 StaticBomb newBomb = new StaticBomb(game, player, pos);
+                newBomb.canHurtAI = canHurtAI;
                 ExplosionRange er = new ExplosionRange(game);
                 staticBombList.Add(newBomb);
                 explosionRangeList.Add(er);
@@ -418,24 +410,7 @@ namespace CSE3902_Project.Map
             }
         }
 
-        //public void AIAddBomb(AIPlayer player, Vector2 pos)
-        //{
-
-        //    if (staticAIBombList.Count < 10)
-        //    {
-        //        audioManager.PlayBombThrown();
-
-        //        AIStaticBomb newBomb = new AIStaticBomb(game, player, pos);
-        //        ExplosionRange er = new ExplosionRange(game);
-        //        staticAIBombList.Add(newBomb);
-        //        explosionRangeList.Add(er);
-        //        // OnlyRange.Add(er);
-        //        allObjects.Add(er);
-        //        allObjects.Add(newBomb);
-        //    }
-        //}
-
-        public void AddExplosions(Vector2 pos, int potionCount, int direction)
+        public void AddExplosions(Vector2 pos, int potionCount, int direction, bool canHurtAI)
         {
             ExplosionCross eCross = new ExplosionCross(game);
             audioManager.PlayBombExplosion();
@@ -443,21 +418,21 @@ namespace CSE3902_Project.Map
             int yOffset = 0;
             int x = (int)pos.X;
             int y = (int)pos.Y;
-            if (direction == 0) eCross.originExplosion.Add(new Explosion(game, new Vector2(x + xOffset, y + yOffset)));
+            if (direction == 0) eCross.originExplosion.Add(new Explosion(game, new Vector2(x + xOffset, y + yOffset), canHurtAI));
             // radius in each direction
             for (int i = 1; i < potionCount; i++)
             {
-                if (direction != 4) eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y)));
-                if (direction != 2) eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y)));
-                if (direction != 3) eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y)));
-                if (direction != 1) eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i))));
+                if (direction != 4) eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y), canHurtAI));
+                if (direction != 2) eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y), canHurtAI));
+                if (direction != 3) eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y), canHurtAI));
+                if (direction != 1) eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i)), canHurtAI));
             }
             eCross.SetAllEplosions();
             explosionCrossList.Add(eCross);
             allObjects.Add(eCross);
         }
 
-        public void AddExplosionsRange(Vector2 pos, int potionCount, int direction)
+        public void AddExplosionsRange(Vector2 pos, int potionCount, int direction, bool canHurtAI)
         {
             ExplosionRange eCross = new ExplosionRange(game);
             //audioManager.PlayBombExplosion();
@@ -465,14 +440,14 @@ namespace CSE3902_Project.Map
             int yOffset = 0;
             int x = (int)pos.X;
             int y = (int)pos.Y;
-            if (direction == 0) eCross.originExplosion.Add(new Explosion(game, new Vector2(x + xOffset, y + yOffset)));
+            if (direction == 0) eCross.originExplosion.Add(new Explosion(game, new Vector2(x + xOffset, y + yOffset), canHurtAI));
             // radius in each direction
             for (int i = 1; i < potionCount; i++)
             {
-                if (direction != 4) eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y)));
-                if (direction != 2) eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y)));
-                if (direction != 3) eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y)));
-                if (direction != 1) eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i))));
+                if (direction != 4) eCross.rightExplosions.Add(new Explosion(game, new Vector2(xOffset + 40 * i + x, yOffset + y), canHurtAI));
+                if (direction != 2) eCross.leftExplosions.Add(new Explosion(game, new Vector2(xOffset + x - (40 * i), yOffset + y), canHurtAI));
+                if (direction != 3) eCross.upExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + 40 * i + y), canHurtAI));
+                if (direction != 1) eCross.downExplosions.Add(new Explosion(game, new Vector2(xOffset + x, yOffset + y - (40 * i)), canHurtAI));
             }
             eCross.SetAllEplosions();
             explosionRangeList.Add(eCross);
@@ -610,11 +585,6 @@ namespace CSE3902_Project.Map
                 staticBombList.Remove(s);
                 finishedObjects.Add(s);
             }
-            //foreach(AIStaticBomb s in finishedAIBombs)
-            //{
-            //    staticAIBombList.Remove(s);
-            //    finishedObjects.Add(s);
-            //}
             foreach (ISprite s in finishedObstacles)
             {
                 destructibleBlockList.Remove(s as DestructableBlockSprite);

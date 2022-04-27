@@ -73,10 +73,18 @@ namespace CSE3902_CSE3902_Project.Controller
             this.AddCommand(Keys.D3, new UseLandmineItemCommand(player1), true);
             this.AddCommand(Keys.D8, new UseLandmineItemCommand(player2), true);
 
+            //For mute and pause game
             this.AddCommand(Keys.M, new MuteAudioCommand(AudioManager.Instance), true);
             this.AddCommand(Keys.P, new PauseGameCommand(myGame), true);
+
+            //For save log
             this.AddCommand(Keys.F1, new SaveGameCommand(myGame), false);
             this.AddCommand(Keys.F2, new LoadGameCommand(myGame), true);
+            this.AddCommand(Keys.F3, new SaveGameCommand2(myGame), false);
+            this.AddCommand(Keys.F4, new LoadGameCommand2(myGame), true);
+            this.AddCommand(Keys.F5, new SaveGameCommand3(myGame), false);
+            this.AddCommand(Keys.F6, new LoadGameCommand3(myGame), true);
+
             //CheateMode 
             this.AddCommand(Keys.F10, new CheateGameCommand(player1), true);
             cheadCode = new List<Keys>() { Keys.C, Keys.LeftAlt, Keys.LeftControl };

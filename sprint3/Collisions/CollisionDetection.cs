@@ -91,7 +91,7 @@ namespace CSE3902_Project.Collisions
                 }
                 foreach (ICollideable c in map.currentEnemyList)
                 {
-                    if (e.collider2D.Intersects(c.GetCollider2D()))
+                    if (e.collider2D.Intersects(c.GetCollider2D()) && e.canHurtAI)
                     {
                         collisionHandler = new DynamicObjExplosionCollisionHandler();
                         collisionHandler.HandleCollision(c);
@@ -396,6 +396,7 @@ namespace CSE3902_Project.Collisions
             List<StaticBomb> staticBombList = map.staticBombList;
             foreach (StaticBomb b in staticBombList)
             {
+                
                 if (p1.collider2D.Intersects(b.collider2D))
                 {
                     p1.collisionHandler = new PlayerBombCollisionHandler(b);
@@ -409,7 +410,7 @@ namespace CSE3902_Project.Collisions
                 }
                 foreach (ICollideable c in map.currentEnemyList)
                 {
-                    if (b.collider2D.Intersects(c.GetCollider2D()))
+                    if (b.collider2D.Intersects(c.GetCollider2D()) && b.canHurtAI)
                     {
                         collisionHandler = new ObstacleCollisionHandler();
                         collisionHandler.HandleCollision(c);

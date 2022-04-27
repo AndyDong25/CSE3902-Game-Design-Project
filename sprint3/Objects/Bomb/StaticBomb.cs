@@ -12,10 +12,12 @@ namespace CSE3902_Project.Objects.Bomb
     public class StaticBomb : ISprite, ICollideable
     {
         public Game1 game;
-        private Player player;
+        public Player player;
         private Rectangle sourceRec;
+        private Rectangle sourceRec2;
         public Vector2 pos;
         public Texture2D texture { get; set; }
+        public Texture2D texture2 { get; set; }
 
         public ICollisionHandler collisionHandler;
         public Rectangle collider2D { get; set; }
@@ -30,6 +32,7 @@ namespace CSE3902_Project.Objects.Bomb
         public int directionChained;
      
         public int timer;
+        public bool canHurtAI = false;
 
         public bool p1Passable;
         public bool p2Passable;
@@ -39,14 +42,25 @@ namespace CSE3902_Project.Objects.Bomb
         private Color bombColor;
 
         public Texture2D RangeTexture { get; set; }
+        public Texture2D RangeTexture2 { get; set; }
+
         public ExplosionRange RangeExplosion;
         public StaticBomb(Game1 game, Player player, Vector2 pos)
         {
             this.player = player;
             this.game = game;
-            texture = ItemTextureStorage.Instance.getBombObjectSprite();
-            RangeTexture = ItemTextureStorage.Instance.getExplosionSprite();
-            sourceRec = SpriteConstants.STATIC_BOMB;
+            
+                texture = ItemTextureStorage.Instance.getBombObjectSprite();
+                RangeTexture = ItemTextureStorage.Instance.getExplosionSprite();
+                sourceRec = SpriteConstants.STATIC_BOMB;
+            
+            
+                texture2 = ItemTextureStorage.Instance.getRedBombObjectSprite();
+                RangeTexture2 = ItemTextureStorage.Instance.getExplosionSprite();
+                sourceRec2 = SpriteConstants.REDSTATIC_BOMB;
+            
+            //RangeTexture = ItemTextureStorage.Instance.getExplosionSprite();
+            //sourceRec = SpriteConstants.STATIC_BOMB;
             this.pos = pos;
             timer = 200;
             collider2D = new Rectangle((int)pos.X + 4, (int)pos.Y + 6, 32, 35);
@@ -72,7 +86,15 @@ namespace CSE3902_Project.Objects.Bomb
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destinationrectangle = new Rectangle((int)pos.X, (int)pos.Y, 45, 45);
-           spriteBatch.Draw(texture, destinationrectangle, sourceRec, bombColor);
+            if (canHurtAI)
+            {
+                spriteBatch.Draw(texture, destinationrectangle, sourceRec, bombColor);
+            }
+            else
+            {
+                spriteBatch.Draw(texture2, destinationrectangle, sourceRec2, bombColor);
+            }
+           //spriteBatch.Draw(texture, destinationrectangle, sourceRec, bombColor);
         }
 
         public void Update()
@@ -80,7 +102,7 @@ namespace CSE3902_Project.Objects.Bomb
             HelperMode = game.HelperMode;
             CheckUpdatedBombColliderState();
             if (HelperMode == true) { 
-            game.currentMap.AddExplosionsRange(pos, player.potionCount, directionChained);
+            game.currentMap.AddExplosionsRange(pos, player.potionCount, directionChained, canHurtAI);
             }
             if (--animationSpeed % 10 == 0)
             {
@@ -92,9 +114,14 @@ namespace CSE3902_Project.Objects.Bomb
             {
                 game.currentMap.tileMap.tileMap.Remove(pos);
                 game.currentMap.finishedBombs.Add(this);
-/*                game.map.staticBombList.Remove(this);
-                game.map.allObjects.Remove(this);*/
-                game.currentMap.AddExplosions(pos, player.potionCount, directionChained);
+                /*                game.map.staticBombList.Remove(this);
+                                game.map.allObjects.Remove(this);*/
+
+                if (canHurtAI)
+                {
+
+                }
+                game.currentMap.AddExplosions(pos, player.potionCount, directionChained, canHurtAI);
                
                 player.bombCount++;
             }

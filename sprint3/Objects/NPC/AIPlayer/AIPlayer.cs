@@ -47,13 +47,14 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         }
         public void DropBomb()
         {
+
             if (!isDead && bombCount != 0)
             {
                 Vector2 tilePos = Game.currentMap.tileMap.RoundToNearestTile(new Vector2((int)xPos + 12, (int)yPos + 15));
                 bool success = Game.currentMap.tileMap.AddBombToTileMap(tilePos);
                 if (success)
                 {
-                    Game.currentMap.AddBomb(Game.currentMap.player1, new Vector2((int)xPos, (int)yPos - 20));
+                    Game.currentMap.AddBomb(Game.currentMap.player1, new Vector2((int)xPos, (int)yPos - 20), false);
                     bombCount--;
                 }
             }

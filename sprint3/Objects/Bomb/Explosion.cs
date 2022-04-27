@@ -16,15 +16,16 @@ namespace CSE3902_Project.Objects.Bomb
         private Texture2D Rangetexture;
         public int timer;
         private Vector2 pos;
-
+        public bool canHurtAI = false;
         //public Rectangle collider2D;
         public Rectangle collider2D { get; set; }
         public ICollisionHandler collisionHandler;
 
-        public Explosion(Game1 game, Vector2 pos)
+        public Explosion(Game1 game, Vector2 pos, bool canHurtAI)
         {
             this.game = game;
             this.pos = pos;
+            this.canHurtAI = canHurtAI;
             timer = 20;
             texture = ItemTextureStorage.Instance.getExplosionSprite();
             Rangetexture = ItemTextureStorage.Instance.getRangeTexture(); 

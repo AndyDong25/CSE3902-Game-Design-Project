@@ -222,6 +222,7 @@ namespace CSE3902_CSE3902_Project
         public static Rectangle EXPLOSION = new Rectangle(561, 129, 75, 75);
         public static Rectangle TOMBSTONE = new Rectangle(0, 0, 233, 233);
         public static Rectangle STATIC_BOMB = new Rectangle(0, 0, 255, 255);
+        public static Rectangle REDSTATIC_BOMB = new Rectangle(0, 0, 800, 745);
 
         // spawnable items
         public static Rectangle BOMB_ITEM = new Rectangle(0, 0, 363, 480);

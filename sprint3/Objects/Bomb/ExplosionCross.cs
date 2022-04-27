@@ -17,6 +17,7 @@ namespace sprint3.Objects.Bomb
         public List<Explosion> allExplosions;
         public int timer;
         private Game1 game;
+        public bool canHurtAI = false;
 
         public ExplosionCross(Game1 game)
         {

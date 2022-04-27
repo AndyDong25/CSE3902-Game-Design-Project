@@ -92,10 +92,11 @@ namespace CSE3902_CSE3902_Project.Objects.Player
                 bool success = Game.currentMap.tileMap.AddBombToTileMap(tilePos);
                 if (success)
                 {
-                    Game.currentMap.AddBomb(this, tilePos);
+                    Game.currentMap.AddBomb(this, tilePos, true);
                     bombCount--;
                 }
             }
+
         }
 
         public void UseItem()
