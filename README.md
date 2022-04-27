@@ -69,9 +69,9 @@ Testing Controls:
   
   M - mute/unmute music
   
-  F1 - save the current game parameters
+  F1, F3, F5 - save the current game parameters in 3 files
   
-  F2 - load the parameters saved last time
+  F2, F4, F6 - load the parameters saved last time
 
 Additional Features:
 
