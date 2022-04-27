@@ -4,12 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CSE3902_Project.Objects.NPC.AIPlayer
 {
+   
     class AIPlayerDeathState : IEnemyState
     {
         private AIPlayer aiplayer;
         private static Rectangle sourceRec;
         private Texture2D texture;
-
+        private int timer = 150;
         public AIPlayerDeathState(AIPlayer aiplayer)
         {
             this.aiplayer = aiplayer;
@@ -19,7 +20,13 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         {
             texture = EnemyTextureStorage.Instance.getTombstoneSprite();
             sourceRec = SpriteConstants.TOMBSTONE;
-            aiplayer.DrawSprite(spriteBatch, texture, sourceRec);
+            
+            if (timer > 0)
+            {
+                aiplayer.DrawSprite(spriteBatch, texture, sourceRec);
+                timer--;
+            }
+            
         }
 
         public void Update()
