@@ -407,7 +407,7 @@ namespace CSE3902_Project.Map
             }
             foreach (List<int> pos in m2.aiplayers.Values)
             {
-                aiplayer = new AIPlayer(new Vector2(pos[0], pos[1]), game);
+                aiplayer = new AIPlayer(new Vector2(pos[0], pos[1]), game,false);
                 currentEnemyList.Add(aiplayer);
             }
         }

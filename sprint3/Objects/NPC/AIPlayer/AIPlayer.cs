@@ -20,7 +20,7 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         public IEnemyState currState; 
         public int SpriteIndex = 0;
         public int TextureIndex = 0;
-
+        public bool isPet = false;
         public bool hasNinjaStar = true;
         public float xPos, yPos, previousXPos, previousYPos;
         public float speed = 3.0f;
@@ -31,15 +31,20 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
         public int direction = 2;
         int randomNum = 1;
         int count = 0;
-
+        private int timer = 0;
         public Rectangle collider2D { get; set; }
 
         public Boolean isDead = false;
         public Game1 Game { get; set; }
         private ISprite bomb { get; set; }
-
-        public AIPlayer(Vector2 position, Game1 game)
+        public bool isDeadWalk = true;
+        public AIPlayer(Vector2 position, Game1 game,bool isDeadWalk)
         {
+            this.isDeadWalk = isDeadWalk;
+            if (isDeadWalk)
+            {
+                SpriteIndex = 2;
+            }
             currState = new AIPlayerFacingNorthState(this);
             xPos = position.X;
             yPos = position.Y;
@@ -72,12 +77,63 @@ namespace CSE3902_Project.Objects.NPC.AIPlayer
 
         public void Update()
         {
-            GenerateRandomBehavior();
-            currState.Update();
-            UpdateCollider();
-            CheckMapBounds();
+            if (!isDeadWalk)
+            {
+                GenerateRandomBehavior();
+                currState.Update();
+                UpdateCollider();
+                CheckMapBounds();
+            }
+            else
+            {
+                if (timer == 0)
+                {
+                    speed = 0.3f;
+                    SpriteIndex = 1;
+                    FindPath(FineGoal());
+                    UpdateCollider();
+                    CheckMapBounds();
+                }
+            }
+            timer = timer++ % 3;
         }
+        private Vector2 FineGoal()
+        {
+            int maxDis = 0;
+            Vector2 pos = new Vector2(Game.currentMap.player1.xPos, Game.currentMap.player1.yPos);
+            if( ((Game.currentMap.player1.xPos - xPos)*(Game.currentMap.player1.xPos - xPos) + (Game.currentMap.player1.yPos - yPos)* (Game.currentMap.player1.yPos - yPos))>
+                ((Game.currentMap.player2.xPos - xPos) * (Game.currentMap.player2.xPos - xPos) + (Game.currentMap.player2.yPos - yPos) * (Game.currentMap.player2.yPos - yPos)
+                ))
+            {
+                pos = new Vector2(Game.currentMap.player2.xPos, Game.currentMap.player2.yPos);
+            }
+            return pos;
+        }
+        private void FindPath(Vector2 goal)
+        {
+            float upDis = yPos- goal.Y;
+            float downDis = goal.Y- yPos ;
+            float rightDis = goal.X - xPos;
+            float leftDis = xPos - goal.X;
+            float max = Math.Max(Math.Max(upDis, downDis), Math.Max( rightDis, leftDis));
+            if(max == upDis)
+            {
+                this.MoveUp();
+            }
+            else if(max == downDis)
+            {
+                this.MoveDown();
+            }
+            else if (max == leftDis)
+            {
+                this.MoveLeft();
+            }
+            else
+            {
+                this.MoveRight();
+            }
 
+        }
         private void GenerateRandomBehavior()
         {
             Random rd = new Random();

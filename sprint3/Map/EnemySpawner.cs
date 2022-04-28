@@ -34,10 +34,21 @@ namespace sprint3.Map
                 row = rnd.Next(0, 20);
                 col = rnd.Next(0, 12);
                 Vector2 pos = new Vector2(row * 40 + 8, col * 40 + 8);
-                AIPlayer ai = new AIPlayer(pos, game);
+                col = rnd.Next(0, 2);
+                if(col == 1)
+                {
+                    AIPlayer ai = new AIPlayer(pos, game,true);
+                    map.currentEnemyList.Add(ai);
+                    map.allObjects.Add(ai);
+                }
+                else
+                {
+                    AIPlayer ai = new AIPlayer(pos, game, false);
+                    map.currentEnemyList.Add(ai);
+                    map.allObjects.Add(ai);
+                }
                 //map.enem.Add(ai);
-                map.currentEnemyList.Add(ai);
-                map.allObjects.Add(ai);
+                
             }
         }
         public void Update()

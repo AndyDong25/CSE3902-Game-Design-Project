@@ -147,6 +147,7 @@ namespace CSE3902_CSE3902_Project
 
         protected override void Draw(GameTime gameTime)
         {
+
             screenScale = new Vector3(1.0f, 1.0f, 1.0f);
             viewMatrix = camera.GetTransform();
             
