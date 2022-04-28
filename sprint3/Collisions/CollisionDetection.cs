@@ -26,12 +26,12 @@ namespace CSE3902_Project.Collisions
     public class CollisionDetection
     {
         private Game1 game;
-        private List<ICollisionChecker> checkerList;
+        //private List<ICollisionChecker> checkerList;
         public Map1 map;
         public CollisionDetection(Map1 map)
         {
             this.map = map;
-            checkerList = new List<ICollisionChecker>();
+            //checkerList = new List<ICollisionChecker>();
         }
 
         private ICollisionHandler collisionHandler;
@@ -40,12 +40,12 @@ namespace CSE3902_Project.Collisions
         public void Update()
         {
 
-            checkerList.Add(new EnemyCollisionChecker(map));
+            /*checkerList.Add(new EnemyCollisionChecker(map));
             checkerList.Add(new ExplosionCollisionChecker(map));
             foreach (ICollisionChecker checker in checkerList)
             {
                 checker.CheckCollision();
-            }
+            }*/
             map.GetAllExplosions();
 
             CheckLandmineCollision();
@@ -64,7 +64,7 @@ namespace CSE3902_Project.Collisions
 
             CheckCurrentObstacleCollision();
          
-            //CheckEnemyCollision();
+            CheckEnemyCollision();
 
             CheckDestructableBlockCollision();
             
@@ -72,7 +72,7 @@ namespace CSE3902_Project.Collisions
             
             CheckBasicItemCollision();
 
-            //CheckExplosionCollision();
+            CheckExplosionCollision();
 
             CheckNinjaStarCollision();
 

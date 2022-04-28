@@ -34,6 +34,7 @@ namespace CSE3902_CSE3902_Project.Objects.Player
 
         public void LoadAllResources(ContentManager content)
         {
+
             bombermanTexture = content.Load<Texture2D>("bomberSpritesheet");
             goblinTexture = content.Load<Texture2D>("goblinSpriteSheet");
             knightTexture = content.Load<Texture2D>("knightSprite");

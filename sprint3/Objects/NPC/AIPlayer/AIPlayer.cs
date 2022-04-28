@@ -15,9 +15,9 @@ using System.Text;
 
 namespace CSE3902_Project.Objects.NPC.AIPlayer
 {
-    public class AIPlayer : IEnemyState, ICollideable, ISprite, IDynamicObject
+    public class AIPlayer : IEnemyState, ICollideable, ISprite, IDynamicObject,IEnemy
     {
-        public IEnemyState currState;
+        public IEnemyState currState; 
         public int SpriteIndex = 0;
         public int TextureIndex = 0;
 

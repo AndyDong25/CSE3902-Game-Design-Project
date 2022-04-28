@@ -54,7 +54,7 @@ namespace CSE3902_CSE3902_Project
         public Matrix viewMatrix;
         public bool coinMode;
         public bool HelperMode;
-
+        public bool infiniteMode;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -66,14 +66,15 @@ namespace CSE3902_CSE3902_Project
             string saveFile3 = "savedLog3.html";
             string logFile = "log.html";
             Content.RootDirectory = "Content";
-
+            
             saver1 = new IsolatedStorageSaveManager(saveFolder, saveFile1);
             saver2 = new IsolatedStorageSaveManager(saveFolder, saveFile2);
             saver3 = new IsolatedStorageSaveManager(saveFolder, saveFile3);
 
             //saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
             logger = new IsolatedStorageSaveLogManager(saveFolder, logFile);
-            coinMode = false;      
+            coinMode = false;
+            infiniteMode = true;
         }
 
         protected  override void Initialize()

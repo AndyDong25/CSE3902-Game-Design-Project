@@ -43,7 +43,7 @@ namespace CSE3902_Project.Map
         public int score;
         public CoinsController coinsController;
         public SpriteFont timefont;
-
+        public EnemySpawner enemySpawner;
         private Background1 background;
         public Hud1 hud;
         public Time myTime;
@@ -167,6 +167,7 @@ namespace CSE3902_Project.Map
             collisionDetection = new CollisionDetection(this);
             tileMap = new TileMap(game);
             coinsController = new CoinsController(game,this);
+            enemySpawner = new EnemySpawner(game, this);
             background = new Background1(new Vector2(0, 0), mapIndex);
             hud = new Hud1(new Vector2(0, 480), game, this);
             time = 250;
@@ -268,7 +269,7 @@ namespace CSE3902_Project.Map
             finishedLandmine = new List<Landmine>();
             coinPosList = new List<Vector2>();
             coinsController.Update();
-            
+            enemySpawner.Update();
             for (int i = allObjects.Count - 1; i > -1; i--)
             {
                 ISprite s = allObjects[i];
