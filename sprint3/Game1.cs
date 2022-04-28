@@ -55,6 +55,7 @@ namespace CSE3902_CSE3902_Project
         public bool coinMode;
         public bool HelperMode;
         public bool infiniteMode;
+        public bool fogMode;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -74,7 +75,8 @@ namespace CSE3902_CSE3902_Project
             //saver = new IsolatedStorageSaveManager(saveFolder, saveFile);
             logger = new IsolatedStorageSaveLogManager(saveFolder, logFile);
             coinMode = false;
-            infiniteMode = true;
+            infiniteMode = false;
+            fogMode = false;
         }
 
         protected  override void Initialize()

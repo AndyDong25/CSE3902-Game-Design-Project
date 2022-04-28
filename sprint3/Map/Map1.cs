@@ -27,6 +27,7 @@ using sprint3.Objects.Decorations;
 using CSE3902_Project.Objects.Torpedo;
 using Microsoft.Xna.Framework.Content;
 using CSE3902_Project.Objects.NPC.AIPlayer;
+using CSE3902_CSE3902_Project.Objects.Items;
 
 namespace CSE3902_Project.Map
 {
@@ -296,11 +297,29 @@ namespace CSE3902_Project.Map
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            
             foreach (ISprite s in allObjects)
             {
                
                 s.Draw(spriteBatch);
             }
+            if (game.fogMode)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    for (int j = 0; j < 12; j++)
+                    {
+                        if (true)
+                            if ((Math.Abs(i * 40 - player1.xPos) > 100 || Math.Abs(j * 40 - player1.yPos) > 100) && (Math.Abs(i * 40 - player2.xPos) > 100 || Math.Abs(j * 40 - player2.yPos) > 100))
+                            {
+                                Rectangle destinationRec = new Rectangle(i * 40, j * 40, 50, 50);
+                                Rectangle sourceRec = SpriteConstants.EXPLOSION;
+                                spriteBatch.Draw(ItemTextureStorage.Instance.getRangeTexture(), destinationRec, sourceRec, new Color(Color.Transparent, 245), 0.0f, Vector2.Zero, SpriteEffects.None, (float)0.0000000000000001);
+                            }
+                    }
+                }
+            }
+            
             hud.Draw(spriteBatch);
             myTime.Draw(spriteBatch);
         }

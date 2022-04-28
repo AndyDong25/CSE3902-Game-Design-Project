@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CSE3902_CSE3902_Project.Objects.Player;
+using CSE3902_CSE3902_Project.Objects.Items;
 
 namespace sprint3
 {
@@ -27,6 +28,7 @@ namespace sprint3
         private Texture2D skyMapTexture;
         private Texture2D randomMapTexture;
         private Texture2D goblinTexture;
+        private Texture2D fogTexture;
 
         private Rectangle grassMapDestRec;
         private Rectangle iceMapDestRec;
@@ -34,6 +36,7 @@ namespace sprint3
         private Rectangle waterMapDestRec;
         private Rectangle skyMapDestRec;
         private Rectangle randomMapDestRec;
+        private Rectangle fogDestRec;
         private Vector2 explosionAssistancePos;
         private Rectangle expAssistanceDestRec;
         private SpriteFont font;
@@ -46,6 +49,7 @@ namespace sprint3
         private bool infiniteMode;
         private int idx = 0;
         private bool ifClicked = false;
+
         public MainMenu(Game1 game)
         {
             this.game = game;
@@ -58,6 +62,7 @@ namespace sprint3
             skyMapTexture = DecorationTextureStorage.Instance.getSkyBackgroundSprite();
             randomMapTexture  = DecorationTextureStorage.Instance.getQuestionMarkSprite();
             goblinTexture = PlayerTextureStorage.Instance.getGoblinSpriteSheet();
+            fogTexture = ItemTextureStorage.Instance.getExplosionSprite();
 
             grassMapDestRec = new Rectangle(10, 30, 253, 220);
             iceMapDestRec = new Rectangle(273, 30, 253, 220);
@@ -66,6 +71,7 @@ namespace sprint3
             skyMapDestRec = new Rectangle(273, 300, 253, 220);
             randomMapDestRec = new Rectangle(536, 300, 253, 220);
             goblinDestRec = new Rectangle(540, 547, 40, 40);
+            fogDestRec = new Rectangle(640, 547, 40, 40);
 
             explosionAssistancePos = new Vector2(310, 575);
             expAssistanceDestRec = new Rectangle(310, 575, 180, 20);
@@ -91,11 +97,20 @@ namespace sprint3
             spriteBatch.Draw(waterMapTexture, waterMapDestRec, Color.White);
             spriteBatch.Draw(skyMapTexture, skyMapDestRec, Color.White);
             spriteBatch.Draw(randomMapTexture, randomMapDestRec, Color.White);
-
+            
             spriteBatch.DrawString(font, "SELECT A MAP", textPos, Color.White);
             spriteBatch.DrawString(font, "COIN MODE?", new Vector2(330, 550), Color.White);
 
             coin.Draw(spriteBatch);
+            if (game.fogMode)
+            {
+                spriteBatch.Draw(fogTexture, fogDestRec, SpriteConstants.EXPLOSION, Color.Red);
+            }
+            else
+            {
+                spriteBatch.Draw(fogTexture, fogDestRec, SpriteConstants.EXPLOSION, Color.Black);
+            }
+            
             if (!game.infiniteMode)
             {
                 spriteBatch.Draw(goblinTexture, goblinDestRec,goblinSource[0], Color.White);
@@ -172,6 +187,10 @@ namespace sprint3
                 {
                     game.infiniteMode = !game.infiniteMode;
                     infiniteMode = !infiniteMode;
+                }
+                else if (fogDestRec.Contains(point))
+                {
+                    game.fogMode = !game.fogMode;
                 }
                 else if (expAssistanceDestRec.Contains(point))
                 {
